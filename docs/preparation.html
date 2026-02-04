@@ -78,6 +78,9 @@
 
         /***************************************/
         @layer utilities {
+            .no-scrollbar::-webkit-scrollbar{display:none;}
+            .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none;}
+
             .text-shadow {
                 text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
 
@@ -188,17 +191,18 @@
             </div>
 
             <!-- ✅ 仅加 nav-text，不改结构 -->
-            <nav id="main-nav" class="flex flex-wrap gap-4 nav-text">
+            <nav id="main-nav"
+                class="flex flex-nowrap md:flex-wrap gap-3 md:gap-4 nav-text overflow-x-auto md:overflow-visible no-scrollbar whitespace-nowrap md:whitespace-normal -mx-2 px-2 md:mx-0 md:px-0">
                 <a href="#"
-                    class="px-4 py-2 bg-skyblue hover:bg-skyblue/80 rounded-full transition-all transform hover:scale-105 shadow-sm">Home</a>
+                    class="px-4 py-2 bg-skyblue hover:bg-skyblue/80 rounded-full transition-all transform hover:scale-105 shadow-sm shrink-0">Home</a>
                 <a href="#contents-section"
-                    class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm">Guide</a>
+                    class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm shrink-0">Guide</a>
                 <a href="#"
-                    class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm">Buy</a>
+                    class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm shrink-0">Buy</a>
                 <a href="#"
-                    class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm">About</a>
+                    class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm shrink-0">About</a>
                 <!-- Language下拉菜单 -->
-                <div class="relative group">
+                <div class="relative group shrink-0">
                     <button
                         class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm flex items-center gap-2">
                         <span>Language</span>
@@ -294,18 +298,20 @@
 
 
 <!-- 标题区（完全保留你原有代码，颜色/布局无任何修改） -->
-    <section class="w-full py-8 px-4 md:px-8 bg-gradient-to-b from-sunny/30 to-white/50">
+    <section class="w-full py-6 md:py-8 px-4 md:px-8 bg-gradient-to-b from-sunny/30 to-white/50">
       <div class="max-w-5xl mx-auto flex flex-col items-center gap-8">
     
         <div class="max-w-3xl text-center">
-			<br><br><br><br>
-          <h2 class="text-[clamp(1.8rem,4vw,2.8rem)] font-bold text-white text-shadow mb-4">
+
+          <div class="h-4 md:h-16"></div>
+          <h2 class="text-[clamp(1.8rem,4vw,2.8rem)] font-bold text-white text-shadow mb-3 md:mb-4">
             Preparation & Entry
           </h2>
-          <p class="text-lg">
+          <p class="text-base md:text-lg mt-2">
             Everything you need to prepare before your trip to China 🧳
           </p>
-		  	<br><br><br><br><br><br><br><br><br>
+          <div class="h-8 md:h-32"></div>
+
         </div>
     
       </div>
