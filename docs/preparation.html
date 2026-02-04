@@ -153,7 +153,12 @@
 
 <body class="bg-pinky  text-gray-800 pt-20 font-en">
     <!-- 头部区域 -->
-    <header class="fixed top-0 left-0 z-50 w-full py-2 px-4 md:px-8 bg-pinky/95 backdrop-blur-sm ">
+   <header class="fixed top-0 left-0 z-50 w-full py-2 px-4 md:px-8 bg-[#FBECCE] backdrop-blur-sm shadow-[0_6px_18px_rgba(0,0,0,0.08) ">
+   <!--<header
+     class="fixed top-0 left-0 z-50 w-full py-2 px-4 md:px-8 
+            bg-pinky/95 backdrop-blur-sm
+            shadow-[0_6px_18px_rgba(0,0,0,0.08)]">-->
+
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between ">
             <div class="flex items-center mb-4 md:mb-0 ">
                 <img src="images/logo.png" alt="Sun Logo" class="w-14 h-14 mr-3">
@@ -165,7 +170,7 @@
             </div>
 
             <!-- ✅ 仅加 nav-text，不改结构 -->
-            <nav class="flex flex-wrap gap-4 nav-text">
+            <nav id="main-nav" class="flex flex-wrap gap-4 nav-text">
                 <a href="#"
                     class="px-4 py-2 bg-skyblue hover:bg-skyblue/80 rounded-full transition-all transform hover:scale-105 shadow-sm">Home</a>
                 <a href="#contents-section"
@@ -194,18 +199,96 @@
     </header>
 
 
-    <!-- 标题区（完全保留你原有代码，颜色/布局无任何修改） -->
-    <section class="w-full py-8 px-4 md:px-8 bg-gradient-to-b from-sunny/30 to-white/50">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8">
-            <div class="w-full md:w-1/2 text-center md:text-left">
-                <h2 class="text-[clamp(1.8rem,4vw,2.8rem)] font-bold text-white text-shadow mb-4">Preparation & Entry
-                </h2>
-                <p class="text-lg">Everything you need to prepare before your trip to China 🧳</p>
-            </div>
-           <!-- <div class="w-full md:w-1/2">
-                <img src="images/01.png" alt="Preparation Illustration" class="w-full max-w-[200px] mx-auto">
-            </div>-->
+<!-- ✅ 页面内二级导航（页面内容里，不 fixed；二级导航仅桌面显示；面包屑所有尺寸显示） -->
+<section class="w-full px-4 md:px-8 mt-1 bg-gradient-to-b from-sunny/30 to-skyblue/80">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- 二级导航：md 及以上显示；强制一行；无“卡片底色”，直接融入页面背景 -->
+    <div class="hidden md:block">
+      <nav id="sub-nav" class="flex items-center justify-between gap-1 nav-text text-[13px]">
+        <!-- 当前页高亮（只保留轻微高亮，不要大底色块） -->
+        <a id="subnav-prep" href="preparation.html"
+           class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-sunny">
+          <span class="text-base">🧳</span>
+          <span >Preparation & Entry</span>
+        </a>
+
+        <span class="h-5 w-px bg-white/60"></span>
+
+        <a id="subnav-trans" href="#"
+           class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+          <span class="text-base">🗺️</span>
+          <span class="md:inline lg:hidden">Transport & Maps</span>
+          <span class="hidden lg:inline">Transportation & Navigation</span>
+        </a>
+
+        <span class="h-5 w-px bg-white/60"></span>
+
+        <a id="subnav-pay" href="#"
+           class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+          <span class="text-base">💳</span>
+          <span class="md:inline lg:hidden">Payment & Tax</span>
+          <span class="hidden lg:inline">Payment & Tax Refund</span>
+        </a>
+
+        <span class="h-5 w-px bg-white/60"></span>
+
+        <a id="subnav-acco" href="#"
+           class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+          <span class="text-base">🏨</span>
+          <span>Accommodation</span>
+        </a>
+
+        <span class="h-5 w-px bg-white/60"></span>
+
+        <a id="subnav-emer" href="#"
+           class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+          <span class="text-base">🆘</span>
+          <span class="md:inline lg:hidden">Emergency</span>
+          <span class="hidden lg:inline">Emergency Handling</span>
+        </a>
+
+        <span class="h-5 w-px bg-white/60"></span>
+
+        <a id="subnav-cult" href="#"
+           class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+          <span class="text-base">🎎</span>
+          <span class="md:inline lg:hidden">Culture</span>
+          <span class="hidden lg:inline">Travel & Culture</span>
+        </a>
+      </nav>
+
+      <!-- ✅ 给当前页一个“细下划线高亮”（更融合，不抢背景） -->
+      <div class="mt-2 h-[2px] w-24 bg-sunny/70 rounded-full"></div>
+    </div>
+
+    <!-- 面包屑：所有尺寸都显示；更小、不加粗、无底色块 -->
+    <div class="mt-3 text-xs text-gray-500">
+      <a id="crumb-home" href="index.html" class="hover:text-gray-700 transition">Home</a>
+      <span class="mx-1 text-gray-300">/</span>
+      <a id="crumb-guide" href="index.html#contents-section" class="hover:text-gray-700 transition">Guide</a>
+      <span class="mx-1 text-gray-300">/</span>
+      <span id="crumb-current" class="text-gray-600" >Preparation & Entry</span>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- 标题区（完全保留你原有代码，颜色/布局无任何修改） -->
+    <section class="w-full py-10 px-4 md:px-8 bg-gradient-to-b from-skyblue/80 to-white/50">
+      <div class="max-w-5xl mx-auto flex flex-col items-center gap-8">
+    
+        <div class="max-w-3xl text-center">
+          <h2 class="text-[clamp(1.8rem,4vw,2.8rem)] font-bold text-white text-shadow mb-4">
+            Preparation & Entry
+          </h2>
+          <p class="text-lg">
+            Everything you need to prepare before your trip to China 🧳
+          </p>
         </div>
+    
+      </div>
     </section>
 
     <!-- 内容区（完全保留你原有代码，所有颜色/样式无修改） -->
@@ -645,6 +728,15 @@
                 tips: "Tips",
                 about: "About",
                 language: "Language",
+                subnavPrep: "Preparation & Entry",
+                subnavTrans: "Transportation & Navigation",
+                subnavPay: "Payment & Tax Refund",
+                subnavAcco: "Accommodation",
+                subnavEmer: "Emergency Handling",
+                subnavCult: "Travel & Culture",
+                crumbHome: "Home",
+                crumbGuide: "Guide",
+                crumbCurrent: "Preparation & Entry",
                 preparationEntry: "Preparation & Entry",
                 preparationDesc: "Everything you need to prepare before your trip to China 🧳",
                 listOfItems: "📋 List of Items",
@@ -711,6 +803,15 @@
                 tips: "小贴士",
                 about: "关于",
                 language: "语言",
+                subnavPrep: "行前准备 & 入境",
+                subnavTrans: "交通出行 & 导航",
+                subnavPay: "支付 & 退税",
+                subnavAcco: "住宿",
+                subnavEmer: "紧急处理",
+                subnavCult: "旅行 & 文化",
+                crumbHome: "首页",
+                crumbGuide: "指南",
+                crumbCurrent: "行前准备 & 入境",
                 preparationEntry: "行前准备 & 入境流程",
                 preparationDesc: "赴华旅行前需要准备的所有事项 🧳",
                 listOfItems: "📋 物品清单",
@@ -782,10 +883,10 @@
             const texts = languageTexts[lang];
 
             // 替换导航栏文本
-            document.querySelectorAll('nav a')[0].textContent = texts.home;
-            document.querySelectorAll('nav a')[1].textContent = texts.guide;
-            document.querySelectorAll('nav a')[2].textContent = texts.tips;
-            document.querySelectorAll('nav a')[3].textContent = texts.about;
+            document.querySelectorAll('#main-nav a')[0].textContent = texts.home;
+            document.querySelectorAll('#main-nav a')[1].textContent = texts.guide;
+            document.querySelectorAll('#main-nav a')[2].textContent = texts.tips;
+            document.querySelectorAll('#main-nav a')[3].textContent = texts.about;
             document.querySelector('.group button span:first-child').textContent = texts.language;
 
             // 替换标题区文本
@@ -878,6 +979,34 @@
 
             // 替换最后提示文本
             document.querySelector('.flex-col.items-center.justify-center p').textContent = texts.followRules;
+
+            // ✅ 新增：二级导航 + 面包屑（不影响主导航）
+            // 二级导航：同时更新「短标题(<=lg)」和「长标题(lg+)」
+            const setTextSafe = (el, value) => { if (el && typeof value === 'string') el.textContent = value; };
+
+            setTextSafe(document.querySelector('#subnav-prep span:last-child'), texts.subnavPrep);
+
+            // short labels (md.. <lg)
+            setTextSafe(document.querySelector('#subnav-trans span.md\:inline'), texts.subnavTransShort || texts.subnavTrans);
+            setTextSafe(document.querySelector('#subnav-pay span.md\:inline'), texts.subnavPayShort || texts.subnavPay);
+            setTextSafe(document.querySelector('#subnav-emer span.md\:inline'), texts.subnavEmerShort || texts.subnavEmer);
+            setTextSafe(document.querySelector('#subnav-cult span.md\:inline'), texts.subnavCultShort || texts.subnavCult);
+
+            // long labels (lg+)
+            setTextSafe(document.querySelector('#subnav-trans span.hidden.lg\:inline'), texts.subnavTrans);
+            setTextSafe(document.querySelector('#subnav-pay span.hidden.lg\:inline'), texts.subnavPay);
+            setTextSafe(document.querySelector('#subnav-emer span.hidden.lg\:inline'), texts.subnavEmer);
+            setTextSafe(document.querySelector('#subnav-cult span.hidden.lg\:inline'), texts.subnavCult);
+
+            setTextSafe(document.querySelector('#subnav-acco span:last-child'), texts.subnavAcco);
+
+            const crumbHome = document.getElementById('crumb-home')?.querySelector('a');
+            const crumbGuide = document.getElementById('crumb-guide')?.querySelector('a');
+            const crumbCurrent = document.getElementById('crumb-current');
+            setTextSafe(crumbHome, texts.crumbHome);
+            setTextSafe(crumbGuide, texts.crumbGuide);
+            setTextSafe(crumbCurrent, texts.crumbCurrent);
+
 
             // 替换页脚文本
             document.querySelector('footer p:first-child').textContent = texts.footerEditor;
