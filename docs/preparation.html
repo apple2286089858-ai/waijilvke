@@ -759,488 +759,600 @@
             </div>
         </footer>
 
-    <!-- 仅新增：语言切换核心JS（修复入境流程卡片文本替换问题） -->
-    <script>
-        const languageTexts = {
-            en: {
-                home: "Home",
-                guide: "Guide",
-                tips: "Tips",
-                about: "About",
-                language: "Language",
-                subnavPrep: "Preparation & Entry",
-                subnavTrans: "Transportation & Navigation",
-                subnavPay: "Payment & Tax Refund",
-                subnavAcco: "Accommodation",
-                subnavEmer: "Emergency Handling",
-                subnavCult: "Travel & Culture",
-                crumbHome: "Home",
-                crumbGuide: "Guide",
-                crumbCurrent: "Preparation & Entry",
-                preparationEntry: "Preparation & Entry",
-                preparationDesc: "Everything you need to prepare before your trip to China 🧳",
-                listOfItems: "📋 List of Items",
-                checklist: "Checklist",
-                credentials: "Credentials",
-                passport: "Passport (valid for > 6 months)",
-                visa: "Visa (except visa waiver periods)",
-                paymentInstrument: "Payment Instrument",
-                cash: "Cash (≤ ¥20,000), UnionPay/Visa/Mastercard",
-                alipay: "Alipay/WeChat Pay (bind foreign card first)",
-                electronicEquipment: "Electronic Equipment",
-                charger: "Charger (≤ 20,000 mAh) + China-standard plug adapter",
-                devices: "Phone, tablet, camera, laptop, etc.",
-                clothing: "Clothing",
-                climate: "Pack for local climate (varies across China)",
-                weather: "Check destination weather in advance",
-                utilities: "Utilities",
-                simCard: "Local SIM/eSIM card + PIN for bank cards",
-                allergyCard: "Chinese/English allergy card + medication translation",
-                luggage: "Luggage tag + AirTag (for tracking)",
-                emergencyBackup: "Emergency Backup",
-                contactList: "Emergency contact list + hotel reservation confirmations",
-                medications: "Personal medications + first-aid kit",
-                proTip: "Pro Tip: Make a digital copy of all important documents and store them in the cloud!",
-                immigrationProcess: "✈️ Immigration Process",
-                stepByStep: "Step by Step",
-                flightLanding: "Flight <br>Landing",
-                flightLanding1: "Carry a pen for landing card/customs declaration",
-                flightLanding2: "Open \"Customs Passenger Finger Service\" mini-program",
-                flightLanding3: "Stay seated until arrival",
-                quarantineInspection: "Quarantine Inspection",
-                quarantine1: "Scan QR Code to get Customs Declaration Code",
-                quarantine2: "Keep passport/boarding pass ready",
-                borderInspection: "Border <br> Inspection",
-                border1: "Take the \"foreigner's lane\" (passport icons)",
-                border2: "Get your passport stamped",
-                baggageClaim: "Baggage <br> Claim",
-                baggage1: "Check screens for your flight's carousel",
-                baggage2: "Use bright tags/AirTags for easy ID",
-                customsInspection: "Customs <br> Inspection",
-                customs1: "Nothing to declare → Green Channel",
-                customs2: "Goods to declare → Red Channel",
-                customs3: "Meat/fruit/seeds may be confiscated",
-                leavingAirport: "Leaving the Airport",
-                leaving1: "Hotel pickup: Reserve in advance",
-                leaving2: "Cab: Follow signs to queue area",
-                leaving3: "Metro: Follow airport signs",
-                airportTips: "⚡ Airport Tips",
-                airportTip1: "Free WiFi (passport register, 2h limit)",
-                airportTip2: "Currency exchange: Poor rates (small amounts only)",
-                airportTip3: "Carry power banks to avoid dead phones",
-                airportTip4: "Activate SIMs via airport WiFi",
-                airportTip5: "Emergency: +86-12360 (press 2 for English)",
-                prohibitedItems: "🚫 Prohibited Items",
-                prohibited1: "Meat/fruit/seeds (may be confiscated)",
-                prohibited2: "Duty-free: 2 cigarettes/alcohol bottles max",
-                followRules: "Follow airport signs and instructions for a smooth entry ✨",
-                footerEditor: "Editors: Liu Sisi, Wu Xiangwei, Xu Xinyi",
-                footerCopyright: "© 2025 Navigating China Handbook | All Rights Reserved"
-            },
-            zh: {
-                home: "首页",
-                guide: "指南",
-                tips: "小贴士",
-                about: "关于",
-                language: "语言",
-                subnavPrep: "行前准备 & 入境",
-                subnavTrans: "交通出行 & 导航",
-                subnavPay: "支付 & 退税",
-                subnavAcco: "住宿",
-                subnavEmer: "紧急处理",
-                subnavCult: "旅行 & 文化",
-                crumbHome: "首页",
-                crumbGuide: "指南",
-                crumbCurrent: "行前准备 & 入境",
-                preparationEntry: "行前准备 & 入境流程",
-                preparationDesc: "赴华旅行前需要准备的所有事项 🧳",
-                listOfItems: "📋 物品清单",
-                checklist: "清单",
-                credentials: "证件类",
-                passport: "护照（有效期大于6个月）",
-                visa: "签证（免签期除外）",
-                paymentInstrument: "支付工具",
-                cash: "现金（≤2万元）、银联/维萨/万事达卡",
-                alipay: "支付宝/微信支付（需先绑定境外卡）",
-                electronicEquipment: "电子设备",
-                charger: "充电器（≤2万毫安）+ 国标转换插头",
-                devices: "手机、平板、相机、笔记本电脑等",
-                clothing: "衣物",
-                climate: "根据当地气候准备（中国各地气候不同）",
-                weather: "提前查询目的地天气",
-                utilities: "实用物品",
-                simCard: "本地SIM/虚拟SIM卡 + 银行卡PIN码",
-                allergyCard: "中英双语过敏卡 + 药品翻译件",
-                luggage: "行李牌 + AirTag（用于追踪）",
-                emergencyBackup: "应急备用",
-                contactList: "紧急联系人列表 + 酒店预订确认单",
-                medications: "个人药品 + 急救包",
-                proTip: "小贴士：将所有重要文件制作电子版并存储在云端！",
-                immigrationProcess: "✈️ 入境流程",
-                stepByStep: "分步指南",
-                flightLanding: "航班落地",
-                flightLanding1: "携带笔填写入境卡/海关申报单",
-                flightLanding2: "打开“海关旅客指尖服务”小程序",
-                flightLanding3: "落地前保持就座",
-                quarantineInspection: "检疫检查",
-                quarantine1: "扫码获取海关申报码",
-                quarantine2: "准备好护照/登机牌",
-                borderInspection: "边防检查",
-                border1: "走“外国人通道”（有护照标识）",
-                border2: "护照盖章",
-                baggageClaim: "提取行李",
-                baggage1: "查看屏幕找到航班对应的行李转盘",
-                baggage2: "使用醒目行李牌/AirTag便于识别",
-                customsInspection: "海关检查",
-                customs1: "无申报物品 → 绿色通道",
-                customs2: "有申报物品 → 红色通道",
-                customs3: "肉类/水果/种子可能被没收",
-                leavingAirport: "离开机场",
-                leaving1: "酒店接送：提前预约",
-                leaving2: "出租车：跟随指示牌到排队区",
-                leaving3: "地铁：跟随机场指示牌",
-                airportTips: "⚡ 机场小贴士",
-                airportTip1: "免费WiFi（凭护照注册，限时2小时）",
-                airportTip2: "货币兑换：汇率差（仅兑换小额）",
-                airportTip3: "携带充电宝避免手机没电",
-                airportTip4: "通过机场WiFi激活SIM卡",
-                airportTip5: "紧急联系：海关12360（按2转英文）",
-                prohibitedItems: "🚫 违禁物品",
-                prohibited1: "肉类/水果/种子（可能被没收）",
-                prohibited2: "免税品：香烟2条/酒水2瓶为限",
-                followRules: "遵循机场指示牌和工作人员指引，顺利入境 ✨",
-                footerEditor: "编辑：刘思思、吴翔伟、徐欣怡",
-                footerCopyright: "© 2025 中国出行指南 | 保留所有权利"
-            }
-        };
+    
+  <!-- ✅ i18n: robust language switching (no index-based selectors) -->
+  <script>
+    const languageTexts = {
+      en: {
+        home: "Home",
+        guide: "Guide",
+        tips: "Tips",
+        about: "About",
+        language: "Language",
 
-        let currentLang = "en";
+        subnavPrep: "Preparation & Entry",
+        subnavTransShort: "Transport & Maps",
+        subnavTrans: "Transportation & Navigation",
+        subnavPayShort: "Payment & Tax",
+        subnavPay: "Payment & Tax Refund",
+        subnavAcco: "Accommodation",
+        subnavEmerShort: "Emergency",
+        subnavEmer: "Emergency Handling",
+        subnavCultShort: "Culture",
+        subnavCult: "Travel & Culture",
 
-        function switchLanguage(lang) {
-            if (lang === currentLang) return;
-            currentLang = lang;
-            document.documentElement.lang = lang;
-            const texts = languageTexts[lang];
+        crumbHome: "Home",
+        crumbGuide: "Guide",
+        crumbCurrent: "Preparation & Entry",
 
-            // 替换导航栏文本
-            document.querySelectorAll('#main-nav a')[0].textContent = texts.home;
-            document.querySelectorAll('#main-nav a')[1].textContent = texts.guide;
-            document.querySelectorAll('#main-nav a')[2].textContent = texts.tips;
-            document.querySelectorAll('#main-nav a')[3].textContent = texts.about;
-            document.querySelector('.group button span:first-child').textContent = texts.language;
+        preparationEntry: "Preparation & Entry",
+        preparationDesc: "Everything you need to prepare before your trip to China 🧳",
 
-            // 替换标题区文本
-            document.querySelector('h2').textContent = texts.preparationEntry;
-            document.querySelector('h2 + p').textContent = texts.preparationDesc;
+        listOfItems: "📋 List of Items",
+        checklist: "Checklist",
+        checklistProgress: "Checklist Progress:",
+        checklistReset: "Reset checklist",
 
-            // 替换物品清单标题
-            document.querySelector('h3 span:first-child').textContent = texts.listOfItems;
-            document.querySelector('h3 span.absolute').textContent = texts.checklist;
+        credentials: "Credentials",
+        passport: "Passport (valid for > 6 months)",
+        visa: "Visa (except visa waiver periods)",
 
-            // 替换物品清单卡片文本
-            document.querySelectorAll('h4')[0].textContent = texts.credentials;
-            document.querySelectorAll('h4')[0].nextElementSibling.querySelectorAll('li')[0].lastChild.textContent = texts.passport;
-            document.querySelectorAll('h4')[0].nextElementSibling.querySelectorAll('li')[1].lastChild.textContent = texts.visa;
-            
-            document.querySelectorAll('h4')[1].textContent = texts.paymentInstrument;
-            document.querySelectorAll('h4')[1].nextElementSibling.querySelectorAll('li')[0].lastChild.textContent = texts.cash;
-            document.querySelectorAll('h4')[1].nextElementSibling.querySelectorAll('li')[1].lastChild.textContent = texts.alipay;
-            
-            document.querySelectorAll('h4')[2].textContent = texts.electronicEquipment;
-            document.querySelectorAll('h4')[2].nextElementSibling.querySelectorAll('li')[0].lastChild.textContent = texts.charger;
-            document.querySelectorAll('h4')[2].nextElementSibling.querySelectorAll('li')[1].lastChild.textContent = texts.devices;
-            
-            document.querySelectorAll('h4')[3].textContent = texts.clothing;
-            document.querySelectorAll('h4')[3].nextElementSibling.querySelectorAll('li')[0].lastChild.textContent = texts.climate;
-            document.querySelectorAll('h4')[3].nextElementSibling.querySelectorAll('li')[1].lastChild.textContent = texts.weather;
-            
-            document.querySelectorAll('h4')[4].textContent = texts.utilities;
-            document.querySelectorAll('h4')[4].nextElementSibling.querySelectorAll('li')[0].lastChild.textContent = texts.simCard;
-            document.querySelectorAll('h4')[4].nextElementSibling.querySelectorAll('li')[1].lastChild.textContent = texts.allergyCard;
-            document.querySelectorAll('h4')[4].nextElementSibling.querySelectorAll('li')[2].lastChild.textContent = texts.luggage;
-            
-            document.querySelectorAll('h4')[5].textContent = texts.emergencyBackup;
-            document.querySelectorAll('h4')[5].nextElementSibling.querySelectorAll('li')[0].lastChild.textContent = texts.contactList;
-            document.querySelectorAll('h4')[5].nextElementSibling.querySelectorAll('li')[1].lastChild.textContent = texts.medications;
+        clothing: "Clothing",
+        climate: "Pack for local climate (varies across China)",
+        weather: "Check destination weather in advance",
 
-            // 替换小贴士文本
-            document.querySelector('.mt-10 p').childNodes[2].textContent = texts.proTip;
+        paymentInstrument: "Payment Instrument",
+        cash: "Cash (≤ ¥20,000)",
+        bankcard: "UnionPay/Visa/Mastercard and other bank cards",
+        alipay: "Alipay/WeChat with external card binding",
 
-            // 替换入境流程标题
-            document.querySelectorAll('section.border-t-2 h3 span:first-child')[0].textContent = texts.immigrationProcess;
-            document.querySelectorAll('section.border-t-2 h3 span.absolute')[0].textContent = texts.stepByStep;
+        emergencyBackup: "Emergency Backup",
+        contactCards: "Emergency contact cards",
+        hotel: "hotel reservations",
+        meds: "medications",
 
-            // 修复：使用ID精准替换入境流程6个卡片的标题和列表文本（避免中英文混排）
-            // 1. 航班落地
-            document.getElementById('flight-landing-title').innerHTML = texts.flightLanding;
-            document.querySelectorAll('#flight-landing-list li')[0].querySelector('span:last-child').textContent = texts.flightLanding1;
-            document.querySelectorAll('#flight-landing-list li')[1].querySelector('span:last-child').textContent = texts.flightLanding2;
-            document.querySelectorAll('#flight-landing-list li')[2].querySelector('span:last-child').textContent = texts.flightLanding3;
-            
-            // 2. 检疫检查
-            document.getElementById('quarantine-inspection-title').textContent = texts.quarantineInspection;
-            document.querySelectorAll('#quarantine-inspection-list li')[0].querySelector('span:last-child').textContent = texts.quarantine1;
-            document.querySelectorAll('#quarantine-inspection-list li')[1].querySelector('span:last-child').textContent = texts.quarantine2;
-            
-            // 3. 边防检查
-            document.getElementById('border-inspection-title').innerHTML = texts.borderInspection;
-            document.querySelectorAll('#border-inspection-list li')[0].querySelector('span:last-child').textContent = texts.border1;
-            document.querySelectorAll('#border-inspection-list li')[1].querySelector('span:last-child').textContent = texts.border2;
-            
-            // 4. 提取行李
-            document.getElementById('baggage-claim-title').innerHTML = texts.baggageClaim;
-            document.querySelectorAll('#baggage-claim-list li')[0].querySelector('span:last-child').textContent = texts.baggage1;
-            document.querySelectorAll('#baggage-claim-list li')[1].querySelector('span:last-child').textContent = texts.baggage2;
-            
-            // 5. 海关检查
-            document.getElementById('customs-inspection-title').innerHTML = texts.customsInspection;
-            document.querySelectorAll('#customs-inspection-list li')[0].querySelector('span:last-child').textContent = texts.customs1;
-            document.querySelectorAll('#customs-inspection-list li')[1].querySelector('span:last-child').textContent = texts.customs2;
-            document.querySelectorAll('#customs-inspection-list li')[2].querySelector('span:last-child').textContent = texts.customs3;
-            
-            // 6. 离开机场
-            document.getElementById('leaving-airport-title').textContent = texts.leavingAirport;
-            document.querySelectorAll('#leaving-airport-list li')[0].querySelector('span:last-child').textContent = texts.leaving1;
-            document.querySelectorAll('#leaving-airport-list li')[1].querySelector('span:last-child').textContent = texts.leaving2;
-            document.querySelectorAll('#leaving-airport-list li')[2].querySelector('span:last-child').textContent = texts.leaving3;
+        electronicEquipment: "Electronic Equipment",
+        charger: "Charger (≤ 20,000 mAh)",
+        adapter: "China-standard plug adapter",
+        camera: "camera",
+        phone: "cell Phone",
+        tablet: "tablet",
+        computer: "computer",
 
-            // 替换机场小贴士
-            document.querySelectorAll('section.border-t-2 h4')[6].textContent = texts.airportTips;
-            document.querySelectorAll('section.border-t-2 h4')[6].nextElementSibling.querySelectorAll('li')[0].lastChild.textContent = texts.airportTip1;
-            document.querySelectorAll('section.border-t-2 h4')[6].nextElementSibling.querySelectorAll('li')[1].lastChild.textContent = texts.airportTip2;
-            document.querySelectorAll('section.border-t-2 h4')[6].nextElementSibling.querySelectorAll('li')[2].lastChild.textContent = texts.airportTip3;
-            document.querySelectorAll('section.border-t-2 h4')[6].nextElementSibling.querySelectorAll('li')[3].lastChild.textContent = texts.airportTip4;
-            document.querySelectorAll('section.border-t-2 h4')[6].nextElementSibling.querySelectorAll('li')[4].lastChild.textContent = texts.airportTip5;
+        utilities: "Utilities",
+        sim: "Local SIM/eSIM card",
+        pin: "card skimmer pin",
+        allergy: "Chinese/English allergy card",
+        medTrans: "medication translation form",
+        luggage: "Luggage tag",
+        airtag: "AirTag",
 
-            // 替换违禁品提示
-            document.querySelectorAll('section.border-t-2 h4')[7].textContent = texts.prohibitedItems;
-            document.querySelectorAll('section.border-t-2 h4')[7].nextElementSibling.querySelectorAll('li')[0].lastChild.textContent = texts.prohibited1;
-            document.querySelectorAll('section.border-t-2 h4')[7].nextElementSibling.querySelectorAll('li')[1].lastChild.textContent = texts.prohibited2;
+        proTip: "Pro Tip: Make a digital copy of all important documents and store them in the cloud!",
 
-            // 替换最后提示文本
-            document.querySelector('.flex-col.items-center.justify-center p').textContent = texts.followRules;
+        immigrationProcess: "✈️ Immigration Process",
+        stepByStep: "Step by Step",
+        flightLandingHTML: "Flight <br>Landing",
+        flightLanding1: "Carry a pen for landing card/customs declaration",
+        flightLanding2: "Open \"Customs Passenger Finger Service\" mini-program",
+        flightLanding3: "Stay seated until arrival",
 
-            // ✅ 新增：二级导航 + 面包屑（不影响主导航）
-            // 二级导航：同时更新「短标题(<=lg)」和「长标题(lg+)」
-            const setTextSafe = (el, value) => { if (el && typeof value === 'string') el.textContent = value; };
+        quarantineInspection: "Quarantine Inspection",
+        quarantine1: "Scan QR Code to get Customs Declaration Code",
+        quarantine2: "Keep passport/boarding pass ready",
 
-            setTextSafe(document.querySelector('#subnav-prep span:last-child'), texts.subnavPrep);
+        borderInspectionHTML: "Border <br> Inspection",
+        border1: "Take the \"foreigner's lane\" (passport icons)",
+        border2: "Get your passport stamped",
 
-            // short labels (md.. <lg)
-            setTextSafe(document.querySelector('#subnav-trans span.md\:inline'), texts.subnavTransShort || texts.subnavTrans);
-            setTextSafe(document.querySelector('#subnav-pay span.md\:inline'), texts.subnavPayShort || texts.subnavPay);
-            setTextSafe(document.querySelector('#subnav-emer span.md\:inline'), texts.subnavEmerShort || texts.subnavEmer);
-            setTextSafe(document.querySelector('#subnav-cult span.md\:inline'), texts.subnavCultShort || texts.subnavCult);
+        baggageClaimHTML: "Baggage <br> Claim",
+        baggage1: "Check screens for your flight's carousel",
+        baggage2: "Use bright tags/AirTags for easy ID",
 
-            // long labels (lg+)
-            setTextSafe(document.querySelector('#subnav-trans span.hidden.lg\:inline'), texts.subnavTrans);
-            setTextSafe(document.querySelector('#subnav-pay span.hidden.lg\:inline'), texts.subnavPay);
-            setTextSafe(document.querySelector('#subnav-emer span.hidden.lg\:inline'), texts.subnavEmer);
-            setTextSafe(document.querySelector('#subnav-cult span.hidden.lg\:inline'), texts.subnavCult);
+        customsInspectionHTML: "Customs <br> Inspection",
+        customs1: "Nothing to declare → Green Channel",
+        customs2: "Goods to declare → Red Channel",
+        customs3: "Meat/fruit/seeds may be confiscated",
 
-            setTextSafe(document.querySelector('#subnav-acco span:last-child'), texts.subnavAcco);
+        leavingAirport: "Leaving the Airport",
+        leaving1: "Hotel pickup: Reserve in advance",
+        leaving2: "Cab: Follow signs to queue area",
+        leaving3: "Metro: Follow airport signs",
 
-            const crumbHome = document.getElementById('crumb-home')?.querySelector('a');
-            const crumbGuide = document.getElementById('crumb-guide')?.querySelector('a');
-            const crumbCurrent = document.getElementById('crumb-current');
-            setTextSafe(crumbHome, texts.crumbHome);
-            setTextSafe(crumbGuide, texts.crumbGuide);
-            setTextSafe(crumbCurrent, texts.crumbCurrent);
+        airportTips: "⚡ Airport Tips",
+        airportTip1: "Free WiFi (passport register, 2h limit)",
+        airportTip2: "Currency exchange: Poor rates (small amounts only)",
+        airportTip3: "Carry power banks to avoid dead phones",
+        airportTip4: "Activate SIMs via airport WiFi",
+        airportTip5: "Emergency: +86-12360 (press 2 for English)",
 
+        prohibitedItems: "🚫 Prohibited Items",
+        prohibited1: "Meat/fruit/seeds (may be confiscated)",
+        prohibited2: "Duty-free: 2 cigarettes/alcohol bottles max",
 
-            // 替换页脚文本
-            document.querySelector('footer p:first-child').textContent = texts.footerEditor;
-            document.querySelector('footer p:last-child').textContent = texts.footerCopyright;
+        followRules: "Follow airport signs and instructions for a smooth entry ✨",
+
+        footerEditor: "Editors: Liu Sisi, Wu Xiangwei, Xu Xinyi",
+        footerCopyright: "© 2025 Navigating China Handbook | All Rights Reserved"
+      },
+
+      zh: {
+        home: "首页",
+        guide: "指南",
+        tips: "小贴士",
+        about: "关于",
+        language: "语言",
+
+        subnavPrep: "行前准备 & 入境",
+        subnavTransShort: "交通 & 导航",
+        subnavTrans: "交通出行 & 导航",
+        subnavPayShort: "支付 & 退税",
+        subnavPay: "支付 & 退税",
+        subnavAcco: "住宿",
+        subnavEmerShort: "紧急",
+        subnavEmer: "紧急处理",
+        subnavCultShort: "文化",
+        subnavCult: "旅行 & 文化",
+
+        crumbHome: "首页",
+        crumbGuide: "指南",
+        crumbCurrent: "行前准备 & 入境",
+
+        preparationEntry: "行前准备 & 入境流程",
+        preparationDesc: "赴华旅行前需要准备的所有事项 🧳",
+
+        listOfItems: "📋 物品清单",
+        checklist: "清单",
+        checklistProgress: "清单进度：",
+        checklistReset: "重置清单",
+
+        credentials: "证件类",
+        passport: "护照（有效期大于6个月）",
+        visa: "签证（免签期除外）",
+
+        clothing: "衣物",
+        climate: "根据当地气候准备（中国各地气候不同）",
+        weather: "提前查询目的地天气",
+
+        paymentInstrument: "支付工具",
+        cash: "现金（≤2万元）",
+        bankcard: "银联/维萨/万事达等银行卡",
+        alipay: "支付宝/微信支付（需先绑定境外卡）",
+
+        emergencyBackup: "应急备用",
+        contactCards: "紧急联系人卡片",
+        hotel: "酒店预订确认单",
+        meds: "常用药品",
+
+        electronicEquipment: "电子设备",
+        charger: "充电宝（≤2万毫安）",
+        adapter: "国标转换插头",
+        camera: "相机",
+        phone: "手机",
+        tablet: "平板",
+        computer: "电脑",
+
+        utilities: "实用物品",
+        sim: "本地SIM/虚拟SIM卡",
+        pin: "银行卡PIN码",
+        allergy: "中英双语过敏卡",
+        medTrans: "药品翻译件",
+        luggage: "行李牌",
+        airtag: "AirTag 追踪器",
+
+        proTip: "小贴士：将所有重要文件制作电子版并存储在云端！",
+
+        immigrationProcess: "✈️ 入境流程",
+        stepByStep: "分步指南",
+        flightLandingHTML: "航班<br>落地",
+        flightLanding1: "携带笔填写入境卡/海关申报单",
+        flightLanding2: "打开“海关旅客指尖服务”小程序",
+        flightLanding3: "落地前保持就座",
+
+        quarantineInspection: "检疫检查",
+        quarantine1: "扫码获取海关申报码",
+        quarantine2: "准备好护照/登机牌",
+
+        borderInspectionHTML: "边防<br>检查",
+        border1: "走“外国人通道”（有护照标识）",
+        border2: "护照盖章",
+
+        baggageClaimHTML: "提取<br>行李",
+        baggage1: "查看屏幕找到航班对应的行李转盘",
+        baggage2: "使用醒目行李牌/AirTag便于识别",
+
+        customsInspectionHTML: "海关<br>检查",
+        customs1: "无申报物品 → 绿色通道",
+        customs2: "有申报物品 → 红色通道",
+        customs3: "肉类/水果/种子可能被没收",
+
+        leavingAirport: "离开机场",
+        leaving1: "酒店接送：提前预约",
+        leaving2: "出租车：跟随指示牌到排队区",
+        leaving3: "地铁：跟随机场指示牌",
+
+        airportTips: "⚡ 机场小贴士",
+        airportTip1: "免费WiFi（凭护照注册，限时2小时）",
+        airportTip2: "货币兑换：汇率差（仅兑换小额）",
+        airportTip3: "携带充电宝避免手机没电",
+        airportTip4: "通过机场WiFi激活SIM卡",
+        airportTip5: "紧急联系：海关12360（按2转英文）",
+
+        prohibitedItems: "🚫 违禁物品",
+        prohibited1: "肉类/水果/种子（可能被没收）",
+        prohibited2: "免税品：香烟2条/酒水2瓶为限",
+
+        followRules: "遵循机场指示牌和工作人员指引，顺利入境 ✨",
+
+        footerEditor: "编辑：刘思思、吴翔伟、徐欣怡",
+        footerCopyright: "© 2025 中国出行指南 | 保留所有权利"
+      }
+    };
+
+    const LANG_KEY = "nc_lang";
+    let currentLang = localStorage.getItem(LANG_KEY) || document.documentElement.lang || "en";
+
+    function setText(el, value) {
+      if (!el) return;
+      el.textContent = value ?? "";
+    }
+    function setHTML(el, value) {
+      if (!el) return;
+      el.innerHTML = value ?? "";
+    }
+
+    // Replace the trailing text/span inside a <li> (works before/after checkbox conversion)
+    function setLiContent(li, value) {
+      if (!li) return;
+
+      // ✅ 目标：li 里只保留：①第一个“控件/图标”(input 或 span) ②唯一一个 span.li-text
+      // 这样可以防止出现“中文一列 + 英文一列”的混排重复。
+
+      // 1) 删除所有“可见的纯文本节点”
+      Array.from(li.childNodes).forEach((n) => {
+        if (n.nodeType === Node.TEXT_NODE && n.textContent.trim().length) {
+          li.removeChild(n);
+        }
+      });
+
+      // 2) 确定要保留的第一个控件（checkbox / 圆点 / emoji span）
+      const firstControl = li.querySelector(":scope > input, :scope > span");
+      // 3) 确保只存在一个 li-text
+      let textSpan = li.querySelector(":scope > span.li-text");
+      const allTextSpans = li.querySelectorAll(":scope > span.li-text");
+      if (allTextSpans.length > 1) {
+        for (let i = 1; i < allTextSpans.length; i++) allTextSpans[i].remove();
+        textSpan = allTextSpans[0];
+      }
+
+      // 4) 移除除 firstControl / textSpan 之外的其它“顶层元素节点”（这是消除重复的关键）
+      Array.from(li.children).forEach((el) => {
+        if (el === firstControl) return;
+        if (el.classList && el.classList.contains("li-text")) return;
+        // 其它顶层 span（例如以前遗留的第二段文本）直接删
+        el.remove();
+      });
+
+      // 5) 如果没有 li-text，就创建并插到 firstControl 后面
+      if (!textSpan) {
+        textSpan = document.createElement("span");
+        textSpan.className = "li-text";
+        if (firstControl && firstControl.nextSibling) {
+          li.insertBefore(textSpan, firstControl.nextSibling);
+        } else {
+          li.appendChild(textSpan);
+        }
+      }
+
+      textSpan.textContent = value ?? "";
+    }
+
+    function applyLanguage(lang) {
+      const t = languageTexts[lang] || languageTexts.en;
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      localStorage.setItem(LANG_KEY, lang);
+
+      // Main nav (stable)
+      const mainLinks = document.querySelectorAll("#main-nav > a");
+      if (mainLinks[0]) setText(mainLinks[0], t.home);
+      if (mainLinks[1]) setText(mainLinks[1], t.guide);
+      if (mainLinks[2]) setText(mainLinks[2], t.tips);
+      if (mainLinks[3]) setText(mainLinks[3], t.about);
+      setText(document.querySelector(".group button span:first-child"), t.language);
+
+      // Sub nav (stable by ids)
+      setText(document.querySelector("#subnav-prep span:last-child"), t.subnavPrep);
+      setText(document.querySelector("#subnav-trans span.md\\:inline"), t.subnavTransShort);
+      setText(document.querySelector("#subnav-trans span.hidden.lg\\:inline"), t.subnavTrans);
+      setText(document.querySelector("#subnav-pay span.md\\:inline"), t.subnavPayShort);
+      setText(document.querySelector("#subnav-pay span.hidden.lg\\:inline"), t.subnavPay);
+      setText(document.querySelector("#subnav-acco span:last-child"), t.subnavAcco);
+      setText(document.querySelector("#subnav-emer span.md\\:inline"), t.subnavEmerShort);
+      setText(document.querySelector("#subnav-emer span.hidden.lg\\:inline"), t.subnavEmer);
+      setText(document.querySelector("#subnav-cult span.md\\:inline"), t.subnavCultShort);
+      setText(document.querySelector("#subnav-cult span.hidden.lg\\:inline"), t.subnavCult);
+
+      // Breadcrumbs (ids are <a> directly)
+      setText(document.getElementById("crumb-home"), t.crumbHome);
+      setText(document.getElementById("crumb-guide"), t.crumbGuide);
+      setText(document.getElementById("crumb-current"), t.crumbCurrent);
+
+      // Hero title/desc
+      setText(document.querySelector("h2"), t.preparationEntry);
+      setText(document.querySelector("h2 + p"), t.preparationDesc);
+
+      // List header
+      const listTitle = document.querySelector("#items-checklist h3 span.bg-white");
+      const badge = document.querySelector("#items-checklist h3 span.absolute");
+      setText(listTitle, t.listOfItems);
+      setText(badge, t.checklist);
+
+      // Checklist tools
+      setText(document.querySelector("#items-checklist .text-sm .font-semibold"), t.checklistProgress);
+      setText(document.getElementById("checklist-reset"), t.checklistReset);
+
+      // Items cards (robust via image alt)
+      const cardByAlt = (alt) => document.querySelector(`img[alt="${alt}"]`)?.closest("div");
+      // Credentials
+      {
+        const card = cardByAlt("Credentials Icon");
+        if (card) {
+          setText(card.querySelector("h4"), t.credentials);
+          const lis = card.querySelectorAll("ul li");
+          setLiContent(lis[0], t.passport);
+          setLiContent(lis[1], t.visa);
+        }
+      }
+      // Clothing
+      {
+        const card = cardByAlt("Clothing Icon");
+        if (card) {
+          setText(card.querySelector("h4"), t.clothing);
+          const lis = card.querySelectorAll("ul li");
+          setLiContent(lis[0], t.climate);
+          setLiContent(lis[1], t.weather);
+        }
+      }
+      // Payment
+      {
+        const card = cardByAlt("Cash Icon");
+        if (card) {
+          setText(card.querySelector("h4"), t.paymentInstrument);
+          const lis = card.querySelectorAll("ul li");
+          setLiContent(lis[0], t.cash);
+          setLiContent(lis[1], t.bankcard);
+          setLiContent(lis[2], t.alipay);
+        }
+      }
+      // Emergency
+      {
+        const card = cardByAlt("Emergency Icon");
+        if (card) {
+          setText(card.querySelector("h4"), t.emergencyBackup);
+          const lis = card.querySelectorAll("ul li");
+          setLiContent(lis[0], t.contactCards);
+          setLiContent(lis[1], t.hotel);
+          setLiContent(lis[2], t.meds);
+        }
+      }
+      // Electronic
+      {
+        const card = cardByAlt("Charger Icon");
+        if (card) {
+          setText(card.querySelector("h4"), t.electronicEquipment);
+          const lis = card.querySelectorAll("ul li");
+          setLiContent(lis[0], t.charger);
+          setLiContent(lis[1], t.adapter);
+          setLiContent(lis[2], t.camera);
+          setLiContent(lis[3], t.phone);
+          setLiContent(lis[4], t.tablet);
+          setLiContent(lis[5], t.computer);
+        }
+      }
+      // Utilities
+      {
+        const card = cardByAlt("Utils Icon");
+        if (card) {
+          setText(card.querySelector("h4"), t.utilities);
+          const lis = card.querySelectorAll("ul li");
+          setLiContent(lis[0], t.sim);
+          setLiContent(lis[1], t.pin);
+          setLiContent(lis[2], t.allergy);
+          setLiContent(lis[3], t.medTrans);
+          setLiContent(lis[4], t.luggage);
+          setLiContent(lis[5], t.airtag);
+        }
+      }
+
+      // Pro tip: replace the middle text only
+      const proTipP = document.querySelector("#items-checklist .mt-10 p");
+      if (proTipP) {
+        // keep the ✨ spans, just replace the text in between
+        const nodes = Array.from(proTipP.childNodes);
+        const textNode = nodes.find(n => n.nodeType === Node.TEXT_NODE && n.textContent.trim().length);
+        if (textNode) textNode.textContent = " " + t.proTip + " ";
+        else proTipP.textContent = t.proTip;
+      }
+
+      // Immigration title/badge
+      const immHeader = document.querySelector("section.border-t-2 h3");
+      if (immHeader) {
+        const titleSpan = immHeader.querySelector("span.bg-white");
+        const badgeSpan = immHeader.querySelector("span.absolute");
+        setText(titleSpan, t.immigrationProcess);
+        setText(badgeSpan, t.stepByStep);
+      }
+
+      // Immigration steps (ids already exist)
+      setHTML(document.getElementById("flight-landing-title"), t.flightLandingHTML);
+      setLiContent(document.querySelectorAll("#flight-landing-list li")[0], t.flightLanding1);
+      setLiContent(document.querySelectorAll("#flight-landing-list li")[1], t.flightLanding2);
+      setLiContent(document.querySelectorAll("#flight-landing-list li")[2], t.flightLanding3);
+
+      setText(document.getElementById("quarantine-inspection-title"), t.quarantineInspection);
+      setLiContent(document.querySelectorAll("#quarantine-inspection-list li")[0], t.quarantine1);
+      setLiContent(document.querySelectorAll("#quarantine-inspection-list li")[1], t.quarantine2);
+
+      setHTML(document.getElementById("border-inspection-title"), t.borderInspectionHTML);
+      setLiContent(document.querySelectorAll("#border-inspection-list li")[0], t.border1);
+      setLiContent(document.querySelectorAll("#border-inspection-list li")[1], t.border2);
+
+      setHTML(document.getElementById("baggage-claim-title"), t.baggageClaimHTML);
+      setLiContent(document.querySelectorAll("#baggage-claim-list li")[0], t.baggage1);
+      setLiContent(document.querySelectorAll("#baggage-claim-list li")[1], t.baggage2);
+
+      setHTML(document.getElementById("customs-inspection-title"), t.customsInspectionHTML);
+      setLiContent(document.querySelectorAll("#customs-inspection-list li")[0], t.customs1);
+      setLiContent(document.querySelectorAll("#customs-inspection-list li")[1], t.customs2);
+      setLiContent(document.querySelectorAll("#customs-inspection-list li")[2], t.customs3);
+
+      setText(document.getElementById("leaving-airport-title"), t.leavingAirport);
+      setLiContent(document.querySelectorAll("#leaving-airport-list li")[0], t.leaving1);
+      setLiContent(document.querySelectorAll("#leaving-airport-list li")[1], t.leaving2);
+      setLiContent(document.querySelectorAll("#leaving-airport-list li")[2], t.leaving3);
+
+      // Airport tips / prohibited / follow text (3 cards in the last grid)
+      const tipsGrid = document.querySelector("section.border-t-2 .grid.grid-cols-1.md\\:grid-cols-3.gap-6.mt-10");
+      if (tipsGrid) {
+        const cards = tipsGrid.querySelectorAll(":scope > div");
+        const tipsCard = cards[0];
+        const prohCard = cards[1];
+        const followCard = cards[2];
+
+        if (tipsCard) {
+          setText(tipsCard.querySelector("h4"), t.airportTips);
+          const lis = tipsCard.querySelectorAll("ul li");
+          setLiContent(lis[0], t.airportTip1);
+          setLiContent(lis[1], t.airportTip2);
+          setLiContent(lis[2], t.airportTip3);
+          setLiContent(lis[3], t.airportTip4);
+          setLiContent(lis[4], t.airportTip5);
+        }
+        if (prohCard) {
+          setText(prohCard.querySelector("h4"), t.prohibitedItems);
+          const lis = prohCard.querySelectorAll("ul li");
+          setLiContent(lis[0], t.prohibited1);
+          setLiContent(lis[1], t.prohibited2);
+        }
+        if (followCard) {
+          setText(followCard.querySelector("p"), t.followRules);
+        }
+      }
+
+      // Footer
+      const footerPs = document.querySelectorAll("footer p");
+      if (footerPs[0]) setText(footerPs[0], t.footerEditor);
+      if (footerPs[1]) setText(footerPs[1], t.footerCopyright);
+    }
+
+    // Bind events
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("lang-en")?.addEventListener("click", () => applyLanguage("en"));
+      document.getElementById("lang-zh")?.addEventListener("click", () => applyLanguage("zh"));
+
+      // init
+      applyLanguage(currentLang);
+    });
+  </script>
+
+  <!-- ✅ checklist enhancement (ONLY ONCE, outside i18n script) -->
+  <script>
+    (function () {
+      const root = document.getElementById("items-checklist");
+      if (!root) return;
+
+      const colorMap = {
+        "bg-sunny": "#FF9F45",
+        "bg-skyblue": "#A7E1F8",
+        "bg-mint": "#B2E8C2",
+        "bg-peach": "#F8B5B5",
+        "bg-lavender": "#D8BFD8",
+        "bg-lemon": "#FFE066",
+      };
+
+      const storageKey = "nc_checklist_" + location.pathname;
+      const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
+
+      const bulletSpans = root.querySelectorAll("ul li span.inline-block.w-4.h-4.rounded-full");
+      const checkboxes = [];
+
+      bulletSpans.forEach((bullet, idx) => {
+        const li = bullet.closest("li");
+        if (!li) return;
+
+        let accent = "#FF9F45";
+        for (const cls of bullet.classList) {
+          if (colorMap[cls]) { accent = colorMap[cls]; break; }
         }
 
-        // 绑定事件
-        document.getElementById('lang-en').addEventListener('click', () => switchLanguage('en'));
-        document.getElementById('lang-zh').addEventListener('click', () => switchLanguage('zh'));
-		
-		<script>
-  // ✅ checklist enhancement (only for List of Items section)
-  (function () {
-    const root = document.getElementById("items-checklist");
-    if (!root) return;
+        li.classList.add("check-li");
+        li.style.setProperty("--ck-accent", accent);
 
-    // 把原本的“彩色圆点 bg-xxx”映射成 checkbox 的 accent-color
-    const colorMap = {
-      "bg-sunny": "#FF9F45",
-      "bg-skyblue": "#A7E1F8",
-      "bg-mint": "#B2E8C2",
-      "bg-peach": "#F8B5B5",
-      "bg-lavender": "#D8BFD8",
-      "bg-lemon": "#FFE066",
-    };
+        const cb = document.createElement("input");
+        cb.type = "checkbox";
+        cb.className = "check-box";
+        cb.setAttribute("aria-label", "checklist item");
 
-    const storageKey = "nc_checklist_" + location.pathname;
-    const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
+        const key = String(idx);
+        cb.checked = Boolean(saved[key]);
 
-    // 找到清单区域里的“圆点 span”，替换成 checkbox（但保留后面的文本节点不动）
-    const bulletSpans = root.querySelectorAll("ul li span.inline-block.w-4.h-4.rounded-full");
-    const checkboxes = [];
+        bullet.replaceWith(cb);
 
-    bulletSpans.forEach((bullet, idx) => {
-      const li = bullet.closest("li");
-      if (!li) return;
+        // ✅ 把原来的文本（如果是裸文本节点）包进 <span class="li-text">，方便 i18n 精准替换
+        if (!li.querySelector(":scope > span.li-text")) {
+          const textNodes = Array.from(li.childNodes).filter(
+            (n) => n.nodeType === Node.TEXT_NODE && n.textContent.trim().length
+          );
+          const combined = textNodes.map(n => n.textContent).join(" ").trim();
+          textNodes.forEach(n => li.removeChild(n));
 
-      // 计算这个 li 对应的 accent 颜色
-      let accent = "#FF9F45";
-      for (const cls of bullet.classList) {
-        if (colorMap[cls]) { accent = colorMap[cls]; break; }
+          const textSpan = document.createElement("span");
+          textSpan.className = "li-text";
+          textSpan.textContent = combined;
+          cb.insertAdjacentElement("afterend", textSpan);
+        }
+
+
+        const applyDone = () => li.classList.toggle("is-done", cb.checked);
+        applyDone();
+
+        cb.addEventListener("change", () => {
+          saved[key] = cb.checked;
+          localStorage.setItem(storageKey, JSON.stringify(saved));
+          applyDone();
+          updateProgress();
+        });
+
+        checkboxes.push(cb);
+      });
+
+      const countEl = document.getElementById("checklist-count");
+      const barEl = document.getElementById("checklist-bar");
+      const resetBtn = document.getElementById("checklist-reset");
+
+      function updateProgress() {
+        const total = checkboxes.length;
+        const done = checkboxes.filter(c => c.checked).length;
+        if (countEl) countEl.textContent = `${done} / ${total}`;
+        if (barEl) barEl.style.width = total ? `${Math.round(done / total * 100)}%` : "0%";
       }
 
-      // li 变成更像“备忘录”的对齐
-      li.classList.add("check-li");
-      li.style.setProperty("--ck-accent", accent);
-
-      // 创建 checkbox
-      const cb = document.createElement("input");
-      cb.type = "checkbox";
-      cb.className = "check-box";
-      cb.setAttribute("aria-label", "checklist item");
-
-      // 恢复本地存储状态
-      const key = String(idx);
-      cb.checked = Boolean(saved[key]);
-
-      // 替换圆点为 checkbox
-      bullet.replaceWith(cb);
-
-      // 勾选效果
-      const applyDone = () => li.classList.toggle("is-done", cb.checked);
-      applyDone();
-
-      cb.addEventListener("change", () => {
-        saved[key] = cb.checked;
-        localStorage.setItem(storageKey, JSON.stringify(saved));
-        applyDone();
-        updateProgress();
-      });
-
-      checkboxes.push(cb);
-    });
-
-    // 进度条
-    const countEl = document.getElementById("checklist-count");
-    const barEl = document.getElementById("checklist-bar");
-    const resetBtn = document.getElementById("checklist-reset");
-
-    function updateProgress() {
-      const total = checkboxes.length;
-      const done = checkboxes.filter(c => c.checked).length;
-      if (countEl) countEl.textContent = `${done} / ${total}`;
-      if (barEl) barEl.style.width = total ? `${Math.round(done / total * 100)}%` : "0%";
-    }
-
-    if (resetBtn) {
-      resetBtn.addEventListener("click", () => {
-        checkboxes.forEach((cb, idx) => {
-          cb.checked = false;
-          saved[String(idx)] = false;
-          cb.dispatchEvent(new Event("change"));
+      if (resetBtn) {
+        resetBtn.addEventListener("click", () => {
+          checkboxes.forEach((cb, idx) => {
+            cb.checked = false;
+            saved[String(idx)] = false;
+            cb.dispatchEvent(new Event("change"));
+          });
+          localStorage.setItem(storageKey, JSON.stringify(saved));
+          updateProgress();
         });
-        localStorage.setItem(storageKey, JSON.stringify(saved));
-        updateProgress();
-      });
-    }
-
-    updateProgress();
-  })();
-</script>
-<script>
-  // ✅ checklist enhancement (only for List of Items section)
-  (function () {
-    const root = document.getElementById("items-checklist");
-    if (!root) return;
-
-    // 把原本的“彩色圆点 bg-xxx”映射成 checkbox 的 accent-color
-    const colorMap = {
-      "bg-sunny": "#FF9F45",
-      "bg-skyblue": "#A7E1F8",
-      "bg-mint": "#B2E8C2",
-      "bg-peach": "#F8B5B5",
-      "bg-lavender": "#D8BFD8",
-      "bg-lemon": "#FFE066",
-    };
-
-    const storageKey = "nc_checklist_" + location.pathname;
-    const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
-
-    // 找到清单区域里的“圆点 span”，替换成 checkbox（但保留后面的文本节点不动）
-    const bulletSpans = root.querySelectorAll("ul li span.inline-block.w-4.h-4.rounded-full");
-    const checkboxes = [];
-
-    bulletSpans.forEach((bullet, idx) => {
-      const li = bullet.closest("li");
-      if (!li) return;
-
-      // 计算这个 li 对应的 accent 颜色
-      let accent = "#FF9F45";
-      for (const cls of bullet.classList) {
-        if (colorMap[cls]) { accent = colorMap[cls]; break; }
       }
 
-      // li 变成更像“备忘录”的对齐
-      li.classList.add("check-li");
-      li.style.setProperty("--ck-accent", accent);
+      updateProgress();
+    })();
+  </script>
 
-      // 创建 checkbox
-      const cb = document.createElement("input");
-      cb.type = "checkbox";
-      cb.className = "check-box";
-      cb.setAttribute("aria-label", "checklist item");
-
-      // 恢复本地存储状态
-      const key = String(idx);
-      cb.checked = Boolean(saved[key]);
-
-      // 替换圆点为 checkbox
-      bullet.replaceWith(cb);
-
-      // 勾选效果
-      const applyDone = () => li.classList.toggle("is-done", cb.checked);
-      applyDone();
-
-      cb.addEventListener("change", () => {
-        saved[key] = cb.checked;
-        localStorage.setItem(storageKey, JSON.stringify(saved));
-        applyDone();
-        updateProgress();
-      });
-
-      checkboxes.push(cb);
-    });
-
-    // 进度条
-    const countEl = document.getElementById("checklist-count");
-    const barEl = document.getElementById("checklist-bar");
-    const resetBtn = document.getElementById("checklist-reset");
-
-    function updateProgress() {
-      const total = checkboxes.length;
-      const done = checkboxes.filter(c => c.checked).length;
-      if (countEl) countEl.textContent = `${done} / ${total}`;
-      if (barEl) barEl.style.width = total ? `${Math.round(done / total * 100)}%` : "0%";
-    }
-
-    if (resetBtn) {
-      resetBtn.addEventListener("click", () => {
-        checkboxes.forEach((cb, idx) => {
-          cb.checked = false;
-          saved[String(idx)] = false;
-          cb.dispatchEvent(new Event("change"));
-        });
-        localStorage.setItem(storageKey, JSON.stringify(saved));
-        updateProgress();
-      });
-    }
-
-    updateProgress();
-  })();
-</script>
-
-    </script>
 </body>
 
 </html>
