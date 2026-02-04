@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigating China: A Practical Handbook</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 保留原有英文手写字体 + 新增可爱中文字体（仅给中文用） -->
+  <!--1  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=ZCOOL+KuaiLe&display=swap"rel="stylesheet"> -->
+ 
+ <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Noto+Sans+SC:wght@400;600;700&display=swap" rel="stylesheet">
+
+        
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pinky: '#F8E0E6',
+                        skyblue: '#A7E1F8',
+                        sunny: '#FF9F45',
+                        peach: '#F8B5B5',
+                        mint: '#B2E8C2',
+                        lemon: '#FFE066',
+                        lavender: '#D8BFD8',
+                    },
+                   /*1 fontFamily: {
+                        // 仅保留英文的手写字体（不修改）
+                        doodle: ['Patrick Hand', 'cursive'],
+                        // 新增：专门给中文用的可爱字体
+                        chinesecute: ['ZCOOL KuaiLe', 'sans-serif'],
+                    }, */
+					
+					fontFamily: {
+					    en: ['Source Sans 3', 'sans-serif'],
+					    zh: ['Noto Sans SC', 'sans-serif'],
+					},
+
+
+					
+					
+                }
+            }
+        }
+    </script>
+	
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+            }
+            .doodle-border {
+                border: 3px dashed #333;
+                border-radius: 12px;
+            }
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /*1: 核心规则：仅中文文本用可爱字体，英文完全保留Patrick Hand 
+        1. 页面语言为中文时，所有文本优先用可爱中文字体，英文自动回退到Patrick Hand 
+        html:lang(zh) body * {
+            font-family: 'ZCOOL KuaiLe', 'Patrick Hand', 'cursive', sans-serif !important;
+        }
+         2. 页面语言为英文时，强制用原有Patrick Hand（完全不修改） 
+        html:lang(en) body * {
+            font-family: 'Patrick Hand', 'cursive', sans-serif !important;
+        }
+
+         语言下拉菜单样式（仅“中文”二字用可爱字体，English保留原字体） */
+		html:lang(zh) body * {
+		    font-family: 'Source Sans 3','Noto Sans SC', sans-serif !important;
+		}
+		
+		html:lang(en) body * {
+		    font-family: 'Source Sans 3', sans-serif !important;
+		}
+
+		 /*1:
+		   语言下拉菜单样式（仅“中文”二字用可爱字体，English保留原字体） 
+		 
+        .group .absolute {
+            font-size: 1.1rem;
+        }
+        .group button {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.1rem;
+        }
+		
+		单独给下拉菜单里的“中文”按钮加可爱字体 
+        #lang-zh {
+            font-family: 'ZCOOL KuaiLe', sans-serif !important;
+        }
+         “English”按钮保留原字体 
+        #lang-en {
+            font-family: 'Patrick Hand', cursive !important;
+        }*/
+		
+		
+
+        /* 响应式适配：手机端下拉菜单居中 */
+        @media (max-width: 768px) {
+            .group .absolute {
+                left: 0;
+                right: auto;
+            }
+        }
+    </style>
+</head>
+
+
+
+<!--1: <body class="bg-pinky font-doodle text-gray-800 pt-20">-->
+<body class="bg-pinky  text-gray-800 pt-20">
+    <!-- 头部区域 -->
+    <header class="fixed top-0 left-0 z-50 w-full py-2 px-4 md:px-8 bg-pinky/95 backdrop-blur-sm">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center mb-4 md:mb-0">
+                <img src="images/logo.png" alt="Sun Logo" class="w-14 h-14 mr-3">
+                <h1 class="text-[clamp(1.8rem,4vw,2.8rem)] font-bold text-shadow">
+                    Navigating <span class="text-sunny">China</span>
+                </h1>
+            </div>
+            <nav class="flex flex-wrap gap-4">
+                <a href="#"
+                    class="px-4 py-2 bg-skyblue hover:bg-skyblue/80 rounded-full transition-all transform hover:scale-105 shadow-sm">Home</a>
+                <a href="#contents-section"
+                    class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm">Guide</a>
+                <a href="#"
+                    class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm">Buy</a>
+                <a href="#"
+                    class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm">About</a>
+                <!-- 新增：Language下拉菜单 -->
+                <div class="relative group">
+                    <button
+                        class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm flex items-center gap-2">
+                        <span>Language</span>
+                        <span class="text-xs">▼</span>
+                    </button>
+                    <!-- 下拉选项（默认隐藏，hover显示） -->
+                    <div
+                        class="absolute top-full right-0 mt-2 w-32 bg-white rounded-xl shadow-lg border-2 border-sunny-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                        <button id="lang-en"
+                            class="w-full px-4 py-2 text-left hover:bg-sunny/10 rounded-t-xl transition-colors">English</button>
+                        <button id="lang-zh"
+                            class="w-full px-4 py-2 text-left hover:bg-sunny/10 rounded-b-xl transition-colors">中文</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 封面展示区 -->
+    <section class="w-full py-8 px-4 md:px-8 bg-white/50">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8">
+            <img src="images/coverpage.png" alt="Handbook Cover"
+                class="w-full md:w-1/3 doodle-border p-3 bg-white shadow-lg">
+            <div class="w-full md:w-1/2">
+                <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold mb-4 text-sunny">A Practical Handbook for Foreign
+                    Visitors</h2>
+                <p class="text-lg mb-6">Wishing you a safe, smooth, and delightful journey in China! 🧳✨</p>
+                <p class="mb-8">Your go-to guide for navigating daily life, cultural insights, and essential tips to
+                    make your trip unforgettable.</p>
+                <a href="#contents-section"
+                    class="inline-block px-6 py-3 bg-sunny hover:bg-sunny/80 text-white rounded-full font-bold transition-all transform hover:scale-105 shadow-md scroll-smooth">
+                    Start Exploring →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 目录内容板块（替换原核心内容区） -->
+    <section id="contents-section" class="w-full py-12 px-4 md:px-8 bg-white/50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-[clamp(1.4rem,3vw,2rem)] font-bold text-center mb-10">📚 Contents</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 1. Preparation & Entry -->
+                <a href="preparation.html"
+                    class="bg-sunny/20 p-6 doodle-border hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="flex items-center mb-3">
+                        <span
+                            class="inline-flex items-center justify-center w-8 h-8 bg-sunny text-white rounded-full font-bold mr-3">01</span>
+                        <h3 class="text-xl font-bold">Preparation & Entry</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">Page 01</p>
+                    <p>Visa applications, entry requirements, and pre-trip essentials.</p>
+                </a>
+                <!-- 2. Transportation & Navigation -->
+                <div
+                    class="bg-skyblue/20 p-6 doodle-border hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="flex items-center mb-3">
+                        <span
+                            class="inline-flex items-center justify-center w-8 h-8 bg-skyblue text-white rounded-full font-bold mr-3">02</span>
+                        <h3 class="text-xl font-bold">Transportation & Navigation</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">Page 07</p>
+                    <p>Getting around cities, high-speed trains, and navigation tips.</p>
+                </div>
+                <!-- 3. Payment & Tax Refund -->
+                <div class="bg-mint/20 p-6 doodle-border hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="flex items-center mb-3">
+                        <span
+                            class="inline-flex items-center justify-center w-8 h-8 bg-mint text-white rounded-full font-bold mr-3">03</span>
+                        <h3 class="text-xl font-bold">Payment & Tax Refund</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">Page 13</p>
+                    <p>Mobile payment, cash usage, and tax-free shopping guides.</p>
+                </div>
+                <!-- 4. Accommodation -->
+                <div
+                    class="bg-peach/20 p-6 doodle-border hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="flex items-center mb-3">
+                        <span
+                            class="inline-flex items-center justify-center w-8 h-8 bg-peach text-white rounded-full font-bold mr-3">04</span>
+                        <h3 class="text-xl font-bold">Accommodation</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">Page 19</p>
+                    <p>Booking hotels, homestays, and local accommodation options.</p>
+                </div>
+                <!-- 5. Emergency Handling -->
+                <div
+                    class="bg-lemon/20 p-6 doodle-border hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="flex items-center mb-3">
+                        <span
+                            class="inline-flex items-center justify-center w-8 h-8 bg-lemon text-white rounded-full font-bold mr-3">05</span>
+                        <h3 class="text-xl font-bold">Emergency Handling</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">Page 23</p>
+                    <p>Important contacts, medical help, and safety advice.</p>
+                </div>
+                <!-- 6. Travel & Culture -->
+                <div
+                    class="bg-lavender/20 p-6 doodle-border hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="flex items-center mb-3">
+                        <span
+                            class="inline-flex items-center justify-center w-8 h-8 bg-lavender text-white rounded-full font-bold mr-3">06</span>
+                        <h3 class="text-xl font-bold">Travel & Culture</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">Page 29</p>
+                    <p>Cultural etiquette, local festivals, and must-see attractions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="w-full py-6 px-4 md:px-8 bg-skyblue/30">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="mb-2">Editors: Liu Sisi, Wu Xiangwei, Xu Xinyi</p>
+            <p class="text-sm text-gray-600">© 2025 Navigating China Handbook | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // 定义中英文文本映射（补充首页文本，修正选择器匹配）
+        const languageTexts = {
+            en: {
+                // 导航栏
+                home: "Home",
+                guide: "Guide",
+                tips: "Tips",
+                about: "About",
+                language: "Language",
+                // 首页-封面区
+                coverTitle: "A Practical Handbook for Foreign Visitors",
+                coverDesc1: "Wishing you a safe, smooth, and delightful journey in China! 🧳✨",
+                coverDesc2: "Your go-to guide for navigating daily life, cultural insights, and essential tips to make your trip unforgettable.",
+                startExploring: "Start Exploring →",
+                // 首页-目录区
+                contentsTitle: "📚 Contents",
+                // 目录项
+                cat1Title: "Preparation & Entry",
+                cat1Desc: "Visa applications, entry requirements, and pre-trip essentials.",
+                cat1Page: "Page 01",
+                cat2Title: "Transportation & Navigation",
+                cat2Desc: "Getting around cities, high-speed trains, and navigation tips.",
+                cat2Page: "Page 07",
+                cat3Title: "Payment & Tax Refund",
+                cat3Desc: "Mobile payment, cash usage, and tax-free shopping guides.",
+                cat3Page: "Page 13",
+                cat4Title: "Accommodation",
+                cat4Desc: "Booking hotels, homestays, and local accommodation options.",
+                cat4Page: "Page 19",
+                cat5Title: "Emergency Handling",
+                cat5Desc: "Important contacts, medical help, and safety advice.",
+                cat5Page: "Page 23",
+                cat6Title: "Travel & Culture",
+                cat6Desc: "Cultural etiquette, local festivals, and must-see attractions.",
+                cat6Page: "Page 29",
+                // 页脚
+                footerEditor: "Editors: Liu Sisi, Wu Xiangwei, Xu Xinyi",
+                footerCopyright: "© 2025 Navigating China Handbook | All Rights Reserved",
+                // preparation页面文本（保留）
+                preparationEntry: "Preparation & Entry",
+                preparationDesc: "Everything you need to prepare before your trip to China 🧳",
+                listOfItems: "📋 List of Items",
+                checklist: "Checklist",
+                credentials: "Credentials",
+                passport: "Passport (valid for > 6 months)",
+                visa: "Visa (except visa waiver periods)",
+                paymentInstrument: "Payment Instrument",
+                cash: "Cash (≤ ¥20,000), UnionPay/Visa/Mastercard",
+                alipay: "Alipay/WeChat Pay (bind foreign card first)",
+                electronicEquipment: "Electronic Equipment",
+                charger: "Charger (≤ 20,000 mAh) + China-standard plug adapter",
+                devices: "Phone, tablet, camera, laptop, etc.",
+                clothing: "Clothing",
+                climate: "Pack for local climate (varies across China)",
+                weather: "Check destination weather in advance",
+                utilities: "Utilities",
+                simCard: "Local SIM/eSIM card + PIN for bank cards",
+                allergyCard: "Chinese/English allergy card + medication translation",
+                luggage: "Luggage tag + AirTag (for tracking)",
+                emergencyBackup: "Emergency Backup",
+                contactList: "Emergency contact list + hotel reservation confirmations",
+                medications: "Personal medications + first-aid kit",
+                proTip: "Pro Tip: Make a digital copy of all important documents and store them in the cloud!",
+                immigrationProcess: "✈️ Immigration Process",
+                stepByStep: "Step by Step",
+                flightLanding: "Flight Landing",
+                flightLanding1: "Carry a pen for landing card/customs declaration",
+                flightLanding2: "Open \"Customs Passenger Finger Service\" mini-program",
+                flightLanding3: "Stay seated until arrival",
+                quarantineInspection: "Quarantine Inspection",
+                quarantine1: "Scan QR Code to get Customs Declaration Code",
+                quarantine2: "Keep passport/boarding pass ready",
+                borderInspection: "Border Inspection",
+                border1: "Take the \"foreigner's lane\" (passport icons)",
+                border2: "Get your passport stamped",
+                baggageClaim: "Baggage Claim",
+                baggage1: "Check screens for your flight's carousel",
+                baggage2: "Use bright tags/AirTags for easy ID",
+                customsInspection: "Customs Inspection",
+                customs1: "Nothing to declare → Green Channel",
+                customs2: "Goods to declare → Red Channel",
+                customs3: "Meat/fruit/seeds may be confiscated",
+                leavingAirport: "Leaving the Airport",
+                leaving1: "Hotel pickup: Reserve in advance",
+                leaving2: "Cab: Follow signs to queue area",
+                leaving3: "Metro: Follow airport signs",
+                airportTips: "⚡ Airport Tips",
+                airportTip1: "Free WiFi (passport register, 2h limit)",
+                airportTip2: "Currency exchange: Poor rates (small amounts only)",
+                airportTip3: "Carry power banks to avoid dead phones",
+                airportTip4: "Activate SIMs via airport WiFi",
+                airportTip5: "Emergency: +86-12360 (press 2 for English)",
+                prohibitedItems: "🚫 Prohibited Items",
+                prohibited1: "Meat/fruit/seeds (may be confiscated)",
+                prohibited2: "Duty-free: 2 cigarettes/alcohol bottles max",
+                followRules: "Follow airport signs and instructions for a smooth entry ✨"
+            },
+            zh: {
+                // 导航栏
+                home: "首页",
+                guide: "指南",
+                tips: "小贴士",
+                about: "关于",
+                language: "语言",
+                // 首页-封面区
+                coverTitle: "外国游客实用手册",
+                coverDesc1: "祝您在中国度过安全、顺利、愉快的旅程！🧳✨",
+                coverDesc2: "这份指南将帮助您应对日常生活、了解文化习俗，让旅途难忘。",
+                startExploring: "开始探索 →",
+                // 首页-目录区
+                contentsTitle: "📚 目录",
+                // 目录项
+                cat1Title: "行前准备 & 入境流程",
+                cat1Desc: "签证申请、入境要求及行前必备物品。",
+                cat1Page: "第01页",
+                cat2Title: "交通出行",
+                cat2Desc: "城市出行、高铁乘坐及导航小贴士。",
+                cat2Page: "第07页",
+                cat3Title: "支付 & 退税",
+                cat3Desc: "移动支付、现金使用及免税购物指南。",
+                cat3Page: "第13页",
+                cat4Title: "住宿",
+                cat4Desc: "酒店、民宿预订及本地住宿选择。",
+                cat4Page: "第19页",
+                cat5Title: "应急处理",
+                cat5Desc: "重要联系方式、医疗帮助及安全建议。",
+                cat5Page: "第23页",
+                cat6Title: "旅行 & 文化",
+                cat6Desc: "文化礼仪、本地节日及必游景点。",
+                cat6Page: "第29页",
+                // 页脚
+                footerEditor: "编辑：刘思思、吴翔伟、徐欣怡",
+                footerCopyright: "© 2025 中国出行指南 | 保留所有权利",
+                // preparation页面文本（保留）
+                preparationEntry: "行前准备 & 入境流程",
+                preparationDesc: "赴华旅行前需要准备的所有事项 🧳",
+                listOfItems: "📋 物品清单",
+                checklist: "清单",
+                credentials: "证件类",
+                passport: "护照（有效期大于6个月）",
+                visa: "签证（免签期除外）",
+                paymentInstrument: "支付工具",
+                cash: "现金（≤2万元）、银联/维萨/万事达卡",
+                alipay: "支付宝/微信支付（需先绑定境外卡）",
+                electronicEquipment: "电子设备",
+                charger: "充电器（≤2万毫安）+ 国标转换插头",
+                devices: "手机、平板、相机、笔记本电脑等",
+                clothing: "衣物",
+                climate: "根据当地气候准备（中国各地气候不同）",
+                weather: "提前查询目的地天气",
+                utilities: "实用物品",
+                simCard: "本地SIM/虚拟SIM卡 + 银行卡PIN码",
+                allergyCard: "中英双语过敏卡 + 药品翻译件",
+                luggage: "行李牌 + AirTag（用于追踪）",
+                emergencyBackup: "应急备用",
+                contactList: "紧急联系人列表 + 酒店预订确认单",
+                medications: "个人药品 + 急救包",
+                proTip: "小贴士：将所有重要文件制作电子版并存储在云端！",
+                immigrationProcess: "✈️ 入境流程",
+                stepByStep: "分步指南",
+                flightLanding: "航班落地",
+                flightLanding1: "携带笔填写入境卡/海关申报单",
+                flightLanding2: "打开“海关旅客指尖服务”小程序",
+                flightLanding3: "落地前保持就座",
+                quarantineInspection: "检疫检查",
+                quarantine1: "扫码获取海关申报码",
+                quarantine2: "准备好护照/登机牌",
+                borderInspection: "边防检查",
+                border1: "走“外国人通道”（有护照标识）",
+                border2: "护照盖章",
+                baggageClaim: "提取行李",
+                baggage1: "查看屏幕找到航班对应的行李转盘",
+                baggage2: "使用醒目行李牌/AirTag便于识别",
+                customsInspection: "海关检查",
+                customs1: "无申报物品 → 绿色通道",
+                customs2: "有申报物品 → 红色通道",
+                customs3: "肉类/水果/种子可能被没收",
+                leavingAirport: "离开机场",
+                leaving1: "酒店接送：提前预约",
+                leaving2: "出租车：跟随指示牌到排队区",
+                leaving3: "地铁：跟随机场指示牌",
+                airportTips: "⚡ 机场小贴士",
+                airportTip1: "免费WiFi（凭护照注册，限时2小时）",
+                airportTip2: "货币兑换：汇率差（仅兑换小额）",
+                airportTip3: "携带充电宝避免手机没电",
+                airportTip4: "通过机场WiFi激活SIM卡",
+                airportTip5: "紧急联系：海关12360（按2转英文）",
+                prohibitedItems: "🚫 违禁物品",
+                prohibited1: "肉类/水果/种子（可能被没收）",
+                prohibited2: "免税品：香烟2条/酒水2瓶为限",
+                followRules: "遵循机场指示牌和工作人员指引，顺利入境 ✨"
+            }
+        };
+
+        // 初始化语言（默认英文）
+        let currentLang = "en";
+
+        // 语言切换函数（修正选择器，补充首页替换逻辑）
+        function switchLanguage(lang) {
+            if (lang === currentLang) return;
+            currentLang = lang;
+            // 新增：切换页面语言属性，让CSS字体规则生效
+            document.documentElement.lang = lang;
+            const texts = languageTexts[lang];
+
+            // ========== 1. 替换导航栏文本（修正选择器） ==========
+            // Home：匹配href="#"且文本为Home/首页的a标签
+            document.querySelectorAll('nav a')[0].textContent = texts.home;
+            // Guide
+            document.querySelectorAll('nav a')[1].textContent = texts.guide;
+            // Tips
+            document.querySelectorAll('nav a')[2].textContent = texts.tips;
+            // About
+            document.querySelectorAll('nav a')[3].textContent = texts.about;
+            // Language按钮
+            document.querySelector('.group button span:first-child').textContent = texts.language;
+
+            // ========== 2. 替换首页封面区文本 ==========
+            // 封面标题
+            document.querySelector('.w-full.md\\:w-1\\/2 h2').textContent = texts.coverTitle;
+            // 封面第一段描述
+            document.querySelector('.w-full.md\\:w-1\\/2 h2 + p').textContent = texts.coverDesc1;
+            // 封面第二段描述
+            document.querySelector('.w-full.md\\:w-1\\/2 h2 + p + p').textContent = texts.coverDesc2;
+            // 开始探索按钮
+            document.querySelector('.inline-block.px-6.py-3.bg-sunny').textContent = texts.startExploring;
+
+            // ========== 3. 替换首页目录区文本 ==========
+            // 目录标题
+            document.querySelector('#contents-section h2').textContent = texts.contentsTitle;
+            // 目录项1：Preparation & Entry
+            document.querySelectorAll('#contents-section h3')[0].textContent = texts.cat1Title;
+            document.querySelectorAll('#contents-section .text-sm.text-gray-600')[0].textContent = texts.cat1Page;
+            document.querySelectorAll('#contents-section .grid > div p:last-child')[0].textContent = texts.cat1Desc;
+            // 目录项2：Transportation & Navigation
+            document.querySelectorAll('#contents-section h3')[1].textContent = texts.cat2Title;
+            document.querySelectorAll('#contents-section .text-sm.text-gray-600')[1].textContent = texts.cat2Page;
+            document.querySelectorAll('#contents-section .grid > div p:last-child')[1].textContent = texts.cat2Desc;
+            // 目录项3：Payment & Tax Refund
+            document.querySelectorAll('#contents-section h3')[2].textContent = texts.cat3Title;
+            document.querySelectorAll('#contents-section .text-sm.text-gray-600')[2].textContent = texts.cat3Page;
+            document.querySelectorAll('#contents-section .grid > div p:last-child')[2].textContent = texts.cat3Desc;
+            // 目录项4：Accommodation
+            document.querySelectorAll('#contents-section h3')[3].textContent = texts.cat4Title;
+            document.querySelectorAll('#contents-section .text-sm.text-gray-600')[3].textContent = texts.cat4Page;
+            document.querySelectorAll('#contents-section .grid > div p:last-child')[3].textContent = texts.cat4Desc;
+            // 目录项5：Emergency Handling
+            document.querySelectorAll('#contents-section h3')[4].textContent = texts.cat5Title;
+            document.querySelectorAll('#contents-section .text-sm.text-gray-600')[4].textContent = texts.cat5Page;
+            document.querySelectorAll('#contents-section .grid > div p:last-child')[4].textContent = texts.cat5Desc;
+            // 目录项6：Travel & Culture
+            document.querySelectorAll('#contents-section h3')[5].textContent = texts.cat6Title;
+            document.querySelectorAll('#contents-section .text-sm.text-gray-600')[5].textContent = texts.cat6Page;
+            document.querySelectorAll('#contents-section .grid > div p:last-child')[5].textContent = texts.cat6Desc;
+
+            // ========== 4. 替换页脚文本 ==========
+            document.querySelector('footer p:first-child').textContent = texts.footerEditor;
+            document.querySelector('footer p:last-child').textContent = texts.footerCopyright;
+
+            // ========== 5. 保留preparation页面的替换逻辑（不影响首页） ==========
+            // 替换物品清单标题（仅preparation页面生效）
+            if (document.querySelector('h3:has(span:contains("📋"))')) {
+                document.querySelector('h3:has(span:contains("📋")) span:first-child').textContent = texts.listOfItems;
+                document.querySelector('h3 .absolute').textContent = texts.checklist;
+            }
+            // 其他preparation页面文本替换逻辑（保留）
+            if (document.querySelector('h4:contains("Credentials")')) {
+                document.querySelector('h4:contains("Credentials")').textContent = texts.credentials;
+                document.querySelectorAll('h4:contains("Credentials") ~ ul li')[0].lastChild.textContent = texts.passport;
+                document.querySelectorAll('h4:contains("Credentials") ~ ul li')[1].lastChild.textContent = texts.visa;
+            }
+            // （其他preparation页面替换逻辑均保留）
+        }
+
+        // 绑定语言切换按钮事件
+        document.getElementById('lang-en').addEventListener('click', () => switchLanguage('en'));
+        document.getElementById('lang-zh').addEventListener('click', () => switchLanguage('zh'));
+    </script>
+</body>
+
+</html>
