@@ -1019,412 +1019,660 @@
             </div>
         </footer>
 
-
-        <!-- ✅ i18n: robust language switching (no index-based selectors) -->
-        <script>
-            
-            const LANG_KEY = "nc_lang";
-            let currentLang = localStorage.getItem(LANG_KEY) || document.documentElement.lang || "en";
-
-            function setText(el, value) {
-                if (!el) return;
-                el.textContent = value ?? "";
-            }
-            function setHTML(el, value) {
-                if (!el) return;
-                el.innerHTML = value ?? "";
-            }
-
-            // Replace the trailing text/span inside a <li> (works before/after checkbox conversion)
-            function setLiContent(li, value) {
-                if (!li) return;
-
-                // ✅ 目标：li 里只保留：①第一个“控件/图标”(input 或 span) ②唯一一个 span.li-text
-                // 这样可以防止出现“中文一列 + 英文一列”的混排重复。
-
-                // 1) 删除所有“可见的纯文本节点”
-                Array.from(li.childNodes).forEach((n) => {
-                    if (n.nodeType === Node.TEXT_NODE && n.textContent.trim().length) {
-                        li.removeChild(n);
-                    }
-                });
-
-                // 2) 确定要保留的第一个控件（checkbox / 圆点 / emoji span）
-                const firstControl = li.querySelector(":scope > input, :scope > span");
-                // 3) 确保只存在一个 li-text
-                let textSpan = li.querySelector(":scope > span.li-text");
-                const allTextSpans = li.querySelectorAll(":scope > span.li-text");
-                if (allTextSpans.length > 1) {
-                    for (let i = 1; i < allTextSpans.length; i++) allTextSpans[i].remove();
-                    textSpan = allTextSpans[0];
-                }
-
-                // 4) 移除除 firstControl / textSpan 之外的其它“顶层元素节点”（这是消除重复的关键）
-                Array.from(li.children).forEach((el) => {
-                    if (el === firstControl) return;
-                    if (el.classList && el.classList.contains("li-text")) return;
-                    // 其它顶层 span（例如以前遗留的第二段文本）直接删
-                    el.remove();
-                });
-
-                // 5) 如果没有 li-text，就创建并插到 firstControl 后面
-                if (!textSpan) {
-                    textSpan = document.createElement("span");
-                    textSpan.className = "li-text";
-                    if (firstControl && firstControl.nextSibling) {
-                        li.insertBefore(textSpan, firstControl.nextSibling);
-                    } else {
-                        li.appendChild(textSpan);
-                    }
-                }
-
-                textSpan.textContent = value ?? "";
-            }
-
-            function applyLanguage(lang) {
-                const t = languageTexts[lang] || languageTexts.en;
-                currentLang = lang;
-                document.documentElement.lang = lang;
-                localStorage.setItem(LANG_KEY, lang);
-
-                // Main nav (stable)
-                const mainLinks = document.querySelectorAll("#main-nav > a");
-                if (mainLinks[0]) setText(mainLinks[0], t.home);
-                if (mainLinks[1]) setText(mainLinks[1], t.guide);
-                //***************************if (mainLinks[2]) setText(mainLinks[2], t.tips);***************************
-                if (mainLinks[2]) setText(mainLinks[2], t.buy);
-
-
-                if (mainLinks[3]) setText(mainLinks[3], t.about);
-                setText(document.querySelector(".group button span:first-child"), t.language);
-
-                // Sub nav (stable by ids)
-                setText(document.querySelector("#subnav-prep span:last-child"), t.subnavPrep);
-                setText(document.querySelector("#subnav-trans span.md\\:inline"), t.subnavTransShort);
-                setText(document.querySelector("#subnav-trans span.hidden.lg\\:inline"), t.subnavTrans);
-                setText(document.querySelector("#subnav-pay span.md\\:inline"), t.subnavPayShort);
-                setText(document.querySelector("#subnav-pay span.hidden.lg\\:inline"), t.subnavPay);
-                setText(document.querySelector("#subnav-acco span:last-child"), t.subnavAcco);
-                setText(document.querySelector("#subnav-emer span.md\\:inline"), t.subnavEmerShort);
-                setText(document.querySelector("#subnav-emer span.hidden.lg\\:inline"), t.subnavEmer);
-                setText(document.querySelector("#subnav-cult span.md\\:inline"), t.subnavCultShort);
-                setText(document.querySelector("#subnav-cult span.hidden.lg\\:inline"), t.subnavCult);
-
-                // Breadcrumbs (ids are <a> directly)
-                setText(document.getElementById("crumb-home"), t.crumbHome);
-                setText(document.getElementById("crumb-guide"), t.crumbGuide);
-                setText(document.getElementById("crumb-current"), t.crumbCurrent);
-
-                // Hero title/desc
-                setText(document.querySelector("h2"), t.preparationEntry);
-                setText(document.querySelector("h2 + p"), t.preparationDesc);
-
-                // List header
-                const listTitle = document.querySelector("#items-checklist h3 span.bg-white");
-                const badge = document.querySelector("#items-checklist h3 span.absolute");
-                setText(listTitle, t.listOfItems);
-                setText(badge, t.checklist);
-
-                // Checklist tools
-                setText(document.querySelector("#items-checklist .text-sm .font-semibold"), t.checklistProgress);
-                setText(document.getElementById("checklist-reset"), t.checklistReset);
-
-                // Items cards (robust via image alt)
-                const cardByAlt = (alt) => document.querySelector(`img[alt="${alt}"]`)?.closest("div");
-                // Credentials
-                {
-                    const card = cardByAlt("Credentials Icon");
-                    if (card) {
-                        setText(card.querySelector("h4"), t.credentials);
-                        const lis = card.querySelectorAll("ul li");
-                        setLiContent(lis[0], t.passport);
-                        setLiContent(lis[1], t.visa);
-                    }
-                }
-                // Clothing
-                {
-                    const card = cardByAlt("Clothing Icon");
-                    if (card) {
-                        setText(card.querySelector("h4"), t.clothing);
-                        const lis = card.querySelectorAll("ul li");
-                        setLiContent(lis[0], t.climate);
-                        setLiContent(lis[1], t.weather);
-                    }
-                }
-                // Payment
-                {
-                    const card = cardByAlt("Cash Icon");
-                    if (card) {
-                        setText(card.querySelector("h4"), t.paymentInstrument);
-                        const lis = card.querySelectorAll("ul li");
-                        setLiContent(lis[0], t.cash);
-                        setLiContent(lis[1], t.bankcard);
-                        setLiContent(lis[2], t.alipay);
-                    }
-                }
-                // Emergency
-                {
-                    const card = cardByAlt("Emergency Icon");
-                    if (card) {
-                        setText(card.querySelector("h4"), t.emergencyBackup);
-                        const lis = card.querySelectorAll("ul li");
-                        setLiContent(lis[0], t.contactCards);
-                        setLiContent(lis[1], t.hotel);
-                        setLiContent(lis[2], t.meds);
-                    }
-                }
-                // Electronic
-                {
-                    const card = cardByAlt("Charger Icon");
-                    if (card) {
-                        setText(card.querySelector("h4"), t.electronicEquipment);
-                        const lis = card.querySelectorAll("ul li");
-                        setLiContent(lis[0], t.charger);
-                        setLiContent(lis[1], t.adapter);
-                        setLiContent(lis[2], t.camera);
-                        setLiContent(lis[3], t.phone);
-                        setLiContent(lis[4], t.tablet);
-                        setLiContent(lis[5], t.computer);
-                    }
-                }
-                // Utilities
-                {
-                    const card = cardByAlt("Utils Icon");
-                    if (card) {
-                        setText(card.querySelector("h4"), t.utilities);
-                        const lis = card.querySelectorAll("ul li");
-                        setLiContent(lis[0], t.sim);
-                        setLiContent(lis[1], t.pin);
-                        setLiContent(lis[2], t.allergy);
-                        setLiContent(lis[3], t.medTrans);
-                        setLiContent(lis[4], t.luggage);
-                        setLiContent(lis[5], t.airtag);
-                    }
-                }
-
-                // Pro tip: replace the middle text only
-                const proTipP = document.querySelector("#items-checklist .mt-10 p");
-                if (proTipP) {
-                    // keep the ✨ spans, just replace the text in between
-                    const nodes = Array.from(proTipP.childNodes);
-                    const textNode = nodes.find(n => n.nodeType === Node.TEXT_NODE && n.textContent.trim().length);
-                    if (textNode) textNode.textContent = " " + t.proTip + " ";
-                    else proTipP.textContent = t.proTip;
-                }
-
-                // Immigration title/badge
-                const immHeader = document.querySelector("section.border-t-2 h3");
-                if (immHeader) {
-                    const titleSpan = immHeader.querySelector("span.bg-white");
-                    const badgeSpan = immHeader.querySelector("span.absolute");
-                    setText(titleSpan, t.immigrationProcess);
-                    setText(badgeSpan, t.stepByStep);
-                }
-
-                // Immigration steps (ids already exist)
-                setHTML(document.getElementById("flight-landing-title"), t.flightLandingHTML);
-                setLiContent(document.querySelectorAll("#flight-landing-list li")[0], t.flightLanding1);
-                setLiContent(document.querySelectorAll("#flight-landing-list li")[1], t.flightLanding2);
-                setLiContent(document.querySelectorAll("#flight-landing-list li")[2], t.flightLanding3);
-
-                setText(document.getElementById("quarantine-inspection-title"), t.quarantineInspection);
-                setLiContent(document.querySelectorAll("#quarantine-inspection-list li")[0], t.quarantine1);
-                setLiContent(document.querySelectorAll("#quarantine-inspection-list li")[1], t.quarantine2);
-
-                setHTML(document.getElementById("border-inspection-title"), t.borderInspectionHTML);
-                setLiContent(document.querySelectorAll("#border-inspection-list li")[0], t.border1);
-                setLiContent(document.querySelectorAll("#border-inspection-list li")[1], t.border2);
-
-                setHTML(document.getElementById("baggage-claim-title"), t.baggageClaimHTML);
-                setLiContent(document.querySelectorAll("#baggage-claim-list li")[0], t.baggage1);
-                setLiContent(document.querySelectorAll("#baggage-claim-list li")[1], t.baggage2);
-
-                setHTML(document.getElementById("customs-inspection-title"), t.customsInspectionHTML);
-                setLiContent(document.querySelectorAll("#customs-inspection-list li")[0], t.customs1);
-                setLiContent(document.querySelectorAll("#customs-inspection-list li")[1], t.customs2);
-                setLiContent(document.querySelectorAll("#customs-inspection-list li")[2], t.customs3);
-
-                setText(document.getElementById("leaving-airport-title"), t.leavingAirport);
-                setLiContent(document.querySelectorAll("#leaving-airport-list li")[0], t.leaving1);
-                setLiContent(document.querySelectorAll("#leaving-airport-list li")[1], t.leaving2);
-                setLiContent(document.querySelectorAll("#leaving-airport-list li")[2], t.leaving3);
-
-                // Airport tips / prohibited / follow text (3 cards in the last grid)
-                const tipsGrid = document.querySelector("section.border-t-2 .grid.grid-cols-1.md\\:grid-cols-3.gap-6.mt-10");
-                if (tipsGrid) {
-                    const cards = tipsGrid.querySelectorAll(":scope > div");
-                    const tipsCard = cards[0];
-                    const prohCard = cards[1];
-                    const followCard = cards[2];
-
-                    if (tipsCard) {
-                        setText(tipsCard.querySelector("h4"), t.airportTips);
-                        const lis = tipsCard.querySelectorAll("ul li");
-                        setLiContent(lis[0], t.airportTip1);
-                        setLiContent(lis[1], t.airportTip2);
-                        setLiContent(lis[2], t.airportTip3);
-                        setLiContent(lis[3], t.airportTip4);
-                        setLiContent(lis[4], t.airportTip5);
-                    }
-                    if (prohCard) {
-                        setText(prohCard.querySelector("h4"), t.prohibitedItems);
-                        const lis = prohCard.querySelectorAll("ul li");
-                        setLiContent(lis[0], t.prohibited1);
-                        setLiContent(lis[1], t.prohibited2);
-                    }
-                    if (followCard) {
-                        setText(followCard.querySelector("p"), t.followRules);
-                    }
-                }
-
-                // Footer
-                const footerPs = document.querySelectorAll("footer p");
-                if (footerPs[0]) setText(footerPs[0], t.footerEditor);
-                if (footerPs[1]) setText(footerPs[1], t.footerCopyright);
-            }
-
-            // Bind events
-            document.addEventListener("DOMContentLoaded", () => {
-                document.getElementById("lang-en")?.addEventListener("click", () => applyLanguage("en"));
-                document.getElementById("lang-zh")?.addEventListener("click", () => applyLanguage("zh"));
-
-                // init
-                applyLanguage(currentLang);
-            });
-        </script>
-
-        <!-- ✅ checklist enhancement (ONLY ONCE, outside i18n script) -->
-        <script>
-            (function () {
-                const root = document.getElementById("items-checklist");
-                if (!root) return;
-
-                const colorMap = {
-                    "bg-sunny": "#FF9F45",
-                    "bg-skyblue": "#A7E1F8",
-                    "bg-mint": "#B2E8C2",
-                    "bg-peach": "#F8B5B5",
-                    "bg-lavender": "#D8BFD8",
-                    "bg-lemon": "#FFE066",
-                };
-
-                const storageKey = "nc_checklist_" + location.pathname;
-                const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
-
-                const bulletSpans = root.querySelectorAll("ul li span.inline-block.w-4.h-4.rounded-full");
-                const checkboxes = [];
-
-                bulletSpans.forEach((bullet, idx) => {
-                    const li = bullet.closest("li");
-                    if (!li) return;
-
-                    let accent = "#FF9F45";
-                    for (const cls of bullet.classList) {
-                        if (colorMap[cls]) { accent = colorMap[cls]; break; }
-                    }
-
-                    li.classList.add("check-li");
-                    li.style.setProperty("--ck-accent", accent);
-
-                    const cb = document.createElement("input");
-                    cb.type = "checkbox";
-                    cb.className = "check-box";
-                    cb.setAttribute("aria-label", "checklist item");
-
-                    const key = String(idx);
-                    cb.checked = Boolean(saved[key]);
-
-                    bullet.replaceWith(cb);
-
-                    // ✅ 把原来的文本（如果是裸文本节点）包进 <span class="li-text">，方便 i18n 精准替换
-                    if (!li.querySelector(":scope > span.li-text")) {
-                        const textNodes = Array.from(li.childNodes).filter(
-                            (n) => n.nodeType === Node.TEXT_NODE && n.textContent.trim().length
-                        );
-                        const combined = textNodes.map(n => n.textContent).join(" ").trim();
-                        textNodes.forEach(n => li.removeChild(n));
-
-                        const textSpan = document.createElement("span");
-                        textSpan.className = "li-text";
-                        textSpan.textContent = combined;
-                        cb.insertAdjacentElement("afterend", textSpan);
-                    }
-
-
-                    const applyDone = () => li.classList.toggle("is-done", cb.checked);
-                    applyDone();
-
-                    cb.addEventListener("change", () => {
-                        saved[key] = cb.checked;
-                        localStorage.setItem(storageKey, JSON.stringify(saved));
-                        applyDone();
-                        updateProgress();
-                    });
-
-                    checkboxes.push(cb);
-                });
-
-                const countEl = document.getElementById("checklist-count");
-                const barEl = document.getElementById("checklist-bar");
-                const resetBtn = document.getElementById("checklist-reset");
-
-                function updateProgress() {
-                    const total = checkboxes.length;
-                    const done = checkboxes.filter(c => c.checked).length;
-                    if (countEl) countEl.textContent = `${done} / ${total}`;
-                    if (barEl) barEl.style.width = total ? `${Math.round(done / total * 100)}%` : "0%";
-                }
-
-                if (resetBtn) {
-                    resetBtn.addEventListener("click", () => {
-                        checkboxes.forEach((cb, idx) => {
-                            cb.checked = false;
-                            saved[String(idx)] = false;
-                            cb.dispatchEvent(new Event("change"));
-                        });
-                        localStorage.setItem(storageKey, JSON.stringify(saved));
-                        updateProgress();
-                    });
-                }
-
-                updateProgress();
-            })();
-        </script>
-
-        <!-- Back to Top Button -->
-        <button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
-            style="
-                position: fixed;
-                bottom: 32px;
-                right: 32px;
-                width: 48px;
-                height: 48px;
-                border-radius: 50%;
-                background-color: #F8B5B5;
-                color: white;
-                font-size: 22px;
-                border: none;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-                opacity: 0;
-                transition: opacity 0.3s, transform 0.2s;
-                z-index: 9999;
-            "
-            onmouseover="this.style.transform='scale(1.1)'"
-            onmouseout="this.style.transform='scale(1)'">
-            ↑
-        </button>
-        <script>
-            const backToTopBtn = document.getElementById('backToTop');
-            window.addEventListener('scroll', () => {
-                backToTopBtn.style.opacity = window.scrollY > 200 ? '1' : '0';
-                backToTopBtn.style.pointerEvents = window.scrollY > 200 ? 'auto' : 'none';
-            });
-        </script>
-
+<script>
+      // 回到顶部按钮显示/隐藏
+      window.addEventListener('scroll', function() {
+          const backToTopBtn = document.getElementById('backToTop');
+          if (window.scrollY > 300) {
+              backToTopBtn.style.opacity = '1';
+          } else {
+              backToTopBtn.style.opacity = '0';
+          }
+      });
+      
+      // Checklist 功能（先执行，确保DOM结构稳定）
+      (function () {
+          const root = document.getElementById("items-checklist");
+          if (!root) return;
+      
+          const colorMap = {
+              "bg-sunny": "#FF9F45",
+              "bg-skyblue": "#A7E1F8",
+              "bg-mint": "#B2E8C2",
+              "bg-peach": "#F8B5B5",
+              "bg-lavender": "#D8BFD8",
+              "bg-lemon": "#FFE066",
+          };
+      
+          const storageKey = "nc_checklist_" + location.pathname;
+          const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
+      
+          const bulletSpans = root.querySelectorAll("ul li span.inline-block.w-4.h-4.rounded-full");
+          const checkboxes = [];
+      
+          bulletSpans.forEach((bullet, idx) => {
+              const li = bullet.closest("li");
+              if (!li) return;
+      
+              let accent = "#FF9F45";
+              for (const cls of bullet.classList) {
+                  if (colorMap[cls]) { accent = colorMap[cls]; break; }
+              }
+      
+              li.classList.add("check-li");
+              li.style.setProperty("--ck-accent", accent);
+      
+              const cb = document.createElement("input");
+              cb.type = "checkbox";
+              cb.className = "check-box";
+              cb.setAttribute("aria-label", "checklist item");
+      
+              const key = String(idx);
+              cb.checked = Boolean(saved[key]);
+      
+              // 保存原文本内容
+              const textNodes = Array.from(li.childNodes).filter(
+                  (n) => n.nodeType === Node.TEXT_NODE && n.textContent.trim().length
+              );
+              const originalText = textNodes.map(n => n.textContent).join(" ").trim();
+              
+              // 替换圆点为复选框
+              bullet.replaceWith(cb);
+              
+              // 创建文本容器
+              let textSpan = li.querySelector(".li-text");
+              if (!textSpan) {
+                  textSpan = document.createElement("span");
+                  textSpan.className = "li-text";
+                  cb.after(textSpan);
+              }
+              textSpan.textContent = originalText;
+      
+              // 移除多余的文本节点
+              textNodes.forEach(n => li.removeChild(n));
+      
+              // 设置完成状态
+              const applyDone = () => li.classList.toggle("is-done", cb.checked);
+              applyDone();
+      
+              // 绑定复选框事件
+              cb.addEventListener("change", () => {
+                  saved[key] = cb.checked;
+                  localStorage.setItem(storageKey, JSON.stringify(saved));
+                  applyDone();
+                  updateProgress();
+              });
+      
+              checkboxes.push(cb);
+          });
+      
+          // 更新进度条
+          const countEl = document.getElementById("checklist-count");
+          const barEl = document.getElementById("checklist-bar");
+          const resetBtn = document.getElementById("checklist-reset");
+      
+          function updateProgress() {
+              const total = checkboxes.length;
+              const done = checkboxes.filter(c => c.checked).length;
+              if (countEl) countEl.textContent = `${done} / ${total}`;
+              if (barEl) barEl.style.width = total ? `${Math.round(done / total * 100)}%` : "0%";
+          }
+      
+          // 重置按钮
+          if (resetBtn) {
+              resetBtn.addEventListener("click", () => {
+                  checkboxes.forEach((cb, idx) => {
+                      cb.checked = false;
+                      saved[String(idx)] = false;
+                      applyDone();
+                  });
+                  localStorage.setItem(storageKey, JSON.stringify(saved));
+                  updateProgress();
+              });
+          }
+      
+          updateProgress();
+      })();
+      
+      // 中英文切换核心功能（在checklist之后执行）
+      (function() {
+          const LANG_KEY = "nc_lang";
+          let currentLang = localStorage.getItem(LANG_KEY) || document.documentElement.lang || "en";
+      
+          // 语言文本库
+          const languageTexts = {
+              en: {
+                  // 导航栏
+                  home: "Home",
+                  guide: "Guide",
+                  language: "Language",
+                  // 二级导航
+                  subnavPrep: "Preparation & Entry",
+                  subnavTransShort: "Transport & Maps",
+                  subnavTrans: "Transportation & Navigation",
+                  subnavPayShort: "Payment & Tax",
+                  subnavPay: "Payment & Tax Refund",
+                  subnavAcco: "Accommodation",
+                  subnavEmerShort: "Emergency",
+                  subnavEmer: "Emergency Handling",
+                  subnavCultShort: "Culture",
+                  subnavCult: "Travel & Culture",
+                  // 面包屑
+                  crumbHome: "Home",
+                  crumbGuide: "Guide",
+                  crumbCurrent: "Preparation & Entry",
+                  // 英雄区
+                  preparationEntry: "Preparation & Entry",
+                  preparationDesc: "Everything you need to prepare before your trip to China 🧳",
+                  // 物品清单
+                  listOfItems: "📋 List of Items",
+                  checklist: "Checklist",
+                  checklistProgress: "Checklist Progress:",
+                  checklistReset: "Reset checklist",
+                  credentials: "Credentials",
+                  passport: "Passport (valid for > 6 months)",
+                  visa: "Visa (except visa waiver periods)",
+                  clothing: "Clothing",
+                  climate: "Pack for local climate (varies across China)",
+                  weather: "Check destination weather in advance",
+                  paymentInstrument: "Payment Instrument",
+                  cash: "Cash (≤ ¥20,000)",
+                  bankcard: "UnionPay/Visa/Mastercard and other bank cards",
+                  alipay: "Alipay/WeChat with external card binding",
+                  emergencyBackup: "Emergency Backup",
+                  contactCards: "Emergency contact cards",
+                  hotel: "Hotel reservations",
+                  meds: "Medications",
+                  electronicEquipment: "Electronic Equipment",
+                  charger: "Charger (≤ 20,000 mAh)",
+                  adapter: "China-standard plug adapter",
+                  camera: "Camera",
+                  phone: "Cell Phone",
+                  tablet: "Tablet",
+                  computer: "Computer",
+                  utilities: "Utilities",
+                  sim: "Local SIM/eSIM card",
+                  pin: "Card skimmer pin",
+                  allergy: "Chinese/English allergy card",
+                  medTrans: "Medication translation form",
+                  luggage: "Luggage tag",
+                  airtag: "AirTag",
+                  proTip: "✨ Pro Tip: ✨",
+                  proTip1: "Download the offline map package",
+                  proTip2: "Take a screenshot to save the air ticket, hotel order, passport page, the Chinese name of key address",
+                  proTip3: "Prepare a Chinese allergy card with key information such as 'Peanut/Seafood Allergy' for easy communication with merchants",
+                  // 入境流程
+                  immigrationProcess: "✈️ Immigration Process",
+                  stepByStep: "Step by Step",
+                  flightLandingHTML: "Flight landing <br>→ Stay Seated",
+                  flightLanding1: "Carry a pen to fill out landing card/customs declaration.",
+                  flightLanding2: "Open the 'Customs Passenger Finger Service' mini program, scan the code to declare in advance faster than paper.",
+                  quarantineInspection: "Quarantine inspection <br>→ Scan QR Code",
+                  quarantine1: "Prepare your Customs Declaration Code (Black Code) and keep passport/boarding pass ready.",
+                  borderInspectionHTML: "Border inspection <br>→ Passport Stamp",
+                  border1: "Take the 'foreigner's lane' (marked with passport icons/English signs)",
+                  baggageClaimHTML: "Baggage claim <br>→ Check Screens",
+                  baggage1: "Use bright luggage tags/AirTags for easy identification.",
+                  customsInspectionHTML: "Customs inspection <br>→ Choose the Right Lane",
+                  customs1: "The inward and outward passengers who have nothing to declare shall choose the 'Nothing to Declare Channel' (green channel).",
+                  customs2: "The inward and outward passengers carrying articles to declare shall choose the 'Goods to Declare Channel' (red channel).",
+                  leavingAirport: "Leaving the airport <br>→ Transportation",
+                  leaving1: "Hotel pickup: Reserve in advance by email with the hotel",
+                  leaving2: "Cab: follow the airport signs to the cab queue area/internet car waiting area, see page 6 for details",
+                  leaving3: "Metro: follow airport signs, see page 5 for details",
+                  // 机场提示
+                  airportTips: "⚡ Airport Tips",
+                  airportTip1: "Free WiFi (passport register, 2h limit)",
+                  airportTip2: "Currency exchange: Poor rates (small amounts only)",
+                  airportTip3: "Carry power banks to avoid dead phones",
+                  airportTip4: "Activate SIMs via airport WiFi",
+                  airportTip5: "Emergency: +86-12360 (press 2 for English)",
+                  prohibitedItems: "🚫 Prohibited Items",
+                  prohibited1: "Meat/fruit/seeds (may be confiscated)",
+                  prohibited2: "Duty-free: 2 cigarettes/alcohol bottles max",
+                  followRules: "Follow airport signs and instructions for a smooth entry ✨",
+                  // 网络访问部分
+                  internetAccess: "📶 Internet Access",
+                  stayOnline: "Stay Online",
+                  preArrivalESIM: "📡 Pre-Arrival eSIM Purchase",
+                  platforms: "🔥 Platforms",
+                  nomad: "Nomad: Wide coverage, flexible plans.",
+                  simOptions: "SimOptions: Very friendly to European users.",
+                  ditalo: "Ditalo: Budget-friendly at Asia Pacific region.",
+                  operatingTips: "💡 Operating Tips",
+                  esimTip1: "Order 3 days in advance, receive QR code in your mailbox → Scan to activate the code",
+                  esimTip2: "Suggest to buy universal package to prevent disconnection.",
+                  pros: "✅ Pros",
+                  esimPro1: "Instant connectivity upon landing; no need to change the card.",
+                  esimPro2: "No ID/real name registration, easy to use Alipay/WeChat",
+                  esimPro3: "Support multi-country credit card payment",
+                  note: "⚠️ Note",
+                  esimNote1: "Not compatible with some Android phones",
+                  esimNote2: "Compatible with iPhone XS or later",
+                  esimNote3: "Slightly more expensive traffic packages (around $5–8 per day)",
+                  buySIMOnArrival: "🛬 Buy SIM Cards On Arrival",
+                  locations: "📍 Locations",
+                  simLocation1: "Airport counters: Beijing Capital T3, Shanghai Pudong T1, Guangzhou Baiyun T2 and other international airports",
+                  simLocation2: "Business halls: Recognize 'China Mobile' / 'China Telecom' / 'China Unicom'.",
+                  keyPhrases: "🗣 Key Phrases",
+                  phrase1: "我要办预付费套餐 → I want a prepaid SIM card",
+                  phrase2: "最便宜的流量包 → The cheapest data package",
+                  simPro1: "On-the-spot activation;",
+                  simPro2: "Best value for money.",
+                  simPro3: "Choose from three major carriers.",
+                  simNote1: "Passport required for real-name registration.",
+                  simNote2: "Some airport counters close by 10 PM.",
+                  simNote3: "Keep SIM packaging (customer hotlines: China Mobile 10086 / China Telecom 10010 / China Unicom 10000).",
+                  onlinePurchase: "🛍️ Online Purchase After Arrival",
+                  nihaoMobile: "Nihao Mobile: Designed for foreigners, packages can be paid by WeChat Pay.",
+                  klookTravel: "Klook Travel: Bilingual Edition with Express Delivery + User's Guide.",
+                  onlinePro1: "Full online operation",
+                  onlinePro2: "Support English interface",
+                  onlinePro3: "Express delivery to the hotel",
+                  onlineNote1: "Order 2–3 days in advance.",
+                  onlineNote2: "Provide detailed hotel address.",
+                  finalRecommendations: "✨ Final Recommendations",
+                  shortTrip: "Short-term trips (<7 days)",
+                  shortTripRec: "eSIM for hassle-free use",
+                  deepTour: "In-depth tours (>1 month)",
+                  deepTourRec: "Cost-effective packages at business hall",
+                  avoidCrowds: "Avoid Crowds",
+                  avoidCrowdsRec: "Order online to your hotel",
+                  backupPlan: "Backup Plan",
+                  backupPlanRec: "Carry-on WiFi rental (available at the airport for $20 per day)",
+                  // 页脚
+                  footerEditor: "Editors: Liu Sisi, Wu Xiangwei, Xu Xinyi",
+                  footerDeveloper: "Developers: Li Xuan, Li Xinyi",
+                  footerCopyright: "© 2025 Navigating China Handbook | All Rights Reserved"
+              },
+              zh: {
+                  // 导航栏
+                  home: "主页",
+                  guide: "指南",
+                  language: "语言",
+                  // 二级导航
+                  subnavPrep: "入境与准备",
+                  subnavTransShort: "交通与地图",
+                  subnavTrans: "交通与导航",
+                  subnavPayShort: "支付与退税",
+                  subnavPay: "支付与消费",
+                  subnavAcco: "住宿与生活",
+                  subnavEmerShort: "紧急情况",
+                  subnavEmer: "紧急情况处理",
+                  subnavCultShort: "文化",
+                  subnavCult: "旅游与文化",
+                  // 面包屑
+                  crumbHome: "主页",
+                  crumbGuide: "指南",
+                  crumbCurrent: "入境与准备",
+                  // 英雄区
+                  preparationEntry: "入境与准备",
+                  preparationDesc: "来华旅行前的必备准备 🧳",
+                  // 物品清单
+                  listOfItems: "📋 必备物品清单",
+                  checklist: "清单核对",
+                  checklistProgress: "清单进度：",
+                  checklistReset: "重置清单",
+                  credentials: "证件类",
+                  passport: "护照（有效期超过6个月）",
+                  visa: "签证（免签期除外）",
+                  clothing: "衣物类",
+                  climate: "根据目的地气候准备（中国各地气候差异大）",
+                  weather: "提前查询目的地天气",
+                  paymentInstrument: "支付类",
+                  cash: "现金（≤ 20,000元人民币）",
+                  bankcard: "银联、Visa、Mastercard等银行卡",
+                  alipay: "绑定外卡的支付宝/微信支付",
+                  emergencyBackup: "应急备用类",
+                  contactCards: "应急联系卡",
+                  hotel: "酒店预订凭证",
+                  meds: "常用药品",
+                  electronicEquipment: "电子设备类",
+                  charger: "充电器（≤ 20,000毫安）",
+                  adapter: "中国标准转换插头",
+                  camera: "相机",
+                  phone: "手机",
+                  tablet: "平板电脑",
+                  computer: "电脑",
+                  utilities: "实用工具类",
+                  sim: "本地SIM卡/eSIM卡",
+                  pin: "取卡针",
+                  allergy: "中英文过敏提示卡",
+                  medTrans: "药品翻译单",
+                  luggage: "行李牌",
+                  airtag: "防丢器（AirTag等）",
+                  proTip: "✨ 专业提示：✨",
+                  proTip1: "下载离线地图包",
+                  proTip2: "截图保存机票、酒店订单、护照页、关键地址中文名",
+                  proTip3: "准备中英文过敏提示卡，注明“花生/海鲜过敏”等关键信息，方便与商家沟通",
+                  // 入境流程
+                  immigrationProcess: "✈️ 入境流程",
+                  stepByStep: "分步指南",
+                  flightLandingHTML: "航班降落 <br>→ 留在座位",
+                  flightLanding1: "携带笔，以便填写入境卡/海关申报单",
+                  flightLanding2: "打开“海关旅客指尖服务”小程序，扫码提前申报，比纸质申报更快",
+                  quarantineInspection: "检疫检查 <br>→ 扫码核验",
+                  quarantine1: "准备好海关申报码（黑码），并随身携带护照/登机牌",
+                  borderInspectionHTML: "边检 <br>→ 护照盖章",
+                  border1: "走“外国人通道”（有护照图标/英文标识）",
+                  baggageClaimHTML: "提取行李 <br>→ 查看屏幕",
+                  baggage1: "使用醒目的行李牌/防丢器，方便识别",
+                  customsInspectionHTML: "海关检查 <br>→ 选择通道",
+                  customs1: "无申报物品的进出境旅客选择“无申报通道”（绿色通道）",
+                  customs2: "携带需申报物品的进出境旅客选择“申报通道”（红色通道）",
+                  leavingAirport: "离开机场 <br>→ 交通出行",
+                  leaving1: "酒店接送：提前通过邮件与酒店预约",
+                  leaving2: "出租车：跟随机场标识前往出租车排队区/网约车等候区，详见第6页",
+                  leaving3: "地铁：跟随机场标识前往，详见第5页",
+                  // 机场提示
+                  airportTips: "⚡ 机场实用提示",
+                  airportTip1: "免费WiFi（护照注册，限时2小时）",
+                  airportTip2: "货币兑换：汇率较差（仅兑换少量应急）",
+                  airportTip3: "携带充电宝，避免手机断电",
+                  airportTip4: "通过机场WiFi激活SIM卡",
+                  airportTip5: "应急电话：+86-12360（按2选择英文服务）",
+                  prohibitedItems: "🚫 违禁物品",
+                  prohibited1: "肉类/水果/种子（可能被没收）",
+                  prohibited2: "免税品：香烟/酒类限2条/瓶",
+                  followRules: "遵循机场标识和工作人员指引，顺利入境 ✨",
+                  // 网络访问部分
+                  internetAccess: "📶 网络接入",
+                  stayOnline: "保持联网",
+                  preArrivalESIM: "📡 提前购买eSIM卡",
+                  platforms: "🔥 推荐平台",
+                  nomad: "Nomad：覆盖广，套餐灵活",
+                  simOptions: "SimOptions：对欧洲用户非常友好",
+                  ditalo: "Ditalo：亚太地区性价比高",
+                  operatingTips: "💡 操作提示",
+                  esimTip1: "提前3天下单，邮箱接收二维码 → 扫码激活",
+                  esimTip2: "建议购买通用套餐，避免断网",
+                  pros: "✅ 优点",
+                  esimPro1: "落地即联网，无需换卡",
+                  esimPro2: "无需实名认证，可直接使用支付宝/微信",
+                  esimPro3: "支持多国信用卡支付",
+                  note: "⚠️ 注意",
+                  esimNote1: "部分安卓手机不兼容",
+                  esimNote2: "兼容iPhone XS及以上机型",
+                  esimNote3: "流量套餐价格稍高（约5-8美元/天）",
+                  buySIMOnArrival: "🛬 落地购买SIM卡",
+                  locations: "📍 购买地点",
+                  simLocation1: "机场柜台：北京首都T3、上海浦东T1、广州白云T2等国际机场",
+                  simLocation2: "营业厅：认准“中国移动”/“中国电信”/“中国联通”",
+                  keyPhrases: "🗣 实用短语",
+                  phrase1: "我要办预付费套餐 → I want a prepaid SIM card",
+                  phrase2: "最便宜的流量包 → The cheapest data package",
+                  simPro1: "现场激活，即时使用",
+                  simPro2: "性价比最高",
+                  simPro3: "三大运营商可选",
+                  simNote1: "需护照实名认证",
+                  simNote2: "部分机场柜台晚10点关闭",
+                  simNote3: "保留SIM卡包装（客服热线：中国移动10086/中国电信10010/中国联通10000）",
+                  onlinePurchase: "🛍️ 入境后线上购买",
+                  nihaoMobile: "Nihao Mobile：专为外国人设计，支持微信支付",
+                  klookTravel: "Klook Travel：双语版本，支持快递配送+使用指南",
+                  onlinePro1: "全程线上操作，无需线下跑",
+                  onlinePro2: "支持英文界面",
+                  onlinePro3: "可快递到酒店",
+                  onlineNote1: "提前2-3天下单",
+                  onlineNote2: "提供详细酒店地址",
+                  finalRecommendations: "✨ 最终推荐",
+                  shortTrip: "短期旅行（<7天）",
+                  shortTripRec: "eSIM卡，便捷省心",
+                  deepTour: "深度旅行（>1个月）",
+                  deepTourRec: "营业厅办理性价比套餐",
+                  avoidCrowds: "避免排队",
+                  avoidCrowdsRec: "线上预订，快递到酒店",
+                  backupPlan: "备用方案",
+                  backupPlanRec: "随身WiFi租赁（机场可租，约20美元/天）",
+                  // 页脚
+                  footerEditor: "编者：刘思思，吴向微，许欣溢",
+                  footerDeveloper: "开发者：李轩，李欣怡",
+                  footerCopyright: "© 2025 来华手册 | 版权所有"
+              }
+          };
+      
+          // 工具函数：安全设置文本
+          function setText(el, text) {
+              if (el && text !== undefined) {
+                  el.textContent = text;
+              }
+          }
+      
+          // 工具函数：安全设置HTML
+          function setHTML(el, html) {
+              if (el && html !== undefined) {
+                  el.innerHTML = html;
+              }
+          }
+      
+          // 工具函数：设置列表项文本
+          function setLiText(li, text) {
+              if (!li || !text) return;
+              const textSpan = li.querySelector(".li-text");
+              if (textSpan) {
+                  textSpan.textContent = text;
+              } else {
+                  // 兼容没有li-text的情况
+                  const firstChild = li.querySelector("input, span") || li.firstChild;
+                  if (firstChild) {
+                      let span = document.createElement("span");
+                      span.className = "li-text";
+                      span.textContent = text;
+                      firstChild.after(span);
+                      // 清除原有文本
+                      Array.from(li.childNodes).forEach(node => {
+                          if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+                              li.removeChild(node);
+                          }
+                      });
+                  }
+              }
+          }
+      
+          // 应用语言设置
+          function applyLanguage(lang) {
+              const t = languageTexts[lang] || languageTexts.en;
+              currentLang = lang;
+              document.documentElement.lang = lang;
+              localStorage.setItem(LANG_KEY, lang);
+      
+              // 1. 主导航
+              const mainLinks = document.querySelectorAll("#main-nav > a");
+              setText(mainLinks[0], t.home);
+              setText(mainLinks[1], t.guide);
+              setText(document.querySelector(".group button span:first-child"), t.language);
+              setText(document.getElementById("lang-en"), "English");
+              setText(document.getElementById("lang-zh"), "中文");
+      
+              // 2. 二级导航
+              setText(document.querySelector("#subnav-prep span:last-child"), t.subnavPrep);
+              setText(document.querySelector("#subnav-trans span.md\\:inline"), t.subnavTransShort);
+              setText(document.querySelector("#subnav-trans span.hidden.lg\\:inline"), t.subnavTrans);
+              setText(document.querySelector("#subnav-pay span.md\\:inline"), t.subnavPayShort);
+              setText(document.querySelector("#subnav-pay span.hidden.lg\\:inline"), t.subnavPay);
+              setText(document.querySelector("#subnav-acco span:last-child"), t.subnavAcco);
+              setText(document.querySelector("#subnav-emer span.md\\:inline"), t.subnavEmerShort);
+              setText(document.querySelector("#subnav-emer span.hidden.lg\\:inline"), t.subnavEmer);
+              setText(document.querySelector("#subnav-cult span.md\\:inline"), t.subnavCultShort);
+              setText(document.querySelector("#subnav-cult span.hidden.lg\\:inline"), t.subnavCult);
+      
+              // 3. 面包屑
+              setText(document.getElementById("crumb-home"), t.crumbHome);
+              setText(document.getElementById("crumb-guide"), t.crumbGuide);
+              setText(document.getElementById("crumb-current"), t.crumbCurrent);
+      
+              // 4. 英雄区
+              setText(document.querySelector("h2"), t.preparationEntry);
+              setText(document.querySelector("h2 + p"), t.preparationDesc);
+      
+              // 5. 物品清单标题
+              setText(document.querySelector("#listItem span.bg-white"), t.listOfItems);
+              setText(document.querySelector("#listItem span.absolute"), t.checklist);
+              
+              // 清单工具
+              setText(document.querySelector("#items-checklist .text-sm .font-semibold"), t.checklistProgress);
+              setText(document.getElementById("checklist-reset"), t.checklistReset);
+      
+              // 6. 物品卡片
+              // 证件类
+              const credCard = document.querySelector('img[alt="Credentials Icon"]').closest("div");
+              if (credCard) {
+                  setText(credCard.querySelector("h4"), t.credentials);
+                  const lis = credCard.querySelectorAll("ul li");
+                  setLiText(lis[0], t.passport);
+                  setLiText(lis[1], t.visa);
+              }
+      
+              // 衣物类
+              const clothCard = document.querySelector('img[alt="Clothing Icon"]').closest("div");
+              if (clothCard) {
+                  setText(clothCard.querySelector("h4"), t.clothing);
+                  const lis = clothCard.querySelectorAll("ul li");
+                  setLiText(lis[0], t.climate);
+                  setLiText(lis[1], t.weather);
+              }
+      
+              // 支付类
+              const payCard = document.querySelector('img[alt="Cash Icon"]').closest("div");
+              if (payCard) {
+                  setText(payCard.querySelector("h4"), t.paymentInstrument);
+                  const lis = payCard.querySelectorAll("ul li");
+                  setLiText(lis[0], t.cash);
+                  setLiText(lis[1], t.bankcard);
+                  setLiText(lis[2], t.alipay);
+              }
+      
+              // 应急备用类
+              const emerCard = document.querySelector('img[alt="Emergency Icon"]').closest("div");
+              if (emerCard) {
+                  setText(emerCard.querySelector("h4"), t.emergencyBackup);
+                  const lis = emerCard.querySelectorAll("ul li");
+                  setLiText(lis[0], t.contactCards);
+                  setLiText(lis[1], t.hotel);
+                  setLiText(lis[2], t.meds);
+              }
+      
+              // 电子设备类
+              const elecCard = document.querySelector('img[alt="Charger Icon"]').closest("div");
+              if (elecCard) {
+                  setText(elecCard.querySelector("h4"), t.electronicEquipment);
+                  const lis = elecCard.querySelectorAll("ul li");
+                  setLiText(lis[0], t.charger);
+                  setLiText(lis[1], t.adapter);
+                  setLiText(lis[2], t.camera);
+                  setLiText(lis[3], t.phone);
+                  setLiText(lis[4], t.tablet);
+                  setLiText(lis[5], t.computer);
+              }
+      
+              // 实用工具类
+              const utilCard = document.querySelector('img[alt="Utils Icon"]').closest("div");
+              if (utilCard) {
+                  setText(utilCard.querySelector("h4"), t.utilities);
+                  const lis = utilCard.querySelectorAll("ul li");
+                  setLiText(lis[0], t.sim);
+                  setLiText(lis[1], t.pin);
+                  setLiText(lis[2], t.allergy);
+                  setLiText(lis[3], t.medTrans);
+                  setLiText(lis[4], t.luggage);
+                  setLiText(lis[5], t.airtag);
+              }
+      
+              // 7. 专业提示
+              setText(document.querySelector("#items-checklist .mt-10 .text-sunny.font-bold"), t.proTip);
+              const proTipLis = document.querySelectorAll("#items-checklist .mt-10 ul li");
+              setText(proTipLis[0], t.proTip1);
+              setText(proTipLis[1], t.proTip2);
+              setText(proTipLis[2], t.proTip3);
+      
+              // 8. 入境流程标题
+              setText(document.querySelector("#immig span.bg-white"), t.immigrationProcess);
+              setText(document.querySelector("#immig span.absolute"), t.stepByStep);
+      
+              // 入境流程步骤
+              // 航班降落
+              setHTML(document.querySelector('[id^="flight-landing-title"]'), t.flightLandingHTML);
+              const flightLis = document.querySelectorAll("#flight-landing-list li");
+              setLiText(flightLis[0], t.flightLanding1);
+              setLiText(flightLis[1], t.flightLanding2);
+      
+              // 检疫检查
+              setHTML(document.getElementById("quarantine-inspection-title"), t.quarantineInspection);
+              const quarantineLis = document.querySelectorAll("#quarantine-inspection-list li");
+              setLiText(quarantineLis[0], t.quarantine1);
+      
+              // 边检
+              setHTML(document.getElementById("border-inspection-title"), t.borderInspectionHTML);
+              const borderLis = document.querySelectorAll("#border-inspection-list li");
+              setLiText(borderLis[0], t.border1);
+      
+              // 提取行李
+              setHTML(document.getElementById("baggage-claim-title"), t.baggageClaimHTML);
+              const baggageLis = document.querySelectorAll("#baggage-claim-list li");
+              setLiText(baggageLis[0], t.baggage1);
+      
+              // 海关检查
+              setHTML(document.getElementById("customs-inspection-title"), t.customsInspectionHTML);
+              const customsLis = document.querySelectorAll("#customs-inspection-list li");
+              setLiText(customsLis[0], t.customs1);
+              setLiText(customsLis[1], t.customs2);
+      
+              // 离开机场
+              setHTML(document.getElementById("leaving-airport-title"), t.leavingAirport);
+              const leavingLis = document.querySelectorAll("#leaving-airport-list li");
+              setLiText(leavingLis[0], t.leaving1);
+              setLiText(leavingLis[1], t.leaving2);
+              setLiText(leavingLis[2], t.leaving3);
+      
+              // 9. 机场提示卡片
+              const airportTipsCard = document.querySelectorAll(".grid.grid-cols-1.md\\:grid-cols-3.gap-6.mt-10 > div")[0];
+              if (airportTipsCard) {
+                  setText(airportTipsCard.querySelector("h4"), t.airportTips);
+                  const lis = airportTipsCard.querySelectorAll("ul li");
+                  setLiText(lis[0], t.airportTip1);
+                  setLiText(lis[1], t.airportTip2);
+                  setLiText(lis[2], t.airportTip3);
+                  setLiText(lis[3], t.airportTip4);
+                  setLiText(lis[4], t.airportTip5);
+              }
+      
+              // 违禁物品
+              const prohibCard = document.querySelectorAll(".grid.grid-cols-1.md\\:grid-cols-3.gap-6.mt-10 > div")[1];
+              if (prohibCard) {
+                  setText(prohibCard.querySelector("h4"), t.prohibitedItems);
+                  const lis = prohibCard.querySelectorAll("ul li");
+                  setLiText(lis[0], t.prohibited1);
+                  setLiText(lis[1], t.prohibited2);
+              }
+      
+              // 遵循规则
+              const followCard = document.querySelectorAll(".grid.grid-cols-1.md\\:grid-cols-3.gap-6.mt-10 > div")[2];
+              if (followCard) {
+                  setText(followCard.querySelector("p"), t.followRules);
+              }
+      
+              // 10. 网络访问部分
+              setText(document.querySelector("#internet span.bg-white"), t.internetAccess);
+              setText(document.querySelector("#internet span.absolute"), t.stayOnline);
+      
+              // 11. 页脚
+              const footerPs = document.querySelectorAll("footer p");
+              setText(footerPs[0], t.footerEditor);
+              setText(footerPs[1], t.footerDeveloper);
+              setText(footerPs[2], t.footerCopyright);
+          }
+      
+          // 初始化
+          document.addEventListener("DOMContentLoaded", () => {
+              // 绑定语言切换按钮
+              document.getElementById("lang-en")?.addEventListener("click", () => applyLanguage("en"));
+              document.getElementById("lang-zh")?.addEventListener("click", () => applyLanguage("zh"));
+              
+              // 应用初始语言
+              applyLanguage(currentLang);
+          });
+      })();
+</script>
 </body>
 
 </html>
