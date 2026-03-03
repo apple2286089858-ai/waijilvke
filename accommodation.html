@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accommodation – Navigating China</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Freckle+Face&family=Patrick+Hand&family=Playpen+Sans+Hebrew:wght@100..800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pinky:    '#F8E0E6',
+                        skyblue:  '#A7E1F8',
+                        sunny:    '#FF9F45',
+                        peach:    '#F8B5B5',
+                        mint:     '#B2E8C2',
+                        lemon:    '#FFE066',
+                        lavender: '#D8BFD8',
+                        apricot:  '#FDDCB5',
+                        tangerine:'#F4A35A',
+                    },
+                    fontFamily: {
+                        en: ['Inter', 'sans-serif'],
+                        zh: ['Noto Serif SC', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        .freckle-face-regular {
+            font-family: "Freckle Face", system-ui;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .playpen-sans-hebrew {
+            font-family: "Playpen Sans Hebrew", cursive;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+        }
+        @layer utilities {
+            .text-shadow { text-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
+        }
+        html { scroll-behavior: smooth; }
+        @layer components {
+            .font-en        { font-family: 'Inter', sans-serif; }
+            .section-title  { font-family: 'Noto Serif SC', serif; font-weight: 600; letter-spacing: 0.02em; }
+            .nav-text       { font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: 0.01em; }
+            .footer-text    { font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em; }
+        }
+    </style>
+</head>
+
+<body class="bg-pinky text-gray-800 pt-20 font-en">
+
+    <!-- ===== HEADER ===== -->
+    <header class="fixed top-0 left-0 z-50 w-full py-2 px-4 md:px-8 bg-pinky/95 backdrop-blur-sm">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center mb-4 md:mb-0">
+                <img src="images/logo.png" alt="Sun Logo" class="w-14 h-14 mr-3">
+                <h1 class="freckle-face-regular text-[clamp(1.8rem,4vw,2.8rem)] text-shadow">
+                    Navigating <span class="text-sunny">China</span>
+                </h1>
+            </div>
+            <nav id="main-nav" class="flex flex-wrap gap-4 nav-text">
+                <a href="index.html"                   class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm">Home</a>
+                <a href="index.html#contents-section"  class="px-4 py-2 bg-peach hover:bg-peach/80 rounded-full transition-all transform hover:scale-105 shadow-sm">Guide</a>
+                <div class="relative group">
+                    <button class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm flex items-center gap-2">
+                        <span>Language</span><span class="text-xs">▼</span>
+                    </button>
+                    <div class="absolute top-full right-0 mt-2 w-32 bg-white rounded-xl shadow-lg border-2 border-sunny/30 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                        <button class="w-full px-4 py-2 text-left hover:bg-peach/20 rounded-t-xl transition-colors">English</button>
+                        <button class="w-full px-4 py-2 text-left hover:bg-peach/20 rounded-b-xl transition-colors">中文</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== SUB-NAV ===== -->
+    <section class="w-full px-4 md:px-8 mt-3 bg-peach/50">
+        <div class="max-w-6xl mx-auto">
+            <div class="hidden md:block">
+                <nav class="flex items-center justify-between gap-1 nav-text text-[13px]">
+                    <a href="preparation.html"   class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+                        <span class="text-base">🧳</span><span>Preparation &amp; Entry</span>
+                    </a>
+                    <span class="h-5 w-px bg-white/60"></span>
+                    <a href="transportation.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+                        <span class="text-base">🗺️</span>
+                        <span class="md:inline lg:hidden">Transport &amp; Maps</span>
+                        <span class="hidden lg:inline">Transportation &amp; Navigation</span>
+                    </a>
+                    <span class="h-5 w-px bg-white/60"></span>
+                    <a href="payment.html"        class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+                        <span class="text-base">💳</span>
+                        <span class="md:inline lg:hidden">Payment &amp; Tax</span>
+                        <span class="hidden lg:inline">Payment &amp; Tax Refund</span>
+                    </a>
+                    <span class="h-5 w-px bg-white/60"></span>
+                    <a href="accommodation.html"  class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-orange-600 font-bold">
+                        <span class="text-base">🏨</span><span>Accommodation</span>
+                    </a>
+                    <span class="h-5 w-px bg-white/60"></span>
+                    <a href="emergency.html"                   class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+                        <span class="text-base">🆘</span>
+                        <span class="md:inline lg:hidden">Emergency</span>
+                        <span class="hidden lg:inline">Emergency Handling</span>
+                    </a>
+                    <span class="h-5 w-px bg-white/60"></span>
+                    <a href="travel.html"                   class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+                        <span class="text-base">🎎</span>
+                        <span class="md:inline lg:hidden">Culture</span>
+                        <span class="hidden lg:inline">Travel &amp; Culture</span>
+                    </a>
+                </nav>
+                <!-- active underline -->
+                <div class="mt-2 h-[2px] w-24 bg-peach/70 rounded-full ml-[calc(50%-48px+110px)]"></div>
+            </div>
+            <!-- breadcrumb -->
+            <div class="mt-3 pb-2 text-xs text-gray-500">
+                <a href="index.html" class="hover:text-gray-700 transition">Home</a>
+                <span class="mx-1 text-gray-300">/</span>
+                <a href="index.html#contents-section" class="hover:text-gray-700 transition">Guide</a>
+                <span class="mx-1 text-gray-300">/</span>
+                <span class="text-gray-600">Accommodation</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HERO ===== -->
+    <section class="w-full py-8 px-4 md:px-8 bg-gradient-to-b from-peach/50 to-white/50">
+        <div class="max-w-5xl mx-auto flex flex-col items-center gap-8">
+            <div class="max-w-3xl text-center">
+                <br><br><br><br>
+                <h2 class="text-[clamp(1.8rem,4vw,2.8rem)] font-bold text-white text-shadow mb-4">
+                    Accommodation
+                </h2>
+                <p class="text-lg text-gray-600">Find your perfect stay in China 🏨🛎️✨</p>
+                <br><br><br><br><br><br><br><br><br>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTENT WRAPPER ===== -->
+    <section class="w-full py-12 px-4 md:px-8 bg-white/50">
+        <div class="max-w-5xl mx-auto">
+
+            <!-- ── Section Title ── -->
+            <div id="recommend" class="text-center mb-10">
+                <h3 class="text-2xl font-bold text-tangerine relative inline-block">
+                    <span class="bg-white px-6 py-2 rounded-2xl shadow-md transform -rotate-1 border-2 border-tangerine">
+                        🏨  Recommended Platform: Trip.com
+                    </span>
+                    <span class="absolute -top-3 -right-8 text-xs font-bold bg-peach text-orange-700 px-2 py-1 rounded-full shadow-sm border border-white">Book Smart~</span>
+                </h3>
+            </div>
+
+            <!-- ── Platform intro banner ── -->
+            <div class="bg-gradient-to-r from-peach/60 to-lemon/30 rounded-2xl p-5 border-2 border-peach/60 mb-8 flex flex-col md:flex-row items-center gap-5 relative overflow-hidden shadow-md">
+                <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-tangerine to-sunny flex items-center justify-center text-white text-3xl shadow-md">✈️</div>
+                <div class="flex-1 text-sm text-gray-700">
+                    <p class="font-bold text-orange-600 text-base mb-1">Trip.com — International Booking Platform</p>
+                    <p>English interface, supports Visa / Mastercard / AmEx · Switch language &amp; currency freely · 24/7 English customer support</p>
+                    <a href="https://www.trip.com" target="_blank" class="inline-block mt-2 text-xs text-blue-500 underline hover:text-blue-700 transition">🔗 https://www.trip.com</a>
+                </div>
+                <!-- 📷 图片占位：Trip.com logo / banner -->
+                <img src="images/trip.png">
+                <div class="absolute bottom-2 right-4 text-peach/30 text-5xl select-none">🏨</div>
+            </div>
+
+            <!-- ── 5 Steps Grid ── -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- ── STEP 1: Download ── -->
+                <div class="bg-red-50 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-red-200 relative overflow-hidden flex flex-col gap-4">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-red-400/60 to-red-100/10 rounded-t-2xl"></div>
+
+                    <!-- Step badge -->
+                    <div class="flex items-center gap-3 mt-1">
+                        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center text-white font-bold text-lg shadow-sm flex-shrink-0">1</div>
+                        <div>
+                            <p class="font-bold text-red-600 text-lg leading-tight">Download</p>
+                            <p class="text-xs text-gray-500">Get the app or use the web version</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <div class="bg-white/70 rounded-xl p-3 border border-red-100 flex items-start gap-2">
+                            <span class="text-base flex-shrink-0">🍎</span>
+                            <p><span class="font-semibold">iOS users:</span> Search <span class="text-red-500 font-medium">Trip.com</span> in the App Store.</p>
+                        </div>
+                        <div class="bg-white/70 rounded-xl p-3 border border-red-100 flex items-start gap-2">
+                            <span class="text-base flex-shrink-0">🤖</span>
+                            <p><span class="font-semibold">Android users:</span> Search <span class="text-red-500 font-medium">Trip.com</span> on Google Play.</p>
+                        </div>
+                        <div class="bg-white/70 rounded-xl p-3 border border-red-100 flex items-start gap-2">
+                            <span class="text-base flex-shrink-0">💻</span>
+                            <div>
+                                <p><span class="font-semibold">Web version:</span> Visit <a href="https://www.trip.com" target="_blank" class="text-blue-500 underline text-xs">https://www.trip.com</a></p>
+                                <p class="text-xs text-gray-500 mt-0.5">It is allowed to switch languages and currencies.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 📷 图片占位：App Store / Google Play 截图 -->
+                    <img src="images/tripcom.png">
+
+                    <div class="absolute bottom-2 right-3 text-red-200/30 text-5xl select-none">📱</div>
+                </div>
+
+                <!-- ── STEP 2: Register ── -->
+                <div class="bg-yellow-50 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-lemon/60 relative overflow-hidden flex flex-col gap-4">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-lemon/80 to-lemon/10 rounded-t-2xl"></div>
+
+                    <div class="flex items-center gap-3 mt-1">
+                        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-yellow-400 to-lemon flex items-center justify-center text-white font-bold text-lg shadow-sm flex-shrink-0">2</div>
+                        <div>
+                            <p class="font-bold text-yellow-600 text-lg leading-tight">Register an Account</p>
+                            <p class="text-xs text-gray-500">Quick &amp; easy sign-up</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <div class="flex items-start gap-2">
+                            <span class="w-5 h-5 bg-yellow-400 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5 font-bold">①</span>
+                            <p>Register with your <span class="font-semibold">email</span> or <span class="font-semibold">international phone number</span>.</p>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="w-5 h-5 bg-yellow-400 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5 font-bold">②</span>
+                            <p>Fill in your details → Enter the verification code → Complete registration.</p>
+                        </div>
+                    </div>
+
+                    <!-- 📷 图片占位：Trip.com 注册界面截图 -->
+                    <img src="images/regis.png">
+
+                    <div id="tipss" class="bg-lemon/20 rounded-xl p-3 text-sm border border-lemon/50">
+                        <p class="font-bold text-yellow-700 mb-1">💡 Tips</p>
+                        <ul class="space-y-1 text-gray-700 text-xs">
+                            <li>– Link your <span class="font-semibold">Google account</span> for quicker login.</li>
+                            <li>– Ensure your <span class="font-semibold">profile name matches your passport</span>.</li>
+                        </ul>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-lemon/30 text-5xl select-none">📝</div>
+                </div>
+
+                <!-- ── STEP 3: Identity Verification ── -->
+                <div class="bg-purple-50 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-lavender/60 relative overflow-hidden flex flex-col gap-4">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-lavender/80 to-lavender/10 rounded-t-2xl"></div>
+
+                    <div class="flex items-center gap-3 mt-1">
+                        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-lavender to-purple-400 flex items-center justify-center text-white font-bold text-lg shadow-sm flex-shrink-0">3</div>
+                        <div>
+                            <p class="font-bold text-purple-600 text-lg leading-tight">Identity Verification</p>
+                            <p class="text-xs text-gray-500">Passport verification for foreign guests</p>
+                        </div>
+                    </div>
+
+                    <!-- Verification path -->
+                    <div class="bg-white/70 rounded-xl p-4 border border-lavender/40 text-sm text-gray-700">
+                        <p class="font-semibold text-purple-500 mb-2">Verification path:</p>
+                        <div class="flex flex-wrap items-center gap-1 text-xs font-medium">
+                            <span class="bg-lavender/40 px-2 py-1 rounded-lg">「Manual Verification」</span>
+                            <span class="text-purple-400">→</span>
+                            <span class="bg-lavender/40 px-2 py-1 rounded-lg">「For Non-Mainland Chinese<br>(HK, Macau, Taiwan &amp; Overseas)」</span>
+                            <span class="text-purple-400">→</span>
+                            <span class="bg-lavender/40 px-2 py-1 rounded-lg">「Passport Verification」</span>
+                        </div>
+                    </div>
+
+                    <div class="text-sm text-gray-700 bg-white/70 rounded-xl p-3 border border-lavender/30">
+                        <p>Follow the instructions to set a <span class="font-semibold text-purple-600">payment password</span> and submit your <span class="font-semibold text-purple-600">passport details</span> and wait for confirmation.</p>
+                    </div>
+
+                    <!-- 📷 图片占位：Identity verification 截图 -->
+                    
+
+                    <div class="absolute bottom-2 right-3 text-lavender/30 text-5xl select-none">🪪</div>
+                </div>
+
+                <!-- ── STEP 4: Search for Hotels ── -->
+                <div class="bg-skyblue/10 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-skyblue/40 relative overflow-hidden flex flex-col gap-4">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-skyblue/60 to-skyblue/10 rounded-t-2xl"></div>
+
+                    <div class="flex items-center gap-3 mt-1">
+                        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-skyblue to-blue-400 flex items-center justify-center text-white font-bold text-lg shadow-sm flex-shrink-0">4</div>
+                        <div>
+                            <p class="font-bold text-blue-600 text-lg leading-tight">Search for Hotels</p>
+                            <p class="text-xs text-gray-500">Find accommodation that accepts foreign guests</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 text-sm text-gray-700">
+                        <div class="flex items-start gap-2">
+                            <span class="w-5 h-5 bg-skyblue text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5 font-bold">①</span>
+                            <p>Enter basic search criteria <span class="font-semibold">(location / dates / guests)</span>.</p>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="w-5 h-5 bg-skyblue text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5 font-bold">②</span>
+                            <div>
+                                <p class="font-semibold mb-1">Filter results:</p>
+                                <div class="space-y-1">
+                                    <div class="bg-white/70 rounded-lg p-2 border border-skyblue/30 text-xs">
+                                        <span class="font-semibold text-blue-500">Ctrip</span> (China Mainland version): Click 「Filters」→ Check 「Accepts Foreign Guests」
+                                    </div>
+                                    <div class="bg-white/70 rounded-lg p-2 border border-skyblue/30 text-xs">
+                                        <span class="font-semibold text-blue-500">Trip.com</span> (International version): No need for this filter.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 📷 图片占位：Trip.com 搜索界面截图 -->
+                    <img src="images/tripcombook.png">
+
+                    <div class="absolute bottom-2 right-3 text-skyblue/30 text-5xl select-none">🔍</div>
+                </div>
+
+            </div><!-- end 2-col grid -->
+
+            <!-- ── STEP 5: Select Room & Payment (full width) ── -->
+            <div class="mt-8 bg-apricot/20 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all border-2 border-apricot/60 relative overflow-hidden flex flex-col gap-5">
+                <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-tangerine/70 to-apricot/10 rounded-t-2xl"></div>
+
+                <div class="flex items-center gap-3 mt-1">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-tangerine to-sunny flex items-center justify-center text-white font-bold text-lg shadow-sm flex-shrink-0">5</div>
+                    <div>
+                        <p class="font-bold text-orange-600 text-lg leading-tight">Select Room &amp; Payment</p>
+                        <p class="text-xs text-gray-500">Review details, fill in guest info, and pay securely</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+                    <!-- Sub-step ① -->
+                    <div class="bg-white/80 rounded-xl p-4 border border-apricot/40 flex flex-col gap-2 text-sm text-gray-700">
+                        <p class="font-semibold text-orange-500 flex items-center gap-1">
+                            <span class="w-5 h-5 bg-tangerine text-white rounded-full flex items-center justify-center text-xs font-bold">①</span>
+                            Check Room Details
+                        </p>
+                        <p>Review room descriptions (breakfast inclusion, cancellation policy, etc.).</p>
+                        <div class="bg-apricot/20 rounded-lg p-2 text-xs border border-apricot/30">
+                            <span class="font-semibold">Note:</span> Look for the 「Foreign Guests Allowed」 label and requirements (e.g., passport copies).
+                        </div>
+                        <!-- 📷 图片占位：房间详情页截图 -->
+                        
+                    </div>
+
+                    <!-- Sub-step ② -->
+                    <div class="bg-white/80 rounded-xl p-4 border border-apricot/40 flex flex-col gap-2 text-sm text-gray-700">
+                        <p class="font-semibold text-orange-500 flex items-center gap-1">
+                            <span class="w-5 h-5 bg-tangerine text-white rounded-full flex items-center justify-center text-xs font-bold">②</span>
+                            Guest Information
+                        </p>
+                        <p>Enter guest information as shown on your passport.</p>
+                        <!-- 📷 图片占位：填写入住人信息截图 -->
+                        
+                    </div>
+
+                    <!-- Sub-step ③ -->
+                    <div class="bg-white/80 rounded-xl p-4 border border-apricot/40 flex flex-col gap-2 text-sm text-gray-700">
+                        <p class="font-semibold text-orange-500 flex items-center gap-1">
+                            <span class="w-5 h-5 bg-tangerine text-white rounded-full flex items-center justify-center text-xs font-bold">③</span>
+                            Payment
+                        </p>
+                        <p>Accepted cards: <span class="font-semibold">Visa, Mastercard, American Express</span>, etc.</p>
+                        <p>Click 「Add Payment Method」 → Enter card number / expiry date / CVV.</p>
+                        <div class="bg-lemon/20 rounded-lg p-2 text-xs border border-lemon/40 mt-auto">
+                            <span class="font-semibold text-yellow-600">★</span> Some hotels allow <span class="font-semibold">"Pay at Property"</span> but may require a pre-authorization hold.
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="absolute bottom-2 right-3 text-apricot/30 text-5xl select-none">💳</div>
+            </div>
+
+            <!-- ── Tips Box ── -->
+            <div class="mt-8 bg-gradient-to-r from-mint/30 to-skyblue/20 rounded-2xl p-6 border-2 border-mint/50 shadow-md relative overflow-hidden">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-mint to-green-400 flex items-center justify-center text-white text-2xl shadow-sm flex-shrink-0">💡</div>
+                    <div class="flex flex-col gap-3 text-sm text-gray-700 flex-1">
+                        <p class="font-bold text-green-700 text-base">Tips</p>
+                        <div class="bg-white/70 rounded-xl p-3 border border-mint/40">
+                            <p class="font-semibold mb-1">📋 Modify a Booking:</p>
+                            <p>Go to 「My Bookings」→ Select your order → Click 「Modify」 to adjust dates / room type.</p>
+                        </div>
+                        <div class="bg-white/70 rounded-xl p-3 border border-mint/40">
+                            <p class="font-semibold mb-1">📞 Customer Support:</p>
+                            <p>Contact Trip.com's <span class="font-bold text-orange-500">24/7 English support</span>: <span class="font-mono text-blue-600">+1-800-210-6567</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute bottom-2 right-3 text-mint/20 text-5xl select-none">🌟</div>
+            </div>
+
+            <!-- ── Quick Summary Table ── -->
+            <div id="quickgd" class="mt-8 bg-white p-6 rounded-2xl shadow-md border-2 border-sunny/30 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-sunny/60 to-sunny/10 rounded-t-2xl"></div>
+                <h4 class="font-bold text-sunny text-lg mb-4 flex items-center gap-2">✨ Quick Guide: 5 Steps at a Glance</h4>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm border-collapse">
+                        <tbody>
+                            <tr class="bg-red-50 border-b border-red-100">
+                                <td class="px-4 py-3 font-semibold text-red-500 w-1/4">Step 1 · Download</td>
+                                <td class="px-4 py-3 text-gray-600">App Store / Google Play / trip.com</td>
+                            </tr>
+                            <tr class="bg-yellow-50 border-b border-yellow-100">
+                                <td class="px-4 py-3 font-semibold text-yellow-600">Step 2 · Register</td>
+                                <td class="px-4 py-3 text-gray-600">Email or international number · Link Google for faster login</td>
+                            </tr>
+                            <tr class="bg-purple-50 border-b border-purple-100">
+                                <td class="px-4 py-3 font-semibold text-purple-500">Step 3 · Verify</td>
+                                <td class="px-4 py-3 text-gray-600">Manual Verification → Passport Verification</td>
+                            </tr>
+                            <tr class="bg-skyblue/10 border-b border-skyblue/20">
+                                <td class="px-4 py-3 font-semibold text-blue-500">Step 4 · Search</td>
+                                <td class="px-4 py-3 text-gray-600">Filter by "Accepts Foreign Guests" on Ctrip · Skip filter on Trip.com</td>
+                            </tr>
+                            <tr class="bg-apricot/20">
+                                <td class="px-4 py-3 font-semibold text-orange-500">Step 5 · Pay</td>
+                                <td class="px-4 py-3 text-gray-600">Visa / Mastercard / AmEx · Check "Foreign Guests Allowed" label</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="absolute bottom-2 right-3 text-sunny/20 text-3xl select-none">🏨</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="w-full py-6 px-4 md:px-8 bg-apricot/30 footer-text">
+        <div class="max-w-5xl mx-auto text-center">
+            <p class="mb-2">Editors: Liu Sisi, Wu Xiangwei, Xu Xinyi</p>
+            <p class="mb-2">Developers: Li Xuan, Li Xinyi</p>
+            <p class="text-sm text-gray-600">© 2025 Navigating China Handbook | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+        style="position:fixed;bottom:32px;right:32px;width:48px;height:48px;border-radius:50%;background-color:#faae98;color:#ffffff;font-size:22px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.15);opacity:0;transition:opacity 0.3s,transform 0.2s;z-index:9999;"
+        onmouseover="this.style.transform='scale(1.1)'"
+        onmouseout="this.style.transform='scale(1)'">↑</button>
+    <script>
+        const btn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            btn.style.opacity = window.scrollY > 200 ? '1' : '0';
+            btn.style.pointerEvents = window.scrollY > 200 ? 'auto' : 'none';
+        });
+    </script>
+
+</body>
+</html>

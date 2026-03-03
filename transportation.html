@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transportation & Navigation – Navigating China</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Freckle+Face&family=Patrick+Hand&family=Playpen+Sans+Hebrew:wght@100..800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pinky:    '#F8E0E6',
+                        skyblue:  '#A7E1F8',
+                        sunny:    '#FF9F45',
+                        peach:    '#F8B5B5',
+                        mint:     '#B2E8C2',
+                        lemon:    '#FFE066',
+                        lavender: '#D8BFD8',
+                    },
+                    fontFamily: {
+                        en: ['Inter', 'sans-serif'],
+                        zh: ['Noto Serif SC', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        .freckle-face-regular {
+            font-family: "Freckle Face", system-ui;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .playpen-sans-hebrew {
+            font-family: "Playpen Sans Hebrew", cursive;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+        }
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+            }
+        }
+        html { scroll-behavior: smooth; }
+
+        @layer components {
+            .font-en  { font-family: 'Inter', sans-serif; }
+            .section-title { font-family: 'Noto Serif SC', serif; font-weight: 600; letter-spacing: 0.02em; }
+            .nav-text  { font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: 0.01em; }
+            .footer-text { font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em; }
+        }
+
+        /* step arrow connector (desktop only) */
+        .step-arrow::after {
+            content: '→';
+            position: absolute;
+            right: -18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.4rem;
+            color: #FF9F45;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body class="bg-pinky text-gray-800 pt-20 font-en">
+
+    <!-- ===== HEADER ===== -->
+    <header class="fixed top-0 left-0 z-50 w-full py-2 px-4 md:px-8 bg-pinky/95 backdrop-blur-sm">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center mb-4 md:mb-0">
+                <img src="images/logo.png" alt="Sun Logo" class="w-14 h-14 mr-3">
+                <h1 class="freckle-face-regular text-[clamp(1.8rem,4vw,2.8rem)] text-shadow">
+                    Navigating <span class="text-sunny">China</span>
+                </h1>
+            </div>
+            <nav id="main-nav" class="flex flex-wrap gap-4 nav-text">
+                <a href="index.html" class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm">Home</a>
+                <a href="index.html#contents-section" class="px-4 py-2 bg-skyblue hover:bg-skyblue/80 rounded-full transition-all transform hover:scale-105 shadow-sm">Guide</a>
+                <div class="relative group">
+                    <button class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm flex items-center gap-2">
+                        <span>Language</span><span class="text-xs">▼</span>
+                    </button>
+                    <div class="absolute top-full right-0 mt-2 w-32 bg-white rounded-xl shadow-lg border-2 border-sunny/30 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                        <button class="w-full px-4 py-2 text-left hover:bg-sunny/10 rounded-t-xl transition-colors">English</button>
+                        <button class="w-full px-4 py-2 text-left hover:bg-sunny/10 rounded-b-xl transition-colors">中文</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== SUB-NAV ===== -->
+    <section class="w-full px-4 md:px-8 mt-3 bg-skyblue/70">
+        <div class="max-w-6xl mx-auto">
+            <div class="hidden md:block">
+                <nav class="flex items-center justify-between gap-1 nav-text text-[13px]">
+                    <a href="preparation.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+                        <span class="text-base">🧳</span><span>Preparation &amp; Entry</span>
+                    </a>
+                    <span class="h-5 w-px bg-white/60"></span>
+                    <a href="transportation.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-blue-500 font-bold">
+                        <span class="text-base">🗺️</span>
+                        <span class="md:inline lg:hidden">Transport &amp; Maps</span>
+                        <span class="hidden lg:inline">Transportation &amp; Navigation</span>
+                    </a>
+                    <span class="h-5 w-px bg-white/60"></span>
+                    <a href="payment.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+                        <span class="text-base">💳</span>
+                        <span class="md:inline lg:hidden">Payment &amp; Tax</span>
+                        <span class="hidden lg:inline">Payment &amp; Tax Refund</span>
+                    </a>
+                    <span class="h-5 w-px bg-white/60"></span>
+                    <a href="accommodation.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+                        <span class="text-base">🏨</span><span>Accommodation</span>
+                    </a>
+                    <span class="h-5 w-px bg-white/60"></span>
+                    <a href="emergency.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+                        <span class="text-base">🆘</span>
+                        <span class="md:inline lg:hidden">Emergency</span>
+                        <span class="hidden lg:inline">Emergency Handling</span>
+                    </a>
+                    <span class="h-5 w-px bg-white/60"></span>
+                    <a href="travel.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+                        <span class="text-base">🎎</span>
+                        <span class="md:inline lg:hidden">Culture</span>
+                        <span class="hidden lg:inline">Travel &amp; Culture</span>
+                    </a>
+                </nav>
+                <div class="mt-2 h-[2px] w-24 bg-skyblue/70 rounded-full ml-[calc(16.66%-48px+110px)]"></div>
+            </div>
+            <div class="mt-3 text-xs text-gray-500">
+                <a href="index.html" class="hover:text-gray-700 transition">Home</a>
+                <span class="mx-1 text-gray-300">/</span>
+                <a href="index.html#contents-section" class="hover:text-gray-700 transition">Guide</a>
+                <span class="mx-1 text-gray-300">/</span>
+                <span class="text-gray-600">Transportation &amp; Navigation</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HERO ===== -->
+    <section class="w-full py-8 px-4 md:px-8 bg-gradient-to-b from-skyblue/70 to-white/50">
+        <div class="max-w-5xl mx-auto flex flex-col items-center gap-8">
+            <div class="max-w-3xl text-center">
+                <br><br><br><br>
+                <h2 class="text-[clamp(1.8rem,4vw,2.8rem)] font-bold text-white text-shadow mb-4">
+                    Transportation & Navigation
+                </h2>
+                <p class="text-lg text-gray-600">Getting around China made simple 🚄🚇🛵</p>
+                <br><br><br><br><br><br><br><br><br>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTENT WRAPPER ===== -->
+    <section id="transport" class="w-full py-12 px-4 md:px-8 bg-white/50">
+        <div class="max-w-5xl mx-auto">
+
+            <!-- ── Section Title: Transportation ── -->
+            <div class="text-center mb-10">
+                <h3 class="text-2xl font-bold text-sunny relative inline-block">
+                    <span class="bg-white px-6 py-2 rounded-2xl shadow-md transform -rotate-1 border-2 border-sunny">🚆 1. Transportation</span>
+                    <span class="absolute -top-3 -right-8 text-xs font-bold bg-skyblue text-white px-2 py-1 rounded-full shadow-sm border border-white">Getting Around</span>
+                </h3>
+            </div>
+
+            <!-- ── 4 Transport Cards ── -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+
+                <!-- Card: Metro -->
+                <div class="bg-red-50 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-red-200 relative overflow-hidden flex flex-col gap-4">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-red-400/60 to-red-200/10 rounded-t-2xl"></div>
+                    <h4 class="font-bold text-red-600 text-xl flex items-center gap-2 mt-1">🚇 Metro</h4>
+
+                    <div>
+                        <p class="text-xs font-bold text-green-600 mb-2">✅ Ticketing Options</p>
+                        <div class="space-y-3 text-sm text-gray-700">
+                            <div class="bg-white/70 rounded-xl p-3 border border-red-100">
+                                <p class="font-semibold text-red-500 mb-1">① Self-service Machines</p>
+                                <p>Select English interface → Choose destination on the route map → Make payment → Collect ticket.</p>
+                                <p class="text-gray-500 text-xs mt-1">Ticket Office: Show passport → Make payment.</p>
+                            </div>
+                            <div class="bg-white/70 rounded-xl p-3 border border-red-100">
+                                <p class="font-semibold text-red-500 mb-1">② E-Ticket (QR Code)</p>
+                                <p>Open Alipay → Click "Transport" → Select "City" → Activate the local "Metro QR Code" → Scan to enter/exit.</p>
+                            </div>
+                            <div class="bg-white/70 rounded-xl p-3 border border-red-100">
+                                <p class="font-semibold text-red-500 mb-1">③ Metro Passes</p>
+                                <p>Ticket Office: Show passport → Make payment.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-100/60 rounded-xl p-3 text-sm border border-red-200">
+                        <p class="font-bold text-red-500 mb-1">⚠️ Note</p>
+                        <ul class="space-y-1 text-gray-700">
+                            <li>– Tap in/out twice (once at entry, once at exit).</li>
+                            <li>– Passport holders are advised to use staffed gates to avoid scanner issues.</li>
+                        </ul>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-red-200/40 text-5xl select-none">🚇</div>
+                </div>
+
+                <!-- Card: High-Speed Rail -->
+                <div class="bg-blue-50 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-blue-200 relative overflow-hidden flex flex-col gap-4">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-400/60 to-blue-200/10 rounded-t-2xl"></div>
+                    <h4 class="font-bold text-blue-600 text-xl flex items-center gap-2 mt-1">🚄 High-Speed Rail (HSR)</h4>
+
+                    <div>
+                        <p class="text-xs font-bold text-green-600 mb-2">✅ Ticketing Options</p>
+                        <div class="space-y-3 text-sm text-gray-700">
+                            <div class="bg-white/70 rounded-xl p-3 border border-blue-100">
+                                <p class="font-semibold text-blue-500 mb-1">① Online Booking (Recommended)</p>
+                                <p class="font-medium text-blue-400 text-xs mb-1">Trip.com (International Version):</p>
+                                <p>English interface → Enter route (e.g., Beijing→Shanghai) → Select train → Fill in passport details → Pay with Visa/Mastercard.</p>
+                                <p class="text-gray-500 text-xs mt-1">E-tickets: Scan QR code at the gate (no paper ticket needed!).</p>
+                                <p class="font-medium text-blue-400 text-xs mt-2 mb-1">www.12306.cn:</p>
+                                <p class="text-xs">Register → Passport verification → Show passport at the gate.</p>
+                            </div>
+                            <div class="bg-white/70 rounded-xl p-3 border border-blue-100">
+                                <p class="font-semibold text-blue-500 mb-1">② Offline Booking</p>
+                                <p>Visit HSR station counters → Show passport → Pay by cash/card.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Boarding Process -->
+                    <div>
+                        <p class="text-xs font-bold text-green-600 mb-2">✅ Boarding Process</p>
+                        <div class="flex flex-col gap-2 text-sm">
+                            <div class="flex items-start gap-2">
+                                <span class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">①</span>
+                                <div><span class="font-semibold">Enter the Station</span> – Use self-service gates to scan your passport.</div>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <span class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">②</span>
+                                <div><span class="font-semibold">Security Check</span> – Queue for security screening after entering.</div>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <span class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">③</span>
+                                <div><span class="font-semibold">Find Your Gate</span> – Check your ticket (via app) for the assigned gate. Wait nearby until boarding begins.</div>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <span class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">④</span>
+                                <div><span class="font-semibold">Board the Train</span> – Scan passport at gate when "Now Boarding" displays.</div>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <span class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">⑤</span>
+                                <div><span class="font-semibold">Locate Your Seat</span> – Match ticket to number above windows (e.g., 06A = Row 6, Seat A).</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-blue-200/40 text-5xl select-none">🚄</div>
+                </div>
+
+                <!-- Card: Ride-Hailing (Didi) -->
+                <div class="bg-sunny/10 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-sunny/40 relative overflow-hidden flex flex-col gap-4">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-sunny/60 to-sunny/10 rounded-t-2xl"></div>
+                    <h4 class="font-bold text-sunny text-xl flex items-center gap-2 mt-1">🚖 Ride-Hailing (Didi Rider)</h4>
+
+                    <div class="inline-flex items-center gap-2 bg-white rounded-xl px-3 py-2 shadow-sm border border-sunny/20 w-fit text-sm font-semibold text-gray-700">
+                        📱 Recommended App: <span class="text-sunny">Didi Rider</span>
+                    </div>
+
+                    <!-- 📷 图片占位：Didi Rider App 截图 -->
+                    <img src="images/didi_app.png">
+                    
+
+                    <div>
+                        <p class="text-xs font-bold text-green-600 mb-2">✅ Steps</p>
+                        <div class="space-y-2 text-sm text-gray-700">
+                            <div class="flex items-start gap-2">
+                                <span class="w-6 h-6 bg-sunny text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">①</span>
+                                <p>Download "Didi Rider" → Register with your international number.</p>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <span class="w-6 h-6 bg-sunny text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">②</span>
+                                <p>Bind Visa/Mastercard → Set payment code.</p>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <span class="w-6 h-6 bg-sunny text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">③</span>
+                                <div>
+                                    <p>Input destination (English/Chinese) → Select model (Economy/Comfort) → Confirm pickup point.</p>
+                                    <p class="text-gray-500 text-xs mt-1 italic">Assist the driver by dragging the map marker and sending text notes, e.g. "Near Starbucks".</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <span class="w-6 h-6 bg-sunny text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">④</span>
+                                <p>Share your real-time trip with friends via the app.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-peach/20 rounded-xl p-3 text-sm border border-peach/40">
+                        <p class="font-bold text-red-500 mb-1">⚠️ Note</p>
+                        <ul class="space-y-1 text-gray-700">
+                            <li>– Verify license plate before boarding.</li>
+                            <li>– In-app audio recording is enabled by default.</li>
+                        </ul>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-sunny/20 text-5xl select-none">🚖</div>
+                </div>
+
+                <!-- Card: Bike-Sharing -->
+                <div class="bg-mint/10 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-mint/40 relative overflow-hidden flex flex-col gap-4">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-mint/60 to-mint/10 rounded-t-2xl"></div>
+                    <h4 class="font-bold text-green-600 text-xl flex items-center gap-2 mt-1">🚲 Bike-Sharing</h4>
+
+                    <div>
+                        <p class="text-xs font-bold text-green-600 mb-2">✅ Recommended Platforms</p>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm border-collapse">
+                                <thead>
+                                    <tr class="bg-mint/40 text-gray-700">
+                                        <th class="px-3 py-2 text-left rounded-tl-xl font-semibold">Brand</th>
+                                        <th class="px-3 py-2 text-left font-semibold">App</th>
+                                        <th class="px-3 py-2 text-left font-semibold">Color</th>
+                                        <th class="px-3 py-2 text-left rounded-tr-xl font-semibold">Payment</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-yellow-50 border-b border-mint/20">
+                                        <td class="px-3 py-2 font-semibold text-yellow-600">Meituan Bike</td>
+                                        <td class="px-3 py-2">Meituan App</td>
+                                        <td class="px-3 py-2"><span class="px-2 py-0.5 bg-yellow-200 text-yellow-700 rounded-full text-xs">Yellow</span></td>
+                                        <td class="px-3 py-2 text-xs">Alipay / WeChat Pay</td>
+                                    </tr>
+                                    <tr class="bg-blue-50">
+                                        <td class="px-3 py-2 font-semibold text-blue-500">HelloBike</td>
+                                        <td class="px-3 py-2">HelloBike App</td>
+                                        <td class="px-3 py-2"><span class="px-2 py-0.5 bg-blue-200 text-blue-700 rounded-full text-xs">Blue/Pink</span></td>
+                                        <td class="px-3 py-2 text-xs">Foreign card binding (some cities)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 📷 图片占位：美团 & 哈啰单车 App Logo -->
+                    <img src="images/bike.png">
+                    
+
+                    <div>
+                        <p class="text-xs font-bold text-green-600 mb-2">✅ Steps</p>
+                        <div class="space-y-2 text-sm text-gray-700">
+                            <div class="flex items-start gap-2">
+                                <span class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">①</span>
+                                <div>
+                                    <p class="font-semibold">Unlock</p>
+                                    <p>Scan the QR code via the app → Pay a refundable deposit or buy a weekly/monthly pass.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <span class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">②</span>
+                                <div>
+                                    <p class="font-semibold">Parking Rules</p>
+                                    <p>Return to designated zones (marked "P" in app) → Manually lock.</p>
+                                    <p class="text-red-400 text-xs mt-0.5">Fine: Charged for improper parking.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-mint/30 text-5xl select-none">🚲</div>
+                </div>
+
+            </div>
+
+            <!-- ══════════════════════════════════ -->
+            <!-- ── Section Title: Navigation ── -->
+            <!-- ══════════════════════════════════ -->
+            <div id="navtools" class="text-center mb-10 mt-4">
+                <h3 class="text-2xl font-bold text-skyblue relative inline-block">
+                    <span class="bg-white px-6 py-2 rounded-2xl shadow-md transform rotate-1 border-2 border-skyblue">🗺️ 2. Navigation Tools</span>
+                    <span class="absolute -top-3 -right-7 text-xs font-bold bg-peach text-white px-2 py-1 rounded-full shadow-sm border border-white">go~ go~ go~</span>
+                </h3>
+            </div>
+
+            <!-- ── 4 Map App Cards ── -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+
+                <!-- Apple Maps -->
+                <div class="bg-gray-50 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-gray-200 relative overflow-hidden flex flex-col gap-3">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-gray-400/50 to-gray-200/10 rounded-t-2xl"></div>
+                    <!-- App branding row -->
+                    <div class="flex items-center gap-3 mt-1">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-400 to-cyan-300 flex items-center justify-center text-white text-2xl shadow-sm flex-shrink-0">🗺</div>
+                        <div>
+                            <p class="font-bold text-gray-800 text-lg leading-tight">Maps</p>
+                            <p class="text-xs text-gray-500">Navigate and explore the world</p>
+                        </div>
+                    </div>
+
+                    <!-- 📷 图片占位：Apple Maps App 图标/截图 -->
+                    <img src="images/appple_maps.png">
+                   
+
+                    <div class="text-sm">
+                        <p class="font-bold text-green-600 mb-1">✅ Pros</p>
+                        <ul class="space-y-1 text-gray-700 pl-1">
+                            <li>– iPhone pre-installed and ready to use</li>
+                            <li>– Full English interface, navigate by chatting with Siri</li>
+                            <li>– Quickly updated road conditions and accurate location of attractions</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-lemon/20 rounded-xl p-3 text-sm border border-lemon/40">
+                        <p class="font-bold text-yellow-600 mb-1">🟡 Note</p>
+                        <ul class="space-y-1 text-gray-700">
+                            <li>– Small alleyways and new shopping malls may not be searchable</li>
+                            <li>– Bus routes not as good as local App Details</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-skyblue/10 rounded-xl p-3 text-sm border border-skyblue/30">
+                        <p class="font-bold text-skyblue mb-1">⭐ Tips</p>
+                        <p class="text-gray-700">"Siri, take me to the Forbidden City!"</p>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-gray-200/50 text-5xl select-none">📍</div>
+                </div>
+
+                <!-- Petal Maps -->
+                <div class="bg-peach/10 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-peach/40 relative overflow-hidden flex flex-col gap-3">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-peach/60 to-peach/10 rounded-t-2xl"></div>
+                    <div class="flex items-center gap-3 mt-1">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-400 to-pink-400 flex items-center justify-center text-white text-2xl shadow-sm flex-shrink-0">🌸</div>
+                        <div>
+                            <p class="font-bold text-gray-800 text-lg leading-tight">Petal Maps</p>
+                            <p class="text-xs text-gray-500">By Huawei · Global Navigation</p>
+                        </div>
+                    </div>
+
+                    <!-- 📷 图片占位：Petal Maps Logo -->
+                    <img src="images/petal_maps.png">
+                    
+
+                    <div class="text-sm">
+                        <p class="font-bold text-green-600 mb-1">✅ Pros</p>
+                        <ul class="space-y-1 text-gray-700 pl-1">
+                            <li>– Huawei phones come pre-installed, other Androids can install it too</li>
+                            <li>– Free switching between Chinese and English, real-time road conditions</li>
+                            <li>– Offline map function — don't panic even without internet connection</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-lemon/20 rounded-xl p-3 text-sm border border-lemon/40">
+                        <p class="font-bold text-yellow-600 mb-1">🟡 Note</p>
+                        <ul class="space-y-1 text-gray-700">
+                            <li>– Non-Huawei phones need to manually download the installation package</li>
+                            <li>– Information may be incomplete for rural areas</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-skyblue/10 rounded-xl p-3 text-sm border border-skyblue/30">
+                        <p class="font-bold text-skyblue mb-1">⭐ Tips</p>
+                        <ul class="space-y-1 text-gray-700">
+                            <li>– Huawei users directly poke [App Market] to download</li>
+                            <li>– APKPure is recommended for third-party Android installations.</li>
+                        </ul>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-peach/30 text-5xl select-none">🌸</div>
+                </div>
+
+                <!-- AMap (Gaode) -->
+                <div class="bg-skyblue/10 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-skyblue/40 relative overflow-hidden flex flex-col gap-3">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-skyblue/60 to-skyblue/10 rounded-t-2xl"></div>
+                    <div class="flex items-center gap-3 mt-1">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-400 to-skyblue flex items-center justify-center text-white text-2xl shadow-sm flex-shrink-0">📡</div>
+                        <div>
+                            <p class="font-bold text-gray-800 text-lg leading-tight">AMap Global</p>
+                            <p class="text-xs text-gray-500">Navigation · Traffic · Bus &amp; Train</p>
+                        </div>
+                    </div>
+
+                    <!-- 📷 图片占位：AMap Global Logo -->
+                    <img src="images/amap_global.png">
+                    
+
+                    <div class="text-sm">
+                        <p class="font-bold text-green-600 mb-1">✅ Pros</p>
+                        <ul class="space-y-1 text-gray-700 pl-1">
+                            <li>– English version is now online</li>
+                            <li>– You can navigate the market trails</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-lemon/20 rounded-xl p-3 text-sm border border-lemon/40">
+                        <p class="font-bold text-yellow-600 mb-1">🟡 Note</p>
+                        <ul class="space-y-1 text-gray-700">
+                            <li>– English switching portal is hard to find (Path: My → Settings → Language)</li>
+                            <li>– Some features are only available in Chinese</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-skyblue/10 rounded-xl p-3 text-sm border border-skyblue/30">
+                        <p class="font-bold text-skyblue mb-1">⭐ Tips</p>
+                        <p class="text-gray-700">Smoother when used with translation software ～</p>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-skyblue/30 text-5xl select-none">📡</div>
+                </div>
+
+                <!-- Baidu Maps -->
+                <div class="bg-blue-50 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-blue-200 relative overflow-hidden flex flex-col gap-3">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-400/60 to-blue-200/10 rounded-t-2xl"></div>
+                    <div class="flex items-center gap-3 mt-1">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-2xl shadow-sm flex-shrink-0">百</div>
+                        <div>
+                            <p class="font-bold text-gray-800 text-lg leading-tight">Baidu Maps</p>
+                            <p class="text-xs text-gray-500">百度地图 · 打车公交出行</p>
+                        </div>
+                    </div>
+
+                    <!-- 📷 图片占位：Baidu Maps Logo -->
+                     <img src="images/baidu.png">
+                    
+
+                    <div class="text-sm">
+                        <p class="font-bold text-green-600 mb-1">✅ Pros</p>
+                        <ul class="space-y-1 text-gray-700 pl-1">
+                            <li>– Imperial Exclusive English Service (Beijing only)</li>
+                            <li>– The audio guide to the attractions is super sweet</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-lemon/20 rounded-xl p-3 text-sm border border-lemon/40">
+                        <p class="font-bold text-yellow-600 mb-1">🟡 Note</p>
+                        <p class="text-gray-700">– Outside of Beijing, the interface changes to Chinese in a second.</p>
+                    </div>
+
+                    <div class="bg-skyblue/10 rounded-xl p-3 text-sm border border-skyblue/30">
+                        <p class="font-bold text-skyblue mb-1">⭐ Tips</p>
+                        <p class="text-gray-700">– Suggest using translation plugins together</p>
+                    </div>
+
+                    <div class="bg-white/70 rounded-xl p-3 text-sm border border-blue-100">
+                        <p class="font-bold text-blue-500 mb-1">🤔 Want to register?</p>
+                        <ul class="space-y-1 text-gray-700">
+                            <li>Gaode/Baidu Maps → <span class="text-red-400 font-medium">China Cell Phone Number Required</span></li>
+                            <li>Petal Maps → <span class="text-green-500 font-medium">visitor mode available, no registration required</span></li>
+                        </ul>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-blue-200/40 text-5xl select-none">🗺️</div>
+                </div>
+
+            </div>
+
+            <!-- ── Ultimate Lazy Bag Table ── -->
+            <div id="navigation" class="mt-4 bg-white p-6 rounded-2xl shadow-md border-2 border-sunny/30 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-sunny/60 to-sunny/10 rounded-t-2xl"></div>
+                <h4 class="font-bold text-sunny text-lg mb-4 flex items-center gap-2">✨ Ultimate Lazy Bag</h4>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm border-collapse">
+                        <tbody>
+                            <tr class="bg-sunny/10 border-b border-sunny/20">
+                                <td class="px-4 py-3 font-semibold text-gray-700 w-1/3">📱 iPhone users</td>
+                                <td class="px-4 py-3 text-gray-600">Apple Maps + Gaode English version — double insurance</td>
+                            </tr>
+                            <tr class="bg-white border-b border-gray-100">
+                                <td class="px-4 py-3 font-semibold text-gray-700">🤖 Android user</td>
+                                <td class="px-4 py-3 text-gray-600">Petal Maps Goes Around the World</td>
+                            </tr>
+                            <tr class="bg-skyblue/10 border-b border-skyblue/20">
+                                <td class="px-4 py-3 font-semibold text-gray-700">🧭 Deep traveler</td>
+                                <td class="px-4 py-3 text-gray-600">Gaode Map + Translation Software Combo</td>
+                            </tr>
+                            <tr class="bg-mint/10">
+                                <td class="px-4 py-3 font-semibold text-gray-700">🏯 Beijing Short Trip</td>
+                                <td class="px-4 py-3 text-gray-600">Baidu Maps English Version</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="absolute bottom-2 right-3 text-sunny/20 text-3xl select-none">🗺️</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="w-full py-6 px-4 md:px-8 bg-skyblue/30 footer-text">
+        <div class="max-w-5xl mx-auto text-center">
+            <p class="mb-2">Editors: Liu Sisi, Wu Xiangwei, Xu Xinyi</p>
+            <p class="mb-2">Developers: Li Xuan, Li Xinyi</p>
+            <p class="text-sm text-gray-600">© 2025 Navigating China Handbook | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+        style="position:fixed;bottom:32px;right:32px;width:48px;height:48px;border-radius:50%;background-color:#68a8fc;color:white;font-size:22px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.15);opacity:0;transition:opacity 0.3s,transform 0.2s;z-index:9999;"
+        onmouseover="this.style.transform='scale(1.1)'"
+        onmouseout="this.style.transform='scale(1)'">↑</button>
+    <script>
+        const btn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            btn.style.opacity = window.scrollY > 200 ? '1' : '0';
+            btn.style.pointerEvents = window.scrollY > 200 ? 'auto' : 'none';
+        });
+    </script>
+
+</body>
+</html>

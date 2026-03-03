@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Handling – Navigating China</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Freckle+Face&family=Patrick+Hand&family=Playpen+Sans+Hebrew:wght@100..800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pinky:    '#F8E0E6',
+                        skyblue:  '#A7E1F8',
+                        sunny:    '#FF9F45',
+                        peach:    '#F8B5B5',
+                        mint:     '#B2E8C2',
+                        lemon:    '#FFE066',
+                        lavender: '#D8BFD8',
+                        apricot:  '#FDDCB5',
+                    },
+                    fontFamily: {
+                        en: ['Inter', 'sans-serif'],
+                        zh: ['Noto Serif SC', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        .freckle-face-regular {
+            font-family: "Freckle Face", system-ui;
+            font-weight: 400;
+            font-style: normal;
+        }
+        @layer utilities {
+            .text-shadow { text-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
+        }
+        html { scroll-behavior: smooth; }
+        @layer components {
+            .nav-text    { font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: 0.01em; }
+            .footer-text { font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em; }
+        }
+    </style>
+</head>
+
+<body class="bg-pinky text-gray-800 pt-20">
+
+    <!-- ===== HEADER ===== -->
+    <header class="fixed top-0 left-0 z-50 w-full py-2 px-4 md:px-8 bg-pinky/95 backdrop-blur-sm">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center mb-4 md:mb-0">
+                <img src="images/logo.png" alt="Sun Logo" class="w-14 h-14 mr-3">
+                <h1 class="freckle-face-regular text-[clamp(1.8rem,4vw,2.8rem)] text-shadow">
+                    Navigating <span class="text-sunny">China</span>
+                </h1>
+            </div>
+            <nav class="flex flex-wrap gap-4 nav-text">
+                <a href="index.html"                  class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm">Home</a>
+                <a href="index.html#contents-section" class="px-4 py-2 bg-lemon hover:bg-lemon/80 rounded-full transition-all transform hover:scale-105 shadow-sm">Guide</a>
+                <div class="relative group">
+                    <button class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm flex items-center gap-2">
+                        <span>Language</span><span class="text-xs">▼</span>
+                    </button>
+                    <div class="absolute top-full right-0 mt-2 w-32 bg-white rounded-xl shadow-lg border-2 border-lemon/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                        <button class="w-full px-4 py-2 text-left hover:bg-lemon/20 rounded-t-xl transition-colors">English</button>
+                        <button class="w-full px-4 py-2 text-left hover:bg-lemon/20 rounded-b-xl transition-colors">中文</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== SUB-NAV ===== -->
+    <section class="w-full px-4 md:px-8 mt-3 bg-lemon/45">
+        <div class="max-w-6xl mx-auto">
+            <div class="hidden md:block">
+                <nav class="flex items-center justify-between gap-1 nav-text text-[13px]">
+                    <a href="preparation.html"   class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+                        <span class="text-base">🧳</span><span>Preparation &amp; Entry</span>
+                    </a>
+                    <span class="h-5 w-px bg-white/60"></span>
+                    <a href="transportation.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+                        <span class="text-base">🗺️</span>
+                        <span class="md:inline lg:hidden">Transport &amp; Maps</span>
+                        <span class="hidden lg:inline">Transportation &amp; Navigation</span>
+                    </a>
+                    <span class="h-5 w-px bg-white/60"></span>
+                    <a href="payment.html"        class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+                        <span class="text-base">💳</span>
+                        <span class="md:inline lg:hidden">Payment &amp; Tax</span>
+                        <span class="hidden lg:inline">Payment &amp; Tax Refund</span>
+                    </a>
+                    <span class="h-5 w-px bg-white/60"></span>
+                    <a href="accommodation.html"  class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+                        <span class="text-base">🏨</span><span>Accommodation</span>
+                    </a>
+                    <span class="h-5 w-px bg-white/60"></span>
+                    <a href="emergency.html"      class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-yellow-700 font-bold">
+                        <span class="text-base">🆘</span>
+                        <span class="md:inline lg:hidden">Emergency</span>
+                        <span class="hidden lg:inline">Emergency Handling</span>
+                    </a>
+                    <span class="h-5 w-px bg-white/60"></span>
+                    <a href="travel.html"                   class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+                        <span class="text-base">🎎</span>
+                        <span class="md:inline lg:hidden">Culture</span>
+                        <span class="hidden lg:inline">Travel &amp; Culture</span>
+                    </a>
+                </nav>
+                <div class="mt-2 h-[2px] w-24 bg-yellow-400/70 rounded-full ml-[calc(66.66%-48px+110px)]"></div>
+            </div>
+            <div class="mt-3 pb-2 text-xs text-gray-500">
+                <a href="index.html" class="hover:text-gray-700 transition">Home</a>
+                <span class="mx-1 text-gray-300">/</span>
+                <a href="index.html#contents-section" class="hover:text-gray-700 transition">Guide</a>
+                <span class="mx-1 text-gray-300">/</span>
+                <span class="text-gray-600">Emergency Handling</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HERO ===== -->
+    <section class="w-full py-8 px-4 md:px-8 bg-gradient-to-b from-lemon/45 to-white/50">
+        <div class="max-w-5xl mx-auto text-center">
+            <br><br><br><br>
+            <h2 class="text-[clamp(1.8rem,4vw,2.8rem)] font-bold text-white text-shadow mb-4">Emergency Handling</h2>
+            <p class="text-lg text-gray-600">Stay safe, stay calm — we've got you covered 🆘🏥🛂</p>
+            <br><br><br><br><br><br><br><br><br>
+        </div>
+    </section>
+
+    <!-- ===== CONTENT ===== -->
+    <section class="w-full py-12 px-4 md:px-8 bg-white/50">
+        <div class="max-w-5xl mx-auto">
+
+
+            <!-- ══════════════════════════════════ -->
+            <!--  PART 1 · MEDICAL CARE GUIDE       -->
+            <!-- ══════════════════════════════════ -->
+            <div id="medical" class="text-center mb-10">
+                <h3 class="text-2xl font-bold text-yellow-600 relative inline-block">
+                    <span class="bg-white px-6 py-2 rounded-2xl shadow-md transform -rotate-1 border-2 border-lemon">🏥 1. Medical Care Guide</span>
+                    <span class="absolute -top-3 -right-8 text-xs font-bold bg-peach text-red-700 px-2 py-1 rounded-full shadow-sm border border-white">Stay Safe~</span>
+                </h3>
+            </div>
+
+            <!-- Emergency tip banner -->
+            <div class="bg-red-50 border-2 border-red-200 rounded-2xl p-4 mb-8 flex items-start gap-3 shadow-sm">
+                <span class="text-2xl flex-shrink-0">🚨</span>
+                <p class="text-sm text-gray-700">In emergencies, <span class="font-bold text-red-500">dial 120</span> immediately. Repeat <span class="font-semibold">"Hello"</span> to activate English-language assistance (available in Beijing / Shanghai pilot areas). Carry your <span class="font-semibold">passport and medical insurance documents</span> to the nearest hospital's Emergency Department.</p>
+            </div>
+
+            <!-- (1) Hospital Visit Process -->
+            <div class="mb-4">
+                <h4 class="font-bold text-yellow-700 text-lg mb-4 flex items-center gap-2">
+                    <span class="bg-lemon/60 px-3 py-1 rounded-xl border border-lemon">🚑 (1) Hospital Visit Process</span>
+                </h4>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+
+                <!-- ① Registration -->
+                <div class="bg-white p-5 rounded-2xl shadow-md border-2 border-lemon/50 relative overflow-hidden flex flex-col gap-3 hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-lemon to-lemon/10 rounded-t-2xl"></div>
+                    <div class="flex items-center gap-2 mt-1">
+                        <span class="w-8 h-8 bg-lemon text-yellow-800 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">①</span>
+                        <p class="font-bold text-yellow-700">Registration</p>
+                    </div>
+                    <p class="text-xs text-gray-500 italic">Passport required</p>
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <div class="bg-lemon/10 rounded-xl p-2 border border-lemon/30">
+                            <p class="font-semibold text-yellow-600 text-xs mb-1">Online</p>
+                            <p>Available via hospital websites or WeChat official accounts.</p>
+                        </div>
+                        <div class="bg-lemon/10 rounded-xl p-2 border border-lemon/30">
+                            <p class="font-semibold text-yellow-600 text-xs mb-1">On-Site</p>
+                            <p>Service counter or self-service kiosk → Select department → Receive registration slip.</p>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-lemon/30 text-4xl select-none">📋</div>
+                </div>
+
+                <!-- ② Consultation -->
+                <div class="bg-white p-5 rounded-2xl shadow-md border-2 border-skyblue/40 relative overflow-hidden flex flex-col gap-3 hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-skyblue/70 to-skyblue/10 rounded-t-2xl"></div>
+                    <div class="flex items-center gap-2 mt-1">
+                        <span class="w-8 h-8 bg-skyblue text-blue-800 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">②</span>
+                        <p class="font-bold text-blue-600">Consultation</p>
+                    </div>
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <p>Wait in the designated area → Pay attention to the calling system / display screen → Enter the consultation room.</p>
+                        <div class="bg-skyblue/10 rounded-xl p-2 border border-skyblue/30">
+                            <p>Describe symptoms clearly (use translation apps if needed).</p>
+                        </div>
+                        <p>After diagnosis, pay for check-up / medications → Get the medicine / treatments.</p>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-skyblue/30 text-4xl select-none">🩺</div>
+                </div>
+
+                <!-- ③ Check-up & Treatment -->
+                <div class="bg-white p-5 rounded-2xl shadow-md border-2 border-mint/40 relative overflow-hidden flex flex-col gap-3 hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-mint/70 to-mint/10 rounded-t-2xl"></div>
+                    <div class="flex items-center gap-2 mt-1">
+                        <span class="w-8 h-8 bg-mint text-green-800 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">③</span>
+                        <p class="font-bold text-green-700">Check-up &amp; Treatment</p>
+                    </div>
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <div class="bg-mint/10 rounded-xl p-2 border border-mint/30">
+                            <p>Some tests (blood, ultrasound) require <span class="font-semibold">fasting or a full bladder</span>. Confirm in advance.</p>
+                        </div>
+                        <div class="bg-peach/10 rounded-xl p-2 border border-peach/30">
+                            <p><span class="font-semibold text-red-500">Hospitalization:</span> Requires family consent (designate an emergency contact beforehand).</p>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-mint/30 text-4xl select-none">💊</div>
+                </div>
+
+            </div>
+
+            <!-- (2) Costs & Insurance  +  (3) TCM — side by side -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+
+                <!-- (2) Costs & Insurance -->
+                <div class="bg-apricot/20 p-6 rounded-2xl shadow-md border-2 border-apricot/50 relative overflow-hidden flex flex-col gap-4 hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-sunny/60 to-apricot/10 rounded-t-2xl"></div>
+                    <h4 class="font-bold text-orange-600 text-base mt-1 flex items-center gap-2">💳 (2) Costs &amp; Insurance</h4>
+                    <div class="space-y-3 text-sm text-gray-700">
+                        <div class="bg-white/70 rounded-xl p-3 border border-apricot/40">
+                            <p class="font-semibold text-orange-500 mb-1">Payment Methods</p>
+                            <ul class="space-y-1">
+                                <li>– Cash, Alipay, WeChat Pay (some hospitals accept foreign cards).</li>
+                                <li>– If an invoice is needed: application at the payment window.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white/70 rounded-xl p-3 border border-apricot/40">
+                            <p class="font-semibold text-orange-500 mb-1">Travel Insurance</p>
+                            <ul class="space-y-1">
+                                <li>– Ensure your policy covers medical expenses in China.</li>
+                                <li>– Present proof at registration; some hospitals offer direct billing.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-apricot/30 text-4xl select-none">🏦</div>
+                </div>
+
+                <!-- (3) TCM -->
+                <div class="bg-lavender/20 p-6 rounded-2xl shadow-md border-2 border-lavender/50 relative overflow-hidden flex flex-col gap-4 hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-lavender/80 to-lavender/10 rounded-t-2xl"></div>
+                    <h4 class="font-bold text-purple-600 text-base mt-1 flex items-center gap-2">🧘 (3) Traditional Chinese Medicine (TCM)</h4>
+                    <div class="space-y-3 text-sm text-gray-700">
+                        <div class="bg-white/70 rounded-xl p-3 border border-lavender/40">
+                            <p class="font-semibold text-purple-500 mb-1">Prescriptions Only</p>
+                            <p>Do not self-administer herbal medicine (may contain unlisted ingredients).</p>
+                        </div>
+                        <div class="bg-white/70 rounded-xl p-3 border border-lavender/40">
+                            <p class="font-semibold text-purple-500 mb-1">Choose Licensed Clinics</p>
+                            <p>For acupuncture/cupping, avoid unregulated street vendors (sterilization risks).</p>
+                        </div>
+                        <div class="bg-lemon/20 rounded-xl p-3 border border-lemon/40">
+                            <p class="font-semibold text-yellow-700 mb-1">🌏 Cultural Note</p>
+                            <p>Doctors may ask about age/marital status (for medical records).</p>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-lavender/30 text-4xl select-none">🌿</div>
+                </div>
+
+            </div>
+
+
+            <!-- ══════════════════════════════════ -->
+            <!--  PART 2 · COMMON EMERGENCIES       -->
+            <!-- ══════════════════════════════════ -->
+            <div id="commonemg" class="text-center mb-10">
+                <h3 class="text-2xl font-bold text-yellow-600 relative inline-block">
+                    <span class="bg-white px-6 py-2 rounded-2xl shadow-md transform rotate-1 border-2 border-lemon">🚨 2. Common Emergencies</span>
+                    <span class="absolute -top-3 -right-7 text-xs font-bold bg-skyblue text-blue-800 px-2 py-1 rounded-full shadow-sm border border-white">Be Prepared~</span>
+                </h3>
+            </div>
+
+            <!-- (1) Lost Documents — 3-step vertical flow -->
+            <div class="mb-4">
+                <h4 class="font-bold text-yellow-700 text-lg mb-6 flex items-center gap-2">
+                    <span class="bg-lemon/60 px-3 py-1 rounded-xl border border-lemon">🛂 (1) Lost Documents</span>
+                </h4>
+            </div>
+
+            <div class="relative mb-10">
+                <!-- vertical connector line -->
+                <div class="hidden md:block absolute left-[calc(50%-1px)] top-10 bottom-10 w-0.5 bg-lemon/60 z-0"></div>
+
+                <div class="space-y-6 relative z-10">
+
+                    <!-- Step 1 -->
+                    <div class="flex flex-col md:flex-row items-stretch gap-4">
+                        <div class="md:w-1/2 flex justify-center md:justify-end pr-0 md:pr-6">
+                            <div class="w-full max-w-sm bg-green-100 rounded-2xl p-5 border-2 border-green-300 shadow-md flex flex-col items-center justify-center text-center gap-1">
+                                <div class="w-14 h-14 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white font-bold text-base shadow-md">Step 1</div>
+                                <p class="font-bold text-green-700 text-sm mt-1">File a Police Report</p>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 pl-0 md:pl-6">
+                            <div class="bg-white rounded-2xl p-5 border-2 border-peach/40 shadow-md text-sm text-gray-700 space-y-1">
+                                <p>– Go to the nearest <span class="font-semibold">Police Station</span> (search via maps like Amap).</p>
+                                <p>– Provide passport copies (if available) or alternative ID (e.g. driver's license).</p>
+                                <p>– Complete a <span class="font-semibold">Loss Statement</span> and obtain an official stamp.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="flex flex-col md:flex-row items-stretch gap-4">
+                        <div class="md:w-1/2 flex justify-center md:justify-end pr-0 md:pr-6">
+                            <div class="w-full max-w-sm bg-apricot/40 rounded-2xl p-5 border-2 border-apricot/60 shadow-md flex flex-col items-center justify-center text-center gap-1">
+                                <div class="w-14 h-14 rounded-full bg-gradient-to-br from-sunny to-apricot flex items-center justify-center text-white font-bold text-base shadow-md">Step 2</div>
+                                <p class="font-bold text-orange-700 text-sm mt-1">Obtain a Passport<br>Loss Certificate</p>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 pl-0 md:pl-6">
+                            <div class="bg-white rounded-2xl p-5 border-2 border-peach/40 shadow-md text-sm text-gray-700 space-y-1">
+                                <p>– Submit the stamped Loss Statement to the <span class="font-semibold">Exit-Entry Administration</span> (under Public Security Bureau).</p>
+                                <p>– Required documents: Passport/visa copies, 2-inch photo.</p>
+                                <p>– Receive the <span class="font-semibold">Passport Loss Certificate</span> (valid for 30 days).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="flex flex-col md:flex-row items-stretch gap-4">
+                        <div class="md:w-1/2 flex justify-center md:justify-end pr-0 md:pr-6">
+                            <div class="w-full max-w-sm bg-lavender/30 rounded-2xl p-5 border-2 border-lavender/50 shadow-md flex flex-col items-center justify-center text-center gap-1">
+                                <div class="w-14 h-14 rounded-full bg-gradient-to-br from-lavender to-purple-400 flex items-center justify-center text-white font-bold text-base shadow-md">Step 3</div>
+                                <p class="font-bold text-purple-700 text-sm mt-1">Renewal of Passport</p>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 pl-0 md:pl-6">
+                            <div class="bg-white rounded-2xl p-5 border-2 border-peach/40 shadow-md text-sm text-gray-700 space-y-1">
+                                <p>– Contact your <span class="font-semibold">Embassy/Consulate</span> (e.g., U.S. Embassy: <span class="font-mono text-blue-600">+86-10-8531-3000</span>).</p>
+                                <p>– Make an appointment, submit the Passport Loss Certificate, and receive the new passport (<span class="font-semibold">3–7 business days</span>).</p>
+                                <p>– <span class="font-semibold text-red-500">Emergency Exit:</span> Apply for a Temporary Exit-Entry Permit at the Exit-Entry Administration (processed in <span class="font-semibold">1–2 days</span>).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Tips box -->
+            <div class="bg-lemon/20 rounded-2xl p-4 border-2 border-lemon/50 mb-10 flex items-start gap-3 shadow-sm">
+                <span class="text-xl flex-shrink-0">⭐</span>
+                <div class="text-sm text-gray-700">
+                    <p class="font-bold text-yellow-700 mb-1">Tips</p>
+                    <p>– Store digital copies of passports/visas in email or cloud storage.</p>
+                    <p>– Hotels can provide passport photocopies.</p>
+                </div>
+            </div>
+
+            <!-- (2) Payment Issues  +  (3) Allergy — side by side -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+
+                <!-- (2) Payment Issues -->
+                <div class="bg-peach/15 p-6 rounded-2xl shadow-md border-2 border-peach/50 relative overflow-hidden flex flex-col gap-4 hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-peach/80 to-peach/10 rounded-t-2xl"></div>
+                    <h4 class="font-bold text-red-500 text-base mt-1 flex items-center gap-2">💳 (2) Payment Issues</h4>
+
+                    <div class="space-y-3 text-sm text-gray-700">
+                        <!-- ① Card failures -->
+                        <div class="bg-white/80 rounded-xl p-4 border border-peach/40">
+                            <p class="font-bold text-red-400 mb-2">① Card Payment Failures</p>
+                            <ul class="space-y-1">
+                                <li>– Confirm your card's international transactions are enabled (contact your bank).</li>
+                                <li>– Try a UnionPay card (some merchants only accept UnionPay).</li>
+                                <li>– ATM Withdrawal: Use foreign-friendly ATMs (e.g., Bank of China, CCB) → Insert Visa/Mastercard → Select English → Enter PIN → Withdraw cash.</li>
+                            </ul>
+                        </div>
+
+                        <!-- ② Mobile errors -->
+                        <div class="bg-white/80 rounded-xl p-4 border border-peach/40">
+                            <p class="font-bold text-red-400 mb-2">② Mobile Payment Errors</p>
+                            <p class="font-semibold text-orange-500 text-xs mb-1">Alipay / WeChat Pay:</p>
+                            <p>– Check internet connection → Re-link card → Attempt small payments (&lt;¥200, no fee).</p>
+                            <div class="mt-2 bg-lemon/20 rounded-lg p-2 border border-lemon/40 text-xs space-y-0.5">
+                                <p class="font-semibold text-yellow-700">Customer Service:</p>
+                                <p>Alipay: <span class="font-mono text-blue-600">+86-571-2688-6000</span> (English)</p>
+                                <p>WeChat Pay: <span class="font-mono text-blue-600">+86-571-95017</span> (English)</p>
+                            </div>
+                            <div class="mt-2 bg-mint/20 rounded-lg p-2 border border-mint/40 text-xs">
+                                <p class="font-semibold text-green-700">Backup:</p>
+                                <p>Use cash (exchange at airports/hotels) or visit foreign card-friendly stores (e.g., malls, chain restaurants).</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-peach/20 text-4xl select-none">🔍</div>
+                </div>
+
+                <!-- (3) Allergy -->
+                <div class="bg-mint/15 p-6 rounded-2xl shadow-md border-2 border-mint/50 relative overflow-hidden flex flex-col gap-4 hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-mint/80 to-mint/10 rounded-t-2xl"></div>
+                    <h4 class="font-bold text-green-700 text-base mt-1 flex items-center gap-2">🌿 (3) Allergy Prevention &amp; Response</h4>
+
+                    <!-- Prevention -->
+                    <div class="bg-white/80 rounded-xl p-4 border border-mint/40">
+                        <p class="font-semibold text-green-600 mb-2">Prevention</p>
+                        <div class="space-y-1 text-sm text-gray-700">
+                            <div class="flex items-start gap-2">
+                                <span class="w-5 h-5 bg-mint text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">①</span>
+                                <p>Carry a Chinese Allergy Card stating <span class="font-semibold">「我对＿过敏」</span> (I am allergic to ＿). e.g. 我对花生 (peanuts) 过敏</p>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <span class="w-5 h-5 bg-mint text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">②</span>
+                                <p>Keep antihistamines / emergency medication.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Emergency Response -->
+                    <div class="bg-white/80 rounded-xl p-4 border border-mint/40 text-sm text-gray-700">
+                        <p class="font-semibold text-red-500 mb-2">Emergency Response</p>
+                        <div class="space-y-2">
+                            <div class="bg-lemon/15 rounded-lg p-2 border border-lemon/30">
+                                <p class="font-medium text-yellow-700 text-xs">Accidental Ingestion:</p>
+                                <p>Stop eating → Take medication.</p>
+                            </div>
+                            <div class="bg-peach/15 rounded-lg p-2 border border-peach/30">
+                                <p class="font-medium text-red-500 text-xs">Severe Reactions (e.g., difficulty breathing):</p>
+                                <p>Dial <span class="font-bold text-red-500">120</span> → Repeat "Hello" → State "Food allergy emergency."</p>
+                            </div>
+                            <div class="bg-skyblue/10 rounded-lg p-2 border border-skyblue/30">
+                                <p class="font-medium text-blue-500 text-xs">At the Hospital:</p>
+                                <p>Show your allergy card → Request an English medical record.</p>
+                            </div>
+                            <div class="bg-mint/10 rounded-lg p-2 border border-mint/30">
+                                <p class="font-medium text-green-600 text-xs">Self-Care:</p>
+                                <p>Use Meituan or Amap to locate 24-hour pharmacies → Navigate or order online.</p>
+                                <!-- 📷 图片占位：Meituan / Amap 24h pharmacy screenshot -->
+                                <img src="images/emerge.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-mint/20 text-4xl select-none">🌿</div>
+                </div>
+
+            </div>
+
+
+            <!-- ══════════════════════════════════ -->
+            <!--  Emergency Contact Table           -->
+            <!-- ══════════════════════════════════ -->
+            <div id="contacts" class="bg-white p-6 rounded-2xl shadow-md border-2 border-lemon/50 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-lemon to-lemon/10 rounded-t-2xl"></div>
+                <h4 class="font-bold text-yellow-600 text-lg mb-4 flex items-center gap-2">📞 Emergency Contacts</h4>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm border-collapse">
+                        <thead>
+                            <tr class="bg-lemon/40 text-gray-700">
+                                <th class="px-4 py-3 text-left rounded-tl-xl font-semibold">Type of Service</th>
+                                <th class="px-4 py-3 text-left font-semibold">Contact Number</th>
+                                <th class="px-4 py-3 text-left rounded-tr-xl font-semibold">Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-red-50 border-b border-red-100">
+                                <td class="px-4 py-3 font-semibold text-red-500">🚑 First aid</td>
+                                <td class="px-4 py-3 font-mono font-bold text-red-600">120</td>
+                                <td class="px-4 py-3 text-gray-600">Universal · English supported in some cities</td>
+                            </tr>
+                            <tr class="bg-blue-50 border-b border-blue-100">
+                                <td class="px-4 py-3 font-semibold text-blue-600">🚔 Alarm</td>
+                                <td class="px-4 py-3 font-mono font-bold text-blue-600">110</td>
+                                <td class="px-4 py-3 text-gray-600">Nationwide</td>
+                            </tr>
+                            <tr class="bg-orange-50 border-b border-orange-100">
+                                <td class="px-4 py-3 font-semibold text-orange-500">🚒 Fire alarm</td>
+                                <td class="px-4 py-3 font-mono font-bold text-orange-500">119</td>
+                                <td class="px-4 py-3 text-gray-600">Nationwide</td>
+                            </tr>
+                            <tr class="bg-purple-50 border-b border-purple-100">
+                                <td class="px-4 py-3 font-semibold text-purple-600">🏛️ Consular protection</td>
+                                <td class="px-4 py-3 font-mono font-bold text-purple-600">+86-10-12308</td>
+                                <td class="px-4 py-3 text-gray-600">24-hour English service</td>
+                            </tr>
+                            <tr class="bg-mint/10">
+                                <td class="px-4 py-3 font-semibold text-green-700">🛃 Customs consultation</td>
+                                <td class="px-4 py-3 font-mono font-bold text-green-700">+86-12360</td>
+                                <td class="px-4 py-3 text-gray-600">Press 2 for English services</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="absolute bottom-2 right-3 text-lemon/20 text-3xl select-none">📞</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="w-full py-6 px-4 md:px-8 bg-lemon/30 footer-text">
+        <div class="max-w-5xl mx-auto text-center">
+            <p class="mb-2">Editors: Liu Sisi, Wu Xiangwei, Xu Xinyi</p>
+            <p class="mb-2">Developers: Li Xuan, Li Xinyi</p>
+            <p class="text-sm text-gray-600">© 2025 Navigating China Handbook | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+        style="position:fixed;bottom:32px;right:32px;width:48px;height:48px;border-radius:50%;background-color:#FFE066;color:#78350f;font-size:22px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.15);opacity:0;transition:opacity 0.3s,transform 0.2s;z-index:9999;"
+        onmouseover="this.style.transform='scale(1.1)'"
+        onmouseout="this.style.transform='scale(1)'">↑</button>
+    <script>
+        const btn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            btn.style.opacity = window.scrollY > 200 ? '1' : '0';
+            btn.style.pointerEvents = window.scrollY > 200 ? 'auto' : 'none';
+        });
+    </script>
+
+</body>
+</html>

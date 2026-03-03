@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigating China: A Practical Handbook</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!--********** 保留原有英文手写字体 + 新增可爱中文字体（仅给中文用） 
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=ZCOOL+KuaiLe&display=swap"
+        rel="stylesheet">-->
+
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Freckle+Face&family=Patrick+Hand&family=Playpen+Sans+Hebrew:wght@100..800&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pinky: '#F8E0E6',
+                        skyblue: '#A7E1F8',
+                        sunny: '#FF9F45',
+                        peach: '#F8B5B5',
+                        mint: '#B2E8C2',
+                        lemon: '#FFE066',
+                        lavender: '#D8BFD8',
+                    },
+                    /*****************
+                    fontFamily: {
+                         // 仅保留英文的手写字体（不修改）
+                         doodle: ['Patrick Hand', 'cursive'],
+                         // 新增：专门给中文用的可爱字体
+                         chinesecute: ['ZCOOL KuaiLe', 'sans-serif'],
+                     }, *********************/
+
+                    fontFamily: {
+                        en: ['Inter', 'sans-serif'],
+                        zh: ['Noto Serif SC', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        /******************************************/
+
+        .playpen-sans-hebrew {
+            font-family: "Playpen Sans Hebrew", cursive;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        .playpen-sans-hebrew2 {
+            font-family: "Playpen Sans Hebrew", cursive;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .freckle-face-regular {
+            font-family: "Freckle Face", system-ui;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .patrick-hand-regular {
+            font-family: "Patrick Hand", cursive;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        /***************************************/
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+
+            }
+
+            .doodle-border {
+                border: 3px dashed #333;
+                border-radius: 12px;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /*1: 核心规则：仅中文文本用可爱字体，英文完全保留Patrick Hand 
+        1. 页面语言为中文时，所有文本优先用可爱中文字体，英文自动回退到Patrick Hand 
+        html:lang(zh) body * {
+            font-family: 'ZCOOL KuaiLe', 'Patrick Hand', 'cursive', sans-serif !important;
+        }
+         2. 页面语言为英文时，强制用原有Patrick Hand（完全不修改） 
+        html:lang(en) body * {
+            font-family: 'Patrick Hand', 'cursive', sans-serif !important;
+        }
+
+         语言下拉菜单样式（仅“中文”二字用可爱字体，English保留原字体） */
+        html:lang(zh) body {
+            font-family: 'Inter', 'Noto Serif SC', serif;
+        }
+
+
+        html:lang(en) body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* 响应式适配：手机端下拉菜单居中 */
+        @media (max-width: 768px) {
+            .group .absolute {
+                left: 0;
+                right: auto;
+            }
+        }
+
+        /* ======= 仅新增：标题/正文分字体（最小改动版） ======= */
+        @layer components {
+            /* 全站正文默认（你 body 上会加 font-en） */
+            .font-en {
+                font-family: 'Inter', sans-serif;
+            }
+
+            /* 所有“内容区标题”统一用更正式的衬线（中英文都稳） */
+            .section-title {
+                font-family: 'Noto Serif SC', serif;
+                font-weight: 600;
+                letter-spacing: 0.02em;
+            }
+
+            /* ✅ 新增：导航栏 + 页脚统一字体（更协调，比赛更稳） */
+            .nav-text {
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                letter-spacing: 0.01em;
+            }
+
+            .footer-text {
+                font-family: 'Inter', sans-serif;
+                font-weight: 500;
+                letter-spacing: 0.01em;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-pinky  text-gray-800 pt-20 font-en">
+    <!-- 头部区域 -->
+    <header class="fixed top-0 left-0 z-50 w-full py-2 px-4 md:px-8 bg-pinky/95 backdrop-blur-sm ">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between ">
+            <div class="flex items-center mb-4 md:mb-0 ">
+                <img src="images/logo.png" alt="Sun Logo" class="w-14 h-14 mr-3">
+
+                <!-- ✅ 按你要求：导航栏 Navigating China 字体不动 -->
+                <h1 class="freckle-face-regular text-[clamp(1.8rem,4vw,2.8rem)]  text-shadow">
+                    Navigating <span class="text-sunny">China</span>
+                </h1>
+            </div>
+
+            <!-- ✅ 仅加 nav-text，不改结构 -->
+            <nav class="flex flex-wrap gap-4 nav-text">
+                <a href="#"
+                    class="px-4 py-2 bg-skyblue hover:bg-skyblue/80 rounded-full transition-all transform hover:scale-105 shadow-sm">Home</a>
+                <a href="#contents-section"
+                    class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm">Guide</a>
+                
+                <!-- Language下拉菜单 -->
+                <div class="relative group">
+                    <button
+                        class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm flex items-center gap-2">
+                        <span>Language</span>
+                        <span class="text-xs">▼</span>
+                    </button>
+                    <div
+                        class="absolute top-full right-0 mt-2 w-32 bg-white rounded-xl shadow-lg border-2 border-sunny-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                        <button id="lang-en"
+                            class="w-full px-4 py-2 text-left hover:bg-sunny/10 rounded-t-xl transition-colors">English</button>
+                        <button id="lang-zh"
+                            class="w-full px-4 py-2 text-left hover:bg-sunny/10 rounded-b-xl transition-colors">中文</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 封面展示区 -->
+    <section class="w-full py-8 px-4 md:px-8 bg-white/50">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 ">
+            <img src="images/coverpage.png" alt="Handbook Cover"
+                class="w-full md:w-1/3 doodle-border p-3 bg-white shadow-lg">
+            <div class="w-full md:w-7/12">
+                <!-- ✅ 按你要求：封面 A Practical... 字体不动 -->
+                <h2 class="freckle-face-regular text-[clamp(1.6rem,3vw,2.2rem)] font-medium text-sunny">
+                    A Practical Handbook for Foreign Visitors
+                </h2>
+                <br>
+                <p class=" text-lg mb-6">Here is a handbook for foreign touristsin China, aiming to help everyone enjoya
+                    smooth and delightful journey.</p>
+                <p class="mb-8">Wishing you a safe, smooth, and delightful journey in China! 🧳✨</p>
+                <br>
+                <a href="#contents-section"
+                    class="inline-block px-6 py-3 bg-sunny hover:bg-sunny/80 text-white rounded-full font-bold transition-all transform hover:scale-105 shadow-md scroll-smooth">
+                    Start Exploring →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 目录内容板块 -->
+    <section id="contents-section" class="w-full py-12 px-4 md:px-8 bg-white/50">
+        <div class="max-w-6xl mx-auto  ">
+            <h2 class="section-title text-[clamp(1.4rem,3vw,2rem)] text-center mb-10">📚 Guide</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 1. Preparation & Entry -->
+                <div class="sixcard bg-sunny/20 p-6 doodle-border hover:shadow-lg transition-all transform hover:-translate-y-1"
+                    data-target="preparation.html">
+                    <div class="flex items-center mb-3">
+                        <span
+                            class="inline-flex items-center justify-center w-8 h-8 bg-sunny text-white rounded-full font-bold mr-3">01</span>
+                        <h3 class="section-title text-xl">Preparation & Entry</h3>
+                    </div>
+
+                    <ul class="text-sm list-disc pl-5 space-y-1">
+                        <li>
+                            <a href="preparation.html#listItem" class="hover:text-sunny transition-colors">
+                                List of Items
+                            </a>
+                        </li>
+                        <li>
+                            <a href="preparation.html#immig" class="hover:text-sunny transition-colors">
+                                Immigration Process
+                            </a>
+                        </li>
+                        <li>
+                            <a href="preparation.html#internet" class="hover:text-sunny transition-colors">
+                                Internet Access
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 2. Transportation & Navigation -->
+                <div class="sixcard bg-skyblue/20 p-6 doodle-border hover:shadow-lg transition-all transform hover:-translate-y-1"
+                    data-target="transportation.html">
+                    <div class="flex items-center mb-3">
+                        <span
+                            class="inline-flex items-center justify-center w-8 h-8 bg-skyblue text-white rounded-full font-bold mr-3">02</span>
+                        <h3 class="section-title text-xl">Transportation & Navigation</h3>
+                    </div>
+
+                    <ul class="text-sm list-disc pl-5 space-y-1">
+                        <li>
+                            <a href="transportation.html#transport" class="hover:text-skyblue transition-colors">
+                                Getting around cities
+                            </a>
+                        </li>
+                        <li>
+                            <a href="transportation.html#navtools" class="hover:text-skyblue transition-colors">
+                                Navigation Tools
+                            </a>
+                        </li>
+                        <li>
+                            <a href="transportation.html#navigation" class="hover:text-skyblue transition-colors">
+                                Navigation tips
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                
+
+                <!-- 3. Payment & Tax Refund -->
+                <div class="sixcard bg-mint/20 p-6 doodle-border hover:shadow-lg transition-all transform hover:-translate-y-1"
+                    data-target="payment.html">
+                    <div class="flex items-center mb-3">
+                        <span
+                            class="inline-flex items-center justify-center w-8 h-8 bg-mint text-white rounded-full font-bold mr-3">03</span>
+                        <h3 class="section-title text-xl">Payment & Tax Refund</h3>
+                    </div>
+
+                    <ul class="text-sm list-disc pl-5 space-y-1">
+                        <li>
+                            <a href="payment.html#paymethod" class="hover:text-mint transition-colors">
+                                Payment Methods
+                            </a>
+                        </li>
+                        <li>
+                            <a href="payment.html#cash" class="hover:text-mint transition-colors">
+                                Cash Exchange
+                            </a>
+                        </li>
+                        <li>
+                            <a href="payment.html#taxrefund" class="hover:text-mint transition-colors">
+                                Tax Refund on Departure
+                            </a>
+                        </li>
+                        <li>
+                            <a href="payment.html#hainan" class="hover:text-mint transition-colors">
+                                Hainan Island Duty-Free Policy
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 4. Accommodation -->
+                <div class="sixcard bg-peach/20 p-6 doodle-border hover:shadow-lg transition-all transform hover:-translate-y-1"
+                    data-target="accommodation.html">
+                    <div class="flex items-center mb-3">
+                        <span
+                            class="inline-flex items-center justify-center w-8 h-8 bg-peach text-white rounded-full font-bold mr-3">04</span>
+                        <h3 class="section-title text-xl">Accommodation</h3>
+                    </div>
+
+                    <ul class="text-sm list-disc pl-5 space-y-1">
+                        <li>
+                            <a href="accommodation.html#recommend" class="hover:text-peach transition-colors">
+                                Recommended Platform
+                            </a>
+                        </li>
+                        <li>
+                            <a href="accommodation.html#tipss" class="hover:text-peach transition-colors">
+                                Tips
+                            </a>
+                        </li>
+                        <li>
+                            <a href="accommodation.html#quickgd" class="hover:text-peach transition-colors">
+                                Quick Guide
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 5. Emergency Handling -->
+                <div class="sixcard bg-lemon/20 p-6 doodle-border hover:shadow-lg transition-all transform hover:-translate-y-1"
+                    data-target="emergency.html">
+                    <div class="flex items-center mb-3">
+                        <span
+                            class="inline-flex items-center justify-center w-8 h-8 bg-lemon text-white rounded-full font-bold mr-3">05</span>
+                        <h3 class="section-title text-xl">Emergency Handling</h3>
+                    </div>
+
+                    <ul class="text-sm list-disc pl-5 space-y-1">
+                        <li>
+                            <a href="emergency.html#medical" class="hover:text-lemon transition-colors">
+                                Medical Care Guide
+                            </a>
+                        </li>
+                        <li>
+                            <a href="emergency.html#commonemg" class="hover:text-lemon transition-colors">
+                                Common Emergencies
+                            </a>
+                        </li>
+                        <li>
+                            <a href="emergency.html#contacts" class="hover:text-lemon transition-colors">
+                                Emergency Contacts
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 6. Travel & Culture -->
+                <div class="sixcard bg-lavender/20 p-6 doodle-border hover:shadow-lg transition-all transform hover:-translate-y-1"
+                    data-target="travel.html">
+                    <div class="flex items-center mb-3">
+                        <span
+                            class="inline-flex items-center justify-center w-8 h-8 bg-lavender text-white rounded-full font-bold mr-3">06</span>
+                        <h3 class="section-title text-xl">Travel & Culture</h3>
+                    </div>
+
+                    <ul class="text-sm list-disc pl-5 space-y-1">
+                        <li>
+                            <a href="travel.html#attrac" class="hover:text-lavender transition-colors">
+                                Attraction Bookings
+                            </a>
+                        </li>
+                        <li>
+                            <a href="travel.html#booktip" class="hover:text-lavender transition-colors">
+                                Booking Tips
+                            </a>
+                        </li>
+                        <li>
+                            <a href="travel.html#cultip" class="hover:text-lavender transition-colors">
+                                Cultural Tips
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <script>
+                    // 给所有带sixcard类的卡片添加点击事件
+                    document.querySelectorAll('.sixcard').forEach(card => {
+                        card.addEventListener('click', (e) => {
+                            // 如果点击的是内部的a标签，则不触发卡片跳转
+                            if (e.target.closest('a')) return;
+                            // 否则跳转到卡片指定的页面
+                            const target = card.dataset.target;
+                            if (target) window.location.href = target;
+                        });
+                        // 可选：添加鼠标手型光标，提示可点击
+                        card.style.cursor = 'pointer';
+                    });
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="w-full py-6 px-4 md:px-8 bg-pinky/30">
+        <!-- ✅ 仅加 footer-text，不改结构 -->
+        <div class="max-w-6xl mx-auto text-center footer-text">
+            <p class="mb-2">Editors: Liu Sisi, Wu Xiangwei, Xu Xinyi</p>
+            <p class="mb-2">Developers: Li Xuan, Li Xinyi</p>
+            <p class="text-sm text-gray-600 ">© 2025 Navigating China Handbook | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // ====== 中英文文本 ======
+         const languageTexts = {
+                en: {
+                    home: "Home",
+                    guide: "Guide",
+                    language: "Language",
+        
+                    coverTitle: "A Practical Handbook for Foreign Visitors",
+                    coverDesc1: "Here is a handbook for foreign tourists in China, aiming to help everyone enjoy a smooth and delightful journey.",
+                    coverDesc2: "Wishing you a safe, smooth, and delightful journey in China! 🧳✨",
+                    startExploring: "Start Exploring →",
+        
+                    contentsTitle: "📚 Guide",
+        
+                    footerEditor: "Editors: Liu Sisi, Wu Xiangwei, Xu Xinyi",
+                    footerDeveloper: "Developers: Li Xuan, Li Xinyi",
+                    footerCopyright: "© 2025 Navigating China Handbook | All Rights Reserved",
+					
+					cat1Title: "Preparation & Entry",
+					cat1Item1: "List of Items",
+					cat1Item2: "Immigration Process",
+					cat1Item3: "Internet Access",
+					
+					cat2Title: "Transportation & Navigation",
+					cat2Item1: "Getting around cities",
+					cat2Item2: "Navigation Tools",
+					cat2Item3: "Navigation tips",
+					
+					cat3Title: "Payment & Tax Refund",
+					cat3Item1: "Payment Methods",
+					cat3Item2: "Cash Exchange",
+					cat3Item3: "Tax Refund on Departure",
+					cat3Item4: "Hainan Island Duty-Free Policy",
+					
+					cat4Title: "Accommodation",
+					cat4Item1: "Recommended Platform",
+					cat4Item2: "Tips",
+					cat4Item3: "Quick Guide",
+					
+					cat5Title: "Emergency Handling",
+					cat5Item1: "Medical Care Guide",
+					cat5Item2: "Common Emergencies",
+					cat5Item3: "Emergency Contacts",
+					
+					cat6Title: "Travel & Culture",
+					cat6Item1: "Attraction Bookings",
+					cat6Item2: "Booking Tips",
+					cat6Item3: "Cultural Tips",
+                },
+        
+                zh: {
+                    home: "首页",
+                    guide: "指南",
+                    language: "语言",
+        
+                    coverTitle: "外国游客实用手册",
+                    coverDesc1: "这是一份为来华外国游客准备的实用手册，帮助您顺利开启旅程。",
+                    coverDesc2: "祝您在中国度过安全、顺利、愉快的旅程！🧳✨",
+                    startExploring: "开始探索 →",
+        
+                    contentsTitle: "📚 指南",
+					
+					cat1Title: "行前准备 & 入境流程",
+					cat1Item1: "物品清单",
+					cat1Item2: "入境流程",
+					cat1Item3: "上网方式",
+					
+					cat2Title: "交通与导航",
+					cat2Item1: "出行方式",
+					cat2Item2: "导航工具",
+					cat2Item3: "导航技巧",
+					
+					cat3Title: "支付 & 消费",
+					cat3Item1: "支付方式",
+					cat3Item2: "现金兑换",
+					cat3Item3: "离境退税",
+					cat3Item4: "海南免税政策",
+					
+					cat4Title: "住宿",
+					cat4Item1: "推荐平台",
+					cat4Item2: "小贴士",
+					cat4Item3: "快速指南",
+					
+					cat5Title: "紧急情况处理",
+					cat5Item1: "就医指南",
+					cat5Item2: "常见应急事件",
+					cat5Item3: "紧急联系方式",
+					
+					cat6Title: "旅行 & 文化",
+					cat6Item1: "景点预约",
+					cat6Item2: "预订建议",
+					cat6Item3: "文化贴士",
+					
+        
+                    footerEditor: "编辑：刘思思、吴向微、许欣溢",
+                    footerDeveloper: "开发者：李璇、李欣苡",
+                    footerCopyright: "© 2025 中国出行指南 | 保留所有权利"
+                }
+            };
+        let currentLang = "en";
+
+ function switchLanguage(lang) {
+        if (lang === currentLang) return;
+        currentLang = lang;
+
+        document.documentElement.lang = lang;
+        const t = languageTexts[lang];
+
+        /* ===== 导航 ===== */
+        const navLinks = document.querySelectorAll("nav a");
+        if (navLinks[0]) navLinks[0].textContent = t.home;
+        if (navLinks[1]) navLinks[1].textContent = t.guide;
+
+        const langBtn = document.querySelector(".group button span:first-child");
+        if (langBtn) langBtn.textContent = t.language;
+
+        /* ===== 封面 ===== */
+        const cover = document.querySelector(".w-full.md\\:w-7\\/12");
+        if (cover) {
+            const h2 = cover.querySelector("h2");
+            const ps = cover.querySelectorAll("p");
+            const btn = cover.querySelector("a");
+
+            if (h2) h2.textContent = t.coverTitle;
+            if (ps[0]) ps[0].textContent = t.coverDesc1;
+            if (ps[1]) ps[1].textContent = t.coverDesc2;
+            if (btn) btn.textContent = t.startExploring;
+        }
+
+        /* ===== 目录标题 ===== */
+        const contentsTitle = document.querySelector("#contents-section h2");
+        if (contentsTitle) contentsTitle.textContent = t.contentsTitle;
+
+       
+		/* ===== 卡片翻译==== */
+		
+		const cards = document.querySelectorAll(".sixcard");
+		
+		cards.forEach((card, i) => {
+		
+		    // 1️⃣ 翻译标题
+		    const h3 = card.querySelector("h3");
+		    const titleKey = `cat${i + 1}Title`;
+		    if (h3 && t[titleKey]) {
+		        h3.textContent = t[titleKey];
+		    }
+		
+		    // 2️⃣ 翻译列表内容
+		    const links = card.querySelectorAll("ul li a");
+		
+		    links.forEach((link, index) => {
+		        const itemKey = `cat${i + 1}Item${index + 1}`;
+		        if (t[itemKey]) {
+		            link.textContent = t[itemKey];
+		        }
+		    });
+		
+		});
+
+        /* ===== 页脚 ===== */
+        const footerPs = document.querySelectorAll("footer p");
+        if (footerPs[0]) footerPs[0].textContent = t.footerEditor;
+        if (footerPs[1]) footerPs[1].textContent = t.footerDeveloper;
+        if (footerPs[2]) footerPs[2].textContent = t.footerCopyright;
+    }
+
+/*
+        function switchLanguage(lang) {
+            if (lang === currentLang) return;
+            currentLang = lang;
+
+            document.documentElement.lang = lang;
+            const t = languageTexts[lang];
+
+            // ====== 导航 ======
+            const navLinks = document.querySelectorAll("nav a");
+            navLinks[0].textContent = t.home;
+            navLinks[1].textContent = t.guide;
+            navLinks[2].textContent = t.buy;
+            navLinks[3].textContent = t.about;
+            document.querySelector(".group button span:first-child").textContent = t.language;
+
+            // ====== 封面区 ======
+            const cover = document.querySelector(".w-full.md\\:w-7\\/12");
+            cover.querySelector("h2").textContent = t.coverTitle;
+            cover.querySelectorAll("p")[0].textContent = t.coverDesc1;
+            cover.querySelectorAll("p")[1].textContent = t.coverDesc2;
+            cover.querySelector("a").textContent = t.startExploring;
+
+            // ====== 目录 ======
+            document.querySelector("#contents-section h2").textContent = t.contentsTitle;
+
+            const cards = document.querySelectorAll("#contents-section .grid > *");
+
+            const cats = [
+                ["cat1Title", "cat1Page", "cat1Desc"],
+                ["cat2Title", "cat2Page", "cat2Desc"],
+                ["cat3Title", "cat3Page", "cat3Desc"],
+                ["cat4Title", "cat4Page", "cat4Desc"],
+                ["cat5Title", "cat5Page", "cat5Desc"],
+                ["cat6Title", "cat6Page", "cat6Desc"]
+            ];
+
+            cards.forEach((card, i) => {
+                card.querySelector("h3").textContent = t[cats[i][0]];
+                card.querySelector(".text-sm").textContent = t[cats[i][1]];
+                card.querySelectorAll("p")[1].textContent = t[cats[i][2]];
+            });
+
+            // ====== 页脚 ======
+            const footerPs = document.querySelectorAll("footer p");
+            footerPs[0].textContent = t.footerEditor;
+            footerPs[1].textContent = t.footerCopyright;
+        }
+*/
+
+
+        document.getElementById("lang-en").onclick = () => switchLanguage("en");
+        document.getElementById("lang-zh").onclick = () => switchLanguage("zh");
+    </script>
+
+</body>
+
+</html>
