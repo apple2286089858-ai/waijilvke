@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accommodation – Navigating China</title>
+    <title>Payment & Tax Refund – Navigating China</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,8 +23,7 @@
                         mint:     '#B2E8C2',
                         lemon:    '#FFE066',
                         lavender: '#D8BFD8',
-                        apricot:  '#FDDCB5',
-                        tangerine:'#F4A35A',
+                        sage:     '#8BC4A0',
                     },
                     fontFamily: {
                         en: ['Inter', 'sans-serif'],
@@ -41,14 +40,21 @@
             font-weight: 400;
             font-style: normal;
         }
+        .playpen-sans-hebrew {
+            font-family: "Playpen Sans Hebrew", cursive;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+        }
         @layer utilities {
             .text-shadow { text-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
         }
         html { scroll-behavior: smooth; }
         @layer components {
-            .font-en        { font-family: 'Inter', sans-serif; }
-            .nav-text       { font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: 0.01em; }
-            .footer-text    { font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em; }
+            .font-en  { font-family: 'Inter', sans-serif; }
+            .section-title { font-family: 'Noto Serif SC', serif; font-weight: 600; letter-spacing: 0.02em; }
+            .nav-text  { font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: 0.01em; }
+            .footer-text { font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em; }
         }
     </style>
 </head>
@@ -66,14 +72,14 @@
             </div>
             <nav id="main-nav" class="flex flex-wrap gap-4 nav-text">
                 <a href="index.html" class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm" data-i18n="nav_home">Home</a>
-                <a href="index.html#contents-section" class="px-4 py-2 bg-peach hover:bg-peach/80 rounded-full transition-all transform hover:scale-105 shadow-sm" data-i18n="nav_guide">Guide</a>
+                <a href="index.html#contents-section" class="px-4 py-2 bg-mint hover:bg-mint/80 rounded-full transition-all transform hover:scale-105 shadow-sm" data-i18n="nav_guide">Guide</a>
                 <div class="relative group">
                     <button class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm flex items-center gap-2" onclick="toggleLang()">
                         <span id="langLabel">Language</span><span class="text-xs">▼</span>
                     </button>
-                    <div class="absolute top-full right-0 mt-2 w-32 bg-white rounded-xl shadow-lg border-2 border-sunny/30 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                        <button class="w-full px-4 py-2 text-left hover:bg-peach/20 rounded-t-xl transition-colors" onclick="setLang('en')">English</button>
-                        <button class="w-full px-4 py-2 text-left hover:bg-peach/20 rounded-b-xl transition-colors" onclick="setLang('zh')">中文</button>
+                    <div class="absolute top-full right-0 mt-2 w-32 bg-white rounded-xl shadow-lg border-2 border-mint/30 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                        <button class="w-full px-4 py-2 text-left hover:bg-mint/10 rounded-t-xl transition-colors" onclick="setLang('en')">English</button>
+                        <button class="w-full px-4 py-2 text-left hover:bg-mint/10 rounded-b-xl transition-colors" onclick="setLang('zh')">中文</button>
                     </div>
                 </div>
             </nav>
@@ -81,7 +87,7 @@
     </header>
 
     <!-- ===== SUB-NAV ===== -->
-    <section class="w-full px-4 md:px-8 mt-3 bg-peach/50">
+    <section class="w-full px-4 md:px-8 mt-3 bg-mint/60">
         <div class="max-w-6xl mx-auto">
             <div class="hidden md:block">
                 <nav class="flex items-center justify-between gap-1 nav-text text-[13px]">
@@ -95,13 +101,13 @@
                         <span class="hidden lg:inline" data-i18n="subnav_trans_long">Transportation &amp; Navigation</span>
                     </a>
                     <span class="h-5 w-px bg-white/60"></span>
-                    <a href="payment.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+                    <a href="payment.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-green-700 font-bold">
                         <span class="text-base">💳</span>
                         <span class="md:inline lg:hidden" data-i18n="subnav_pay_short">Payment &amp; Tax</span>
                         <span class="hidden lg:inline" data-i18n="subnav_pay_long">Payment &amp; Tax Refund</span>
                     </a>
                     <span class="h-5 w-px bg-white/60"></span>
-                    <a href="accommodation.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-orange-600 font-bold">
+                    <a href="accommodation.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
                         <span class="text-base">🏨</span><span data-i18n="subnav_accom">Accommodation</span>
                     </a>
                     <span class="h-5 w-px bg-white/60"></span>
@@ -117,27 +123,27 @@
                         <span class="hidden lg:inline" data-i18n="subnav_travel_long">Travel &amp; Culture</span>
                     </a>
                 </nav>
-                <div class="mt-2 h-[2px] w-24 bg-peach/70 rounded-full ml-[calc(50%-48px+110px)]"></div>
+                <div class="mt-2 h-[2px] w-24 bg-mint/70 rounded-full ml-[calc(33.33%-48px+110px)]"></div>
             </div>
-            <div class="mt-3 pb-2 text-xs text-gray-500">
+            <div class="mt-3 text-xs text-gray-500 pb-2">
                 <a href="index.html" class="hover:text-gray-700 transition" data-i18n="bc_home">Home</a>
                 <span class="mx-1 text-gray-300">/</span>
                 <a href="index.html#contents-section" class="hover:text-gray-700 transition" data-i18n="bc_guide">Guide</a>
                 <span class="mx-1 text-gray-300">/</span>
-                <span class="text-gray-600" data-i18n="bc_page">Accommodation</span>
+                <span class="text-gray-600" data-i18n="bc_page">Payment &amp; Tax Refund</span>
             </div>
         </div>
     </section>
 
     <!-- ===== HERO ===== -->
-    <section class="w-full py-8 px-4 md:px-8 bg-gradient-to-b from-peach/50 to-white/50">
+    <section class="w-full py-8 px-4 md:px-8 bg-gradient-to-b from-mint/60 to-white/50">
         <div class="max-w-5xl mx-auto flex flex-col items-center gap-8">
             <div class="max-w-3xl text-center">
                 <br><br><br><br>
                 <h2 class="text-[clamp(1.8rem,4vw,2.8rem)] font-bold text-white text-shadow mb-4" data-i18n="hero_title">
-                    Accommodation
+                    Payment &amp; Tax Refund
                 </h2>
-                <p class="text-lg text-gray-600" data-i18n="hero_sub">Find your perfect stay in China 🏨🛎️✨</p>
+                <p class="text-lg text-gray-600" data-i18n="hero_sub">Pay smart, shop smart, get your refund 💳🧾✈️</p>
                 <br><br><br><br><br><br><br><br><br>
             </div>
         </div>
@@ -147,273 +153,381 @@
     <section class="w-full py-12 px-4 md:px-8 bg-white/50">
         <div class="max-w-5xl mx-auto">
 
-            <!-- Section Title -->
-            <div id="recommend" class="text-center mb-10">
-                <h3 class="text-2xl font-bold text-tangerine relative inline-block">
-                    <span class="bg-white px-6 py-2 rounded-2xl shadow-md transform -rotate-1 border-2 border-tangerine" data-i18n="sec_title">
-                        🏨 Recommended Platform: Trip.com
-                    </span>
-                    <span class="absolute -top-3 -right-8 text-xs font-bold bg-peach text-orange-700 px-2 py-1 rounded-full shadow-sm border border-white" data-i18n="sec_badge">Book Smart~</span>
+            <!-- ══════════════════════ -->
+            <!-- Section 1: Payment    -->
+            <!-- ══════════════════════ -->
+            <div id="paymethod" class="text-center mb-10">
+                <h3 class="text-2xl font-bold text-sage relative inline-block">
+                    <span class="bg-white px-6 py-2 rounded-2xl shadow-md transform -rotate-1 border-2 border-sage" data-i18n="s1_title">💳 1. Payment Methods</span>
+                    <span class="absolute -top-3 -right-8 text-xs font-bold bg-mint text-green-800 px-2 py-1 rounded-full shadow-sm border border-white" data-i18n="s1_badge">Pay Anywhere</span>
                 </h3>
             </div>
 
-            <!-- Platform intro banner -->
-            <div class="bg-gradient-to-r from-peach/60 to-lemon/30 rounded-2xl p-5 border-2 border-peach/60 mb-8 flex flex-col md:flex-row items-center gap-5 relative overflow-hidden shadow-md">
-                <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-tangerine to-sunny flex items-center justify-center text-white text-3xl shadow-md">✈️</div>
-                <div class="flex-1 text-sm text-gray-700">
-                    <p class="font-bold text-orange-600 text-base mb-1" data-i18n="platform_name">Trip.com — International Booking Platform</p>
-                    <p data-i18n="platform_desc">English interface, supports Visa / Mastercard / AmEx · Switch language &amp; currency freely · 24/7 English customer support</p>
-                    <a href="https://www.trip.com" target="_blank" class="inline-block mt-2 text-xs text-blue-500 underline hover:text-blue-700 transition">🔗 https://www.trip.com</a>
+            <!-- Card Payments -->
+            <div class="bg-yellow-50 p-6 rounded-2xl shadow-md border-2 border-lemon/50 relative overflow-hidden mb-8">
+                <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-lemon/80 to-lemon/10 rounded-t-2xl"></div>
+                <div class="flex items-center gap-3 mb-4 mt-1">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-400 to-lemon flex items-center justify-center text-white text-2xl shadow-sm flex-shrink-0">💳</div>
+                    <div>
+                        <p class="font-bold text-gray-800 text-lg leading-tight" data-i18n="card_title">(1) Card Payments</p>
+                        <p class="text-xs text-gray-500" data-i18n="card_sub">Physical cards accepted nationwide</p>
+                    </div>
                 </div>
-                <img src="images/trip.png">
-                <div class="absolute bottom-2 right-4 text-peach/30 text-5xl select-none">🏨</div>
+
+                <img src="images/cardlogos.png">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
+                    <div class="bg-white/70 rounded-xl p-4 border border-lemon/30">
+                        <p class="font-bold text-yellow-600 mb-2" data-i18n="card_accepted_title">✅ Cards Accepted in China</p>
+                        <p data-i18n="card_accepted_body">UnionPay, Visa, Mastercard, JCB, Diners Club, Discover.</p>
+                        <p class="mt-2 text-gray-500 text-xs" data-i18n="card_accepted_note">Look for corresponding logos at merchants. If unsure, ask staff if your card is accepted.</p>
+                    </div>
+                    <div class="bg-white/70 rounded-xl p-4 border border-lemon/30">
+                        <p class="font-bold text-yellow-600 mb-2" data-i18n="card_tips_title">⭐ Tips</p>
+                        <p data-i18n="card_tips_body"><span class="font-semibold">UnionPay cards are widely accepted at all card terminals nationwide.</span></p>
+                    </div>
+                </div>
+                <div class="absolute bottom-2 right-3 text-lemon/30 text-5xl select-none">💳</div>
             </div>
 
-            <!-- 5 Steps Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Mobile Payments header -->
+            <div class="text-center mb-6">
+                <span class="inline-block bg-mint/30 text-green-700 font-bold px-5 py-2 rounded-full border-2 border-mint text-sm shadow-sm" data-i18n="mobile_header">
+                    📱 Mobile Payments — Alipay &amp; WeChat Pay dominate in China
+                </span>
+                <p class="text-xs text-gray-500 mt-2" data-i18n="mobile_fee">No fees for transactions under ¥200 &nbsp;·&nbsp; 3% fee for transactions ≥¥200</p>
+            </div>
 
-                <!-- STEP 1: Download -->
-                <div class="bg-red-50 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-red-200 relative overflow-hidden flex flex-col gap-4">
-                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-red-400/60 to-red-100/10 rounded-t-2xl"></div>
+            <!-- Alipay + WeChat Pay -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+
+                <!-- Alipay -->
+                <div class="bg-blue-50 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-blue-200 relative overflow-hidden flex flex-col gap-4">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-400/60 to-blue-200/10 rounded-t-2xl"></div>
                     <div class="flex items-center gap-3 mt-1">
-                        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center text-white font-bold text-lg shadow-sm flex-shrink-0">1</div>
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-2xl shadow-sm flex-shrink-0">支</div>
                         <div>
-                            <p class="font-bold text-red-600 text-lg leading-tight" data-i18n="s1_title">Download</p>
-                            <p class="text-xs text-gray-500" data-i18n="s1_sub">Get the app or use the web version</p>
-                        </div>
-                    </div>
-
-                    <div class="space-y-2 text-sm text-gray-700">
-                        <div class="bg-white/70 rounded-xl p-3 border border-red-100 flex items-start gap-2">
-                            <span class="text-base flex-shrink-0">🍎</span>
-                            <p><span class="font-semibold" data-i18n="s1_ios_label">iOS users:</span> <span data-i18n="s1_ios_body">Search <span class="text-red-500 font-medium">Trip.com</span> in the App Store.</span></p>
-                        </div>
-                        <div class="bg-white/70 rounded-xl p-3 border border-red-100 flex items-start gap-2">
-                            <span class="text-base flex-shrink-0">🤖</span>
-                            <p><span class="font-semibold" data-i18n="s1_android_label">Android users:</span> <span data-i18n="s1_android_body">Search <span class="text-red-500 font-medium">Trip.com</span> on Google Play.</span></p>
-                        </div>
-                        <div class="bg-white/70 rounded-xl p-3 border border-red-100 flex items-start gap-2">
-                            <span class="text-base flex-shrink-0">💻</span>
-                            <div>
-                                <p><span class="font-semibold" data-i18n="s1_web_label">Web version:</span> <span data-i18n="s1_web_body">Visit <a href="https://www.trip.com" target="_blank" class="text-blue-500 underline text-xs">https://www.trip.com</a></span></p>
-                                <p class="text-xs text-gray-500 mt-0.5" data-i18n="s1_web_note">It is allowed to switch languages and currencies.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <img src="images/tripcom.png">
-                    <div class="absolute bottom-2 right-3 text-red-200/30 text-5xl select-none">📱</div>
-                </div>
-
-                <!-- STEP 2: Register -->
-                <div class="bg-yellow-50 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-lemon/60 relative overflow-hidden flex flex-col gap-4">
-                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-lemon/80 to-lemon/10 rounded-t-2xl"></div>
-                    <div class="flex items-center gap-3 mt-1">
-                        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-yellow-400 to-lemon flex items-center justify-center text-white font-bold text-lg shadow-sm flex-shrink-0">2</div>
-                        <div>
-                            <p class="font-bold text-yellow-600 text-lg leading-tight" data-i18n="s2_title">Register an Account</p>
-                            <p class="text-xs text-gray-500" data-i18n="s2_sub">Quick &amp; easy sign-up</p>
-                        </div>
-                    </div>
-
-                    <div class="space-y-2 text-sm text-gray-700">
-                        <div class="flex items-start gap-2">
-                            <span class="w-5 h-5 bg-yellow-400 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5 font-bold">①</span>
-                            <p data-i18n="s2_step1">Open the app / website → Click <span class="font-semibold">"Sign Up"</span> → Choose email or international phone number.</p>
-                        </div>
-                        <div class="flex items-start gap-2">
-                            <span class="w-5 h-5 bg-yellow-400 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5 font-bold">②</span>
-                            <p data-i18n="s2_step2">Fill in your details → Enter the verification code → Complete registration.</p>
-                        </div>
-                    </div>
-
-                    <img src="images/regis.png">
-
-                    <div class="bg-lemon/20 rounded-xl p-3 text-sm border border-lemon/50">
-                        <p class="font-bold text-yellow-700 mb-1" data-i18n="s2_tips_title">💡 Tips</p>
-                        <ul class="space-y-1 text-gray-700 text-xs">
-                            <li data-i18n="s2_tip1">– Link your <span class="font-semibold">Google account</span> for quicker login.</li>
-                            <li data-i18n="s2_tip2">– Ensure your <span class="font-semibold">profile name matches your passport</span>.</li>
-                        </ul>
-                    </div>
-                    <div class="absolute bottom-2 right-3 text-lemon/30 text-5xl select-none">📝</div>
-                </div>
-
-                <!-- STEP 3: Identity Verification -->
-                <div class="bg-purple-50 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-lavender/60 relative overflow-hidden flex flex-col gap-4">
-                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-lavender/80 to-lavender/10 rounded-t-2xl"></div>
-                    <div class="flex items-center gap-3 mt-1">
-                        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-lavender to-purple-400 flex items-center justify-center text-white font-bold text-lg shadow-sm flex-shrink-0">3</div>
-                        <div>
-                            <p class="font-bold text-purple-600 text-lg leading-tight" data-i18n="s3_title">Identity Verification</p>
-                            <p class="text-xs text-gray-500" data-i18n="s3_sub">Passport verification for foreign guests</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-white/70 rounded-xl p-4 border border-lavender/40 text-sm text-gray-700">
-                        <p class="font-semibold text-purple-500 mb-2" data-i18n="s3_path_label">Verification path:</p>
-                        <div class="flex flex-wrap items-center gap-1 text-xs font-medium">
-                            <span class="bg-lavender/40 px-2 py-1 rounded-lg" data-i18n="s3_path1">「Manual Verification」</span>
-                            <span class="text-purple-400">→</span>
-                            <span class="bg-lavender/40 px-2 py-1 rounded-lg" data-i18n="s3_path2">「For Non-Mainland Chinese<br>(HK, Macau, Taiwan &amp; Overseas)」</span>
-                            <span class="text-purple-400">→</span>
-                            <span class="bg-lavender/40 px-2 py-1 rounded-lg" data-i18n="s3_path3">「Passport Verification」</span>
-                        </div>
-                    </div>
-
-                    <div class="text-sm text-gray-700 bg-white/70 rounded-xl p-3 border border-lavender/30">
-                        <p data-i18n="s3_desc">Follow the instructions to set a <span class="font-semibold text-purple-600">payment password</span> and submit your <span class="font-semibold text-purple-600">passport details</span> and wait for confirmation.</p>
-                    </div>
-
-                    <div class="absolute bottom-2 right-3 text-lavender/30 text-5xl select-none">🪪</div>
-                </div>
-
-                <!-- STEP 4: Search for Hotels -->
-                <div class="bg-skyblue/10 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-skyblue/40 relative overflow-hidden flex flex-col gap-4">
-                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-skyblue/60 to-skyblue/10 rounded-t-2xl"></div>
-                    <div class="flex items-center gap-3 mt-1">
-                        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-skyblue to-blue-400 flex items-center justify-center text-white font-bold text-lg shadow-sm flex-shrink-0">4</div>
-                        <div>
-                            <p class="font-bold text-blue-600 text-lg leading-tight" data-i18n="s4_title">Search for Hotels</p>
-                            <p class="text-xs text-gray-500" data-i18n="s4_sub">Find accommodation that accepts foreign guests</p>
+                            <p class="font-bold text-gray-800 text-lg leading-tight">Alipay 支付宝</p>
+                            <p class="text-xs text-gray-500" data-i18n="alipay_cs">Customer Service: +86-571 2688 6000</p>
                         </div>
                     </div>
 
                     <div class="space-y-3 text-sm text-gray-700">
-                        <div class="flex items-start gap-2">
-                            <span class="w-5 h-5 bg-skyblue text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5 font-bold">①</span>
-                            <p data-i18n="s4_step1">Enter basic search criteria <span class="font-semibold">(location / dates / guests)</span>.</p>
+                        <div class="bg-white/70 rounded-xl p-3 border border-blue-100">
+                            <p class="font-semibold text-blue-600 mb-1" data-i18n="alipay_s1_title">Step 1 · Download</p>
+                            <p data-i18n="alipay_s1_body">Get the app from your app store or Alipay's official website.</p>
                         </div>
-                        <div class="flex items-start gap-2">
-                            <span class="w-5 h-5 bg-skyblue text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5 font-bold">②</span>
-                            <div>
-                                <p class="font-semibold mb-1" data-i18n="s4_filter_label">Filter results:</p>
-                                <div class="space-y-1">
-                                    <div class="bg-white/70 rounded-lg p-2 border border-skyblue/30 text-xs">
-                                        <span class="font-semibold text-blue-500">Ctrip</span> <span data-i18n="s4_ctrip">(China Mainland version): Click 「Filters」→ Check 「Accepts Foreign Guests」</span>
-                                    </div>
-                                    <div class="bg-white/70 rounded-lg p-2 border border-skyblue/30 text-xs">
-                                        <span class="font-semibold text-blue-500">Trip.com</span> <span data-i18n="s4_tripcom">(International version): No need for this filter.</span>
-                                    </div>
+                        <div class="bg-white/70 rounded-xl p-3 border border-blue-100">
+                            <p class="font-semibold text-blue-600 mb-1" data-i18n="alipay_s2_title">Step 2 · Register</p>
+                            <p data-i18n="alipay_s2_body">Enter your mobile number and tap 「Next」.</p>
+                            <img src="images/alipayRegister.png">
+                        </div>
+                        <div class="bg-white/70 rounded-xl p-3 border border-blue-100">
+                            <p class="font-semibold text-blue-600 mb-1" data-i18n="alipay_s3_title">Step 3 · Link Card</p>
+                            <p data-i18n="alipay_s3_body">Tap 「Add Now」 and follow prompts.</p>
+                            <p class="text-xs text-gray-500 mt-1" data-i18n="alipay_s3_note">Supported cards: UnionPay, Visa, Mastercard, JCB, Diners Club, Discover.</p>
+                            <img src="images/alipayAdd.png">
+                        </div>
+                        <div class="bg-white/70 rounded-xl p-3 border border-blue-100">
+                            <p class="font-semibold text-blue-600 mb-1" data-i18n="alipay_s4_title">Step 4 · Two Payment Methods</p>
+                            <div class="grid grid-cols-2 gap-2 mt-2">
+                                <div class="bg-blue-100/40 rounded-lg p-2 text-center">
+                                    <p class="text-2xl mb-1">📷</p>
+                                    <p class="text-xs font-medium" data-i18n="alipay_op1_label">Option 1</p>
+                                    <p class="text-xs text-gray-600" data-i18n="alipay_op1_desc">Scan merchant's QR code</p>
+                                    <img src="images/alipayOp1.png">
+                                </div>
+                                <div class="bg-blue-100/40 rounded-lg p-2 text-center">
+                                    <p class="text-2xl mb-1">📲</p>
+                                    <p class="text-xs font-medium" data-i18n="alipay_op2_label">Option 2</p>
+                                    <p class="text-xs text-gray-600" data-i18n="alipay_op2_desc">Show your payment code</p>
+                                    <img src="images/alipayOp2.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-blue-200/30 text-5xl select-none">支</div>
+                </div>
+
+                <!-- WeChat Pay -->
+                <div class="bg-green-50 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-green-200 relative overflow-hidden flex flex-col gap-4">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-green-400/60 to-green-200/10 rounded-t-2xl"></div>
+                    <div class="flex items-center gap-3 mt-1">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center text-white text-2xl shadow-sm flex-shrink-0">微</div>
+                        <div>
+                            <p class="font-bold text-gray-800 text-lg leading-tight">WeChat Pay 微信支付</p>
+                            <p class="text-xs text-gray-500" data-i18n="wechat_cs">Customer Service: +86-400 670 0700</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 text-sm text-gray-700">
+                        <div class="bg-white/70 rounded-xl p-3 border border-green-100">
+                            <p class="font-semibold text-green-600 mb-1" data-i18n="wechat_s1_title">Step 1 · Download</p>
+                            <p data-i18n="wechat_s1_body">Install WeChat and update to the latest version.</p>
+                        </div>
+                        <div class="bg-white/70 rounded-xl p-3 border border-green-100">
+                            <p class="font-semibold text-green-600 mb-1" data-i18n="wechat_s2_title">Step 2 · Register</p>
+                            <p data-i18n="wechat_s2_body">Use an international number and complete identity verification.</p>
+                        </div>
+                        <div class="bg-white/70 rounded-xl p-3 border border-green-100">
+                            <p class="font-semibold text-green-600 mb-1" data-i18n="wechat_s3_title">Step 3 · Enable WeChat Pay</p>
+                            <p data-i18n="wechat_s3_body">Go to 「Me」→「Services」→「Wallet」.</p>
+                            <p class="text-xs text-gray-500 mt-1" data-i18n="wechat_s3_note">If missing, activate via 「Me」→「Settings」→「General」→「Assistive Features」→「Enable WeChat Pay」.</p>
+                        </div>
+                        <div class="bg-white/70 rounded-xl p-3 border border-green-100">
+                            <p class="font-semibold text-green-600 mb-1" data-i18n="wechat_s4_title">Step 4 · Link Card</p>
+                            <p class="text-xs text-gray-500" data-i18n="wechat_s4_note">Supported: Visa, Mastercard, American Express, JCB, Diners Club, Discover.</p>
+                            <img src="images/wepayop.png">
+                        </div>
+                        <div class="bg-white/70 rounded-xl p-3 border border-green-100">
+                            <p class="font-semibold text-green-600 mb-1" data-i18n="wechat_s5_title">Step 5 · Two Payment Methods</p>
+                            <div class="grid grid-cols-2 gap-2 mt-2">
+                                <div class="bg-green-100/40 rounded-lg p-2 text-center">
+                                    <p class="text-2xl mb-1">📷</p>
+                                    <p class="text-xs font-medium" data-i18n="wechat_op1_label">Option 1</p>
+                                    <p class="text-xs text-gray-600" data-i18n="wechat_op1_desc">Scan the merchant's green QR code</p>
+                                </div>
+                                <div class="bg-green-100/40 rounded-lg p-2 text-center">
+                                    <p class="text-2xl mb-1">📲</p>
+                                    <p class="text-xs font-medium" data-i18n="wechat_op2_label">Option 2</p>
+                                    <p class="text-xs text-gray-600" data-i18n="wechat_op2_desc">Show your payment code or request payment</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <img src="images/tripcombook.png">
-                    <div class="absolute bottom-2 right-3 text-skyblue/30 text-5xl select-none">🔍</div>
+                    <div class="bg-lemon/20 rounded-xl p-3 text-sm border border-lemon/40">
+                        <p class="font-bold text-yellow-600 mb-1" data-i18n="wechat_note_title">⚠️ Note</p>
+                        <ul class="space-y-1 text-gray-700 text-xs">
+                            <li data-i18n="wechat_note1">• WeChat Pay does not support transfers or Pay/Receive functions that use international card.</li>
+                            <li data-i18n="wechat_note2">• Users in Singapore (DBS PayLah!) and Malaysia (Touch 'n Go eWallet) can directly use their local wallets to scan the UnionPay or Alipay QR code to pay without downloading a Chinese app.</li>
+                        </ul>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-green-200/30 text-5xl select-none">微</div>
                 </div>
 
-            </div><!-- end 2-col grid -->
-
-            <!-- STEP 5: Select Room & Payment (full width) -->
-            <div class="mt-8 bg-apricot/20 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all border-2 border-apricot/60 relative overflow-hidden flex flex-col gap-5">
-                <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-tangerine/70 to-apricot/10 rounded-t-2xl"></div>
-                <div class="flex items-center gap-3 mt-1">
-                    <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-tangerine to-sunny flex items-center justify-center text-white font-bold text-lg shadow-sm flex-shrink-0">5</div>
-                    <div>
-                        <p class="font-bold text-orange-600 text-lg leading-tight" data-i18n="s5_title">Select Room &amp; Payment</p>
-                        <p class="text-xs text-gray-500" data-i18n="s5_sub">Review details, fill in guest info, and pay securely</p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-
-                    <!-- Sub-step ① -->
-                    <div class="bg-white/80 rounded-xl p-4 border border-apricot/40 flex flex-col gap-2 text-sm text-gray-700">
-                        <p class="font-semibold text-orange-500 flex items-center gap-1">
-                            <span class="w-5 h-5 bg-tangerine text-white rounded-full flex items-center justify-center text-xs font-bold">①</span>
-                            <span data-i18n="s5_sub1_title">Check Room Details</span>
-                        </p>
-                        <p data-i18n="s5_sub1_body">Review room descriptions (breakfast inclusion, cancellation policy, etc.).</p>
-                        <div class="bg-apricot/20 rounded-lg p-2 text-xs border border-apricot/30">
-                            <span class="font-semibold" data-i18n="s5_sub1_note_label">Note:</span> <span data-i18n="s5_sub1_note_body">Look for the 「Foreign Guests Allowed」 label and requirements (e.g., passport copies).</span>
-                        </div>
-                    </div>
-
-                    <!-- Sub-step ② -->
-                    <div class="bg-white/80 rounded-xl p-4 border border-apricot/40 flex flex-col gap-2 text-sm text-gray-700">
-                        <p class="font-semibold text-orange-500 flex items-center gap-1">
-                            <span class="w-5 h-5 bg-tangerine text-white rounded-full flex items-center justify-center text-xs font-bold">②</span>
-                            <span data-i18n="s5_sub2_title">Guest Information</span>
-                        </p>
-                        <p data-i18n="s5_sub2_body">Enter guest information as shown on your passport.</p>
-                    </div>
-
-                    <!-- Sub-step ③ -->
-                    <div class="bg-white/80 rounded-xl p-4 border border-apricot/40 flex flex-col gap-2 text-sm text-gray-700">
-                        <p class="font-semibold text-orange-500 flex items-center gap-1">
-                            <span class="w-5 h-5 bg-tangerine text-white rounded-full flex items-center justify-center text-xs font-bold">③</span>
-                            <span data-i18n="s5_sub3_title">Payment</span>
-                        </p>
-                        <p data-i18n="s5_sub3_cards">Accepted cards: <span class="font-semibold">Visa, Mastercard, American Express</span>, etc.</p>
-                        <p data-i18n="s5_sub3_how">Click 「Add Payment Method」 → Enter card number / expiry date / CVV.</p>
-                        <div class="bg-lemon/20 rounded-lg p-2 text-xs border border-lemon/40 mt-auto">
-                            <span class="font-semibold text-yellow-600">★</span> <span data-i18n="s5_sub3_note">Some hotels allow <span class="font-semibold">"Pay at Property"</span> but may require a pre-authorization hold.</span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="absolute bottom-2 right-3 text-apricot/30 text-5xl select-none">💳</div>
             </div>
 
-            <!-- Tips Box -->
-            <div class="mt-8 bg-gradient-to-r from-mint/30 to-skyblue/20 rounded-2xl p-6 border-2 border-mint/50 shadow-md relative overflow-hidden">
-                <div class="flex items-start gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-mint to-green-400 flex items-center justify-center text-white text-2xl shadow-sm flex-shrink-0">💡</div>
-                    <div class="flex flex-col gap-3 text-sm text-gray-700 flex-1">
-                        <p class="font-bold text-green-700 text-base" data-i18n="tips_title">Tips</p>
-                        <div class="bg-white/70 rounded-xl p-3 border border-mint/40">
-                            <p class="font-semibold mb-1" data-i18n="tips_modify_title">📋 Modify a Booking:</p>
-                            <p data-i18n="tips_modify_body">Go to 「My Bookings」→ Select your order → Click 「Modify」 to adjust dates / room type.</p>
-                        </div>
-                        <div class="bg-white/70 rounded-xl p-3 border border-mint/40">
-                            <p class="font-semibold mb-1" data-i18n="tips_support_title">📞 Customer Support:</p>
-                            <p data-i18n="tips_support_body">Contact Trip.com's <span class="font-bold text-orange-500">24/7 English support</span>: <span class="font-mono text-blue-600">+1-800-210-6567</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="absolute bottom-2 right-3 text-mint/20 text-5xl select-none">🌟</div>
+            <!-- ══════════════════════ -->
+            <!-- Section 2: Cash       -->
+            <!-- ══════════════════════ -->
+            <div id="cash" class="text-center mb-10 mt-4">
+                <h3 class="text-2xl font-bold text-sage relative inline-block">
+                    <span class="bg-white px-6 py-2 rounded-2xl shadow-md transform rotate-1 border-2 border-sage" data-i18n="s2_title">💵 2. Cash Exchange</span>
+                    <span class="absolute -top-3 -right-7 text-xs font-bold bg-peach text-white px-2 py-1 rounded-full shadow-sm border border-white" data-i18n="s2_badge">RMB Ready~</span>
+                </h3>
             </div>
 
-            <!-- Quick Summary Table -->
-            <div id="quickgd" class="mt-8 bg-white p-6 rounded-2xl shadow-md border-2 border-sunny/30 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-sunny/60 to-sunny/10 rounded-t-2xl"></div>
-                <h4 class="font-bold text-sunny text-lg mb-4 flex items-center gap-2" data-i18n="table_title">✨ Quick Guide: 5 Steps at a Glance</h4>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-sm border-collapse">
-                        <tbody>
-                            <tr class="bg-red-50 border-b border-red-100">
-                                <td class="px-4 py-3 font-semibold text-red-500 w-1/4" data-i18n="tbl_r1_step">Step 1 · Download</td>
-                                <td class="px-4 py-3 text-gray-600" data-i18n="tbl_r1_desc">App Store / Google Play / trip.com</td>
-                            </tr>
-                            <tr class="bg-yellow-50 border-b border-yellow-100">
-                                <td class="px-4 py-3 font-semibold text-yellow-600" data-i18n="tbl_r2_step">Step 2 · Register</td>
-                                <td class="px-4 py-3 text-gray-600" data-i18n="tbl_r2_desc">Email or international number · Link Google for faster login</td>
-                            </tr>
-                            <tr class="bg-purple-50 border-b border-purple-100">
-                                <td class="px-4 py-3 font-semibold text-purple-500" data-i18n="tbl_r3_step">Step 3 · Verify</td>
-                                <td class="px-4 py-3 text-gray-600" data-i18n="tbl_r3_desc">Manual Verification → Passport Verification</td>
-                            </tr>
-                            <tr class="bg-skyblue/10 border-b border-skyblue/20">
-                                <td class="px-4 py-3 font-semibold text-blue-500" data-i18n="tbl_r4_step">Step 4 · Search</td>
-                                <td class="px-4 py-3 text-gray-600" data-i18n="tbl_r4_desc">Filter by "Accepts Foreign Guests" on Ctrip · Skip filter on Trip.com</td>
-                            </tr>
-                            <tr class="bg-apricot/20">
-                                <td class="px-4 py-3 font-semibold text-orange-500" data-i18n="tbl_r5_step">Step 5 · Pay</td>
-                                <td class="px-4 py-3 text-gray-600" data-i18n="tbl_r5_desc">Visa / Mastercard / AmEx · Check "Foreign Guests Allowed" label</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <!-- Required Documents -->
+            <div class="bg-mint/20 rounded-2xl p-5 border-2 border-mint/50 mb-6">
+                <p class="font-bold text-green-700 mb-3 flex items-center gap-2" data-i18n="docs_title">📄 Required Documents</p>
+                <ul class="space-y-1 text-sm text-gray-700">
+                    <li class="flex items-start gap-2"><span class="text-green-500 mt-0.5">•</span> <span data-i18n="docs_1">Original valid passport (copies might not be accepted)</span></li>
+                    <li class="flex items-start gap-2"><span class="text-green-500 mt-0.5">•</span> <span data-i18n="docs_2">Foreign cash (USD, EUR, GBP, etc.)</span></li>
+                    <li class="flex items-start gap-2"><span class="text-green-500 mt-0.5">•</span> <span data-i18n="docs_3">International debit/credit card (Visa/Mastercard)</span></li>
+                </ul>
+            </div>
+
+            <!-- Exchange Methods -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+
+                <!-- ① Exchange Counters -->
+                <div class="bg-white p-5 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-mint/40 relative overflow-hidden flex flex-col gap-3">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-mint/70 to-mint/10 rounded-t-2xl"></div>
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-mint to-green-300 flex items-center justify-center text-white text-xl shadow-sm">①</div>
+                    <h4 class="font-bold text-green-700 text-base" data-i18n="exch1_title">Currency Exchange Counters</h4>
+                    <p class="text-sm text-gray-600" data-i18n="exch1_where">Found at airports, international hotels.</p>
+                    <p class="text-sm text-gray-700 font-medium" data-i18n="exch1_what">Exchange foreign cash to RMB.</p>
+                    <img src="images/exchange.png">
+                    <div class="absolute bottom-2 right-3 text-mint/20 text-4xl select-none">🏦</div>
                 </div>
-                <div class="absolute bottom-2 right-3 text-sunny/20 text-3xl select-none">🏨</div>
+
+                <!-- ② Bank Branches -->
+                <div class="bg-white p-5 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-skyblue/40 relative overflow-hidden flex flex-col gap-3">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-skyblue/70 to-skyblue/10 rounded-t-2xl"></div>
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-skyblue to-blue-300 flex items-center justify-center text-white text-xl shadow-sm">②</div>
+                    <h4 class="font-bold text-blue-600 text-base" data-i18n="exch2_title">Bank Branches</h4>
+
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <div class="flex items-start gap-2">
+                            <span class="w-5 h-5 bg-skyblue text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">1</span>
+                            <div><span class="font-semibold" data-i18n="exch2_s1_label">Locate a Branch:</span> <span data-i18n="exch2_s1_body">Use maps (e.g., Amap) to find banks with "Foreign Exchange" signs. Check operating hours.</span></div>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="w-5 h-5 bg-skyblue text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">2</span>
+                            <div><span class="font-semibold" data-i18n="exch2_s2_label">Fill Form:</span> <span data-i18n="exch2_s2_body">Complete the Foreign Exchange Application Form with: name (as in passport), passport number, exchange amount, contact info (optional).</span></div>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="w-5 h-5 bg-skyblue text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">3</span>
+                            <div><span class="font-semibold" data-i18n="exch2_s3_label">Submit Documents:</span> <span data-i18n="exch2_s3_body">Hand over passport, foreign cash, and form. Staff will confirm the rate and process the exchange.</span></div>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="w-5 h-5 bg-skyblue text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">4</span>
+                            <div><span class="font-semibold" data-i18n="exch2_s4_label">Receive RMB:</span> <span data-i18n="exch2_s4_body">Verify the amount and keep the receipt.</span></div>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-skyblue/20 text-4xl select-none">🏦</div>
+                </div>
+
+                <!-- ③ ATM -->
+                <div class="bg-white p-5 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-peach/40 relative overflow-hidden flex flex-col gap-3">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-peach/70 to-peach/10 rounded-t-2xl"></div>
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-peach to-red-300 flex items-center justify-center text-white text-xl shadow-sm">③</div>
+                    <h4 class="font-bold text-red-500 text-base" data-i18n="exch3_title">ATM Withdrawals</h4>
+
+                    <div class="text-xs text-gray-600 bg-peach/10 rounded-lg p-2 border border-peach/30">
+                        <span class="font-semibold" data-i18n="exch3_banks_label">Supported Banks:</span> <span data-i18n="exch3_banks_body">Bank of China, China Construction Bank, ICBC (some ATMs)</span>
+                    </div>
+
+                    <div class="space-y-1 text-sm text-gray-700">
+                        <div class="flex items-start gap-2"><span class="text-red-400 font-bold text-xs mt-0.5">①</span><p data-i18n="atm_s1">Find ATMs with English interfaces.</p></div>
+                        <div class="flex items-start gap-2"><span class="text-red-400 font-bold text-xs mt-0.5">②</span><p data-i18n="atm_s2">Insert card, select language.</p></div>
+                        <div class="flex items-start gap-2"><span class="text-red-400 font-bold text-xs mt-0.5">③</span><p data-i18n="atm_s3">Choose "Withdrawal", enter amount (note daily limits).</p></div>
+                        <div class="flex items-start gap-2"><span class="text-red-400 font-bold text-xs mt-0.5">④</span><p data-i18n="atm_s4">Enter PIN, confirm.</p></div>
+                        <div class="flex items-start gap-2"><span class="text-red-400 font-bold text-xs mt-0.5">⑤</span><p data-i18n="atm_s5">Collect cash, card, and receipt.</p></div>
+                    </div>
+
+                    <div class="bg-lemon/20 rounded-xl p-2 text-xs border border-lemon/40">
+                        <span class="font-bold text-yellow-600" data-i18n="atm_fee_label">Fees:</span> <span data-i18n="atm_fee_body">Up to bank. Some ATMs reject small withdrawals (&lt;¥1,200).</span>
+                    </div>
+
+                    <div class="bg-peach/20 rounded-xl p-3 text-xs border border-peach/40">
+                        <p class="font-bold text-red-500 mb-1" data-i18n="atm_limit_title">⭐ Note: Exchange Limits</p>
+                        <p data-i18n="atm_limit_body">Max. ¥20,000 per person per transaction.<br>Exceeding limits requires additional proof (visa, itinerary).</p>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-peach/20 text-4xl select-none">🏧</div>
+                </div>
+
+            </div>
+
+            <!-- ══════════════════════ -->
+            <!-- Section 3: Tax Refund -->
+            <!-- ══════════════════════ -->
+            <div id="taxrefund" class="text-center mb-10 mt-4">
+                <h3 class="text-2xl font-bold text-sage relative inline-block">
+                    <span class="bg-white px-6 py-2 rounded-2xl shadow-md transform -rotate-1 border-2 border-sage" data-i18n="s3_title">🧾 3. Tax Refund on Departure</span>
+                    <span class="absolute -top-3 -right-8 text-xs font-bold bg-skyblue text-white px-2 py-1 rounded-full shadow-sm border border-white" data-i18n="s3_badge">Get Money Back!</span>
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+
+                <!-- Policy & Conditions -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-2 border-mint/40 relative overflow-hidden flex flex-col gap-4">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-mint/70 to-mint/10 rounded-t-2xl"></div>
+                    <h4 class="font-bold text-green-700 text-base mt-1" data-i18n="tax_policy_title">📋 Policy &amp; Conditions</h4>
+
+                    <div class="bg-mint/20 rounded-xl p-3 text-sm border border-mint/40">
+                        <p class="font-semibold text-green-700 mb-1" data-i18n="tax_policy_label">Policy:</p>
+                        <p class="text-gray-700" data-i18n="tax_policy_body">VAT (Value-added Tax) refunds for foreign visitors (residing ≤183 days) on purchases from tax-free shops.</p>
+                    </div>
+
+                    <div class="text-sm text-gray-700">
+                        <p class="font-bold text-green-600 mb-2" data-i18n="tax_cond_title">✅ Conditions</p>
+                        <ul class="space-y-1">
+                            <li class="flex items-start gap-2"><span class="text-mint mt-0.5">•</span> <span data-i18n="tax_c1">Single-day purchases ≥¥500 at the same store.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-mint mt-0.5">•</span> <span data-i18n="tax_c2">Items unused/unconsumed.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-mint mt-0.5">•</span> <span data-i18n="tax_c3">Departure within 90 days of purchase.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-mint mt-0.5">•</span> <span data-i18n="tax_c4">Items carried or checked in upon departure.</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-lemon/20 rounded-xl p-3 text-sm border border-lemon/40">
+                        <p class="font-bold text-yellow-600 mb-1" data-i18n="tax_calc_title">📊 Refund Calculation</p>
+                        <p class="text-gray-700" data-i18n="tax_calc_formula">Refund = (Invoice amount including VAT) × Refund rate</p>
+                        <ul class="mt-1 space-y-0.5 text-gray-600 text-xs">
+                            <li data-i18n="tax_rate1">• 11% for 13% VAT items</li>
+                            <li data-i18n="tax_rate2">• 8% for 9% VAT items</li>
+                            <li data-i18n="tax_rate3">• Agency fee: 2% deducted</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Refund Steps -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-2 border-skyblue/40 relative overflow-hidden flex flex-col gap-4">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-skyblue/60 to-skyblue/10 rounded-t-2xl"></div>
+                    <h4 class="font-bold text-blue-600 text-base mt-1" data-i18n="tax_steps_title">🪜 Refund Steps</h4>
+
+                    <div class="space-y-3 text-sm text-gray-700">
+                        <div class="flex items-start gap-3">
+                            <span class="w-7 h-7 bg-skyblue text-white rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">①</span>
+                            <div>
+                                <p class="font-semibold" data-i18n="tax_step1_title">Obtain Form &amp; Invoice</p>
+                                <p class="text-gray-600" data-i18n="tax_step1_body">Get a Tax Refund Application Form and invoice from the store.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-7 h-7 bg-skyblue text-white rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">②</span>
+                            <div>
+                                <p class="font-semibold" data-i18n="tax_step2_title">Declare at Customs</p>
+                                <p class="text-gray-600" data-i18n="tax_step2_body">Declare items at customs before departure. Present items, form, and invoice for inspection.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-7 h-7 bg-skyblue text-white rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">③</span>
+                            <div>
+                                <p class="font-semibold" data-i18n="tax_step3_title">Receive Refund</p>
+                                <p class="text-gray-600" data-i18n="tax_step3_body">Cash (≤¥10,000) or bank transfer (&gt;¥10,000).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <img src="images/taxp.png">
+                    <div class="absolute bottom-2 right-3 text-skyblue/20 text-5xl select-none">🧾</div>
+                </div>
+
+            </div>
+
+            <!-- ══════════════════════ -->
+            <!-- Section 4: Hainan     -->
+            <!-- ══════════════════════ -->
+            <div id="hainan" class="text-center mb-10 mt-4">
+                <h3 class="text-2xl font-bold text-sage relative inline-block">
+                    <span class="bg-white px-6 py-2 rounded-2xl shadow-md transform rotate-1 border-2 border-sage" data-i18n="s4_title">🌴 4. Hainan Island Duty-Free Policy</span>
+                    <span class="absolute -top-3 -right-7 text-xs font-bold bg-lemon text-yellow-800 px-2 py-1 rounded-full shadow-sm border border-white" data-i18n="s4_badge">Shop Smart~</span>
+                </h3>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-md border-2 border-lemon/50 relative overflow-hidden mb-8">
+                <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-lemon/80 to-lemon/10 rounded-t-2xl"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex flex-col gap-4">
+
+                        <div class="bg-lemon/20 rounded-xl p-4 border border-lemon/40 text-sm">
+                            <p class="font-bold text-yellow-700 mb-2" data-i18n="hainan_elig_title">✅ Eligibility</p>
+                            <p class="text-gray-700" data-i18n="hainan_elig_body">Travelers aged 16+ with valid ID (passport for foreigners) departing Hainan via air/train/ship (not leaving China).</p>
+                        </div>
+
+                        <div class="bg-mint/20 rounded-xl p-4 border border-mint/40 text-sm">
+                            <p class="font-bold text-green-700 mb-2" data-i18n="hainan_quota_title">📊 Annual Quota</p>
+                            <p class="text-gray-700" data-i18n="hainan_quota_body">¥100,000 per person (≈ €13,000), unlimited purchases.</p>
+                        </div>
+
+                        <div class="bg-skyblue/10 rounded-xl p-4 border border-skyblue/30 text-sm">
+                            <p class="font-bold text-blue-600 mb-2" data-i18n="hainan_pickup_title">🛍️ Purchase &amp; Pickup</p>
+                            <p class="text-gray-700" data-i18n="hainan_pickup_body">Buy at duty-free shops/online, collect at designated airport/train/port areas.</p>
+                        </div>
+
+                        <div class="bg-peach/10 rounded-xl p-3 border border-peach/30 text-sm">
+                            <p class="font-bold text-red-500 mb-1" data-i18n="hainan_more_title">🔗 Learn More</p>
+                            <p class="text-gray-600 text-xs" data-i18n="hainan_more_body">National Tax Administration: <a href="https://www.chinatax.gov.cn/" target="_blank" class="text-blue-500 underline">https://www.chinatax.gov.cn/</a></p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-3">
+                        <img src="images/hainanshop.png">
+                    </div>
+                </div>
+
+                <div class="absolute bottom-2 right-3 text-lemon/20 text-5xl select-none">🌴</div>
             </div>
 
         </div>
     </section>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="w-full py-6 px-4 md:px-8 bg-apricot/30 footer-text">
+    <footer class="w-full py-6 px-4 md:px-8 bg-mint/30 footer-text">
         <div class="max-w-5xl mx-auto text-center">
             <p class="mb-2" data-i18n="footer_editors">Editors: Liu Sisi, Wu Xiangwei, Xu Xinyi</p>
             <p class="mb-2" data-i18n="footer_devs">Developers: Li Xuan, Li Xinyi</p>
@@ -423,7 +537,7 @@
 
     <!-- Back to Top -->
     <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"
-        style="position:fixed;bottom:32px;right:32px;width:48px;height:48px;border-radius:50%;background-color:#faae98;color:#ffffff;font-size:22px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.15);opacity:0;transition:opacity 0.3s,transform 0.2s;z-index:9999;"
+        style="position:fixed;bottom:32px;right:32px;width:48px;height:48px;border-radius:50%;background-color:#B2E8C2;color:#2d6a4f;font-size:22px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.15);opacity:0;transition:opacity 0.3s,transform 0.2s;z-index:9999;"
         onmouseover="this.style.transform='scale(1.1)'"
         onmouseout="this.style.transform='scale(1)'">↑</button>
 
@@ -452,79 +566,120 @@
                 subnav_travel_short: 'Culture',
                 subnav_travel_long: 'Travel & Culture',
                 // breadcrumb
-                bc_home: 'Home', bc_guide: 'Guide', bc_page: 'Accommodation',
+                bc_home: 'Home', bc_guide: 'Guide', bc_page: 'Payment & Tax Refund',
                 // hero
-                hero_title: 'Accommodation',
-                hero_sub: 'Find your perfect stay in China 🏨🛎️✨',
-                // section header
-                sec_title: '🏨 Recommended Platform: Trip.com',
-                sec_badge: 'Book Smart~',
-                platform_name: 'Trip.com — International Booking Platform',
-                platform_desc: 'English interface, supports Visa / Mastercard / AmEx · Switch language & currency freely · 24/7 English customer support',
-                // step 1
-                s1_title: 'Download',
-                s1_sub: 'Get the app or use the web version',
-                s1_ios_label: 'iOS users:',
-                s1_ios_body: 'Search <span class="text-red-500 font-medium">Trip.com</span> in the App Store.',
-                s1_android_label: 'Android users:',
-                s1_android_body: 'Search <span class="text-red-500 font-medium">Trip.com</span> on Google Play.',
-                s1_web_label: 'Web version:',
-                s1_web_body: 'Visit <a href="https://www.trip.com" target="_blank" class="text-blue-500 underline text-xs">https://www.trip.com</a>',
-                s1_web_note: 'It is allowed to switch languages and currencies.',
-                // step 2
-                s2_title: 'Register an Account',
-                s2_sub: 'Quick & easy sign-up',
-                s2_step1: 'Open the app / website → Click <span class="font-semibold">"Sign Up"</span> → Choose email or international phone number.',
-                s2_step2: 'Fill in your details → Enter the verification code → Complete registration.',
-                s2_tips_title: '💡 Tips',
-                s2_tip1: '– Link your <span class="font-semibold">Google account</span> for quicker login.',
-                s2_tip2: '– Ensure your <span class="font-semibold">profile name matches your passport</span>.',
-                // step 3
-                s3_title: 'Identity Verification',
-                s3_sub: 'Passport verification for foreign guests',
-                s3_path_label: 'Verification path:',
-                s3_path1: '「Manual Verification」',
-                s3_path2: '「For Non-Mainland Chinese<br>(HK, Macau, Taiwan & Overseas)」',
-                s3_path3: '「Passport Verification」',
-                s3_desc: 'Follow the instructions to set a <span class="font-semibold text-purple-600">payment password</span> and submit your <span class="font-semibold text-purple-600">passport details</span> and wait for confirmation.',
-                // step 4
-                s4_title: 'Search for Hotels',
-                s4_sub: 'Find accommodation that accepts foreign guests',
-                s4_step1: 'Enter basic search criteria <span class="font-semibold">(location / dates / guests)</span>.',
-                s4_filter_label: 'Filter results:',
-                s4_ctrip: '(China Mainland version): Click 「Filters」→ Check 「Accepts Foreign Guests」',
-                s4_tripcom: '(International version): No need for this filter.',
-                // step 5
-                s5_title: 'Select Room & Payment',
-                s5_sub: 'Review details, fill in guest info, and pay securely',
-                s5_sub1_title: 'Check Room Details',
-                s5_sub1_body: 'Review room descriptions (breakfast inclusion, cancellation policy, etc.).',
-                s5_sub1_note_label: 'Note:',
-                s5_sub1_note_body: 'Look for the 「Foreign Guests Allowed」 label and requirements (e.g., passport copies).',
-                s5_sub2_title: 'Guest Information',
-                s5_sub2_body: 'Enter guest information as shown on your passport.',
-                s5_sub3_title: 'Payment',
-                s5_sub3_cards: 'Accepted cards: <span class="font-semibold">Visa, Mastercard, American Express</span>, etc.',
-                s5_sub3_how: 'Click 「Add Payment Method」 → Enter card number / expiry date / CVV.',
-                s5_sub3_note: 'Some hotels allow <span class="font-semibold">"Pay at Property"</span> but may require a pre-authorization hold.',
-                // tips box
-                tips_title: 'Tips',
-                tips_modify_title: '📋 Modify a Booking:',
-                tips_modify_body: 'Go to 「My Bookings」→ Select your order → Click 「Modify」 to adjust dates / room type.',
-                tips_support_title: '📞 Customer Support:',
-                tips_support_body: "Contact Trip.com's <span class=\"font-bold text-orange-500\">24/7 English support</span>: <span class=\"font-mono text-blue-600\">+1-800-210-6567</span>",
-                // table
-                table_title: '✨ Quick Guide: 5 Steps at a Glance',
-                tbl_r1_step: 'Step 1 · Download',
-                tbl_r1_desc: 'App Store / Google Play / trip.com',
-                tbl_r2_step: 'Step 2 · Register',
-                tbl_r2_desc: 'Email or international number · Link Google for faster login',
-                tbl_r3_step: 'Step 3 · Verify',
-                tbl_r3_desc: 'Manual Verification → Passport Verification',
-                tbl_r4_step: 'Step 4 · Search',
-                tbl_r4_desc: 'Filter by "Accepts Foreign Guests" on Ctrip · Skip filter on Trip.com',
-                tbl_r5_step: 'Step 5 · Pay',
-                tbl_r5_desc: 'Visa / Mastercard / AmEx · Check "Foreign Guests Allowed" label',
+                hero_title: 'Payment & Tax Refund',
+                hero_sub: 'Pay smart, shop smart, get your refund 💳🧾✈️',
+                // section 1
+                s1_title: '💳 1. Payment Methods',
+                s1_badge: 'Pay Anywhere',
+                card_title: '(1) Card Payments',
+                card_sub: 'Physical cards accepted nationwide',
+                card_accepted_title: '✅ Cards Accepted in China',
+                card_accepted_body: 'UnionPay, Visa, Mastercard, JCB, Diners Club, Discover.',
+                card_accepted_note: 'Look for corresponding logos at merchants. If unsure, ask staff if your card is accepted.',
+                card_tips_title: '⭐ Tips',
+                card_tips_body: '<span class="font-semibold">UnionPay cards are widely accepted at all card terminals nationwide.</span>',
+                mobile_header: '📱 Mobile Payments — Alipay & WeChat Pay dominate in China',
+                mobile_fee: 'No fees for transactions under ¥200 &nbsp;·&nbsp; 3% fee for transactions ≥¥200',
+                // alipay
+                alipay_cs: 'Customer Service: +86-571 2688 6000',
+                alipay_s1_title: 'Step 1 · Download',
+                alipay_s1_body: "Get the app from your app store or Alipay's official website.",
+                alipay_s2_title: 'Step 2 · Register',
+                alipay_s2_body: 'Enter your mobile number and tap 「Next」.',
+                alipay_s3_title: 'Step 3 · Link Card',
+                alipay_s3_body: 'Tap 「Add Now」 and follow prompts.',
+                alipay_s3_note: 'Supported cards: UnionPay, Visa, Mastercard, JCB, Diners Club, Discover.',
+                alipay_s4_title: 'Step 4 · Two Payment Methods',
+                alipay_op1_label: 'Option 1',
+                alipay_op1_desc: "Scan merchant's QR code",
+                alipay_op2_label: 'Option 2',
+                alipay_op2_desc: 'Show your payment code',
+                // wechat
+                wechat_cs: 'Customer Service: +86-400 670 0700',
+                wechat_s1_title: 'Step 1 · Download',
+                wechat_s1_body: 'Install WeChat and update to the latest version.',
+                wechat_s2_title: 'Step 2 · Register',
+                wechat_s2_body: 'Use an international number and complete identity verification.',
+                wechat_s3_title: 'Step 3 · Enable WeChat Pay',
+                wechat_s3_body: '「Me」→「Services」→「Wallet」.',
+                wechat_s3_note: 'If missing, activate via 「Me」→「Settings」→「General」→「Assistive Features」→「Enable WeChat Pay」.',
+                wechat_s4_title: 'Step 4 · Link Card',
+                wechat_s4_note: 'Supported: Visa, Mastercard, American Express, JCB, Diners Club, Discover.',
+                wechat_s5_title: 'Step 5 · Two Payment Methods',
+                wechat_op1_label: 'Option 1',
+                wechat_op1_desc: "Scan the merchant's green QR code",
+                wechat_op2_label: 'Option 2',
+                wechat_op2_desc: 'Show your payment code or request payment',
+                wechat_note_title: '⚠️ Note',
+                wechat_note1: '• WeChat Pay does not support transfers or Pay/Receive functions that use international card.',
+                wechat_note2: "• Users in Singapore (DBS PayLah!) and Malaysia (Touch 'n Go eWallet) can directly use their local wallets to scan the UnionPay or Alipay QR code to pay without downloading a Chinese app.",
+                // section 2
+                s2_title: '💵 2. Cash Exchange',
+                s2_badge: 'RMB Ready~',
+                docs_title: '📄 Required Documents',
+                docs_1: 'Original valid passport (copies might not be accepted)',
+                docs_2: 'Foreign cash (USD, EUR, GBP, etc.)',
+                docs_3: 'International debit/credit card (Visa/Mastercard)',
+                exch1_title: 'Currency Exchange Counters',
+                exch1_where: 'Found at airports, international hotels.',
+                exch1_what: 'Exchange foreign cash to RMB.',
+                exch2_title: 'Bank Branches',
+                exch2_s1_label: 'Locate a Branch:',
+                exch2_s1_body: 'Use maps (e.g., Amap) to find banks with "Foreign Exchange" signs. Check operating hours.',
+                exch2_s2_label: 'Fill Form:',
+                exch2_s2_body: 'Complete the Foreign Exchange Application Form with: name (as in passport), passport number, exchange amount, contact info (optional).',
+                exch2_s3_label: 'Submit Documents:',
+                exch2_s3_body: 'Hand over passport, foreign cash, and form. Staff will confirm the rate and process the exchange.',
+                exch2_s4_label: 'Receive RMB:',
+                exch2_s4_body: 'Verify the amount and keep the receipt.',
+                exch3_title: 'ATM Withdrawals',
+                exch3_banks_label: 'Supported Banks:',
+                exch3_banks_body: 'Bank of China, China Construction Bank, ICBC (some ATMs)',
+                atm_s1: 'Find ATMs with English interfaces.',
+                atm_s2: 'Insert card, select language.',
+                atm_s3: 'Choose "Withdrawal", enter amount (note daily limits).',
+                atm_s4: 'Enter PIN, confirm.',
+                atm_s5: 'Collect cash, card, and receipt.',
+                atm_fee_label: 'Fees:',
+                atm_fee_body: 'Up to bank. Some ATMs reject small withdrawals (<¥1,200).',
+                atm_limit_title: '⭐ Note: Exchange Limits',
+                atm_limit_body: 'Max. ¥20,000 per person per transaction.<br>Exceeding limits requires additional proof (visa, itinerary).',
+                // section 3
+                s3_title: '🧾 3. Tax Refund on Departure',
+                s3_badge: 'Get Money Back!',
+                tax_policy_title: '📋 Policy & Conditions',
+                tax_policy_label: 'Policy:',
+                tax_policy_body: 'VAT (Value-added Tax) refunds for foreign visitors (residing ≤183 days) on purchases from tax-free shops.',
+                tax_cond_title: '✅ Conditions',
+                tax_c1: 'Single-day purchases ≥¥500 at the same store.',
+                tax_c2: 'Items unused/unconsumed.',
+                tax_c3: 'Departure within 90 days of purchase.',
+                tax_c4: 'Items carried or checked in upon departure.',
+                tax_calc_title: '📊 Refund Calculation',
+                tax_calc_formula: 'Refund = (Invoice amount including VAT) × Refund rate',
+                tax_rate1: '• 11% for 13% VAT items',
+                tax_rate2: '• 8% for 9% VAT items',
+                tax_rate3: '• Agency fee: 2% deducted',
+                tax_steps_title: '🪜 Refund Steps',
+                tax_step1_title: 'Obtain Form & Invoice',
+                tax_step1_body: 'Get a Tax Refund Application Form and invoice from the store.',
+                tax_step2_title: 'Declare at Customs',
+                tax_step2_body: 'Declare items at customs before departure. Present items, form, and invoice for inspection.',
+                tax_step3_title: 'Receive Refund',
+                tax_step3_body: 'Cash (≤¥10,000) or bank transfer (>¥10,000).',
+                // section 4
+                s4_title: '🌴 4. Hainan Island Duty-Free Policy',
+                s4_badge: 'Shop Smart~',
+                hainan_elig_title: '✅ Eligibility',
+                hainan_elig_body: 'Travelers aged 16+ with valid ID (passport for foreigners) departing Hainan via air/train/ship (not leaving China).',
+                hainan_quota_title: '📊 Annual Quota',
+                hainan_quota_body: '¥100,000 per person (≈ €13,000), unlimited purchases.',
+                hainan_pickup_title: '🛍️ Purchase & Pickup',
+                hainan_pickup_body: 'Buy at duty-free shops/online, collect at designated airport/train/port areas.',
+                hainan_more_title: '🔗 Learn More',
+                hainan_more_body: 'National Tax Administration: <a href="https://www.chinatax.gov.cn/" target="_blank" class="text-blue-500 underline">https://www.chinatax.gov.cn/</a>',
                 // footer
                 footer_editors: 'Editors: Liu Sisi, Wu Xiangwei, Xu Xinyi',
                 footer_devs: 'Developers: Li Xuan, Li Xinyi',
@@ -539,88 +694,129 @@
                 subnav_trans_long: '交通与导航',
                 subnav_pay_short: '支付与退税',
                 subnav_pay_long: '支付与退税',
-                subnav_accom: '住宿',
+                subnav_accom: '住宿与生活',
                 subnav_emerg_short: '紧急情况',
                 subnav_emerg_long: '紧急情况处理',
                 subnav_travel_short: '文化',
                 subnav_travel_long: '旅游与文化',
                 // breadcrumb
-                bc_home: '首页', bc_guide: '指南', bc_page: '住宿',
+                bc_home: '首页', bc_guide: '指南', bc_page: '支付与退税',
                 // hero
-                hero_title: '住宿与生活',
-                hero_sub: '在中国找到你的完美落脚地 🏨🛎️✨',
-                // section header
-                sec_title: '🏨 推荐平台：Trip.com',
-                sec_badge: '精明预订~',
-                platform_name: 'Trip.com — 国际酒店预订平台',
-                platform_desc: '全英文界面，支持 Visa / Mastercard / AmEx · 自由切换语言与货币 · 24小时英文客服',
-                // step 1
-                s1_title: '步骤一：下载',
-                s1_sub: '下载 App 或使用网页版',
-                s1_ios_label: 'iOS 用户：',
-                s1_ios_body: '在 App Store 搜索 <span class="text-red-500 font-medium">Trip.com</span>。',
-                s1_android_label: '安卓用户：',
-                s1_android_body: '在 Google Play 搜索 <span class="text-red-500 font-medium">Trip.com</span>。',
-                s1_web_label: '网页版：',
-                s1_web_body: '访问 <a href="https://www.trip.com" target="_blank" class="text-blue-500 underline text-xs">https://www.trip.com</a>',
-                s1_web_note: '支持切换语言和货币。',
-                // step 2
-                s2_title: '步骤二：注册账号',
-                s2_sub: '快速简便地完成注册',
-                s2_step1: '打开 App / 网页 → 点击 <span class="font-semibold">"Sign Up"</span> → 选择邮箱注册或国际手机号注册。',
-                s2_step2: '填写信息 → 接收验证码 → 完成注册。',
-                s2_tips_title: '💡 小贴士',
-                s2_tip1: '– 推荐绑定 <span class="font-semibold">Google 账号</span>，一键登录更快捷。',
-                s2_tip2: '– 注册后记得完善个人资料，<span class="font-semibold">姓名需与护照一致</span>。',
-                // step 3
-                s3_title: '步骤三：实名认证',
-                s3_sub: '外国旅客进行护照认证',
-                s3_path_label: '认证路径：',
-                s3_path1: '「人工审核认证」',
-                s3_path2: '「仅限中国港澳台<br>及海外人士」',
-                s3_path3: '「护照认证」',
-                s3_desc: '根据提示设置<span class="font-semibold text-purple-600">支付密码</span>，填写<span class="font-semibold text-purple-600">护照信息</span>，等待认证通过。',
-                // step 4
-                s4_title: '步骤四：搜索酒店',
-                s4_sub: '筛选可接待外宾的住宿',
-                s4_step1: '输入基本信息 <span class="font-semibold">（目的地 / 日期 / 房客人数）</span>。',
-                s4_filter_label: '筛选酒店：',
-                s4_ctrip: '（中国内地版携程）：点击「筛选」→ 勾选「可接待外宾」。',
-                s4_tripcom: '（国际版 Trip.com）：无需筛选此条件。',
-                // step 5
-                s5_title: '步骤五：选择房型与支付',
-                s5_sub: '查看详情，填写入住信息，安全支付',
-                s5_sub1_title: '查看房型详情',
-                s5_sub1_body: '查看房型描述（是否含早餐、取消政策等）。',
-                s5_sub1_note_label: '注意：',
-                s5_sub1_note_body: '注意"Foreign Guests Allowed"明确标识和入住需知（如护照复印件要求）。',
-                s5_sub2_title: '填写入住信息',
-                s5_sub2_body: '按护照填写入住人信息。',
-                s5_sub3_title: '绑定支付方式',
-                s5_sub3_cards: '支持境外信用卡：<span class="font-semibold">Visa、Mastercard、American Express</span> 等。',
-                s5_sub3_how: '点击「Add Payment Method」 → 输入卡号 / 有效期 / CVV。',
-                s5_sub3_note: '部分酒店支持<span class="font-semibold">"到店支付"</span>，但需预授权担保。',
-                // tips box
-                tips_title: '小贴士',
-                tips_modify_title: '📋 修改订单：',
-                tips_modify_body: '进入「My Bookings」→ 选择订单 → 点击「Modify」，即可调整日期 / 房型。',
-                tips_support_title: '📞 客服支持：',
-                tips_support_body: '如遇问题，拨打 Trip.com 英文客服：<span class="font-bold text-orange-500">24小时服务</span> <span class="font-mono text-blue-600">+1-800-210-6567</span>',
-                // table
-                table_title: '✨ 快速指南：五步一览',
-                tbl_r1_step: '第一步 · 下载',
-                tbl_r1_desc: 'App Store / Google Play / trip.com',
-                tbl_r2_step: '第二步 · 注册',
-                tbl_r2_desc: '邮箱或国际号码 · 绑定 Google 一键登录',
-                tbl_r3_step: '第三步 · 认证',
-                tbl_r3_desc: '人工审核认证 → 护照认证',
-                tbl_r4_step: '第四步 · 搜索',
-                tbl_r4_desc: '携程需筛选「可接待外宾」· Trip.com 无需筛选',
-                tbl_r5_step: '第五步 · 支付',
-                tbl_r5_desc: 'Visa / Mastercard / AmEx · 注意"外宾可入住"标识',
+                hero_title: '支付与消费',
+                hero_sub: '聪明支付，精明购物，轻松退税 💳🧾✈️',
+                // section 1
+                s1_title: '💳 一、支付方式',
+                s1_badge: '随处可付',
+                card_title: '（一）刷卡支付',
+                card_sub: '全国商户均支持实体卡支付',
+                card_accepted_title: '✅ 中国境内可用银行卡',
+                card_accepted_body: '银联、Visa、Mastercard、JCB、Diners Club、Discover。',
+                card_accepted_note: '在商户查找对应标识。如不确定，可询问收银员是否支持你的银行卡。',
+                card_tips_title: '⭐ 小贴士',
+                card_tips_body: '<span class="font-semibold">银联卡可在境内所有布放银行卡支付受理终端的商户使用。</span>',
+                mobile_header: '📱 移动支付 — 支付宝和微信支付在中国最为普及',
+                mobile_fee: '单笔支出 &lt;¥200 免手续费 &nbsp;·&nbsp; ≥¥200 收取 3% 手续费',
+                // alipay
+                alipay_cs: '服务热线：+86-571 2688 6000',
+                alipay_s1_title: '第一步 · 下载',
+                alipay_s1_body: '在手机应用市场或支付宝官网下载支付宝。',
+                alipay_s2_title: '第二步 · 注册',
+                alipay_s2_body: '输入手机号码，点击「立即注册」。',
+                alipay_s3_title: '第三步 · 绑定银行卡',
+                alipay_s3_body: '点击「立即添加」，按提示完成绑卡。',
+                alipay_s3_note: '支持银行卡：银联、Visa、Mastercard、JCB、Diners Club、Discover。',
+                alipay_s4_title: '第四步 · 两种支付方式',
+                alipay_op1_label: '方式一',
+                alipay_op1_desc: '扫描商家二维码',
+                alipay_op2_label: '方式二',
+                alipay_op2_desc: '出示付款码',
+                // wechat
+                wechat_cs: '服务热线：+86-400 670 0700',
+                wechat_s1_title: '第一步 · 下载',
+                wechat_s1_body: '在手机应用市场或官网下载微信，并更新到最新版本。',
+                wechat_s2_title: '第二步 · 注册',
+                wechat_s2_body: '使用国际号码注册账户，并完成身份验证。',
+                wechat_s3_title: '第三步 · 开通微信支付',
+                wechat_s3_body: '「我」→「服务」→「钱包」。',
+                wechat_s3_note: '若找不到入口，可通过「我」→「设置」→「通用」→「辅助功能」→「启用微信支付」开通。',
+                wechat_s4_title: '第四步 · 绑定银行卡',
+                wechat_s4_note: '支持银行卡：Visa、Mastercard、美国运通、JCB、Diners Club、Discover。',
+                wechat_s5_title: '第五步 · 两种支付方式',
+                wechat_op1_label: '方式一',
+                wechat_op1_desc: '扫描商家绿色二维码',
+                wechat_op2_label: '方式二',
+                wechat_op2_desc: '出示付款码或收款码',
+                wechat_note_title: '⚠️ 注意事项',
+                wechat_note1: '• 微信不支持使用境外信用卡进行转账或「收付款」功能。',
+                wechat_note2: '• 新加坡（DBS PayLah!）、马来西亚（Touch\'n Go eWallet）等地的用户，可直接使用本地钱包扫描银联或支付宝二维码支付，无需下载中国 App。',
+                // section 2
+                s2_title: '💵 二、现金兑换',
+                s2_badge: '人民币备好~',
+                docs_title: '📄 所需材料',
+                docs_1: '有效护照原件（复印件可能不被接受）',
+                docs_2: '外币现金（美元、欧元、英镑等主要外币）',
+                docs_3: '国际借记卡/信用卡（Visa/Mastercard）',
+                exch1_title: '外币代兑机构',
+                exch1_where: '常见于机场、涉外酒店等场所。',
+                exch1_what: '支持外币现金兑换人民币现金。',
+                exch2_title: '银行网点',
+                exch2_s1_label: '步骤一：前往银行网点',
+                exch2_s1_body: '使用地图 App（如高德地图）搜索有"外币兑换"标识的银行网点，提前查询营业时间。',
+                exch2_s2_label: '步骤二：填写《外汇兑换申请表》',
+                exch2_s2_body: '在柜台领取申请表，填写：姓名（与护照一致）、护照号码、兑换金额、联系方式（可选）。',
+                exch2_s3_label: '步骤三：提交材料',
+                exch2_s3_body: '将护照、外币现金和申请表递交柜台工作人员，工作人员核对信息并计算汇率后完成兑换。',
+                exch2_s4_label: '步骤四：领取人民币',
+                exch2_s4_body: '核对金额，妥善保管兑换凭证。',
+                exch3_title: 'ATM 机取现',
+                exch3_banks_label: '支持外卡的银行：',
+                exch3_banks_body: '中国银行、中国建设银行、中国工商银行部分 ATM',
+                atm_s1: '找到支持外卡的 ATM 机（通常有英文界面）。',
+                atm_s2: '插入银行卡，选择语言。',
+                atm_s3: '选择"取款"，输入金额（注意每日取现限额）。',
+                atm_s4: '输入密码，确认交易。',
+                atm_s5: '取走现金和银行卡，保留交易凭条。',
+                atm_fee_label: '手续费：',
+                atm_fee_body: '具体费率咨询发卡银行。部分 ATM 机不支持小额取现（如 1200 元以下）。',
+                atm_limit_title: '⭐ 注意：兑换限额',
+                atm_limit_body: '每人每次兑换限额为 2 万元人民币。<br>超过限额需提供额外证明材料（如签证、行程单）。',
+                // section 3
+                s3_title: '🧾 三、离境退税',
+                s3_badge: '取回你的钱！',
+                tax_policy_title: '📋 政策与适用条件',
+                tax_policy_label: '政策说明：',
+                tax_policy_body: '对在中国境内连续居住不超过 183 天的境外旅客，在退税商店购物后退还增值税。',
+                tax_cond_title: '✅ 适用条件',
+                tax_c1: '同一日在同一退税商店购买金额达 500 元人民币。',
+                tax_c2: '退税物品尚未启用或消费。',
+                tax_c3: '离境日距购买日不超过 90 天。',
+                tax_c4: '所购退税物品由本人随身携带或随行托运出境。',
+                tax_calc_title: '📊 退税计算',
+                tax_calc_formula: '应退增值税额 = 退税物品销售发票含增值税金额 × 退税率',
+                tax_rate1: '• 适用 13% 税率，退税率为 11%',
+                tax_rate2: '• 适用 9% 税率，退税率为 8%',
+                tax_rate3: '• 退税代理机构收取 2% 手续费',
+                tax_steps_title: '🪜 办理步骤',
+                tax_step1_title: '索取退税申请单及发票',
+                tax_step1_body: '向退税商店索取境外旅客购物离境退税申请单和销售发票。',
+                tax_step2_title: '向海关申报',
+                tax_step2_body: '离境时主动持退税物品、申请单、发票向海关申报，接受海关验核盖章。',
+                tax_step3_title: '领取退税款',
+                tax_step3_body: '现金退税（≤¥10,000）或银行转账（>¥10,000）。',
+                // section 4
+                s4_title: '🌴 四、海南离岛免税政策',
+                s4_badge: '精明购物~',
+                hainan_elig_title: '✅ 适用人群',
+                hainan_elig_body: '年满 16 周岁，持有效身份证件（外国旅客持护照），乘飞机、火车、轮船离岛（不包括离境）的旅客。',
+                hainan_quota_title: '📊 年度额度',
+                hainan_quota_body: '每人每年免税购物额度 10 万元人民币（约 €13,000），不限次数。',
+                hainan_pickup_title: '🛍️ 购买与提货',
+                hainan_pickup_body: '在离岛免税店或经批准的网上销售窗口付款，在机场、火车站、港口码头指定区域提货离岛。',
+                hainan_more_title: '🔗 了解更多',
+                hainan_more_body: '国家税务总局官网：<a href="https://www.chinatax.gov.cn/" target="_blank" class="text-blue-500 underline">https://www.chinatax.gov.cn/</a>',
                 // footer
-                footer_editors: '编辑：刘思思、吴向威、徐新艺',
-                footer_devs: '开发：李璇、李新艺',
+                footer_editors: '编辑：刘思思，吴向微，许欣溢',
+                footer_devs: '开发：李璇、李欣苡',
                 footer_copy: '© 2025 中国导航手册 | 版权所有',
             }
         };

@@ -39,36 +39,14 @@
             font-weight: 400;
             font-style: normal;
         }
-        .playpen-sans-hebrew {
-            font-family: "Playpen Sans Hebrew", cursive;
-            font-optical-sizing: auto;
-            font-weight: 500;
-            font-style: normal;
-        }
         @layer utilities {
-            .text-shadow {
-                text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
-            }
+            .text-shadow { text-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
         }
         html { scroll-behavior: smooth; }
-
         @layer components {
-            .font-en  { font-family: 'Inter', sans-serif; }
-            .section-title { font-family: 'Noto Serif SC', serif; font-weight: 600; letter-spacing: 0.02em; }
-            .nav-text  { font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: 0.01em; }
-            .footer-text { font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em; }
-        }
-
-        /* step arrow connector (desktop only) */
-        .step-arrow::after {
-            content: '→';
-            position: absolute;
-            right: -18px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.4rem;
-            color: #FF9F45;
-            font-weight: bold;
+            .font-en       { font-family: 'Inter', sans-serif; }
+            .nav-text      { font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: 0.01em; }
+            .footer-text   { font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em; }
         }
     </style>
 </head>
@@ -85,15 +63,15 @@
                 </h1>
             </div>
             <nav id="main-nav" class="flex flex-wrap gap-4 nav-text">
-                <a href="index.html" class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm">Home</a>
-                <a href="index.html#contents-section" class="px-4 py-2 bg-skyblue hover:bg-skyblue/80 rounded-full transition-all transform hover:scale-105 shadow-sm">Guide</a>
+                <a href="index.html" class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm" data-i18n="nav_home">Home</a>
+                <a href="index.html#contents-section" class="px-4 py-2 bg-skyblue hover:bg-skyblue/80 rounded-full transition-all transform hover:scale-105 shadow-sm" data-i18n="nav_guide">Guide</a>
                 <div class="relative group">
-                    <button class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm flex items-center gap-2">
-                        <span>Language</span><span class="text-xs">▼</span>
+                    <button class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm flex items-center gap-2" onclick="toggleLang()">
+                        <span id="langLabel">Language</span><span class="text-xs">▼</span>
                     </button>
                     <div class="absolute top-full right-0 mt-2 w-32 bg-white rounded-xl shadow-lg border-2 border-sunny/30 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                        <button class="w-full px-4 py-2 text-left hover:bg-sunny/10 rounded-t-xl transition-colors">English</button>
-                        <button class="w-full px-4 py-2 text-left hover:bg-sunny/10 rounded-b-xl transition-colors">中文</button>
+                        <button class="w-full px-4 py-2 text-left hover:bg-sunny/10 rounded-t-xl transition-colors" onclick="setLang('en')">English</button>
+                        <button class="w-full px-4 py-2 text-left hover:bg-sunny/10 rounded-b-xl transition-colors" onclick="setLang('zh')">中文</button>
                     </div>
                 </div>
             </nav>
@@ -106,45 +84,45 @@
             <div class="hidden md:block">
                 <nav class="flex items-center justify-between gap-1 nav-text text-[13px]">
                     <a href="preparation.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
-                        <span class="text-base">🧳</span><span>Preparation &amp; Entry</span>
+                        <span class="text-base">🧳</span><span data-i18n="subnav_prep">Preparation &amp; Entry</span>
                     </a>
                     <span class="h-5 w-px bg-white/60"></span>
                     <a href="transportation.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-blue-500 font-bold">
                         <span class="text-base">🗺️</span>
-                        <span class="md:inline lg:hidden">Transport &amp; Maps</span>
-                        <span class="hidden lg:inline">Transportation &amp; Navigation</span>
+                        <span class="md:inline lg:hidden" data-i18n="subnav_trans_short">Transport &amp; Maps</span>
+                        <span class="hidden lg:inline" data-i18n="subnav_trans_long">Transportation &amp; Navigation</span>
                     </a>
                     <span class="h-5 w-px bg-white/60"></span>
                     <a href="payment.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
                         <span class="text-base">💳</span>
-                        <span class="md:inline lg:hidden">Payment &amp; Tax</span>
-                        <span class="hidden lg:inline">Payment &amp; Tax Refund</span>
+                        <span class="md:inline lg:hidden" data-i18n="subnav_pay_short">Payment &amp; Tax</span>
+                        <span class="hidden lg:inline" data-i18n="subnav_pay_long">Payment &amp; Tax Refund</span>
                     </a>
                     <span class="h-5 w-px bg-white/60"></span>
                     <a href="accommodation.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
-                        <span class="text-base">🏨</span><span>Accommodation</span>
+                        <span class="text-base">🏨</span><span data-i18n="subnav_accom">Accommodation</span>
                     </a>
                     <span class="h-5 w-px bg-white/60"></span>
                     <a href="emergency.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
                         <span class="text-base">🆘</span>
-                        <span class="md:inline lg:hidden">Emergency</span>
-                        <span class="hidden lg:inline">Emergency Handling</span>
+                        <span class="md:inline lg:hidden" data-i18n="subnav_emerg_short">Emergency</span>
+                        <span class="hidden lg:inline" data-i18n="subnav_emerg_long">Emergency Handling</span>
                     </a>
                     <span class="h-5 w-px bg-white/60"></span>
                     <a href="travel.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
                         <span class="text-base">🎎</span>
-                        <span class="md:inline lg:hidden">Culture</span>
-                        <span class="hidden lg:inline">Travel &amp; Culture</span>
+                        <span class="md:inline lg:hidden" data-i18n="subnav_travel_short">Culture</span>
+                        <span class="hidden lg:inline" data-i18n="subnav_travel_long">Travel &amp; Culture</span>
                     </a>
                 </nav>
                 <div class="mt-2 h-[2px] w-24 bg-skyblue/70 rounded-full ml-[calc(16.66%-48px+110px)]"></div>
             </div>
-            <div class="mt-3 text-xs text-gray-500">
-                <a href="index.html" class="hover:text-gray-700 transition">Home</a>
+            <div class="mt-3 pb-2 text-xs text-gray-500">
+                <a href="index.html" class="hover:text-gray-700 transition" data-i18n="bc_home">Home</a>
                 <span class="mx-1 text-gray-300">/</span>
-                <a href="index.html#contents-section" class="hover:text-gray-700 transition">Guide</a>
+                <a href="index.html#contents-section" class="hover:text-gray-700 transition" data-i18n="bc_guide">Guide</a>
                 <span class="mx-1 text-gray-300">/</span>
-                <span class="text-gray-600">Transportation &amp; Navigation</span>
+                <span class="text-gray-600" data-i18n="bc_page">Transportation &amp; Navigation</span>
             </div>
         </div>
     </section>
@@ -154,59 +132,59 @@
         <div class="max-w-5xl mx-auto flex flex-col items-center gap-8">
             <div class="max-w-3xl text-center">
                 <br><br><br><br>
-                <h2 class="text-[clamp(1.8rem,4vw,2.8rem)] font-bold text-white text-shadow mb-4">
-                    Transportation & Navigation
+                <h2 class="text-[clamp(1.8rem,4vw,2.8rem)] font-bold text-white text-shadow mb-4" data-i18n="hero_title">
+                    Transportation &amp; Navigation
                 </h2>
-                <p class="text-lg text-gray-600">Getting around China made simple 🚄🚇🛵</p>
+                <p class="text-lg text-gray-600" data-i18n="hero_sub">Getting around China made simple 🚄🚇🛵</p>
                 <br><br><br><br><br><br><br><br><br>
             </div>
         </div>
     </section>
 
-    <!-- ===== CONTENT WRAPPER ===== -->
+    <!-- ===== CONTENT ===== -->
     <section id="transport" class="w-full py-12 px-4 md:px-8 bg-white/50">
         <div class="max-w-5xl mx-auto">
 
-            <!-- ── Section Title: Transportation ── -->
+            <!-- Section Title: Transportation -->
             <div class="text-center mb-10">
                 <h3 class="text-2xl font-bold text-sunny relative inline-block">
-                    <span class="bg-white px-6 py-2 rounded-2xl shadow-md transform -rotate-1 border-2 border-sunny">🚆 1. Transportation</span>
-                    <span class="absolute -top-3 -right-8 text-xs font-bold bg-skyblue text-white px-2 py-1 rounded-full shadow-sm border border-white">Getting Around</span>
+                    <span class="bg-white px-6 py-2 rounded-2xl shadow-md transform -rotate-1 border-2 border-sunny" data-i18n="transport_title">🚆 1. Transportation</span>
+                    <span class="absolute -top-3 -right-8 text-xs font-bold bg-skyblue text-white px-2 py-1 rounded-full shadow-sm border border-white" data-i18n="transport_badge">Getting Around</span>
                 </h3>
             </div>
 
-            <!-- ── 4 Transport Cards ── -->
+            <!-- 4 Transport Cards -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
 
                 <!-- Card: Metro -->
                 <div class="bg-red-50 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-red-200 relative overflow-hidden flex flex-col gap-4">
                     <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-red-400/60 to-red-200/10 rounded-t-2xl"></div>
-                    <h4 class="font-bold text-red-600 text-xl flex items-center gap-2 mt-1">🚇 Metro</h4>
+                    <h4 class="font-bold text-red-600 text-xl flex items-center gap-2 mt-1" data-i18n="metro_title">🚇 Metro</h4>
 
                     <div>
-                        <p class="text-xs font-bold text-green-600 mb-2">✅ Ticketing Options</p>
+                        <p class="text-xs font-bold text-green-600 mb-2" data-i18n="ticketing_options">✅ Ticketing Options</p>
                         <div class="space-y-3 text-sm text-gray-700">
                             <div class="bg-white/70 rounded-xl p-3 border border-red-100">
-                                <p class="font-semibold text-red-500 mb-1">① Self-service Machines</p>
-                                <p>Select English interface → Choose destination on the route map → Make payment → Collect ticket.</p>
-                                <p class="text-gray-500 text-xs mt-1">Ticket Office: Show passport → Make payment.</p>
+                                <p class="font-semibold text-red-500 mb-1" data-i18n="metro_machine_title">① Self-service Machines</p>
+                                <p data-i18n="metro_machine_desc">Select English interface → Choose destination on the route map → Make payment → Collect ticket.</p>
+                                <p class="text-gray-500 text-xs mt-1" data-i18n="metro_ticket_office">Ticket Office: Show passport → Make payment.</p>
                             </div>
                             <div class="bg-white/70 rounded-xl p-3 border border-red-100">
-                                <p class="font-semibold text-red-500 mb-1">② E-Ticket (QR Code)</p>
-                                <p>Open Alipay → Click "Transport" → Select "City" → Activate the local "Metro QR Code" → Scan to enter/exit.</p>
+                                <p class="font-semibold text-red-500 mb-1" data-i18n="metro_eticket_title">② E-Ticket (QR Code)</p>
+                                <p data-i18n="metro_eticket_desc">Open Alipay → Click "Transport" → Select "City" → Activate the local "Metro QR Code" → Scan to enter/exit.</p>
                             </div>
                             <div class="bg-white/70 rounded-xl p-3 border border-red-100">
-                                <p class="font-semibold text-red-500 mb-1">③ Metro Passes</p>
-                                <p>Ticket Office: Show passport → Make payment.</p>
+                                <p class="font-semibold text-red-500 mb-1" data-i18n="metro_pass_title">③ Metro Passes</p>
+                                <p data-i18n="metro_pass_desc">Ticket Office: Show passport → Make payment. Top-up: cash, Alipay, or WeChat Pay.</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="bg-red-100/60 rounded-xl p-3 text-sm border border-red-200">
-                        <p class="font-bold text-red-500 mb-1">⚠️ Note</p>
+                        <p class="font-bold text-red-500 mb-1" data-i18n="metro_note_title">⚠️ Note</p>
                         <ul class="space-y-1 text-gray-700">
-                            <li>– Tap in/out twice (once at entry, once at exit).</li>
-                            <li>– Passport holders are advised to use staffed gates to avoid scanner issues.</li>
+                            <li data-i18n="metro_note1">– Tap in/out twice (once at entry, once at exit).</li>
+                            <li data-i18n="metro_note2">– Passport holders are advised to use staffed gates to avoid scanner issues.</li>
                         </ul>
                     </div>
                     <div class="absolute bottom-2 right-3 text-red-200/40 text-5xl select-none">🚇</div>
@@ -215,49 +193,48 @@
                 <!-- Card: High-Speed Rail -->
                 <div class="bg-blue-50 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-blue-200 relative overflow-hidden flex flex-col gap-4">
                     <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-400/60 to-blue-200/10 rounded-t-2xl"></div>
-                    <h4 class="font-bold text-blue-600 text-xl flex items-center gap-2 mt-1">🚄 High-Speed Rail (HSR)</h4>
+                    <h4 class="font-bold text-blue-600 text-xl flex items-center gap-2 mt-1" data-i18n="hsr_title">🚄 High-Speed Rail (HSR)</h4>
 
                     <div>
-                        <p class="text-xs font-bold text-green-600 mb-2">✅ Ticketing Options</p>
+                        <p class="text-xs font-bold text-green-600 mb-2" data-i18n="hsr_ticket_label">✅ Ticketing Options</p>
                         <div class="space-y-3 text-sm text-gray-700">
                             <div class="bg-white/70 rounded-xl p-3 border border-blue-100">
-                                <p class="font-semibold text-blue-500 mb-1">① Online Booking (Recommended)</p>
-                                <p class="font-medium text-blue-400 text-xs mb-1">Trip.com (International Version):</p>
-                                <p>English interface → Enter route (e.g., Beijing→Shanghai) → Select train → Fill in passport details → Pay with Visa/Mastercard.</p>
-                                <p class="text-gray-500 text-xs mt-1">E-tickets: Scan QR code at the gate (no paper ticket needed!).</p>
-                                <p class="font-medium text-blue-400 text-xs mt-2 mb-1">www.12306.cn:</p>
-                                <p class="text-xs">Register → Passport verification → Show passport at the gate.</p>
+                                <p class="font-semibold text-blue-500 mb-1" data-i18n="hsr_online_title">① Online Booking (Recommended)</p>
+                                <p class="font-medium text-blue-400 text-xs mb-1" data-i18n="hsr_tripcom_label">Trip.com (International Version):</p>
+                                <p data-i18n="hsr_tripcom_desc">English interface → Enter route (e.g., Beijing→Shanghai) → Select train → Fill in passport details → Pay with Visa/Mastercard.</p>
+                                <p class="text-gray-500 text-xs mt-1" data-i18n="hsr_eticket_note">E-tickets: Scan QR code at the gate (no paper ticket needed!).</p>
+                                <p class="font-medium text-blue-400 text-xs mt-2 mb-1" data-i18n="hsr_12306_label">www.12306.cn:</p>
+                                <p class="text-xs" data-i18n="hsr_12306_desc">Register → Passport verification → Show passport at the gate.</p>
                             </div>
                             <div class="bg-white/70 rounded-xl p-3 border border-blue-100">
-                                <p class="font-semibold text-blue-500 mb-1">② Offline Booking</p>
-                                <p>Visit HSR station counters → Show passport → Pay by cash/card.</p>
+                                <p class="font-semibold text-blue-500 mb-1" data-i18n="hsr_offline_title">② Offline Booking</p>
+                                <p data-i18n="hsr_offline_desc">Visit HSR station counters → Show passport → Pay by cash/card.</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Boarding Process -->
                     <div>
-                        <p class="text-xs font-bold text-green-600 mb-2">✅ Boarding Process</p>
+                        <p class="text-xs font-bold text-green-600 mb-2" data-i18n="hsr_board_label">✅ Boarding Process</p>
                         <div class="flex flex-col gap-2 text-sm">
                             <div class="flex items-start gap-2">
                                 <span class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">①</span>
-                                <div><span class="font-semibold">Enter the Station</span> – Use self-service gates to scan your passport.</div>
+                                <div data-i18n="hsr_step1"><span class="font-semibold">Enter the Station</span> – Use self-service gates to scan your passport.</div>
                             </div>
                             <div class="flex items-start gap-2">
                                 <span class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">②</span>
-                                <div><span class="font-semibold">Security Check</span> – Queue for security screening after entering.</div>
+                                <div data-i18n="hsr_step2"><span class="font-semibold">Security Check</span> – Queue for security screening after entering.</div>
                             </div>
                             <div class="flex items-start gap-2">
                                 <span class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">③</span>
-                                <div><span class="font-semibold">Find Your Gate</span> – Check your ticket (via app) for the assigned gate. Wait nearby until boarding begins.</div>
+                                <div data-i18n="hsr_step3"><span class="font-semibold">Find Your Gate</span> – Check your ticket (via app) for the assigned gate. Wait nearby until boarding begins.</div>
                             </div>
                             <div class="flex items-start gap-2">
                                 <span class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">④</span>
-                                <div><span class="font-semibold">Board the Train</span> – Scan passport at gate when "Now Boarding" displays.</div>
+                                <div data-i18n="hsr_step4"><span class="font-semibold">Board the Train</span> – Scan passport at gate when "Now Boarding" displays.</div>
                             </div>
                             <div class="flex items-start gap-2">
                                 <span class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">⑤</span>
-                                <div><span class="font-semibold">Locate Your Seat</span> – Match ticket to number above windows (e.g., 06A = Row 6, Seat A).</div>
+                                <div data-i18n="hsr_step5"><span class="font-semibold">Locate Your Seat</span> – Match ticket to number above windows (e.g., 06A = Row 6, Seat A).</div>
                             </div>
                         </div>
                     </div>
@@ -267,46 +244,44 @@
                 <!-- Card: Ride-Hailing (Didi) -->
                 <div class="bg-sunny/10 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-sunny/40 relative overflow-hidden flex flex-col gap-4">
                     <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-sunny/60 to-sunny/10 rounded-t-2xl"></div>
-                    <h4 class="font-bold text-sunny text-xl flex items-center gap-2 mt-1">🚖 Ride-Hailing (Didi Rider)</h4>
+                    <h4 class="font-bold text-sunny text-xl flex items-center gap-2 mt-1" data-i18n="didi_title">🚖 Ride-Hailing (Didi Rider)</h4>
 
-                    <div class="inline-flex items-center gap-2 bg-white rounded-xl px-3 py-2 shadow-sm border border-sunny/20 w-fit text-sm font-semibold text-gray-700">
+                    <div class="inline-flex items-center gap-2 bg-white rounded-xl px-3 py-2 shadow-sm border border-sunny/20 w-fit text-sm font-semibold text-gray-700" data-i18n="didi_app_rec">
                         📱 Recommended App: <span class="text-sunny">Didi Rider</span>
                     </div>
 
-                    <!-- 📷 图片占位：Didi Rider App 截图 -->
                     <img src="images/didi_app.png">
-                    
 
                     <div>
-                        <p class="text-xs font-bold text-green-600 mb-2">✅ Steps</p>
+                        <p class="text-xs font-bold text-green-600 mb-2" data-i18n="didi_steps_label">✅ Steps</p>
                         <div class="space-y-2 text-sm text-gray-700">
                             <div class="flex items-start gap-2">
                                 <span class="w-6 h-6 bg-sunny text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">①</span>
-                                <p>Download "Didi Rider" → Register with your international number.</p>
+                                <p data-i18n="didi_step1">Download "Didi Rider" → Register with your international number.</p>
                             </div>
                             <div class="flex items-start gap-2">
                                 <span class="w-6 h-6 bg-sunny text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">②</span>
-                                <p>Bind Visa/Mastercard → Set payment code.</p>
+                                <p data-i18n="didi_step2">Bind Visa/Mastercard → Set payment code.</p>
                             </div>
                             <div class="flex items-start gap-2">
                                 <span class="w-6 h-6 bg-sunny text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">③</span>
                                 <div>
-                                    <p>Input destination (English/Chinese) → Select model (Economy/Comfort) → Confirm pickup point.</p>
-                                    <p class="text-gray-500 text-xs mt-1 italic">Assist the driver by dragging the map marker and sending text notes, e.g. "Near Starbucks".</p>
+                                    <p data-i18n="didi_step3">Input destination (English/Chinese) → Select model (Economy/Comfort) → Confirm pickup point.</p>
+                                    <p class="text-gray-500 text-xs mt-1 italic" data-i18n="didi_step3_tip">Assist the driver by dragging the map marker and sending text notes, e.g. "Near Starbucks".</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-2">
                                 <span class="w-6 h-6 bg-sunny text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">④</span>
-                                <p>Share your real-time trip with friends via the app.</p>
+                                <p data-i18n="didi_step4">Share your real-time trip with friends via the app.</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="bg-peach/20 rounded-xl p-3 text-sm border border-peach/40">
-                        <p class="font-bold text-red-500 mb-1">⚠️ Note</p>
+                        <p class="font-bold text-red-500 mb-1" data-i18n="didi_note_title">⚠️ Note</p>
                         <ul class="space-y-1 text-gray-700">
-                            <li>– Verify license plate before boarding.</li>
-                            <li>– In-app audio recording is enabled by default.</li>
+                            <li data-i18n="didi_note1">– Verify license plate before boarding.</li>
+                            <li data-i18n="didi_note2">– In-app audio recording is enabled by default.</li>
                         </ul>
                     </div>
                     <div class="absolute bottom-2 right-3 text-sunny/20 text-5xl select-none">🚖</div>
@@ -315,116 +290,107 @@
                 <!-- Card: Bike-Sharing -->
                 <div class="bg-mint/10 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-mint/40 relative overflow-hidden flex flex-col gap-4">
                     <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-mint/60 to-mint/10 rounded-t-2xl"></div>
-                    <h4 class="font-bold text-green-600 text-xl flex items-center gap-2 mt-1">🚲 Bike-Sharing</h4>
+                    <h4 class="font-bold text-green-600 text-xl flex items-center gap-2 mt-1" data-i18n="bike_title">🚲 Bike-Sharing</h4>
 
                     <div>
-                        <p class="text-xs font-bold text-green-600 mb-2">✅ Recommended Platforms</p>
+                        <p class="text-xs font-bold text-green-600 mb-2" data-i18n="bike_platforms_label">✅ Recommended Platforms</p>
                         <div class="overflow-x-auto">
                             <table class="w-full text-sm border-collapse">
                                 <thead>
                                     <tr class="bg-mint/40 text-gray-700">
-                                        <th class="px-3 py-2 text-left rounded-tl-xl font-semibold">Brand</th>
-                                        <th class="px-3 py-2 text-left font-semibold">App</th>
-                                        <th class="px-3 py-2 text-left font-semibold">Color</th>
-                                        <th class="px-3 py-2 text-left rounded-tr-xl font-semibold">Payment</th>
+                                        <th class="px-3 py-2 text-left rounded-tl-xl font-semibold" data-i18n="bike_th_brand">Brand</th>
+                                        <th class="px-3 py-2 text-left font-semibold" data-i18n="bike_th_app">App</th>
+                                        <th class="px-3 py-2 text-left font-semibold" data-i18n="bike_th_color">Color</th>
+                                        <th class="px-3 py-2 text-left rounded-tr-xl font-semibold" data-i18n="bike_th_payment">Payment</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="bg-yellow-50 border-b border-mint/20">
-                                        <td class="px-3 py-2 font-semibold text-yellow-600">Meituan Bike</td>
-                                        <td class="px-3 py-2">Meituan App</td>
-                                        <td class="px-3 py-2"><span class="px-2 py-0.5 bg-yellow-200 text-yellow-700 rounded-full text-xs">Yellow</span></td>
-                                        <td class="px-3 py-2 text-xs">Alipay / WeChat Pay</td>
+                                        <td class="px-3 py-2 font-semibold text-yellow-600" data-i18n="bike_meituan_name">Meituan Bike</td>
+                                        <td class="px-3 py-2" data-i18n="bike_meituan_app">Meituan App</td>
+                                        <td class="px-3 py-2"><span class="px-2 py-0.5 bg-yellow-200 text-yellow-700 rounded-full text-xs" data-i18n="bike_meituan_color">Yellow</span></td>
+                                        <td class="px-3 py-2 text-xs" data-i18n="bike_meituan_pay">Alipay / WeChat Pay</td>
                                     </tr>
                                     <tr class="bg-blue-50">
-                                        <td class="px-3 py-2 font-semibold text-blue-500">HelloBike</td>
-                                        <td class="px-3 py-2">HelloBike App</td>
-                                        <td class="px-3 py-2"><span class="px-2 py-0.5 bg-blue-200 text-blue-700 rounded-full text-xs">Blue/Pink</span></td>
-                                        <td class="px-3 py-2 text-xs">Foreign card binding (some cities)</td>
+                                        <td class="px-3 py-2 font-semibold text-blue-500" data-i18n="bike_hello_name">HelloBike</td>
+                                        <td class="px-3 py-2" data-i18n="bike_hello_app">HelloBike App</td>
+                                        <td class="px-3 py-2"><span class="px-2 py-0.5 bg-blue-200 text-blue-700 rounded-full text-xs" data-i18n="bike_hello_color">Blue/Pink</span></td>
+                                        <td class="px-3 py-2 text-xs" data-i18n="bike_hello_pay">Foreign card binding (some cities)</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                    <!-- 📷 图片占位：美团 & 哈啰单车 App Logo -->
                     <img src="images/bike.png">
-                    
 
                     <div>
-                        <p class="text-xs font-bold text-green-600 mb-2">✅ Steps</p>
+                        <p class="text-xs font-bold text-green-600 mb-2" data-i18n="bike_steps_label">✅ Steps</p>
                         <div class="space-y-2 text-sm text-gray-700">
                             <div class="flex items-start gap-2">
                                 <span class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">①</span>
                                 <div>
-                                    <p class="font-semibold">Unlock</p>
-                                    <p>Scan the QR code via the app → Pay a refundable deposit or buy a weekly/monthly pass.</p>
+                                    <p class="font-semibold" data-i18n="bike_step1_title">Unlock</p>
+                                    <p data-i18n="bike_step1_desc">Scan the QR code via the app → Pay a refundable deposit or buy a weekly/monthly pass.</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-2">
                                 <span class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">②</span>
                                 <div>
-                                    <p class="font-semibold">Parking Rules</p>
-                                    <p>Return to designated zones (marked "P" in app) → Manually lock.</p>
-                                    <p class="text-red-400 text-xs mt-0.5">Fine: Charged for improper parking.</p>
+                                    <p class="font-semibold" data-i18n="bike_step2_title">Parking Rules</p>
+                                    <p data-i18n="bike_step2_desc">Return to designated zones (marked "P" in app) → Manually lock.</p>
+                                    <p class="text-red-400 text-xs mt-0.5" data-i18n="bike_fine">Fine: Charged for improper parking.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                   
                     <div class="absolute bottom-2 right-3 text-mint/30 text-5xl select-none">🚲</div>
                 </div>
 
             </div>
 
-            <!-- ══════════════════════════════════ -->
-            <!-- ── Section Title: Navigation ── -->
-            <!-- ══════════════════════════════════ -->
+            <!-- Section Title: Navigation -->
             <div id="navtools" class="text-center mb-10 mt-4">
                 <h3 class="text-2xl font-bold text-skyblue relative inline-block">
-                    <span class="bg-white px-6 py-2 rounded-2xl shadow-md transform rotate-1 border-2 border-skyblue">🗺️ 2. Navigation Tools</span>
-                    <span class="absolute -top-3 -right-7 text-xs font-bold bg-peach text-white px-2 py-1 rounded-full shadow-sm border border-white">go~ go~ go~</span>
+                    <span class="bg-white px-6 py-2 rounded-2xl shadow-md transform rotate-1 border-2 border-skyblue" data-i18n="nav_title">🗺️ 2. Navigation Tools</span>
+                    <span class="absolute -top-3 -right-7 text-xs font-bold bg-peach text-white px-2 py-1 rounded-full shadow-sm border border-white" data-i18n="nav_badge">go~ go~ go~</span>
                 </h3>
             </div>
 
-            <!-- ── 4 Map App Cards ── -->
+            <!-- 4 Map App Cards -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
 
                 <!-- Apple Maps -->
                 <div class="bg-gray-50 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-gray-200 relative overflow-hidden flex flex-col gap-3">
                     <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-gray-400/50 to-gray-200/10 rounded-t-2xl"></div>
-                    <!-- App branding row -->
                     <div class="flex items-center gap-3 mt-1">
                         <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-400 to-cyan-300 flex items-center justify-center text-white text-2xl shadow-sm flex-shrink-0">🗺</div>
                         <div>
-                            <p class="font-bold text-gray-800 text-lg leading-tight">Maps</p>
-                            <p class="text-xs text-gray-500">Navigate and explore the world</p>
+                            <p class="font-bold text-gray-800 text-lg leading-tight" data-i18n="apple_name">Maps</p>
+                            <p class="text-xs text-gray-500" data-i18n="apple_sub">Navigate and explore the world</p>
                         </div>
                     </div>
-
-                    <!-- 📷 图片占位：Apple Maps App 图标/截图 -->
                     <img src="images/appple_maps.png">
-                   
-
                     <div class="text-sm">
-                        <p class="font-bold text-green-600 mb-1">✅ Pros</p>
+                        <p class="font-bold text-green-600 mb-1" data-i18n="apple_pros_label">✅ Pros</p>
                         <ul class="space-y-1 text-gray-700 pl-1">
-                            <li>– iPhone pre-installed and ready to use</li>
-                            <li>– Full English interface, navigate by chatting with Siri</li>
-                            <li>– Quickly updated road conditions and accurate location of attractions</li>
+                            <li data-i18n="apple_pro1">– iPhone pre-installed and ready to use</li>
+                            <li data-i18n="apple_pro2">– Full English interface, navigate by chatting with Siri</li>
+                            <li data-i18n="apple_pro3">– Quickly updated road conditions and accurate location of attractions</li>
                         </ul>
                     </div>
-
                     <div class="bg-lemon/20 rounded-xl p-3 text-sm border border-lemon/40">
-                        <p class="font-bold text-yellow-600 mb-1">🟡 Note</p>
+                        <p class="font-bold text-yellow-600 mb-1" data-i18n="apple_note_label">🟡 Note</p>
                         <ul class="space-y-1 text-gray-700">
-                            <li>– Small alleyways and new shopping malls may not be searchable</li>
-                            <li>– Bus routes not as good as local App Details</li>
+                            <li data-i18n="apple_note1">– Small alleyways and new shopping malls may not be searchable</li>
+                            <li data-i18n="apple_note2">– Bus routes not as good as local App Details</li>
                         </ul>
                     </div>
-
                     <div class="bg-skyblue/10 rounded-xl p-3 text-sm border border-skyblue/30">
-                        <p class="font-bold text-skyblue mb-1">⭐ Tips</p>
-                        <p class="text-gray-700">"Siri, take me to the Forbidden City!"</p>
+                        <p class="font-bold text-skyblue mb-1" data-i18n="apple_tip_label">⭐ Tips</p>
+                        <p class="text-gray-700" data-i18n="apple_tip">"Siri, take me to the Forbidden City!"</p>
                     </div>
                     <div class="absolute bottom-2 right-3 text-gray-200/50 text-5xl select-none">📍</div>
                 </div>
@@ -435,37 +401,31 @@
                     <div class="flex items-center gap-3 mt-1">
                         <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-400 to-pink-400 flex items-center justify-center text-white text-2xl shadow-sm flex-shrink-0">🌸</div>
                         <div>
-                            <p class="font-bold text-gray-800 text-lg leading-tight">Petal Maps</p>
-                            <p class="text-xs text-gray-500">By Huawei · Global Navigation</p>
+                            <p class="font-bold text-gray-800 text-lg leading-tight" data-i18n="petal_name">Petal Maps</p>
+                            <p class="text-xs text-gray-500" data-i18n="petal_sub">By Huawei · Global Navigation</p>
                         </div>
                     </div>
-
-                    <!-- 📷 图片占位：Petal Maps Logo -->
                     <img src="images/petal_maps.png">
-                    
-
                     <div class="text-sm">
-                        <p class="font-bold text-green-600 mb-1">✅ Pros</p>
+                        <p class="font-bold text-green-600 mb-1" data-i18n="petal_pros_label">✅ Pros</p>
                         <ul class="space-y-1 text-gray-700 pl-1">
-                            <li>– Huawei phones come pre-installed, other Androids can install it too</li>
-                            <li>– Free switching between Chinese and English, real-time road conditions</li>
-                            <li>– Offline map function — don't panic even without internet connection</li>
+                            <li data-i18n="petal_pro1">– Huawei phones come pre-installed, other Androids can install it too</li>
+                            <li data-i18n="petal_pro2">– Free switching between Chinese and English, real-time road conditions</li>
+                            <li data-i18n="petal_pro3">– Offline map function — don't panic even without internet connection</li>
                         </ul>
                     </div>
-
                     <div class="bg-lemon/20 rounded-xl p-3 text-sm border border-lemon/40">
-                        <p class="font-bold text-yellow-600 mb-1">🟡 Note</p>
+                        <p class="font-bold text-yellow-600 mb-1" data-i18n="petal_note_label">🟡 Note</p>
                         <ul class="space-y-1 text-gray-700">
-                            <li>– Non-Huawei phones need to manually download the installation package</li>
-                            <li>– Information may be incomplete for rural areas</li>
+                            <li data-i18n="petal_note1">– Non-Huawei phones need to manually download the installation package</li>
+                            <li data-i18n="petal_note2">– Information may be incomplete for rural areas</li>
                         </ul>
                     </div>
-
                     <div class="bg-skyblue/10 rounded-xl p-3 text-sm border border-skyblue/30">
-                        <p class="font-bold text-skyblue mb-1">⭐ Tips</p>
+                        <p class="font-bold text-skyblue mb-1" data-i18n="petal_tip_label">⭐ Tips</p>
                         <ul class="space-y-1 text-gray-700">
-                            <li>– Huawei users directly poke [App Market] to download</li>
-                            <li>– APKPure is recommended for third-party Android installations.</li>
+                            <li data-i18n="petal_tip1">– Huawei users directly poke [App Market] to download</li>
+                            <li data-i18n="petal_tip2">– APKPure is recommended for third-party Android installations.</li>
                         </ul>
                     </div>
                     <div class="absolute bottom-2 right-3 text-peach/30 text-5xl select-none">🌸</div>
@@ -477,34 +437,28 @@
                     <div class="flex items-center gap-3 mt-1">
                         <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-400 to-skyblue flex items-center justify-center text-white text-2xl shadow-sm flex-shrink-0">📡</div>
                         <div>
-                            <p class="font-bold text-gray-800 text-lg leading-tight">AMap Global</p>
-                            <p class="text-xs text-gray-500">Navigation · Traffic · Bus &amp; Train</p>
+                            <p class="font-bold text-gray-800 text-lg leading-tight" data-i18n="amap_name">AMap Global</p>
+                            <p class="text-xs text-gray-500" data-i18n="amap_sub">Navigation · Traffic · Bus &amp; Train</p>
                         </div>
                     </div>
-
-                    <!-- 📷 图片占位：AMap Global Logo -->
                     <img src="images/amap_global.png">
-                    
-
                     <div class="text-sm">
-                        <p class="font-bold text-green-600 mb-1">✅ Pros</p>
+                        <p class="font-bold text-green-600 mb-1" data-i18n="amap_pros_label">✅ Pros</p>
                         <ul class="space-y-1 text-gray-700 pl-1">
-                            <li>– English version is now online</li>
-                            <li>– You can navigate the market trails</li>
+                            <li data-i18n="amap_pro1">– English version is now online</li>
+                            <li data-i18n="amap_pro2">– You can navigate the market trails</li>
                         </ul>
                     </div>
-
                     <div class="bg-lemon/20 rounded-xl p-3 text-sm border border-lemon/40">
-                        <p class="font-bold text-yellow-600 mb-1">🟡 Note</p>
+                        <p class="font-bold text-yellow-600 mb-1" data-i18n="amap_note_label">🟡 Note</p>
                         <ul class="space-y-1 text-gray-700">
-                            <li>– English switching portal is hard to find (Path: My → Settings → Language)</li>
-                            <li>– Some features are only available in Chinese</li>
+                            <li data-i18n="amap_note1">– English switching portal is hard to find (Path: My → Settings → Language)</li>
+                            <li data-i18n="amap_note2">– Some features are only available in Chinese</li>
                         </ul>
                     </div>
-
                     <div class="bg-skyblue/10 rounded-xl p-3 text-sm border border-skyblue/30">
-                        <p class="font-bold text-skyblue mb-1">⭐ Tips</p>
-                        <p class="text-gray-700">Smoother when used with translation software ～</p>
+                        <p class="font-bold text-skyblue mb-1" data-i18n="amap_tip_label">⭐ Tips</p>
+                        <p class="text-gray-700" data-i18n="amap_tip">Smoother when used with translation software ～</p>
                     </div>
                     <div class="absolute bottom-2 right-3 text-skyblue/30 text-5xl select-none">📡</div>
                 </div>
@@ -515,38 +469,31 @@
                     <div class="flex items-center gap-3 mt-1">
                         <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-2xl shadow-sm flex-shrink-0">百</div>
                         <div>
-                            <p class="font-bold text-gray-800 text-lg leading-tight">Baidu Maps</p>
-                            <p class="text-xs text-gray-500">百度地图 · 打车公交出行</p>
+                            <p class="font-bold text-gray-800 text-lg leading-tight" data-i18n="baidu_name">Baidu Maps</p>
+                            <p class="text-xs text-gray-500" data-i18n="baidu_sub">百度地图 · 打车公交出行</p>
                         </div>
                     </div>
-
-                    <!-- 📷 图片占位：Baidu Maps Logo -->
-                     <img src="images/baidu.png">
-                    
-
+                    <img src="images/baidu.png">
                     <div class="text-sm">
-                        <p class="font-bold text-green-600 mb-1">✅ Pros</p>
+                        <p class="font-bold text-green-600 mb-1" data-i18n="baidu_pros_label">✅ Pros</p>
                         <ul class="space-y-1 text-gray-700 pl-1">
-                            <li>– Imperial Exclusive English Service (Beijing only)</li>
-                            <li>– The audio guide to the attractions is super sweet</li>
+                            <li data-i18n="baidu_pro1">– Imperial Exclusive English Service (Beijing only)</li>
+                            <li data-i18n="baidu_pro2">– The audio guide to the attractions is super sweet</li>
                         </ul>
                     </div>
-
                     <div class="bg-lemon/20 rounded-xl p-3 text-sm border border-lemon/40">
-                        <p class="font-bold text-yellow-600 mb-1">🟡 Note</p>
-                        <p class="text-gray-700">– Outside of Beijing, the interface changes to Chinese in a second.</p>
+                        <p class="font-bold text-yellow-600 mb-1" data-i18n="baidu_note_label">🟡 Note</p>
+                        <p class="text-gray-700" data-i18n="baidu_note">– Outside of Beijing, the interface changes to Chinese in a second.</p>
                     </div>
-
                     <div class="bg-skyblue/10 rounded-xl p-3 text-sm border border-skyblue/30">
-                        <p class="font-bold text-skyblue mb-1">⭐ Tips</p>
-                        <p class="text-gray-700">– Suggest using translation plugins together</p>
+                        <p class="font-bold text-skyblue mb-1" data-i18n="baidu_tip_label">⭐ Tips</p>
+                        <p class="text-gray-700" data-i18n="baidu_tip">– Suggest using translation plugins together</p>
                     </div>
-
                     <div class="bg-white/70 rounded-xl p-3 text-sm border border-blue-100">
-                        <p class="font-bold text-blue-500 mb-1">🤔 Want to register?</p>
+                        <p class="font-bold text-blue-500 mb-1" data-i18n="register_title">🤔 Want to register?</p>
                         <ul class="space-y-1 text-gray-700">
-                            <li>Gaode/Baidu Maps → <span class="text-red-400 font-medium">China Cell Phone Number Required</span></li>
-                            <li>Petal Maps → <span class="text-green-500 font-medium">visitor mode available, no registration required</span></li>
+                            <li data-i18n="register_gaode">Gaode/Baidu Maps → <span class="text-red-400 font-medium">China Cell Phone Number Required</span></li>
+                            <li data-i18n="register_petal">Petal Maps → <span class="text-green-500 font-medium">visitor mode available, no registration required</span></li>
                         </ul>
                     </div>
                     <div class="absolute bottom-2 right-3 text-blue-200/40 text-5xl select-none">🗺️</div>
@@ -554,28 +501,28 @@
 
             </div>
 
-            <!-- ── Ultimate Lazy Bag Table ── -->
+            <!-- Ultimate Lazy Bag Table -->
             <div id="navigation" class="mt-4 bg-white p-6 rounded-2xl shadow-md border-2 border-sunny/30 relative overflow-hidden">
                 <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-sunny/60 to-sunny/10 rounded-t-2xl"></div>
-                <h4 class="font-bold text-sunny text-lg mb-4 flex items-center gap-2">✨ Ultimate Lazy Bag</h4>
+                <h4 class="font-bold text-sunny text-lg mb-4 flex items-center gap-2" data-i18n="lazy_title">✨ Ultimate Lazy Bag</h4>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm border-collapse">
                         <tbody>
                             <tr class="bg-sunny/10 border-b border-sunny/20">
-                                <td class="px-4 py-3 font-semibold text-gray-700 w-1/3">📱 iPhone users</td>
-                                <td class="px-4 py-3 text-gray-600">Apple Maps + Gaode English version — double insurance</td>
+                                <td class="px-4 py-3 font-semibold text-gray-700 w-1/3" data-i18n="lazy_r1_user">📱 iPhone users</td>
+                                <td class="px-4 py-3 text-gray-600" data-i18n="lazy_r1_val">Apple Maps + Gaode English version — double insurance</td>
                             </tr>
                             <tr class="bg-white border-b border-gray-100">
-                                <td class="px-4 py-3 font-semibold text-gray-700">🤖 Android user</td>
-                                <td class="px-4 py-3 text-gray-600">Petal Maps Goes Around the World</td>
+                                <td class="px-4 py-3 font-semibold text-gray-700" data-i18n="lazy_r2_user">🤖 Android user</td>
+                                <td class="px-4 py-3 text-gray-600" data-i18n="lazy_r2_val">Petal Maps Goes Around the World</td>
                             </tr>
                             <tr class="bg-skyblue/10 border-b border-skyblue/20">
-                                <td class="px-4 py-3 font-semibold text-gray-700">🧭 Deep traveler</td>
-                                <td class="px-4 py-3 text-gray-600">Gaode Map + Translation Software Combo</td>
+                                <td class="px-4 py-3 font-semibold text-gray-700" data-i18n="lazy_r3_user">🧭 Deep traveler</td>
+                                <td class="px-4 py-3 text-gray-600" data-i18n="lazy_r3_val">Gaode Map + Translation Software Combo</td>
                             </tr>
                             <tr class="bg-mint/10">
-                                <td class="px-4 py-3 font-semibold text-gray-700">🏯 Beijing Short Trip</td>
-                                <td class="px-4 py-3 text-gray-600">Baidu Maps English Version</td>
+                                <td class="px-4 py-3 font-semibold text-gray-700" data-i18n="lazy_r4_user">🏯 Beijing Short Trip</td>
+                                <td class="px-4 py-3 text-gray-600" data-i18n="lazy_r4_val">Baidu Maps English Version</td>
                             </tr>
                         </tbody>
                     </table>
@@ -589,817 +536,323 @@
     <!-- ===== FOOTER ===== -->
     <footer class="w-full py-6 px-4 md:px-8 bg-skyblue/30 footer-text">
         <div class="max-w-5xl mx-auto text-center">
-            <p class="mb-2">Editors: Liu Sisi, Wu Xiangwei, Xu Xinyi</p>
-            <p class="mb-2">Developers: Li Xuan, Li Xinyi</p>
-            <p class="text-sm text-gray-600">© 2025 Navigating China Handbook | All Rights Reserved</p>
+            <p class="mb-2" data-i18n="footer_editors">Editors: Liu Sisi, Wu Xiangwei, Xu Xinyi</p>
+            <p class="mb-2" data-i18n="footer_devs">Developers: Li Xuan, Li Xinyi</p>
+            <p class="text-sm text-gray-600" data-i18n="footer_copy">© 2025 Navigating China Handbook | All Rights Reserved</p>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
+    <!-- Back to Top -->
     <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"
         style="position:fixed;bottom:32px;right:32px;width:48px;height:48px;border-radius:50%;background-color:#68a8fc;color:white;font-size:22px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.15);opacity:0;transition:opacity 0.3s,transform 0.2s;z-index:9999;"
         onmouseover="this.style.transform='scale(1.1)'"
         onmouseout="this.style.transform='scale(1)'">↑</button>
- <script>
-  // 1. 定义必要的全局变量
-  const LANG_KEY = "navigating_china_language";
-  let currentLang = "en"; // 默认语言
-  
-  // 2. 定义核心辅助函数（之前缺失的部分）
-  /**
-   * 设置元素的文本内容
-   * @param {HTMLElement} el 目标元素
-   * @param {string} text 要设置的文本
-   */
-  function setText(el, text) {
-      if (el && text) {
-          el.textContent = text;
-      }
-  }
-  
-  /**
-   * 设置元素的HTML内容
-   * @param {HTMLElement} el 目标元素
-   * @param {string} html 要设置的HTML
-   */
-  function setHTML(el, html) {
-      if (el && html) {
-          el.innerHTML = html;
-      }
-  }
-  
-  /**
-   * 设置li元素的内容（保留列表符号）
-   * @param {HTMLElement} liEl li元素
-   * @param {string} content 要设置的内容
-   */
-  function setLiContent(liEl, content) {
-      if (liEl && content) {
-          // 保留li的原有符号，替换文本内容
-          liEl.textContent = content;
-      }
-  }
-  
-  // ==================== 语言文本对象 (保持不变) ====================
-  const languageTexts = {
-      en: {
-          // 导航
-          home: "Home", guide: "Guide", buy: "Guide", language: "Language",
-          // 二级导航
-          subnavPrep: "Preparation & Entry", subnavTransShort: "Transport & Maps", subnavTrans: "Transportation & Navigation",
-          subnavPayShort: "Payment & Tax", subnavPay: "Payment & Tax Refund", subnavAcco: "Accommodation",
-          subnavEmerShort: "Emergency", subnavEmer: "Emergency Handling", subnavCultShort: "Culture", subnavCult: "Travel & Culture",
-          // 面包屑
-          crumbHome: "Home", crumbGuide: "Guide", crumbCurrent: "Transportation & Navigation",
-          // 英雄区
-          heroTitle: "Transportation & Navigation", heroDesc: "Getting around China made simple 🚄🚇🛵",
-          // 第一部分标题
-          transportTitle: "🚆 1. Transportation", transportBadge: "Getting Around",
-          // 地铁卡
-          metroTitle: "🚇 Metro",
-          ticketingOptions: "✅ Ticketing Options",
-          metroMachine: "① Self-service Machines",
-          metroMachineDesc: "Select English interface → Choose destination on the route map → Make payment → Collect ticket.",
-          metroTicketOffice: "Ticket Office: Show passport → Make payment.",
-          metroE_Ticket: "② E-Ticket (QR Code)",
-          metroE_TicketDesc: "Open Alipay → Click 'Transport' → Select 'City' → Activate the local 'Metro QR Code' → Scan to enter/exit.",
-          metroPass: "③ Metro Passes",
-          metroPassDesc: "Ticket Office: Show passport → Make payment.",
-          metroNoteTitle: "⚠️ Note",
-          metroNote1: "– Tap in/out twice (once at entry, once at exit).",
-          metroNote2: "– Passport holders are advised to use staffed gates to avoid scanner issues.",
-          // 高铁卡
-          hsrailTitle: "🚄 High-Speed Rail (HSR)",
-          hsrailOptions: "✅ Ticketing Options",
-          hsrailOnline: "① Online Booking (Recommended)",
-          hsrailTrip: "Trip.com (International Version):",
-          hsrailTripDesc: "English interface → Enter route (e.g., Beijing→Shanghai) → Select train → Fill in passport details → Pay with Visa/Mastercard.",
-          hsrailETicket: "E-tickets: Scan QR code at the gate (no paper ticket needed!).",
-          hsrail12306: "www.12306.cn:",
-          hsrail12306Desc: "Register → Passport verification → Show passport at the gate.",
-          hsrailOffline: "② Offline Booking",
-          hsrailOfflineDesc: "Visit HSR station counters → Show passport → Pay by cash/card.",
-          hsrailBoarding: "✅ Boarding Process",
-          hsrailStep1: "Enter the Station – Use self-service gates to scan your passport.",
-          hsrailStep2: "Security Check – Queue for security screening after entering.",
-          hsrailStep3: "Find Your Gate – Check your ticket (via app) for the assigned gate. Wait nearby until boarding begins.",
-          hsrailStep4: "Board the Train – Scan passport at gate when 'Now Boarding' displays.",
-          hsrailStep5: "Locate Your Seat – Match ticket to number above windows (e.g., 06A = Row 6, Seat A).",
-          // 网约车卡
-          rideTitle: "🚖 Ride-Hailing (Didi Rider)",
-          rideApp: "📱 Recommended App: Didi Rider",
-          rideSteps: "✅ Steps",
-          rideStep1: "Download 'Didi Rider' → Register with your international number.",
-          rideStep2: "Bind Visa/Mastercard → Set payment code.",
-          rideStep3: "Input destination (English/Chinese) → Select model (Economy/Comfort) → Confirm pickup point.",
-          rideStep3Tip: "Assist the driver by dragging the map marker and sending text notes, e.g. 'Near Starbucks'.",
-          rideStep4: "Share your real-time trip with friends via the app.",
-          rideNoteTitle: "⚠️ Note",
-          rideNote1: "– Verify license plate before boarding.",
-          rideNote2: "– In-app audio recording is enabled by default.",
-          // 共享单车卡
-          bikeTitle: "🚲 Bike-Sharing",
-          bikePlatforms: "✅ Recommended Platforms",
-          bikeBrand: "Brand",
-          bikeApp: "App",
-          bikeColor: "Color",
-          bikePayment: "Payment",
-          bikeMeituan: "Meituan Bike",
-          meituanPay: "Alipay / WeChat Pay",
-          helloBike: "HelloBike",
-          helloPay: "Foreign card binding (some cities)",
-          bikeSteps: "✅ Steps",
-          bikeStep1Title: "Unlock",
-          bikeStep1Desc: "Scan the QR code via the app → Pay a refundable deposit or buy a weekly/monthly pass.",
-          bikeStep2Title: "Parking Rules",
-          bikeStep2Desc: "Return to designated zones (marked 'P' in app) → Manually lock.",
-          bikeFine: "Fine: Charged for improper parking.",
-          // 导航部分标题
-          navTitle: "🗺️ 2. Navigation Tools", navBadge: "go~ go~ go~",
-          // Apple Maps
-          appleName: "Maps",
-          appleDesc: "Navigate and explore the world",
-          applePros: "✅ Pros",
-          applePro1: "– iPhone pre-installed and ready to use",
-          applePro2: "– Full English interface, navigate by chatting with Siri",
-          applePro3: "– Quickly updated road conditions and accurate location of attractions",
-          appleNoteTitle: "🟡 Note",
-          appleNote1: "– Small alleyways and new shopping malls may not be searchable",
-          appleNote2: "– Bus routes not as good as local App Details",
-          appleTipTitle: "⭐ Tips",
-          appleTip: "\"Siri, take me to the Forbidden City!\"",
-          // Petal Maps
-          petalName: "Petal Maps",
-          petalSub: "By Huawei · Global Navigation",
-          petalPros: "✅ Pros",
-          petalPro1: "– Huawei phones come pre-installed, other Androids can install it too",
-          petalPro2: "– Free switching between Chinese and English, real-time road conditions",
-          petalPro3: "– Offline map function — don't panic even without internet connection",
-          petalNoteTitle: "🟡 Note",
-          petalNote1: "– Non-Huawei phones need to manually download the installation package",
-          petalNote2: "– Information may be incomplete for rural areas",
-          petalTipTitle: "⭐ Tips",
-          petalTip1: "– Huawei users directly poke [App Market] to download",
-          petalTip2: "– APKPure is recommended for third-party Android installations.",
-          // AMap
-          amapName: "AMap Global",
-          amapSub: "Navigation · Traffic · Bus & Train",
-          amapPros: "✅ Pros",
-          amapPro1: "– English version is now online",
-          amapPro2: "– You can navigate the market trails",
-          amapNoteTitle: "🟡 Note",
-          amapNote1: "– English switching portal is hard to find (Path: My → Settings → Language)",
-          amapNote2: "– Some features are only available in Chinese",
-          amapTipTitle: "⭐ Tips",
-          amapTip: "Smoother when used with translation software ～",
-          // Baidu Maps
-          baiduName: "Baidu Maps",
-          baiduSub: "百度地图 · 打车公交出行",
-          baiduPros: "✅ Pros",
-          baiduPro1: "– Imperial Exclusive English Service (Beijing only)",
-          baiduPro2: "– The audio guide to the attractions is super sweet",
-          baiduNoteTitle: "🟡 Note",
-          baiduNote: "– Outside of Beijing, the interface changes to Chinese in a second.",
-          baiduTipTitle: "⭐ Tips",
-          baiduTip: "– Suggest using translation plugins together",
-          registerTitle: "🤔 Want to register?",
-          registerGaode: "Gaode/Baidu Maps → China Cell Phone Number Required",
-          registerPetal: "Petal Maps → visitor mode available, no registration required",
-          // 终极建议表格
-          finalRec: "✨ Ultimate Lazy Bag",
-          iphoneUser: "📱 iPhone users",
-          iphoneVal: "Apple Maps + Gaode English version — double insurance",
-          androidUser: "🤖 Android user",
-          androidVal: "Petal Maps Goes Around the World",
-          deepUser: "🧭 Deep traveler",
-          deepVal: "Gaode Map + Translation Software Combo",
-          beijingUser: "🏯 Beijing Short Trip",
-          beijingVal: "Baidu Maps English Version",
-          // 页脚
-          footerEditor: "Editors: Liu Sisi, Wu Xiangwei, Xu Xinyi",
-          footerCopyright: "© 2025 Navigating China Handbook | All Rights Reserved",
-      },
-      zh: {
-          // 导航
-          home: "主页", guide: "指南", buy: "指南", language: "语言",
-          // 二级导航
-          subnavPrep: "入境与准备", subnavTransShort: "交通与地图", subnavTrans: "交通与导航",
-          subnavPayShort: "支付与退税", subnavPay: "支付与消费", subnavAcco: "住宿与生活",
-          subnavEmerShort: "紧急情况", subnavEmer: "紧急情况处理", subnavCultShort: "文化", subnavCult: "旅游与文化",
-          // 面包屑
-          crumbHome: "主页", crumbGuide: "指南", crumbCurrent: "交通与导航",
-          // 英雄区
-          heroTitle: "交通与导航", heroDesc: "在中国出行，简单明了 🚄🚇🛵",
-          // 第一部分标题
-          transportTitle: "🚆 1. 交通方式", transportBadge: "出行方式",
-          // 地铁卡
-          metroTitle: "🚇 地铁",
-          ticketingOptions: "✅ 购票方式",
-          metroMachine: "① 自助售票机",
-          metroMachineDesc: "选择英文界面 → 点击线路图选择目的地 → 投币/扫码支付 → 取票进站",
-          metroTicketOffice: "人工窗口：出示护照 → 现金购票",
-          metroE_Ticket: "② 电子乘车码",
-          metroE_TicketDesc: "打开支付宝 → 点击「出行」 → 领取所在城市的“地铁乘车码” → 扫码进出站",
-          metroPass: "③ 交通卡",
-          metroPassDesc: "办理地点：地铁站售票窗口（需护照）",
-          metroNoteTitle: "⚠️ 注意",
-          metroNote1: "– 进出站需两次扫码/刷卡（进站一次，出站一次）",
-          metroNote2: "– 外籍护照用户建议走人工通道，避免闸机识别问题",
-          // 高铁卡
-          hsrailTitle: "🚄 高铁",
-          hsrailOptions: "✅ 购票方式",
-          hsrailOnline: "① 线上购票（推荐）",
-          hsrailTrip: "Trip.com（国际版）",
-          hsrailTripDesc: "全英文界面 → 输入出发地/目的地 → 选择车次 → 填写护照信息 → 绑定Visa/Mastercard支付",
-          hsrailETicket: "电子票直接扫码进站，无需取票！",
-          hsrail12306: "12306英文官网",
-          hsrail12306Desc: "注册账号 → 护照认证 → 购票后凭护照进站",
-          hsrailOffline: "② 线下购票",
-          hsrailOfflineDesc: "前往高铁站人工窗口 → 出示护照 → 现金/刷卡购票",
-          hsrailBoarding: "✅ 进站与乘车",
-          hsrailStep1: "进站：使用自助闸机扫描护照",
-          hsrailStep2: "安检：护照与行李一同过检",
-          hsrailStep3: "寻找检票口：查看车票（APP内）找到对应检票口，附近等候",
-          hsrailStep4: "检票乘车：当“开始检票”时，在闸机扫描护照",
-          hsrailStep5: "寻找座位：根据车票上的号码对应窗户上方数字（如06A = 6排A座）",
-          // 网约车卡
-          rideTitle: "🚖 网约车 (滴滴出行)",
-          rideApp: "📱 推荐APP: DiDi Rider",
-          rideSteps: "✅ 操作步骤",
-          rideStep1: "下载“Didi Rider”APP → 使用国际手机号注册",
-          rideStep2: "绑定Visa/Mastercard → 设置支付密码",
-          rideStep3: "输入目的地（英文或中文） → 选择车型（经济/舒适） → 确认上车点",
-          rideStep3Tip: "辅助司机定位技巧：通过拖动地图标记、发送文字备注（如“靠近星巴克”）",
-          rideStep4: "司机接单后，APP内实时共享行程给亲友",
-          rideNoteTitle: "⚠️ 注意",
-          rideNote1: "– 确认车牌号再上车",
-          rideNote2: "– 车内录音功能默认开启，安全有保障",
-          // 共享单车卡
-          bikeTitle: "🚲 共享单车",
-          bikePlatforms: "✅ 推荐平台",
-          bikeBrand: "品牌",
-          bikeApp: "APP",
-          bikeColor: "车辆颜色",
-          bikePayment: "支付方式",
-          bikeMeituan: "美团单车",
-          meituanPay: "支付宝/微信钱包充值",
-          helloBike: "哈啰单车",
-          helloPay: "绑定外卡（部分城市）",
-          bikeSteps: "✅ 使用步骤",
-          bikeStep1Title: "扫码开锁",
-          bikeStep1Desc: "打开APP → 点击“扫码开锁” → 对准车锁二维码。首次使用需缴纳押金（可退）或购买周卡/月卡",
-          bikeStep2Title: "还车规则",
-          bikeStep2Desc: "找到指定停车区（APP 内地图标注 P 点）→ 手动关锁",
-          bikeFine: "违规停放将收取调度费",
-          // 导航部分标题
-          navTitle: "🗺️ 2. 导航工具", navBadge: "出发吧~",
-          // Apple Maps
-          appleName: "地图",
-          appleDesc: "导航并探索世界",
-          applePros: "✅ 优点",
-          applePro1: "– iPhone 预装，开机即用",
-          applePro2: "– 全英文界面，和 Siri 聊天就能导航",
-          applePro3: "– 路况更新快，景点定位准",
-          appleNoteTitle: "🟡 缺点",
-          appleNote1: "– 小胡同、新商场可能搜不到",
-          appleNote2: "– 公交路线不如本土 App 详细",
-          appleTipTitle: "⭐ 使用贴士",
-          appleTip: "直接喊\"Siri，带我去故宫！\"",
-          // Petal Maps
-          petalName: "Petal Maps",
-          petalSub: "华为出品 · 全球导航",
-          petalPros: "✅ 优点",
-          petalPro1: "– 华为手机预装，其他安卓也能装",
-          petalPro2: "– 中英文自由切换，路况实时刷新",
-          petalPro3: "– 离线地图功能，没网也不慌",
-          petalNoteTitle: "🟡 缺点",
-          petalNote1: "– 非华为手机需手动下载安装包",
-          petalNote2: "– 乡村地区信息可能不全",
-          petalTipTitle: "⭐ 使用贴士",
-          petalTip1: "– 华为用户直接戳【应用市场】下载",
-          petalTip2: "– 第三方安卓机建议用 APKPure 安装",
-          // AMap
-          amapName: "高德地图 (英文版)",
-          amapSub: "导航 · 实时路况 · 公交地铁",
-          amapPros: "✅ 优点",
-          amapPro1: "– 英文版已上线",
-          amapPro2: "– 菜市场小道都能导航",
-          amapNoteTitle: "🟡 缺点",
-          amapNote1: "– 英文切换入口难找（路径：我的 → 设置 → 语言）",
-          amapNote2: "– 部分功能仅中文版可用",
-          amapTipTitle: "⭐ 使用贴士",
-          amapTip: "搭配翻译软件使用更丝滑～",
-          // Baidu Maps
-          baiduName: "百度地图",
-          baiduSub: "百度地图 · 打车公交出行",
-          baiduPros: "✅ 优点",
-          baiduPro1: "– 帝都专属英文服务（仅限北京地区）",
-          baiduPro2: "– 景点语音讲解超贴心",
-          baiduNoteTitle: "🟡 缺点",
-          baiduNote: "– 出了北京秒变中文界面",
-          baiduTipTitle: "⭐ 使用贴士",
-          baiduTip: "– 建议搭配翻译插件使用",
-          registerTitle: "🤔 要注册吗？",
-          registerGaode: "高德/百度地图 → 需中国手机号",
-          registerPetal: "Petal Maps → 可用游客模式，无需注册",
-          // 终极建议表格
-          finalRec: "✨ 终极懒人包",
-          iphoneUser: "📱 iPhone 用户",
-          iphoneVal: "苹果地图+高德英文版双保险",
-          androidUser: "🤖 安卓用户",
-          androidVal: "Petal Maps 走天下",
-          deepUser: "🧭 深度游玩家",
-          deepVal: "高德地图+翻译软件组合拳",
-          beijingUser: "🏯 北京短途游",
-          beijingVal: "百度地图英文版试一波",
-          // 页脚
-          footerEditor: "编者：刘思思，吴向微，许欣溢",
-          footerCopyright: "© 2025 来华手册 | 版权所有",
-      }
-  };
-  
- // ==================== 修复后的 applyLanguage 函数 ====================
- function applyLanguage(lang) {
-     const t = languageTexts[lang] || languageTexts.en;
-     currentLang = lang;
-     document.documentElement.lang = lang;
-     localStorage.setItem(LANG_KEY, lang);
- 
-     // --- 1. 导航栏和页眉 ---
-     const mainLinks = document.querySelectorAll("#main-nav > a");
-     if (mainLinks[0]) setText(mainLinks[0], t.home);
-     if (mainLinks[1]) setText(mainLinks[1], t.guide);
-     // 语言按钮
-     const langBtn = document.querySelector(".group button span:first-child");
-     if (langBtn) setText(langBtn, t.language);
- 
-     // --- 二级导航 (修复选择器，直接选择所有二级导航链接) ---
-     const subnavLinks = document.querySelectorAll(".hidden.md\\:block .nav-text a");
-     
-     // 方法1：通过链接文本内容定位（更可靠）
-     subnavLinks.forEach(link => {
-         const spans = link.querySelectorAll("span");
-         if (spans.length < 2) return;
-         
-         // 获取当前链接的文本内容来判断是哪个链接
-         const fullText = link.textContent;
-         
-         if (fullText.includes("Preparation") || fullText.includes("入境")) {
-             // 入境与准备链接
-             if (spans[1]) setText(spans[1], t.subnavPrep);
-         }
-         else if (fullText.includes("Transport") || fullText.includes("交通")) {
-             // 交通与导航链接
-             if (spans[1]) setText(spans[1], t.subnavTransShort);
-             if (spans[2]) setText(spans[2], t.subnavTrans);
-         }
-         else if (fullText.includes("Payment") || fullText.includes("支付")) {
-             // 支付与退税链接
-             if (spans[1]) setText(spans[1], t.subnavPayShort);
-             if (spans[2]) setText(spans[2], t.subnavPay);
-         }
-         else if (fullText.includes("Accommodation") || fullText.includes("住宿")) {
-             // 住宿链接
-             if (spans[1]) setText(spans[1], t.subnavAcco);
-         }
-         else if (fullText.includes("Emergency") || fullText.includes("紧急")) {
-             // 紧急情况链接
-             if (spans[1]) setText(spans[1], t.subnavEmerShort);
-             if (spans[2]) setText(spans[2], t.subnavEmer);
-         }
-         else if (fullText.includes("Culture") || fullText.includes("文化")) {
-             // 旅游与文化链接
-             if (spans[1]) setText(spans[1], t.subnavCultShort);
-             if (spans[2]) setText(spans[2], t.subnavCult);
-         }
-     });
- 
-     // 面包屑
-     const breadcrumbLinks = document.querySelectorAll(".text-xs.text-gray-500 a");
-     if (breadcrumbLinks[0]) setText(breadcrumbLinks[0], t.crumbHome);
-     if (breadcrumbLinks[1]) setText(breadcrumbLinks[1], t.crumbGuide);
-     const breadcrumbSpan = document.querySelector(".text-xs.text-gray-500 span:last-child");
-     if (breadcrumbSpan) setText(breadcrumbSpan, t.crumbCurrent);
- 
-     // 英雄区
-     const heroTitle = document.querySelector("section.bg-gradient-to-b h2");
-     const heroDesc = document.querySelector("section.bg-gradient-to-b p.text-lg");
-     if (heroTitle) setText(heroTitle, t.heroTitle);
-     if (heroDesc) setText(heroDesc, t.heroDesc);
- 
-     // 大标题 - 修复选择器
-     const transportHeader = document.querySelector("#transport .text-center.mb-10 h3 span.bg-white");
-     const transportBadge = document.querySelector("#transport .text-center.mb-10 h3 span.absolute");
-     if (transportHeader) setText(transportHeader, t.transportTitle);
-     if (transportBadge) setText(transportBadge, t.transportBadge);
- 
-     // 导航工具标题 - 修复选择器
-     const navHeader = document.querySelector("#navtools h3 span.bg-white");
-     const navBadge = document.querySelector("#navtools h3 span.absolute");
-     if (navHeader) setText(navHeader, t.navTitle);
-     if (navBadge) setText(navBadge, t.navBadge);
- 
-     // --- 其余部分保持不变，但添加一个检查，确保元素存在再更新 ---
-     
-     // 获取四个交通卡片 (按顺序: 0-地铁, 1-高铁, 2-网约车, 3-共享单车)
-     const transportCards = document.querySelectorAll("#transport .grid.grid-cols-1.md\\:grid-cols-2.gap-8 > div");
-     
-     if (transportCards.length >= 4) {
-         // 地铁卡 (index 0)
-         if (transportCards[0]) {
-             const card = transportCards[0];
-             const title = card.querySelector("h4");
-             if (title) setText(title, t.metroTitle);
-             
-             // Ticketing Options 标题
-             const ticketingTitle = card.querySelector(".text-xs.font-bold.text-green-600");
-             if (ticketingTitle) setText(ticketingTitle, t.ticketingOptions);
-     
-             // 三个购票方式
-             const optionDivs = card.querySelectorAll(".space-y-3 .bg-white\\/70");
-             if (optionDivs.length >= 3) {
-                 // 第一个购票方式
-                 const firstTitle = optionDivs[0].querySelector(".font-semibold");
-                 if (firstTitle) setText(firstTitle, t.metroMachine);
-                 const ps = optionDivs[0].querySelectorAll("p");
-                 if (ps.length >= 2) {
-                     if (ps[1]) setText(ps[1], t.metroMachineDesc);
-                 }
-                 if (ps.length >= 3) {
-                     if (ps[2]) setText(ps[2], t.metroTicketOffice);
-                 }
-                 
-                 // 第二个购票方式
-                 const secondTitle = optionDivs[1].querySelector(".font-semibold");
-                 if (secondTitle) setText(secondTitle, t.metroE_Ticket);
-                 const secondP = optionDivs[1].querySelector("p:last-child");
-                 if (secondP) setText(secondP, t.metroE_TicketDesc);
-                 
-                 // 第三个购票方式
-                 const thirdTitle = optionDivs[2].querySelector(".font-semibold");
-                 if (thirdTitle) setText(thirdTitle, t.metroPass);
-                 const thirdP = optionDivs[2].querySelector("p:last-child");
-                 if (thirdP) setText(thirdP, t.metroPassDesc);
-             }
-     
-             // 注意区域
-             const noteDiv = card.querySelector(".bg-red-100\\/60");
-             if (noteDiv) {
-                 const noteTitle = noteDiv.querySelector(".font-bold");
-                 if (noteTitle) setText(noteTitle, t.metroNoteTitle);
-                 const noteLis = noteDiv.querySelectorAll("ul li");
-                 if (noteLis.length >= 2) {
-                     if (noteLis[0]) setLiContent(noteLis[0], t.metroNote1);
-                     if (noteLis[1]) setLiContent(noteLis[1], t.metroNote2);
-                 }
-             }
-         }
-     
-         // 高铁卡 (index 1)
-         if (transportCards[1]) {
-             const card = transportCards[1];
-             const title = card.querySelector("h4");
-             if (title) setText(title, t.hsrailTitle);
-             
-             // Ticketing Options 标题
-             const ticketingTitle = card.querySelector(".text-xs.font-bold.text-green-600");
-             if (ticketingTitle) setText(ticketingTitle, t.hsrailOptions);
-     
-             // 购票方式
-             const optionDivs = card.querySelectorAll(".space-y-3 .bg-white\\/70");
-             if (optionDivs.length >= 2) {
-                 // 线上购票
-                 const onlineTitle = optionDivs[0].querySelector(".font-semibold");
-                 if (onlineTitle) setText(onlineTitle, t.hsrailOnline);
-                 
-                 const subTitles = optionDivs[0].querySelectorAll(".font-medium");
-                 if (subTitles.length >= 2) {
-                     if (subTitles[0]) setText(subTitles[0], t.hsrailTrip);
-                     if (subTitles[1]) setText(subTitles[1], t.hsrail12306);
-                 }
-                 
-                 const ps = optionDivs[0].querySelectorAll("p");
-                 if (ps.length >= 6) {
-                     if (ps[2]) setText(ps[2], t.hsrailTripDesc);
-                     if (ps[3]) setText(ps[3], t.hsrailETicket);
-                     if (ps[5]) setText(ps[5], t.hsrail12306Desc);
-                 }
-                 
-                 // 线下购票
-                 const offlineTitle = optionDivs[1].querySelector(".font-semibold");
-                 if (offlineTitle) setText(offlineTitle, t.hsrailOffline);
-                 const offlineP = optionDivs[1].querySelector("p:last-child");
-                 if (offlineP) setText(offlineP, t.hsrailOfflineDesc);
-             }
-     
-             // Boarding Process
-             const boardingTitles = card.querySelectorAll(".text-xs.font-bold.text-green-600");
-             if (boardingTitles.length >= 2) {
-                 if (boardingTitles[1]) setText(boardingTitles[1], t.hsrailBoarding);
-             }
-             
-             const steps = card.querySelectorAll(".flex.flex-col.gap-2 .flex.items-start");
-             const stepTexts = [t.hsrailStep1, t.hsrailStep2, t.hsrailStep3, t.hsrailStep4, t.hsrailStep5];
-             steps.forEach((step, idx) => {
-                 const textDiv = step.querySelector("div");
-                 if (textDiv && stepTexts[idx]) setText(textDiv, stepTexts[idx]);
-             });
-         }
-     
-         // 网约车卡 (index 2)
-         if (transportCards[2]) {
-             const card = transportCards[2];
-             const title = card.querySelector("h4");
-             if (title) setText(title, t.rideTitle);
-             
-             // 推荐App
-             const appSpan = card.querySelector(".inline-flex span.text-sunny");
-             if (appSpan) setText(appSpan, "Didi Rider");
-             
-             const appDiv = card.querySelector(".inline-flex");
-             if (appDiv) {
-                 const firstSpan = appDiv.querySelector("span:first-child");
-                 if (firstSpan) setText(firstSpan, t.rideApp.replace("Didi Rider", ""));
-             }
-     
-             // Steps 标题
-             const stepsTitle = card.querySelector(".text-xs.font-bold.text-green-600");
-             if (stepsTitle) setText(stepsTitle, t.rideSteps);
-     
-             // 步骤
-             const steps = card.querySelectorAll(".space-y-2 .flex.items-start");
-             const stepTexts = [t.rideStep1, t.rideStep2, t.rideStep3, t.rideStep4];
-             
-             steps.forEach((step, idx) => {
-                 const p = step.querySelector("p");
-                 const div = step.querySelector("div");
-                 
-                 if (idx === 2 && div) {
-                     // 第三步有额外提示
-                     const innerPs = div.querySelectorAll("p");
-                     if (innerPs.length >= 2) {
-                         if (innerPs[0]) setText(innerPs[0], t.rideStep3);
-                         if (innerPs[1]) setText(innerPs[1], t.rideStep3Tip);
-                     }
-                 } else if (p && stepTexts[idx]) {
-                     setText(p, stepTexts[idx]);
-                 }
-             });
-     
-             // 注意区域
-             const noteDiv = card.querySelector(".bg-peach\\/20");
-             if (noteDiv) {
-                 const noteTitle = noteDiv.querySelector(".font-bold");
-                 if (noteTitle) setText(noteTitle, t.rideNoteTitle);
-                 const noteLis = noteDiv.querySelectorAll("ul li");
-                 if (noteLis.length >= 2) {
-                     if (noteLis[0]) setLiContent(noteLis[0], t.rideNote1);
-                     if (noteLis[1]) setLiContent(noteLis[1], t.rideNote2);
-                 }
-             }
-         }
-     
-         // 共享单车卡 (index 3)
-         if (transportCards[3]) {
-             const card = transportCards[3];
-             const title = card.querySelector("h4");
-             if (title) setText(title, t.bikeTitle);
-             
-             // 推荐平台标题
-             const platformTitle = card.querySelector(".text-xs.font-bold.text-green-600");
-             if (platformTitle) setText(platformTitle, t.bikePlatforms);
-     
-             // 表格
-             const tableHeaders = card.querySelectorAll("thead th");
-             const headerTexts = [t.bikeBrand, t.bikeApp, t.bikeColor, t.bikePayment];
-             tableHeaders.forEach((th, idx) => {
-                 if (headerTexts[idx]) setText(th, headerTexts[idx]);
-             });
-     
-             const tableRows = card.querySelectorAll("tbody tr");
-             if (tableRows.length >= 2) {
-                 const firstRowCells = tableRows[0].querySelectorAll("td");
-                 if (firstRowCells.length >= 4) {
-                     if (firstRowCells[0]) setText(firstRowCells[0], t.bikeMeituan);
-                     if (firstRowCells[3]) setText(firstRowCells[3], t.meituanPay);
-                 }
-                 
-                 const secondRowCells = tableRows[1].querySelectorAll("td");
-                 if (secondRowCells.length >= 4) {
-                     if (secondRowCells[3]) setText(secondRowCells[3], t.helloPay);
-                 }
-             }
-     
-             // Steps 标题
-             const stepsTitles = card.querySelectorAll(".text-xs.font-bold.text-green-600");
-             if (stepsTitles.length >= 2) {
-                 if (stepsTitles[1]) setText(stepsTitles[1], t.bikeSteps);
-             }
-     
-             // 步骤
-             const steps = card.querySelectorAll(".space-y-2 .flex.items-start");
-             if (steps.length >= 2) {
-                 // 第一步
-                 const step1Title = steps[0].querySelector(".font-semibold");
-                 const step1Desc = steps[0].querySelectorAll("p")[1];
-                 if (step1Title) setText(step1Title, t.bikeStep1Title);
-                 if (step1Desc) setText(step1Desc, t.bikeStep1Desc);
-                 
-                 // 第二步
-                 const step2Title = steps[1].querySelector(".font-semibold");
-                 const step2Desc = steps[1].querySelectorAll("p")[1];
-                 const fine = steps[1].querySelector(".text-red-400");
-                 if (step2Title) setText(step2Title, t.bikeStep2Title);
-                 if (step2Desc) setText(step2Desc, t.bikeStep2Desc);
-                 if (fine) setText(fine, t.bikeFine);
-             }
-         }
-     }
- 
-     // --- 导航卡片部分 (简化版，避免复杂选择器问题) ---
-     const navCards = document.querySelectorAll("#transport .grid.grid-cols-1.md\\:grid-cols-2.gap-8.mb-8 > div");
-     
-     if (navCards.length >= 4) {
-         // Apple Maps (index 0)
-         if (navCards[0]) {
-             const card = navCards[0];
-             const nameSpan = card.querySelector(".font-bold.text-gray-800");
-             const descSpan = card.querySelector(".text-xs.text-gray-500");
-             if (nameSpan) setText(nameSpan, t.appleName);
-             if (descSpan) setText(descSpan, t.appleDesc);
-             
-             // 优点列表
-             const prosLis = card.querySelectorAll(".text-sm ul:first-of-type li");
-             if (prosLis.length >= 3) {
-                 setLiContent(prosLis[0], t.applePro1);
-                 setLiContent(prosLis[1], t.applePro2);
-                 setLiContent(prosLis[2], t.applePro3);
-             }
-             
-             // 缺点列表
-             const noteLis = card.querySelectorAll(".bg-lemon\\/20 ul li");
-             if (noteLis.length >= 2) {
-                 setLiContent(noteLis[0], t.appleNote1);
-                 setLiContent(noteLis[1], t.appleNote2);
-             }
-             
-             // 提示
-             const tipText = card.querySelector(".bg-skyblue\\/10 p:last-child");
-             if (tipText) setText(tipText, t.appleTip);
-         }
-         
-         // Petal Maps (index 1)
-         if (navCards[1]) {
-             const card = navCards[1];
-             const nameSpan = card.querySelector(".font-bold.text-gray-800");
-             const subSpan = card.querySelector(".text-xs.text-gray-500");
-             if (nameSpan) setText(nameSpan, t.petalName);
-             if (subSpan) setText(subSpan, t.petalSub);
-             
-             const prosLis = card.querySelectorAll(".text-sm ul:first-of-type li");
-             if (prosLis.length >= 3) {
-                 setLiContent(prosLis[0], t.petalPro1);
-                 setLiContent(prosLis[1], t.petalPro2);
-                 setLiContent(prosLis[2], t.petalPro3);
-             }
-             
-             const noteLis = card.querySelectorAll(".bg-lemon\\/20 ul li");
-             if (noteLis.length >= 2) {
-                 setLiContent(noteLis[0], t.petalNote1);
-                 setLiContent(noteLis[1], t.petalNote2);
-             }
-             
-             const tipLis = card.querySelectorAll(".bg-skyblue\\/10 ul li");
-             if (tipLis.length >= 2) {
-                 setLiContent(tipLis[0], t.petalTip1);
-                 setLiContent(tipLis[1], t.petalTip2);
-             }
-         }
-         
-        // AMap (index 2)
-        if (navCards[2]) {
-            const card = navCards[2];
-            const nameSpan = card.querySelector(".font-bold.text-gray-800");
-            const subSpan = card.querySelector(".text-xs.text-gray-500");
-            if (nameSpan) setText(nameSpan, t.amapName);
-            if (subSpan) setText(subSpan, t.amapSub);
-            
-            // ✅ 修复：获取"✅ Pros"部分的列表项
-            const prosLis = card.querySelectorAll(".text-sm ul:first-of-type li");
-            if (prosLis.length >= 2) {
-                setLiContent(prosLis[0], t.amapPro1);
-                setLiContent(prosLis[1], t.amapPro2);
+
+    <script>
+        // Back to top
+        const btn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            btn.style.opacity = window.scrollY > 200 ? '1' : '0';
+            btn.style.pointerEvents = window.scrollY > 200 ? 'auto' : 'none';
+        });
+
+        // ── i18n ──
+        const translations = {
+            en: {
+                // nav
+                nav_home: 'Home', nav_guide: 'Guide',
+                subnav_prep: 'Preparation & Entry',
+                subnav_trans_short: 'Transport & Maps',
+                subnav_trans_long: 'Transportation & Navigation',
+                subnav_pay_short: 'Payment & Tax',
+                subnav_pay_long: 'Payment & Tax Refund',
+                subnav_accom: 'Accommodation',
+                subnav_emerg_short: 'Emergency',
+                subnav_emerg_long: 'Emergency Handling',
+                subnav_travel_short: 'Culture',
+                subnav_travel_long: 'Travel & Culture',
+                bc_home: 'Home', bc_guide: 'Guide', bc_page: 'Transportation & Navigation',
+                // hero
+                hero_title: 'Transportation & Navigation',
+                hero_sub: 'Getting around China made simple 🚄🚇🛵',
+                // section headers
+                transport_title: '🚆 1. Transportation',
+                transport_badge: 'Getting Around',
+                // metro
+                metro_title: '🚇 Metro',
+                ticketing_options: '✅ Ticketing Options',
+                metro_machine_title: '① Self-service Machines',
+                metro_machine_desc: 'Select English interface → Choose destination on the route map → Make payment → Collect ticket.',
+                metro_ticket_office: 'Ticket Office: Show passport → Make payment.',
+                metro_eticket_title: '② E-Ticket (QR Code)',
+                metro_eticket_desc: 'Open Alipay → Click "Transport" → Select "City" → Activate the local "Metro QR Code" → Scan to enter/exit.',
+                metro_pass_title: '③ Metro Passes',
+                metro_pass_desc: 'Ticket Office: Show passport → Make payment. Top-up: cash, Alipay, or WeChat Pay.',
+                metro_note_title: '⚠️ Note',
+                metro_note1: '– Tap in/out twice (once at entry, once at exit).',
+                metro_note2: '– Passport holders are advised to use staffed gates to avoid scanner issues.',
+                // hsr
+                hsr_title: '🚄 High-Speed Rail (HSR)',
+                hsr_ticket_label: '✅ Ticketing Options',
+                hsr_online_title: '① Online Booking (Recommended)',
+                hsr_tripcom_label: 'Trip.com (International Version):',
+                hsr_tripcom_desc: 'English interface → Enter route (e.g., Beijing→Shanghai) → Select train → Fill in passport details → Pay with Visa/Mastercard.',
+                hsr_eticket_note: 'E-tickets: Scan QR code at the gate (no paper ticket needed!).',
+                hsr_12306_label: 'www.12306.cn:',
+                hsr_12306_desc: 'Register → Passport verification → Show passport at the gate.',
+                hsr_offline_title: '② Offline Booking',
+                hsr_offline_desc: 'Visit HSR station counters → Show passport → Pay by cash/card.',
+                hsr_board_label: '✅ Boarding Process',
+                hsr_step1: '<span class="font-semibold">Enter the Station</span> – Use self-service gates to scan your passport.',
+                hsr_step2: '<span class="font-semibold">Security Check</span> – Queue for security screening after entering.',
+                hsr_step3: '<span class="font-semibold">Find Your Gate</span> – Check your ticket (via app) for the assigned gate. Wait nearby until boarding begins.',
+                hsr_step4: '<span class="font-semibold">Board the Train</span> – Scan passport at gate when "Now Boarding" displays.',
+                hsr_step5: '<span class="font-semibold">Locate Your Seat</span> – Match ticket to number above windows (e.g., 06A = Row 6, Seat A).',
+                // didi
+                didi_title: '🚖 Ride-Hailing (Didi Rider)',
+                didi_app_rec: '📱 Recommended App: <span class="text-sunny">Didi Rider</span>',
+                didi_steps_label: '✅ Steps',
+                didi_step1: 'Download "Didi Rider" → Register with your international number.',
+                didi_step2: 'Bind Visa/Mastercard → Set payment code.',
+                didi_step3: 'Input destination (English/Chinese) → Select model (Economy/Comfort) → Confirm pickup point.',
+                didi_step3_tip: 'Assist the driver by dragging the map marker and sending text notes, e.g. "Near Starbucks".',
+                didi_step4: 'Share your real-time trip with friends via the app.',
+                didi_note_title: '⚠️ Note',
+                didi_note1: '– Verify license plate before boarding.',
+                didi_note2: '– In-app audio recording is enabled by default.',
+                // bike
+                bike_title: '🚲 Bike-Sharing',
+                bike_platforms_label: '✅ Recommended Platforms',
+                bike_th_brand: 'Brand', bike_th_app: 'App', bike_th_color: 'Color', bike_th_payment: 'Payment',
+                bike_meituan_name: 'Meituan Bike', bike_meituan_app: 'Meituan App', bike_meituan_color: 'Yellow', bike_meituan_pay: 'Alipay / WeChat Pay',
+                bike_hello_name: 'HelloBike', bike_hello_app: 'HelloBike App', bike_hello_color: 'Blue/Pink', bike_hello_pay: 'Foreign card binding (some cities)',
+                bike_steps_label: '✅ Steps',
+                bike_step1_title: 'Unlock',
+                bike_step1_desc: 'Scan the QR code via the app → Pay a refundable deposit or buy a weekly/monthly pass.',
+                bike_step2_title: 'Parking Rules',
+                bike_step2_desc: 'Return to designated zones (marked "P" in app) → Manually lock.',
+                bike_fine: 'Fine: Charged for improper parking.',
+                // transport tips
+                transport_tips_title: '💡 Tips',
+                transport_tip1: '– Metro/HSR stations have English signs; some cities offer English announcements.',
+                transport_tip2: '– Show translated Chinese address to drivers or locals: "请问地铁站怎么走？"',
+                transport_tip3: '– In-station help: look for "Service Center". Didi English line: <span class="font-mono text-blue-600">+86-400-000-0999</span>.',
+                transport_tip4: '– Best combo: HSR for long distances + bike-sharing for short hops.',
+                // nav section
+                nav_title: '🗺️ 2. Navigation Tools',
+                nav_badge: 'go~ go~ go~',
+                // apple maps
+                apple_name: 'Maps', apple_sub: 'Navigate and explore the world',
+                apple_pros_label: '✅ Pros',
+                apple_pro1: '– iPhone pre-installed and ready to use',
+                apple_pro2: '– Full English interface, navigate by chatting with Siri',
+                apple_pro3: '– Quickly updated road conditions and accurate location of attractions',
+                apple_note_label: '🟡 Note',
+                apple_note1: '– Small alleyways and new shopping malls may not be searchable',
+                apple_note2: '– Bus routes not as good as local App Details',
+                apple_tip_label: '⭐ Tips',
+                apple_tip: '"Siri, take me to the Forbidden City!"',
+                // petal maps
+                petal_name: 'Petal Maps', petal_sub: 'By Huawei · Global Navigation',
+                petal_pros_label: '✅ Pros',
+                petal_pro1: '– Huawei phones come pre-installed, other Androids can install it too',
+                petal_pro2: '– Free switching between Chinese and English, real-time road conditions',
+                petal_pro3: '– Offline map function — don\'t panic even without internet connection',
+                petal_note_label: '🟡 Note',
+                petal_note1: '– Non-Huawei phones need to manually download the installation package',
+                petal_note2: '– Information may be incomplete for rural areas',
+                petal_tip_label: '⭐ Tips',
+                petal_tip1: '– Huawei users directly poke [App Market] to download',
+                petal_tip2: '– APKPure is recommended for third-party Android installations.',
+                // amap
+                amap_name: 'AMap Global', amap_sub: 'Navigation · Traffic · Bus & Train',
+                amap_pros_label: '✅ Pros',
+                amap_pro1: '– English version is now online',
+                amap_pro2: '– You can navigate the market trails',
+                amap_note_label: '🟡 Note',
+                amap_note1: '– English switching portal is hard to find (Path: My → Settings → Language)',
+                amap_note2: '– Some features are only available in Chinese',
+                amap_tip_label: '⭐ Tips',
+                amap_tip: 'Smoother when used with translation software ～',
+                // baidu maps
+                baidu_name: 'Baidu Maps', baidu_sub: '百度地图 · 打车公交出行',
+                baidu_pros_label: '✅ Pros',
+                baidu_pro1: '– Imperial Exclusive English Service (Beijing only)',
+                baidu_pro2: '– The audio guide to the attractions is super sweet',
+                baidu_note_label: '🟡 Note',
+                baidu_note: '– Outside of Beijing, the interface changes to Chinese in a second.',
+                baidu_tip_label: '⭐ Tips',
+                baidu_tip: '– Suggest using translation plugins together',
+                register_title: '🤔 Want to register?',
+                register_gaode: 'Gaode/Baidu Maps → <span class="text-red-400 font-medium">China Cell Phone Number Required</span>',
+                register_petal: 'Petal Maps → <span class="text-green-500 font-medium">visitor mode available, no registration required</span>',
+                // lazy bag table
+                lazy_title: '✨ Ultimate Lazy Bag',
+                lazy_r1_user: '📱 iPhone users', lazy_r1_val: 'Apple Maps + Gaode English version — double insurance',
+                lazy_r2_user: '🤖 Android user', lazy_r2_val: 'Petal Maps Goes Around the World',
+                lazy_r3_user: '🧭 Deep traveler', lazy_r3_val: 'Gaode Map + Translation Software Combo',
+                lazy_r4_user: '🏯 Beijing Short Trip', lazy_r4_val: 'Baidu Maps English Version',
+                // footer
+                footer_editors: 'Editors: Liu Sisi, Wu Xiangwei, Xu Xinyi',
+                footer_devs: 'Developers: Li Xuan, Li Xinyi',
+                footer_copy: '© 2025 Navigating China Handbook | All Rights Reserved',
+            },
+            zh: {
+                // nav
+                nav_home: '首页', nav_guide: '指南',
+                subnav_prep: '入境准备',
+                subnav_trans_short: '交通导航',
+                subnav_trans_long: '交通与导航',
+                subnav_pay_short: '支付与退税',
+                subnav_pay_long: '支付与退税',
+                subnav_accom: '住宿与生活',
+                subnav_emerg_short: '紧急情况',
+                subnav_emerg_long: '紧急情况处理',
+                subnav_travel_short: '文化',
+                subnav_travel_long: '旅游与文化',
+                bc_home: '首页', bc_guide: '指南', bc_page: '交通与导航',
+                // hero
+                hero_title: '交通与导航',
+                hero_sub: '在中国出行，简单明了 🚄🚇🛵',
+                // section headers
+                transport_title: '🚆 一、出行方式',
+                transport_badge: '出行方式',
+                // metro
+                metro_title: '🚇 地铁',
+                ticketing_options: '✅ 购票方式',
+                metro_machine_title: '① 自动售票机',
+                metro_machine_desc: '选择英文界面 → 点击线路图选择目的地 → 投币/扫码支付（支持支付宝/微信）→ 取票进站。',
+                metro_ticket_office: '人工窗口：出示护照 → 现金购票。',
+                metro_eticket_title: '② 电子乘车码',
+                metro_eticket_desc: '打开支付宝 → 点击「出行」→ 领取所在城市的"地铁乘车码" → 扫码进出站。',
+                metro_pass_title: '③ 交通卡',
+                metro_pass_desc: '办理地点：地铁站售票窗口（需护照）。充值方式：现金、支付宝、微信（部分机器支持外卡）。',
+                metro_note_title: '⚠️ 注意',
+                metro_note1: '– 进出站需两次扫码/刷卡（进站一次，出站一次）。',
+                metro_note2: '– 外籍护照用户建议走人工通道，避免闸机识别问题。',
+                // hsr
+                hsr_title: '🚄 高铁',
+                hsr_ticket_label: '✅ 购票方式',
+                hsr_online_title: '① 线上购票（推荐）',
+                hsr_tripcom_label: 'Trip.com（国际版）：',
+                hsr_tripcom_desc: '全英文界面 → 输入出发地/目的地（如 Beijing→Shanghai）→ 选择车次 → 填写护照信息 → 绑定 Visa/Mastercard 支付。',
+                hsr_eticket_note: '电子票直接扫码进站，无需取票！',
+                hsr_12306_label: '12306 英文官网：',
+                hsr_12306_desc: '注册账号 → 护照认证 → 购票后凭护照进站。',
+                hsr_offline_title: '② 线下购票',
+                hsr_offline_desc: '前往高铁站人工窗口 → 出示护照 → 现金/刷卡购票。',
+                hsr_board_label: '✅ 进站与乘车',
+                hsr_step1: '<span class="font-semibold">进站</span> – 使用自助闸机扫描护照。',
+                hsr_step2: '<span class="font-semibold">安检</span> – 护照与行李一同过检。',
+                hsr_step3: '<span class="font-semibold">寻找检票口</span> – 查看车票（App内）找到对应检票口，附近等候。',
+                hsr_step4: '<span class="font-semibold">检票乘车</span> – 当"开始检票"时，在闸机扫描护照。',
+                hsr_step5: '<span class="font-semibold">寻找座位</span> – 根据车票上的号码对应窗户上方数字（如06A = 6排A座）。',
+                // didi
+                didi_title: '🚖 网约车（滴滴出行）',
+                didi_app_rec: '📱 推荐 App：<span class="text-sunny">Didi Rider</span>',
+                didi_steps_label: '✅ 操作步骤',
+                didi_step1: '下载"Didi Rider"App → 使用国际手机号注册。',
+                didi_step2: '绑定 Visa/Mastercard → 设置支付密码。',
+                didi_step3: '输入目的地（英文或中文）→ 选择车型（经济/舒适）→ 确认上车点。',
+                didi_step3_tip: '定位校准技巧：通过拖动地图标记、发送文字备注（如"靠近星巴克"）辅助司机定位。',
+                didi_step4: '司机接单后，App 内实时共享行程给亲友。',
+                didi_note_title: '⚠️ 注意',
+                didi_note1: '– 确认车牌号再上车。',
+                didi_note2: '– 车内录音功能默认开启，安全有保障。',
+                // bike
+                bike_title: '🚲 共享单车',
+                bike_platforms_label: '✅ 推荐平台',
+                bike_th_brand: '品牌', bike_th_app: 'App', bike_th_color: '车辆颜色', bike_th_payment: '支付方式',
+                bike_meituan_name: '美团单车', bike_meituan_app: '美团 App', bike_meituan_color: '黄色', bike_meituan_pay: '支付宝/微信钱包充值',
+                bike_hello_name: '哈啰单车', bike_hello_app: 'HelloBike App', bike_hello_color: '蓝色/粉色', bike_hello_pay: '绑定外卡（部分城市）',
+                bike_steps_label: '✅ 使用步骤',
+                bike_step1_title: '扫码开锁',
+                bike_step1_desc: '打开 App → 点击"扫码开锁" → 对准车锁二维码。首次使用需缴纳押金（可退）或购买周卡/月卡。',
+                bike_step2_title: '还车规则',
+                bike_step2_desc: '找到指定停车区（App 内地图标注 P 点）→ 手动关锁。',
+                bike_fine: '违规停放将收取调度费。',
+                // transport tips
+                transport_tips_title: '💡 小贴士',
+                transport_tip1: '– 地铁站、高铁站均有英文标识，部分城市提供语音播报。',
+                transport_tip2: '– 用翻译 App 展示中文地址给司机或路人："请问地铁站怎么走？"',
+                transport_tip3: '– 站内求助：找"Service Center（服务中心）"。滴滴英文客服：<span class="font-mono text-blue-600">+86-400-000-0999</span>。',
+                transport_tip4: '– 省钱组合：长途选高铁 + 短途接驳用共享单车，性价比最高。',
+                // nav section
+                nav_title: '🗺️ 二、导航工具',
+                nav_badge: '出发吧~',
+                // apple maps
+                apple_name: '地图（苹果）', apple_sub: '导航并探索世界',
+                apple_pros_label: '✅ 优点',
+                apple_pro1: '– 预装 iPhone，开机即用',
+                apple_pro2: '– 全英文界面，和 Siri 聊天就能导航',
+                apple_pro3: '– 路况更新快，景点定位准',
+                apple_note_label: '🟡 缺点',
+                apple_note1: '– 小胡同、新商场可能搜不到',
+                apple_note2: '– 公交路线不如本土 App 详细',
+                apple_tip_label: '⭐ 使用贴士',
+                apple_tip: '直接喊"Siri，带我去故宫！"',
+                // petal maps
+                petal_name: 'Petal Maps（华为花瓣地图）', petal_sub: '华为出品 · 全球导航',
+                petal_pros_label: '✅ 优点',
+                petal_pro1: '– 华为手机预装，其他安卓也能装',
+                petal_pro2: '– 中英文自由切换，路况实时刷新',
+                petal_pro3: '– 离线地图功能，没网也不慌',
+                petal_note_label: '🟡 缺点',
+                petal_note1: '– 非华为手机需手动下载安装包',
+                petal_note2: '– 乡村地区信息可能不全',
+                petal_tip_label: '⭐ 使用贴士',
+                petal_tip1: '– 华为用户直接戳【应用市场】下载',
+                petal_tip2: '– 第三方安卓机建议用 APKPure 安装',
+                // amap
+                amap_name: '高德地图（AMap 英文版）', amap_sub: '导航 · 实时路况 · 公交地铁',
+                amap_pros_label: '✅ 优点',
+                amap_pro1: '– 英文版已上线',
+                amap_pro2: '– 菜市场小道都能导航',
+                amap_note_label: '🟡 缺点',
+                amap_note1: '– 英文切换入口难找（路径：我的 → 设置 → 语言）',
+                amap_note2: '– 部分功能仅中文版可用',
+                amap_tip_label: '⭐ 使用贴士',
+                amap_tip: '搭配翻译软件使用更丝滑～',
+                // baidu maps
+                baidu_name: '百度地图', baidu_sub: '百度地图 · 打车公交出行',
+                baidu_pros_label: '✅ 优点',
+                baidu_pro1: '– 帝都专属英文服务（仅限北京地区）',
+                baidu_pro2: '– 景点语音讲解超贴心',
+                baidu_note_label: '🟡 缺点',
+                baidu_note: '– 出了北京秒变中文界面',
+                baidu_tip_label: '⭐ 使用贴士',
+                baidu_tip: '– 建议搭配翻译插件使用',
+                register_title: '🤔 要注册吗？',
+                register_gaode: '高德/百度地图 → <span class="text-red-400 font-medium">需中国手机号</span>',
+                register_petal: 'Petal Maps → <span class="text-green-500 font-medium">可用游客模式，无需注册</span>',
+                // lazy bag table
+                lazy_title: '✨ 终极懒人包',
+                lazy_r1_user: '📱 iPhone 用户', lazy_r1_val: '苹果地图 + 高德英文版双保险',
+                lazy_r2_user: '🤖 安卓用户', lazy_r2_val: 'Petal Maps 走天下',
+                lazy_r3_user: '🧭 深度游玩家', lazy_r3_val: '高德地图 + 翻译软件组合拳',
+                lazy_r4_user: '🏯 北京短途游', lazy_r4_val: '百度地图英文版试一波',
+                // footer
+                footer_editors: '编辑：刘思思，吴向微，许欣溢',
+                footer_devs: '开发：李璇、李欣苡',
+                footer_copy: '© 2025 中国导航手册 | 版权所有',
             }
-            
-            // ✅ 修复：获取"🟡 Note"部分的列表项
-            const noteLis = card.querySelectorAll(".bg-lemon\\/20 ul li");
-            if (noteLis.length >= 2) {
-                setLiContent(noteLis[0], t.amapNote1);
-                setLiContent(noteLis[1], t.amapNote2);
-            }
-            
-            // ✅ 修复：获取"⭐ Tips"部分的文本（您提到的那句话）
-            // 方法1: 通过类选择器定位 (最精确)
-            const tipText = card.querySelector(".bg-skyblue\\/10 p.text-gray-700");
-            if (tipText) {
-                setText(tipText, t.amapTip);
-            } else {
-                // 方法2: 如果上面的选择器失败，尝试更通用的方式
-                const tipDiv = card.querySelector(".bg-skyblue\\/10");
-                if (tipDiv) {
-                    const lastP = tipDiv.querySelector("p:last-child");
-                    if (lastP) setText(lastP, t.amapTip);
-                }
-            }
-            
-            // ✅ 额外检查：确保所有关键元素都被更新
-            console.log("AMap card updated with tip:", t.amapTip);
+        };
+
+        let currentLang = 'en';
+
+        function applyLang(lang) {
+            const t = translations[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) el.innerHTML = t[key];
+            });
+            document.getElementById('langLabel').textContent = lang === 'en' ? 'Language' : '语言';
+            document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
         }
-         // Baidu Maps (index 3)
-         if (navCards[3]) {
-             const card = navCards[3];
-             const nameSpan = card.querySelector(".font-bold.text-gray-800");
-             if (nameSpan) setText(nameSpan, t.baiduName);
-             
-             const prosLis = card.querySelectorAll(".text-sm ul:first-of-type li");
-             if (prosLis.length >= 2) {
-                 setLiContent(prosLis[0], t.baiduPro1);
-                 setLiContent(prosLis[1], t.baiduPro2);
-             }
-             
-             const noteText = card.querySelector(".bg-lemon\\/20 p:last-child");
-             if (noteText) setText(noteText, t.baiduNote);
-             
-             const tipText = card.querySelector(".bg-skyblue\\/10 p:last-child");
-             if (tipText) setText(tipText, t.baiduTip);
-             
-             const registerLis = card.querySelectorAll(".bg-white\\/70 ul li");
-             if (registerLis.length >= 2) {
-                 setLiContent(registerLis[0], t.registerGaode);
-                 setLiContent(registerLis[1], t.registerPetal);
-             }
-         }
-     }
- 
-     // --- 4. 终极建议表格 ---
-     const finalTableTitle = document.querySelector("#navigation h4");
-     if (finalTableTitle) setText(finalTableTitle, t.finalRec);
-     
-     const finalRows = document.querySelectorAll("#navigation tbody tr");
-     if (finalRows.length >= 4) {
-         const cells1 = finalRows[0].querySelectorAll("td");
-         if (cells1.length >= 2) {
-             setText(cells1[0], t.iphoneUser);
-             setText(cells1[1], t.iphoneVal);
-         }
-         
-         const cells2 = finalRows[1].querySelectorAll("td");
-         if (cells2.length >= 2) {
-             setText(cells2[0], t.androidUser);
-             setText(cells2[1], t.androidVal);
-         }
-         
-         const cells3 = finalRows[2].querySelectorAll("td");
-         if (cells3.length >= 2) {
-             setText(cells3[0], t.deepUser);
-             setText(cells3[1], t.deepVal);
-         }
-         
-         const cells4 = finalRows[3].querySelectorAll("td");
-         if (cells4.length >= 2) {
-             setText(cells4[0], t.beijingUser);
-             setText(cells4[1], t.beijingVal);
-         }
-     }
- 
-     // --- 5. 页脚 ---
-     const footerPs = document.querySelectorAll("footer p");
-     if (footerPs[0]) setText(footerPs[0], t.footerEditor);
-     if (footerPs[2]) setText(footerPs[2], t.footerCopyright);
- }
-  // ==================== 初始化和事件绑定 ====================
-  document.addEventListener("DOMContentLoaded", () => {
-      // 回到顶部按钮逻辑
-      const backToTopBtn = document.getElementById('backToTop');
-      window.addEventListener('scroll', () => {
-          if (window.scrollY > 300) {
-              backToTopBtn.style.opacity = '1';
-          } else {
-              backToTopBtn.style.opacity = '0';
-          }
-      });
-  
-      // 获取语言按钮并绑定事件
-      const langBtns = document.querySelectorAll(".group .absolute button");
-      if (langBtns.length >= 2) {
-          langBtns[0].addEventListener("click", () => applyLanguage("en"));
-          langBtns[1].addEventListener("click", () => applyLanguage("zh"));
-      }
-  
-      // 从本地存储读取语言设置，没有则用默认值
-      const savedLang = localStorage.getItem(LANG_KEY) || "en";
-      applyLanguage(savedLang);
-  });
-</script>
+
+        function setLang(lang) { currentLang = lang; applyLang(lang); }
+        function toggleLang() { setLang(currentLang === 'en' ? 'zh' : 'en'); }
+    </script>
+
 </body>
 </html>

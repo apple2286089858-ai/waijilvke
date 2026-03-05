@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transportation & Navigation – Navigating China</title>
+    <title>Emergency Handling – Navigating China</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,6 +23,7 @@
                         mint:     '#B2E8C2',
                         lemon:    '#FFE066',
                         lavender: '#D8BFD8',
+                        apricot:  '#FDDCB5',
                     },
                     fontFamily: {
                         en: ['Inter', 'sans-serif'],
@@ -44,14 +45,13 @@
         }
         html { scroll-behavior: smooth; }
         @layer components {
-            .font-en       { font-family: 'Inter', sans-serif; }
-            .nav-text      { font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: 0.01em; }
-            .footer-text   { font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em; }
+            .nav-text    { font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: 0.01em; }
+            .footer-text { font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.01em; }
         }
     </style>
 </head>
 
-<body class="bg-pinky text-gray-800 pt-20 font-en">
+<body class="bg-pinky text-gray-800 pt-20">
 
     <!-- ===== HEADER ===== -->
     <header class="fixed top-0 left-0 z-50 w-full py-2 px-4 md:px-8 bg-pinky/95 backdrop-blur-sm">
@@ -62,16 +62,16 @@
                     Navigating <span class="text-sunny">China</span>
                 </h1>
             </div>
-            <nav id="main-nav" class="flex flex-wrap gap-4 nav-text">
+            <nav class="flex flex-wrap gap-4 nav-text">
                 <a href="index.html" class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm" data-i18n="nav_home">Home</a>
-                <a href="index.html#contents-section" class="px-4 py-2 bg-skyblue hover:bg-skyblue/80 rounded-full transition-all transform hover:scale-105 shadow-sm" data-i18n="nav_guide">Guide</a>
+                <a href="index.html#contents-section" class="px-4 py-2 bg-lemon hover:bg-lemon/80 rounded-full transition-all transform hover:scale-105 shadow-sm" data-i18n="nav_guide">Guide</a>
                 <div class="relative group">
                     <button class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm flex items-center gap-2" onclick="toggleLang()">
                         <span id="langLabel">Language</span><span class="text-xs">▼</span>
                     </button>
-                    <div class="absolute top-full right-0 mt-2 w-32 bg-white rounded-xl shadow-lg border-2 border-sunny/30 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                        <button class="w-full px-4 py-2 text-left hover:bg-sunny/10 rounded-t-xl transition-colors" onclick="setLang('en')">English</button>
-                        <button class="w-full px-4 py-2 text-left hover:bg-sunny/10 rounded-b-xl transition-colors" onclick="setLang('zh')">中文</button>
+                    <div class="absolute top-full right-0 mt-2 w-32 bg-white rounded-xl shadow-lg border-2 border-lemon/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                        <button class="w-full px-4 py-2 text-left hover:bg-lemon/20 rounded-t-xl transition-colors" onclick="setLang('en')">English</button>
+                        <button class="w-full px-4 py-2 text-left hover:bg-lemon/20 rounded-b-xl transition-colors" onclick="setLang('zh')">中文</button>
                     </div>
                 </div>
             </nav>
@@ -79,7 +79,7 @@
     </header>
 
     <!-- ===== SUB-NAV ===== -->
-    <section class="w-full px-4 md:px-8 mt-3 bg-skyblue/70">
+    <section class="w-full px-4 md:px-8 mt-3 bg-lemon/45">
         <div class="max-w-6xl mx-auto">
             <div class="hidden md:block">
                 <nav class="flex items-center justify-between gap-1 nav-text text-[13px]">
@@ -87,7 +87,7 @@
                         <span class="text-base">🧳</span><span data-i18n="subnav_prep">Preparation &amp; Entry</span>
                     </a>
                     <span class="h-5 w-px bg-white/60"></span>
-                    <a href="transportation.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-blue-500 font-bold">
+                    <a href="transportation.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
                         <span class="text-base">🗺️</span>
                         <span class="md:inline lg:hidden" data-i18n="subnav_trans_short">Transport &amp; Maps</span>
                         <span class="hidden lg:inline" data-i18n="subnav_trans_long">Transportation &amp; Navigation</span>
@@ -103,7 +103,7 @@
                         <span class="text-base">🏨</span><span data-i18n="subnav_accom">Accommodation</span>
                     </a>
                     <span class="h-5 w-px bg-white/60"></span>
-                    <a href="emergency.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-gray-700 hover:bg-white/60 hover:text-sunny transition">
+                    <a href="emergency.html" class="flex items-center gap-1 px-2 py-1.5 rounded-xl text-yellow-700 font-bold">
                         <span class="text-base">🆘</span>
                         <span class="md:inline lg:hidden" data-i18n="subnav_emerg_short">Emergency</span>
                         <span class="hidden lg:inline" data-i18n="subnav_emerg_long">Emergency Handling</span>
@@ -115,436 +115,385 @@
                         <span class="hidden lg:inline" data-i18n="subnav_travel_long">Travel &amp; Culture</span>
                     </a>
                 </nav>
-                <div class="mt-2 h-[2px] w-24 bg-skyblue/70 rounded-full ml-[calc(16.66%-48px+110px)]"></div>
+                <div class="mt-2 h-[2px] w-24 bg-yellow-400/70 rounded-full ml-[calc(66.66%-48px+110px)]"></div>
             </div>
             <div class="mt-3 pb-2 text-xs text-gray-500">
                 <a href="index.html" class="hover:text-gray-700 transition" data-i18n="bc_home">Home</a>
                 <span class="mx-1 text-gray-300">/</span>
                 <a href="index.html#contents-section" class="hover:text-gray-700 transition" data-i18n="bc_guide">Guide</a>
                 <span class="mx-1 text-gray-300">/</span>
-                <span class="text-gray-600" data-i18n="bc_page">Transportation &amp; Navigation</span>
+                <span class="text-gray-600" data-i18n="bc_page">Emergency Handling</span>
             </div>
         </div>
     </section>
 
     <!-- ===== HERO ===== -->
-    <section class="w-full py-8 px-4 md:px-8 bg-gradient-to-b from-skyblue/70 to-white/50">
-        <div class="max-w-5xl mx-auto flex flex-col items-center gap-8">
-            <div class="max-w-3xl text-center">
-                <br><br><br><br>
-                <h2 class="text-[clamp(1.8rem,4vw,2.8rem)] font-bold text-white text-shadow mb-4" data-i18n="hero_title">
-                    Transportation &amp; Navigation
-                </h2>
-                <p class="text-lg text-gray-600" data-i18n="hero_sub">Getting around China made simple 🚄🚇🛵</p>
-                <br><br><br><br><br><br><br><br><br>
-            </div>
+    <section class="w-full py-8 px-4 md:px-8 bg-gradient-to-b from-lemon/45 to-white/50">
+        <div class="max-w-5xl mx-auto text-center">
+            <br><br><br><br>
+            <h2 class="text-[clamp(1.8rem,4vw,2.8rem)] font-bold text-white text-shadow mb-4" data-i18n="hero_title">Emergency Handling</h2>
+            <p class="text-lg text-gray-600" data-i18n="hero_sub">Stay safe, stay calm — we've got you covered 🆘🏥🛂</p>
+            <br><br><br><br><br><br><br><br><br>
         </div>
     </section>
 
     <!-- ===== CONTENT ===== -->
-    <section id="transport" class="w-full py-12 px-4 md:px-8 bg-white/50">
+    <section class="w-full py-12 px-4 md:px-8 bg-white/50">
         <div class="max-w-5xl mx-auto">
 
-            <!-- Section Title: Transportation -->
-            <div class="text-center mb-10">
-                <h3 class="text-2xl font-bold text-sunny relative inline-block">
-                    <span class="bg-white px-6 py-2 rounded-2xl shadow-md transform -rotate-1 border-2 border-sunny" data-i18n="transport_title">🚆 1. Transportation</span>
-                    <span class="absolute -top-3 -right-8 text-xs font-bold bg-skyblue text-white px-2 py-1 rounded-full shadow-sm border border-white" data-i18n="transport_badge">Getting Around</span>
+            <!-- ══════════════════════════════════ -->
+            <!--  PART 1 · MEDICAL CARE GUIDE       -->
+            <!-- ══════════════════════════════════ -->
+            <div id="medical" class="text-center mb-10">
+                <h3 class="text-2xl font-bold text-yellow-600 relative inline-block">
+                    <span class="bg-white px-6 py-2 rounded-2xl shadow-md transform -rotate-1 border-2 border-lemon" data-i18n="p1_title">🏥 1. Medical Care Guide</span>
+                    <span class="absolute -top-3 -right-8 text-xs font-bold bg-peach text-red-700 px-2 py-1 rounded-full shadow-sm border border-white" data-i18n="p1_badge">Stay Safe~</span>
                 </h3>
             </div>
 
-            <!-- 4 Transport Cards -->
+            <!-- Emergency tip banner -->
+            <div class="bg-red-50 border-2 border-red-200 rounded-2xl p-4 mb-8 flex items-start gap-3 shadow-sm">
+                <span class="text-2xl flex-shrink-0">🚨</span>
+                <p class="text-sm text-gray-700" data-i18n="p1_banner">In emergencies, <span class="font-bold text-red-500">dial 120</span> immediately. Repeat <span class="font-semibold">"Hello"</span> to activate English-language assistance (available in Beijing / Shanghai pilot areas). Carry your <span class="font-semibold">passport and medical insurance documents</span> to the nearest hospital's Emergency Department.</p>
+            </div>
+
+            <!-- (1) Hospital Visit Process -->
+            <div class="mb-4">
+                <h4 class="font-bold text-yellow-700 text-lg mb-4 flex items-center gap-2">
+                    <span class="bg-lemon/60 px-3 py-1 rounded-xl border border-lemon" data-i18n="hosp_title">🚑 (1) Hospital Visit Process</span>
+                </h4>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+
+                <!-- ① Registration -->
+                <div class="bg-white p-5 rounded-2xl shadow-md border-2 border-lemon/50 relative overflow-hidden flex flex-col gap-3 hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-lemon to-lemon/10 rounded-t-2xl"></div>
+                    <div class="flex items-center gap-2 mt-1">
+                        <span class="w-8 h-8 bg-lemon text-yellow-800 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">①</span>
+                        <p class="font-bold text-yellow-700" data-i18n="reg_title">Registration</p>
+                    </div>
+                    <p class="text-xs text-gray-500 italic" data-i18n="reg_note">Passport required</p>
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <div class="bg-lemon/10 rounded-xl p-2 border border-lemon/30">
+                            <p class="font-semibold text-yellow-600 text-xs mb-1" data-i18n="reg_online_label">Online</p>
+                            <p data-i18n="reg_online_body">Available via hospital websites or WeChat official accounts.</p>
+                        </div>
+                        <div class="bg-lemon/10 rounded-xl p-2 border border-lemon/30">
+                            <p class="font-semibold text-yellow-600 text-xs mb-1" data-i18n="reg_onsite_label">On-Site</p>
+                            <p data-i18n="reg_onsite_body">Service counter or self-service kiosk → Select department → Receive registration slip.</p>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-lemon/30 text-4xl select-none">📋</div>
+                </div>
+
+                <!-- ② Consultation -->
+                <div class="bg-white p-5 rounded-2xl shadow-md border-2 border-skyblue/40 relative overflow-hidden flex flex-col gap-3 hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-skyblue/70 to-skyblue/10 rounded-t-2xl"></div>
+                    <div class="flex items-center gap-2 mt-1">
+                        <span class="w-8 h-8 bg-skyblue text-blue-800 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">②</span>
+                        <p class="font-bold text-blue-600" data-i18n="consult_title">Consultation</p>
+                    </div>
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <p data-i18n="consult_wait">Wait in the designated area → Pay attention to the calling system / display screen → Enter the consultation room.</p>
+                        <div class="bg-skyblue/10 rounded-xl p-2 border border-skyblue/30">
+                            <p data-i18n="consult_describe">Describe symptoms clearly (use translation apps if needed).</p>
+                        </div>
+                        <p data-i18n="consult_after">After diagnosis, pay for check-up / medications → Get the medicine / treatments.</p>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-skyblue/30 text-4xl select-none">🩺</div>
+                </div>
+
+                <!-- ③ Check-up & Treatment -->
+                <div class="bg-white p-5 rounded-2xl shadow-md border-2 border-mint/40 relative overflow-hidden flex flex-col gap-3 hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-mint/70 to-mint/10 rounded-t-2xl"></div>
+                    <div class="flex items-center gap-2 mt-1">
+                        <span class="w-8 h-8 bg-mint text-green-800 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">③</span>
+                        <p class="font-bold text-green-700" data-i18n="checkup_title">Check-up &amp; Treatment</p>
+                    </div>
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <div class="bg-mint/10 rounded-xl p-2 border border-mint/30">
+                            <p data-i18n="checkup_note1">Some tests (blood, ultrasound) require <span class="font-semibold">fasting or a full bladder</span>. Confirm in advance.</p>
+                        </div>
+                        <div class="bg-peach/10 rounded-xl p-2 border border-peach/30">
+                            <p><span class="font-semibold text-red-500" data-i18n="checkup_hosp_label">Hospitalization:</span> <span data-i18n="checkup_hosp_body">Requires family consent (designate an emergency contact beforehand).</span></p>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-2 right-3 text-mint/30 text-4xl select-none">💊</div>
+                </div>
+
+            </div>
+
+            <!-- (2) Costs & Insurance  +  (3) TCM -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
 
-                <!-- Card: Metro -->
-                <div class="bg-red-50 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-red-200 relative overflow-hidden flex flex-col gap-4">
-                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-red-400/60 to-red-200/10 rounded-t-2xl"></div>
-                    <h4 class="font-bold text-red-600 text-xl flex items-center gap-2 mt-1" data-i18n="metro_title">🚇 Metro</h4>
-
-                    <div>
-                        <p class="text-xs font-bold text-green-600 mb-2" data-i18n="ticketing_options">✅ Ticketing Options</p>
-                        <div class="space-y-3 text-sm text-gray-700">
-                            <div class="bg-white/70 rounded-xl p-3 border border-red-100">
-                                <p class="font-semibold text-red-500 mb-1" data-i18n="metro_machine_title">① Self-service Machines</p>
-                                <p data-i18n="metro_machine_desc">Select English interface → Choose destination on the route map → Make payment → Collect ticket.</p>
-                                <p class="text-gray-500 text-xs mt-1" data-i18n="metro_ticket_office">Ticket Office: Show passport → Make payment.</p>
-                            </div>
-                            <div class="bg-white/70 rounded-xl p-3 border border-red-100">
-                                <p class="font-semibold text-red-500 mb-1" data-i18n="metro_eticket_title">② E-Ticket (QR Code)</p>
-                                <p data-i18n="metro_eticket_desc">Open Alipay → Click "Transport" → Select "City" → Activate the local "Metro QR Code" → Scan to enter/exit.</p>
-                            </div>
-                            <div class="bg-white/70 rounded-xl p-3 border border-red-100">
-                                <p class="font-semibold text-red-500 mb-1" data-i18n="metro_pass_title">③ Metro Passes</p>
-                                <p data-i18n="metro_pass_desc">Ticket Office: Show passport → Make payment. Top-up: cash, Alipay, or WeChat Pay.</p>
-                            </div>
+                <!-- (2) Costs & Insurance -->
+                <div class="bg-apricot/20 p-6 rounded-2xl shadow-md border-2 border-apricot/50 relative overflow-hidden flex flex-col gap-4 hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-sunny/60 to-apricot/10 rounded-t-2xl"></div>
+                    <h4 class="font-bold text-orange-600 text-base mt-1 flex items-center gap-2" data-i18n="cost_title">💳 (2) Costs &amp; Insurance</h4>
+                    <div class="space-y-3 text-sm text-gray-700">
+                        <div class="bg-white/70 rounded-xl p-3 border border-apricot/40">
+                            <p class="font-semibold text-orange-500 mb-1" data-i18n="cost_pay_label">Payment Methods</p>
+                            <ul class="space-y-1">
+                                <li data-i18n="cost_pay1">– Cash, Alipay, WeChat Pay (some hospitals accept foreign cards).</li>
+                                <li data-i18n="cost_pay2">– If an invoice is needed: application at the payment window.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white/70 rounded-xl p-3 border border-apricot/40">
+                            <p class="font-semibold text-orange-500 mb-1" data-i18n="cost_ins_label">Travel Insurance</p>
+                            <ul class="space-y-1">
+                                <li data-i18n="cost_ins1">– Ensure your policy covers medical expenses in China.</li>
+                                <li data-i18n="cost_ins2">– Present proof at registration; some hospitals offer direct billing.</li>
+                            </ul>
                         </div>
                     </div>
-
-                    <div class="bg-red-100/60 rounded-xl p-3 text-sm border border-red-200">
-                        <p class="font-bold text-red-500 mb-1" data-i18n="metro_note_title">⚠️ Note</p>
-                        <ul class="space-y-1 text-gray-700">
-                            <li data-i18n="metro_note1">– Tap in/out twice (once at entry, once at exit).</li>
-                            <li data-i18n="metro_note2">– Passport holders are advised to use staffed gates to avoid scanner issues.</li>
-                        </ul>
-                    </div>
-                    <div class="absolute bottom-2 right-3 text-red-200/40 text-5xl select-none">🚇</div>
+                    <div class="absolute bottom-2 right-3 text-apricot/30 text-4xl select-none">🏦</div>
                 </div>
 
-                <!-- Card: High-Speed Rail -->
-                <div class="bg-blue-50 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-blue-200 relative overflow-hidden flex flex-col gap-4">
-                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-400/60 to-blue-200/10 rounded-t-2xl"></div>
-                    <h4 class="font-bold text-blue-600 text-xl flex items-center gap-2 mt-1" data-i18n="hsr_title">🚄 High-Speed Rail (HSR)</h4>
-
-                    <div>
-                        <p class="text-xs font-bold text-green-600 mb-2" data-i18n="hsr_ticket_label">✅ Ticketing Options</p>
-                        <div class="space-y-3 text-sm text-gray-700">
-                            <div class="bg-white/70 rounded-xl p-3 border border-blue-100">
-                                <p class="font-semibold text-blue-500 mb-1" data-i18n="hsr_online_title">① Online Booking (Recommended)</p>
-                                <p class="font-medium text-blue-400 text-xs mb-1" data-i18n="hsr_tripcom_label">Trip.com (International Version):</p>
-                                <p data-i18n="hsr_tripcom_desc">English interface → Enter route (e.g., Beijing→Shanghai) → Select train → Fill in passport details → Pay with Visa/Mastercard.</p>
-                                <p class="text-gray-500 text-xs mt-1" data-i18n="hsr_eticket_note">E-tickets: Scan QR code at the gate (no paper ticket needed!).</p>
-                                <p class="font-medium text-blue-400 text-xs mt-2 mb-1" data-i18n="hsr_12306_label">www.12306.cn:</p>
-                                <p class="text-xs" data-i18n="hsr_12306_desc">Register → Passport verification → Show passport at the gate.</p>
-                            </div>
-                            <div class="bg-white/70 rounded-xl p-3 border border-blue-100">
-                                <p class="font-semibold text-blue-500 mb-1" data-i18n="hsr_offline_title">② Offline Booking</p>
-                                <p data-i18n="hsr_offline_desc">Visit HSR station counters → Show passport → Pay by cash/card.</p>
-                            </div>
+                <!-- (3) TCM -->
+                <div class="bg-lavender/20 p-6 rounded-2xl shadow-md border-2 border-lavender/50 relative overflow-hidden flex flex-col gap-4 hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-lavender/80 to-lavender/10 rounded-t-2xl"></div>
+                    <h4 class="font-bold text-purple-600 text-base mt-1 flex items-center gap-2" data-i18n="tcm_title">🧘 (3) Traditional Chinese Medicine (TCM)</h4>
+                    <div class="space-y-3 text-sm text-gray-700">
+                        <div class="bg-white/70 rounded-xl p-3 border border-lavender/40">
+                            <p class="font-semibold text-purple-500 mb-1" data-i18n="tcm_rx_label">Prescriptions Only</p>
+                            <p data-i18n="tcm_rx_body">Do not self-administer herbal medicine (may contain unlisted ingredients).</p>
+                        </div>
+                        <div class="bg-white/70 rounded-xl p-3 border border-lavender/40">
+                            <p class="font-semibold text-purple-500 mb-1" data-i18n="tcm_licensed_label">Choose Licensed Clinics</p>
+                            <p data-i18n="tcm_licensed_body">For acupuncture/cupping, avoid unregulated street vendors (sterilization risks).</p>
+                        </div>
+                        <div class="bg-lemon/20 rounded-xl p-3 border border-lemon/40">
+                            <p class="font-semibold text-yellow-700 mb-1" data-i18n="tcm_culture_label">🌏 Cultural Note</p>
+                            <p data-i18n="tcm_culture_body">Doctors may ask about age/marital status (for medical records). Major treatment or surgery requires family consent (designate an emergency contact in advance).</p>
                         </div>
                     </div>
-
-                    <div>
-                        <p class="text-xs font-bold text-green-600 mb-2" data-i18n="hsr_board_label">✅ Boarding Process</p>
-                        <div class="flex flex-col gap-2 text-sm">
-                            <div class="flex items-start gap-2">
-                                <span class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">①</span>
-                                <div data-i18n="hsr_step1"><span class="font-semibold">Enter the Station</span> – Use self-service gates to scan your passport.</div>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <span class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">②</span>
-                                <div data-i18n="hsr_step2"><span class="font-semibold">Security Check</span> – Queue for security screening after entering.</div>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <span class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">③</span>
-                                <div data-i18n="hsr_step3"><span class="font-semibold">Find Your Gate</span> – Check your ticket (via app) for the assigned gate. Wait nearby until boarding begins.</div>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <span class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">④</span>
-                                <div data-i18n="hsr_step4"><span class="font-semibold">Board the Train</span> – Scan passport at gate when "Now Boarding" displays.</div>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <span class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">⑤</span>
-                                <div data-i18n="hsr_step5"><span class="font-semibold">Locate Your Seat</span> – Match ticket to number above windows (e.g., 06A = Row 6, Seat A).</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="absolute bottom-2 right-3 text-blue-200/40 text-5xl select-none">🚄</div>
-                </div>
-
-                <!-- Card: Ride-Hailing (Didi) -->
-                <div class="bg-sunny/10 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-sunny/40 relative overflow-hidden flex flex-col gap-4">
-                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-sunny/60 to-sunny/10 rounded-t-2xl"></div>
-                    <h4 class="font-bold text-sunny text-xl flex items-center gap-2 mt-1" data-i18n="didi_title">🚖 Ride-Hailing (Didi Rider)</h4>
-
-                    <div class="inline-flex items-center gap-2 bg-white rounded-xl px-3 py-2 shadow-sm border border-sunny/20 w-fit text-sm font-semibold text-gray-700" data-i18n="didi_app_rec">
-                        📱 Recommended App: <span class="text-sunny">Didi Rider</span>
-                    </div>
-
-                    <img src="images/didi_app.png">
-
-                    <div>
-                        <p class="text-xs font-bold text-green-600 mb-2" data-i18n="didi_steps_label">✅ Steps</p>
-                        <div class="space-y-2 text-sm text-gray-700">
-                            <div class="flex items-start gap-2">
-                                <span class="w-6 h-6 bg-sunny text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">①</span>
-                                <p data-i18n="didi_step1">Download "Didi Rider" → Register with your international number.</p>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <span class="w-6 h-6 bg-sunny text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">②</span>
-                                <p data-i18n="didi_step2">Bind Visa/Mastercard → Set payment code.</p>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <span class="w-6 h-6 bg-sunny text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">③</span>
-                                <div>
-                                    <p data-i18n="didi_step3">Input destination (English/Chinese) → Select model (Economy/Comfort) → Confirm pickup point.</p>
-                                    <p class="text-gray-500 text-xs mt-1 italic" data-i18n="didi_step3_tip">Assist the driver by dragging the map marker and sending text notes, e.g. "Near Starbucks".</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <span class="w-6 h-6 bg-sunny text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">④</span>
-                                <p data-i18n="didi_step4">Share your real-time trip with friends via the app.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-peach/20 rounded-xl p-3 text-sm border border-peach/40">
-                        <p class="font-bold text-red-500 mb-1" data-i18n="didi_note_title">⚠️ Note</p>
-                        <ul class="space-y-1 text-gray-700">
-                            <li data-i18n="didi_note1">– Verify license plate before boarding.</li>
-                            <li data-i18n="didi_note2">– In-app audio recording is enabled by default.</li>
-                        </ul>
-                    </div>
-                    <div class="absolute bottom-2 right-3 text-sunny/20 text-5xl select-none">🚖</div>
-                </div>
-
-                <!-- Card: Bike-Sharing -->
-                <div class="bg-mint/10 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-mint/40 relative overflow-hidden flex flex-col gap-4">
-                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-mint/60 to-mint/10 rounded-t-2xl"></div>
-                    <h4 class="font-bold text-green-600 text-xl flex items-center gap-2 mt-1" data-i18n="bike_title">🚲 Bike-Sharing</h4>
-
-                    <div>
-                        <p class="text-xs font-bold text-green-600 mb-2" data-i18n="bike_platforms_label">✅ Recommended Platforms</p>
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-sm border-collapse">
-                                <thead>
-                                    <tr class="bg-mint/40 text-gray-700">
-                                        <th class="px-3 py-2 text-left rounded-tl-xl font-semibold" data-i18n="bike_th_brand">Brand</th>
-                                        <th class="px-3 py-2 text-left font-semibold" data-i18n="bike_th_app">App</th>
-                                        <th class="px-3 py-2 text-left font-semibold" data-i18n="bike_th_color">Color</th>
-                                        <th class="px-3 py-2 text-left rounded-tr-xl font-semibold" data-i18n="bike_th_payment">Payment</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="bg-yellow-50 border-b border-mint/20">
-                                        <td class="px-3 py-2 font-semibold text-yellow-600" data-i18n="bike_meituan_name">Meituan Bike</td>
-                                        <td class="px-3 py-2" data-i18n="bike_meituan_app">Meituan App</td>
-                                        <td class="px-3 py-2"><span class="px-2 py-0.5 bg-yellow-200 text-yellow-700 rounded-full text-xs" data-i18n="bike_meituan_color">Yellow</span></td>
-                                        <td class="px-3 py-2 text-xs" data-i18n="bike_meituan_pay">Alipay / WeChat Pay</td>
-                                    </tr>
-                                    <tr class="bg-blue-50">
-                                        <td class="px-3 py-2 font-semibold text-blue-500" data-i18n="bike_hello_name">HelloBike</td>
-                                        <td class="px-3 py-2" data-i18n="bike_hello_app">HelloBike App</td>
-                                        <td class="px-3 py-2"><span class="px-2 py-0.5 bg-blue-200 text-blue-700 rounded-full text-xs" data-i18n="bike_hello_color">Blue/Pink</span></td>
-                                        <td class="px-3 py-2 text-xs" data-i18n="bike_hello_pay">Foreign card binding (some cities)</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <img src="images/bike.png">
-
-                    <div>
-                        <p class="text-xs font-bold text-green-600 mb-2" data-i18n="bike_steps_label">✅ Steps</p>
-                        <div class="space-y-2 text-sm text-gray-700">
-                            <div class="flex items-start gap-2">
-                                <span class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">①</span>
-                                <div>
-                                    <p class="font-semibold" data-i18n="bike_step1_title">Unlock</p>
-                                    <p data-i18n="bike_step1_desc">Scan the QR code via the app → Pay a refundable deposit or buy a weekly/monthly pass.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <span class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">②</span>
-                                <div>
-                                    <p class="font-semibold" data-i18n="bike_step2_title">Parking Rules</p>
-                                    <p data-i18n="bike_step2_desc">Return to designated zones (marked "P" in app) → Manually lock.</p>
-                                    <p class="text-red-400 text-xs mt-0.5" data-i18n="bike_fine">Fine: Charged for improper parking.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tips box -->
-                    <div class="bg-lemon/20 rounded-xl p-3 text-sm border border-lemon/40">
-                        <p class="font-bold text-yellow-700 mb-1" data-i18n="transport_tips_title">💡 Tips</p>
-                        <ul class="space-y-1 text-gray-700">
-                            <li data-i18n="transport_tip1">– Metro/HSR stations have English signs; some cities offer English announcements.</li>
-                            <li data-i18n="transport_tip2">– Show translated Chinese address to drivers or locals: "请问地铁站怎么走？"</li>
-                            <li data-i18n="transport_tip3">– In-station help: look for "Service Center". Didi English line: <span class="font-mono text-blue-600">+86-400-000-0999</span>.</li>
-                            <li data-i18n="transport_tip4">– Best combo: HSR for long distances + bike-sharing for short hops.</li>
-                        </ul>
-                    </div>
-
-                    <div class="absolute bottom-2 right-3 text-mint/30 text-5xl select-none">🚲</div>
+                    <div class="absolute bottom-2 right-3 text-lavender/30 text-4xl select-none">🌿</div>
                 </div>
 
             </div>
 
-            <!-- Section Title: Navigation -->
-            <div id="navtools" class="text-center mb-10 mt-4">
-                <h3 class="text-2xl font-bold text-skyblue relative inline-block">
-                    <span class="bg-white px-6 py-2 rounded-2xl shadow-md transform rotate-1 border-2 border-skyblue" data-i18n="nav_title">🗺️ 2. Navigation Tools</span>
-                    <span class="absolute -top-3 -right-7 text-xs font-bold bg-peach text-white px-2 py-1 rounded-full shadow-sm border border-white" data-i18n="nav_badge">go~ go~ go~</span>
+
+            <!-- ══════════════════════════════════ -->
+            <!--  PART 2 · COMMON EMERGENCIES       -->
+            <!-- ══════════════════════════════════ -->
+            <div id="commonemg" class="text-center mb-10">
+                <h3 class="text-2xl font-bold text-yellow-600 relative inline-block">
+                    <span class="bg-white px-6 py-2 rounded-2xl shadow-md transform rotate-1 border-2 border-lemon" data-i18n="p2_title">🚨 2. Common Emergencies</span>
+                    <span class="absolute -top-3 -right-7 text-xs font-bold bg-skyblue text-blue-800 px-2 py-1 rounded-full shadow-sm border border-white" data-i18n="p2_badge">Be Prepared~</span>
                 </h3>
             </div>
 
-            <!-- 4 Map App Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <!-- (1) Lost Documents -->
+            <div class="mb-4">
+                <h4 class="font-bold text-yellow-700 text-lg mb-6 flex items-center gap-2">
+                    <span class="bg-lemon/60 px-3 py-1 rounded-xl border border-lemon" data-i18n="lost_title">🛂 (1) Lost Documents</span>
+                </h4>
+            </div>
 
-                <!-- Apple Maps -->
-                <div class="bg-gray-50 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-gray-200 relative overflow-hidden flex flex-col gap-3">
-                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-gray-400/50 to-gray-200/10 rounded-t-2xl"></div>
-                    <div class="flex items-center gap-3 mt-1">
-                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-400 to-cyan-300 flex items-center justify-center text-white text-2xl shadow-sm flex-shrink-0">🗺</div>
-                        <div>
-                            <p class="font-bold text-gray-800 text-lg leading-tight" data-i18n="apple_name">Maps</p>
-                            <p class="text-xs text-gray-500" data-i18n="apple_sub">Navigate and explore the world</p>
+            <div class="relative mb-10">
+                <div class="hidden md:block absolute left-[calc(50%-1px)] top-10 bottom-10 w-0.5 bg-lemon/60 z-0"></div>
+                <div class="space-y-6 relative z-10">
+
+                    <!-- Step 1 -->
+                    <div class="flex flex-col md:flex-row items-stretch gap-4">
+                        <div class="md:w-1/2 flex justify-center md:justify-end pr-0 md:pr-6">
+                            <div class="w-full max-w-sm bg-green-100 rounded-2xl p-5 border-2 border-green-300 shadow-md flex flex-col items-center justify-center text-center gap-1">
+                                <div class="w-14 h-14 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white font-bold text-base shadow-md" data-i18n="lost_s1_num">Step 1</div>
+                                <p class="font-bold text-green-700 text-sm mt-1" data-i18n="lost_s1_head">File a Police Report</p>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 pl-0 md:pl-6">
+                            <div class="bg-white rounded-2xl p-5 border-2 border-peach/40 shadow-md text-sm text-gray-700 space-y-1">
+                                <p data-i18n="lost_s1_b1">– Go to the nearest <span class="font-semibold">Police Station</span> (search via maps like Amap).</p>
+                                <p data-i18n="lost_s1_b2">– Provide passport copies (if available) or alternative ID (e.g. driver's license).</p>
+                                <p data-i18n="lost_s1_b3">– Complete a <span class="font-semibold">Loss Statement</span> and obtain an official stamp.</p>
+                            </div>
                         </div>
                     </div>
-                    <img src="images/appple_maps.png">
-                    <div class="text-sm">
-                        <p class="font-bold text-green-600 mb-1" data-i18n="apple_pros_label">✅ Pros</p>
-                        <ul class="space-y-1 text-gray-700 pl-1">
-                            <li data-i18n="apple_pro1">– iPhone pre-installed and ready to use</li>
-                            <li data-i18n="apple_pro2">– Full English interface, navigate by chatting with Siri</li>
-                            <li data-i18n="apple_pro3">– Quickly updated road conditions and accurate location of attractions</li>
-                        </ul>
+
+                    <!-- Step 2 -->
+                    <div class="flex flex-col md:flex-row items-stretch gap-4">
+                        <div class="md:w-1/2 flex justify-center md:justify-end pr-0 md:pr-6">
+                            <div class="w-full max-w-sm bg-apricot/40 rounded-2xl p-5 border-2 border-apricot/60 shadow-md flex flex-col items-center justify-center text-center gap-1">
+                                <div class="w-14 h-14 rounded-full bg-gradient-to-br from-sunny to-apricot flex items-center justify-center text-white font-bold text-base shadow-md" data-i18n="lost_s2_num">Step 2</div>
+                                <p class="font-bold text-orange-700 text-sm mt-1" data-i18n="lost_s2_head">Obtain a Passport<br>Loss Certificate</p>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 pl-0 md:pl-6">
+                            <div class="bg-white rounded-2xl p-5 border-2 border-peach/40 shadow-md text-sm text-gray-700 space-y-1">
+                                <p data-i18n="lost_s2_b1">– Submit the stamped Loss Statement to the <span class="font-semibold">Exit-Entry Administration</span> (under Public Security Bureau).</p>
+                                <p data-i18n="lost_s2_b2">– Required documents: Passport/visa copies, 2-inch photo.</p>
+                                <p data-i18n="lost_s2_b3">– Receive the <span class="font-semibold">Passport Loss Certificate</span> (valid for 30 days).</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-lemon/20 rounded-xl p-3 text-sm border border-lemon/40">
-                        <p class="font-bold text-yellow-600 mb-1" data-i18n="apple_note_label">🟡 Note</p>
-                        <ul class="space-y-1 text-gray-700">
-                            <li data-i18n="apple_note1">– Small alleyways and new shopping malls may not be searchable</li>
-                            <li data-i18n="apple_note2">– Bus routes not as good as local App Details</li>
-                        </ul>
+
+                    <!-- Step 3 -->
+                    <div class="flex flex-col md:flex-row items-stretch gap-4">
+                        <div class="md:w-1/2 flex justify-center md:justify-end pr-0 md:pr-6">
+                            <div class="w-full max-w-sm bg-lavender/30 rounded-2xl p-5 border-2 border-lavender/50 shadow-md flex flex-col items-center justify-center text-center gap-1">
+                                <div class="w-14 h-14 rounded-full bg-gradient-to-br from-lavender to-purple-400 flex items-center justify-center text-white font-bold text-base shadow-md" data-i18n="lost_s3_num">Step 3</div>
+                                <p class="font-bold text-purple-700 text-sm mt-1" data-i18n="lost_s3_head">Renewal of Passport</p>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 pl-0 md:pl-6">
+                            <div class="bg-white rounded-2xl p-5 border-2 border-peach/40 shadow-md text-sm text-gray-700 space-y-1">
+                                <p data-i18n="lost_s3_b1">– Contact your <span class="font-semibold">Embassy/Consulate</span> (e.g., U.S. Embassy: <span class="font-mono text-blue-600">+86-10-8531-3000</span>).</p>
+                                <p data-i18n="lost_s3_b2">– Make an appointment, submit the Passport Loss Certificate, and receive the new passport (<span class="font-semibold">3–7 business days</span>).</p>
+                                <p data-i18n="lost_s3_b3"><span class="font-semibold text-red-500">Emergency Exit:</span> Apply for a Temporary Exit-Entry Permit at the Exit-Entry Administration (processed in <span class="font-semibold">1–2 days</span>).</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-skyblue/10 rounded-xl p-3 text-sm border border-skyblue/30">
-                        <p class="font-bold text-skyblue mb-1" data-i18n="apple_tip_label">⭐ Tips</p>
-                        <p class="text-gray-700" data-i18n="apple_tip">"Siri, take me to the Forbidden City!"</p>
+
+                </div>
+            </div>
+
+            <!-- Tips box -->
+            <div class="bg-lemon/20 rounded-2xl p-4 border-2 border-lemon/50 mb-10 flex items-start gap-3 shadow-sm">
+                <span class="text-xl flex-shrink-0">⭐</span>
+                <div class="text-sm text-gray-700">
+                    <p class="font-bold text-yellow-700 mb-1" data-i18n="lost_tips_title">Tips</p>
+                    <p data-i18n="lost_tip1">– Store digital copies of passports/visas in email or cloud storage.</p>
+                    <p data-i18n="lost_tip2">– Hotels can provide passport photocopies.</p>
+                </div>
+            </div>
+
+            <!-- (2) Payment Issues  +  (3) Allergy -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+
+                <!-- (2) Payment Issues -->
+                <div class="bg-peach/15 p-6 rounded-2xl shadow-md border-2 border-peach/50 relative overflow-hidden flex flex-col gap-4 hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-peach/80 to-peach/10 rounded-t-2xl"></div>
+                    <h4 class="font-bold text-red-500 text-base mt-1 flex items-center gap-2" data-i18n="pay_title">💳 (2) Payment Issues</h4>
+
+                    <div class="space-y-3 text-sm text-gray-700">
+                        <div class="bg-white/80 rounded-xl p-4 border border-peach/40">
+                            <p class="font-bold text-red-400 mb-2" data-i18n="pay_card_title">① Card Payment Failures</p>
+                            <ul class="space-y-1">
+                                <li data-i18n="pay_card1">– Confirm your card's international transactions are enabled (contact your bank).</li>
+                                <li data-i18n="pay_card2">– Try a UnionPay card (some merchants only accept UnionPay).</li>
+                                <li data-i18n="pay_card3">– ATM Withdrawal: Use foreign-friendly ATMs (e.g., Bank of China, CCB) → Insert Visa/Mastercard → Select English → Enter PIN → Withdraw cash.</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white/80 rounded-xl p-4 border border-peach/40">
+                            <p class="font-bold text-red-400 mb-2" data-i18n="pay_mobile_title">② Mobile Payment Errors</p>
+                            <p class="font-semibold text-orange-500 text-xs mb-1" data-i18n="pay_mobile_sub">Alipay / WeChat Pay:</p>
+                            <p data-i18n="pay_mobile_body">– Check internet connection → Re-link card → Attempt small payments (&lt;¥200, no fee).</p>
+                            <div class="mt-2 bg-lemon/20 rounded-lg p-2 border border-lemon/40 text-xs space-y-0.5">
+                                <p class="font-semibold text-yellow-700" data-i18n="pay_cs_label">Customer Service:</p>
+                                <p data-i18n="pay_cs_alipay">Alipay: <span class="font-mono text-blue-600">+86-571-2688-6000</span> (English)</p>
+                                <p data-i18n="pay_cs_wechat">WeChat Pay: <span class="font-mono text-blue-600">+86-571-95017</span> (English)</p>
+                            </div>
+                            <div class="mt-2 bg-mint/20 rounded-lg p-2 border border-mint/40 text-xs">
+                                <p class="font-semibold text-green-700" data-i18n="pay_backup_label">Backup:</p>
+                                <p data-i18n="pay_backup_body">Use cash (exchange at airports/hotels) or visit foreign card-friendly stores (e.g., malls, chain restaurants).</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="absolute bottom-2 right-3 text-gray-200/50 text-5xl select-none">📍</div>
+                    <div class="absolute bottom-2 right-3 text-peach/20 text-4xl select-none">🔍</div>
                 </div>
 
-                <!-- Petal Maps -->
-                <div class="bg-peach/10 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-peach/40 relative overflow-hidden flex flex-col gap-3">
-                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-peach/60 to-peach/10 rounded-t-2xl"></div>
-                    <div class="flex items-center gap-3 mt-1">
-                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-400 to-pink-400 flex items-center justify-center text-white text-2xl shadow-sm flex-shrink-0">🌸</div>
-                        <div>
-                            <p class="font-bold text-gray-800 text-lg leading-tight" data-i18n="petal_name">Petal Maps</p>
-                            <p class="text-xs text-gray-500" data-i18n="petal_sub">By Huawei · Global Navigation</p>
-                        </div>
-                    </div>
-                    <img src="images/petal_maps.png">
-                    <div class="text-sm">
-                        <p class="font-bold text-green-600 mb-1" data-i18n="petal_pros_label">✅ Pros</p>
-                        <ul class="space-y-1 text-gray-700 pl-1">
-                            <li data-i18n="petal_pro1">– Huawei phones come pre-installed, other Androids can install it too</li>
-                            <li data-i18n="petal_pro2">– Free switching between Chinese and English, real-time road conditions</li>
-                            <li data-i18n="petal_pro3">– Offline map function — don't panic even without internet connection</li>
-                        </ul>
-                    </div>
-                    <div class="bg-lemon/20 rounded-xl p-3 text-sm border border-lemon/40">
-                        <p class="font-bold text-yellow-600 mb-1" data-i18n="petal_note_label">🟡 Note</p>
-                        <ul class="space-y-1 text-gray-700">
-                            <li data-i18n="petal_note1">– Non-Huawei phones need to manually download the installation package</li>
-                            <li data-i18n="petal_note2">– Information may be incomplete for rural areas</li>
-                        </ul>
-                    </div>
-                    <div class="bg-skyblue/10 rounded-xl p-3 text-sm border border-skyblue/30">
-                        <p class="font-bold text-skyblue mb-1" data-i18n="petal_tip_label">⭐ Tips</p>
-                        <ul class="space-y-1 text-gray-700">
-                            <li data-i18n="petal_tip1">– Huawei users directly poke [App Market] to download</li>
-                            <li data-i18n="petal_tip2">– APKPure is recommended for third-party Android installations.</li>
-                        </ul>
-                    </div>
-                    <div class="absolute bottom-2 right-3 text-peach/30 text-5xl select-none">🌸</div>
-                </div>
+                <!-- (3) Allergy -->
+                <div class="bg-mint/15 p-6 rounded-2xl shadow-md border-2 border-mint/50 relative overflow-hidden flex flex-col gap-4 hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-mint/80 to-mint/10 rounded-t-2xl"></div>
+                    <h4 class="font-bold text-green-700 text-base mt-1 flex items-center gap-2" data-i18n="allergy_title">🌿 (3) Allergy Prevention &amp; Response</h4>
 
-                <!-- AMap (Gaode) -->
-                <div class="bg-skyblue/10 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-skyblue/40 relative overflow-hidden flex flex-col gap-3">
-                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-skyblue/60 to-skyblue/10 rounded-t-2xl"></div>
-                    <div class="flex items-center gap-3 mt-1">
-                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-400 to-skyblue flex items-center justify-center text-white text-2xl shadow-sm flex-shrink-0">📡</div>
-                        <div>
-                            <p class="font-bold text-gray-800 text-lg leading-tight" data-i18n="amap_name">AMap Global</p>
-                            <p class="text-xs text-gray-500" data-i18n="amap_sub">Navigation · Traffic · Bus &amp; Train</p>
+                    <div class="bg-white/80 rounded-xl p-4 border border-mint/40">
+                        <p class="font-semibold text-green-600 mb-2" data-i18n="allergy_prev_title">Prevention</p>
+                        <div class="space-y-1 text-sm text-gray-700">
+                            <div class="flex items-start gap-2">
+                                <span class="w-5 h-5 bg-mint text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">①</span>
+                                <p data-i18n="allergy_prev1">Carry a Chinese Allergy Card stating <span class="font-semibold">「我对＿过敏」</span> (I am allergic to ＿). e.g. 我对花生 (peanuts) 过敏</p>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <span class="w-5 h-5 bg-mint text-white rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">②</span>
+                                <p data-i18n="allergy_prev2">Keep antihistamines / emergency medication.</p>
+                            </div>
                         </div>
                     </div>
-                    <img src="images/amap_global.png">
-                    <div class="text-sm">
-                        <p class="font-bold text-green-600 mb-1" data-i18n="amap_pros_label">✅ Pros</p>
-                        <ul class="space-y-1 text-gray-700 pl-1">
-                            <li data-i18n="amap_pro1">– English version is now online</li>
-                            <li data-i18n="amap_pro2">– You can navigate the market trails</li>
-                        </ul>
-                    </div>
-                    <div class="bg-lemon/20 rounded-xl p-3 text-sm border border-lemon/40">
-                        <p class="font-bold text-yellow-600 mb-1" data-i18n="amap_note_label">🟡 Note</p>
-                        <ul class="space-y-1 text-gray-700">
-                            <li data-i18n="amap_note1">– English switching portal is hard to find (Path: My → Settings → Language)</li>
-                            <li data-i18n="amap_note2">– Some features are only available in Chinese</li>
-                        </ul>
-                    </div>
-                    <div class="bg-skyblue/10 rounded-xl p-3 text-sm border border-skyblue/30">
-                        <p class="font-bold text-skyblue mb-1" data-i18n="amap_tip_label">⭐ Tips</p>
-                        <p class="text-gray-700" data-i18n="amap_tip">Smoother when used with translation software ～</p>
-                    </div>
-                    <div class="absolute bottom-2 right-3 text-skyblue/30 text-5xl select-none">📡</div>
-                </div>
 
-                <!-- Baidu Maps -->
-                <div class="bg-blue-50 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 border-2 border-blue-200 relative overflow-hidden flex flex-col gap-3">
-                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-400/60 to-blue-200/10 rounded-t-2xl"></div>
-                    <div class="flex items-center gap-3 mt-1">
-                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-2xl shadow-sm flex-shrink-0">百</div>
-                        <div>
-                            <p class="font-bold text-gray-800 text-lg leading-tight" data-i18n="baidu_name">Baidu Maps</p>
-                            <p class="text-xs text-gray-500" data-i18n="baidu_sub">百度地图 · 打车公交出行</p>
+                    <div class="bg-white/80 rounded-xl p-4 border border-mint/40 text-sm text-gray-700">
+                        <p class="font-semibold text-red-500 mb-2" data-i18n="allergy_emg_title">Emergency Response</p>
+                        <div class="space-y-2">
+                            <div class="bg-lemon/15 rounded-lg p-2 border border-lemon/30">
+                                <p class="font-medium text-yellow-700 text-xs" data-i18n="allergy_e1_label">Accidental Ingestion:</p>
+                                <p data-i18n="allergy_e1_body">Stop eating → Take medication.</p>
+                            </div>
+                            <div class="bg-peach/15 rounded-lg p-2 border border-peach/30">
+                                <p class="font-medium text-red-500 text-xs" data-i18n="allergy_e2_label">Severe Reactions (e.g., difficulty breathing):</p>
+                                <p data-i18n="allergy_e2_body">Dial <span class="font-bold text-red-500">120</span> → Repeat "Hello" → State "Food allergy emergency."</p>
+                            </div>
+                            <div class="bg-skyblue/10 rounded-lg p-2 border border-skyblue/30">
+                                <p class="font-medium text-blue-500 text-xs" data-i18n="allergy_e3_label">At the Hospital:</p>
+                                <p data-i18n="allergy_e3_body">Show your allergy card → Request an English medical record.</p>
+                            </div>
+                            <div class="bg-mint/10 rounded-lg p-2 border border-mint/30">
+                                <p class="font-medium text-green-600 text-xs" data-i18n="allergy_e4_label">Self-Care:</p>
+                                <p data-i18n="allergy_e4_body">Use Meituan or Amap to locate 24-hour pharmacies → Navigate or order online.</p>
+                                <img src="images/emerge.png">
+                            </div>
                         </div>
                     </div>
-                    <img src="images/baidu.png">
-                    <div class="text-sm">
-                        <p class="font-bold text-green-600 mb-1" data-i18n="baidu_pros_label">✅ Pros</p>
-                        <ul class="space-y-1 text-gray-700 pl-1">
-                            <li data-i18n="baidu_pro1">– Imperial Exclusive English Service (Beijing only)</li>
-                            <li data-i18n="baidu_pro2">– The audio guide to the attractions is super sweet</li>
-                        </ul>
-                    </div>
-                    <div class="bg-lemon/20 rounded-xl p-3 text-sm border border-lemon/40">
-                        <p class="font-bold text-yellow-600 mb-1" data-i18n="baidu_note_label">🟡 Note</p>
-                        <p class="text-gray-700" data-i18n="baidu_note">– Outside of Beijing, the interface changes to Chinese in a second.</p>
-                    </div>
-                    <div class="bg-skyblue/10 rounded-xl p-3 text-sm border border-skyblue/30">
-                        <p class="font-bold text-skyblue mb-1" data-i18n="baidu_tip_label">⭐ Tips</p>
-                        <p class="text-gray-700" data-i18n="baidu_tip">– Suggest using translation plugins together</p>
-                    </div>
-                    <div class="bg-white/70 rounded-xl p-3 text-sm border border-blue-100">
-                        <p class="font-bold text-blue-500 mb-1" data-i18n="register_title">🤔 Want to register?</p>
-                        <ul class="space-y-1 text-gray-700">
-                            <li data-i18n="register_gaode">Gaode/Baidu Maps → <span class="text-red-400 font-medium">China Cell Phone Number Required</span></li>
-                            <li data-i18n="register_petal">Petal Maps → <span class="text-green-500 font-medium">visitor mode available, no registration required</span></li>
-                        </ul>
-                    </div>
-                    <div class="absolute bottom-2 right-3 text-blue-200/40 text-5xl select-none">🗺️</div>
+                    <div class="absolute bottom-2 right-3 text-mint/20 text-4xl select-none">🌿</div>
                 </div>
 
             </div>
 
-            <!-- Ultimate Lazy Bag Table -->
-            <div id="navigation" class="mt-4 bg-white p-6 rounded-2xl shadow-md border-2 border-sunny/30 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-sunny/60 to-sunny/10 rounded-t-2xl"></div>
-                <h4 class="font-bold text-sunny text-lg mb-4 flex items-center gap-2" data-i18n="lazy_title">✨ Ultimate Lazy Bag</h4>
+
+            <!-- ══════════════════════════════════ -->
+            <!--  Emergency Contact Table           -->
+            <!-- ══════════════════════════════════ -->
+            <div id="contacts" class="bg-white p-6 rounded-2xl shadow-md border-2 border-lemon/50 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-lemon to-lemon/10 rounded-t-2xl"></div>
+                <h4 class="font-bold text-yellow-600 text-lg mb-4 flex items-center gap-2" data-i18n="ec_title">📞 Emergency Contacts</h4>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm border-collapse">
+                        <thead>
+                            <tr class="bg-lemon/40 text-gray-700">
+                                <th class="px-4 py-3 text-left rounded-tl-xl font-semibold" data-i18n="ec_h1">Type of Service</th>
+                                <th class="px-4 py-3 text-left font-semibold" data-i18n="ec_h2">Contact Number</th>
+                                <th class="px-4 py-3 text-left rounded-tr-xl font-semibold" data-i18n="ec_h3">Notes</th>
+                            </tr>
+                        </thead>
                         <tbody>
-                            <tr class="bg-sunny/10 border-b border-sunny/20">
-                                <td class="px-4 py-3 font-semibold text-gray-700 w-1/3" data-i18n="lazy_r1_user">📱 iPhone users</td>
-                                <td class="px-4 py-3 text-gray-600" data-i18n="lazy_r1_val">Apple Maps + Gaode English version — double insurance</td>
+                            <tr class="bg-red-50 border-b border-red-100">
+                                <td class="px-4 py-3 font-semibold text-red-500" data-i18n="ec_r1_type">🚑 First aid</td>
+                                <td class="px-4 py-3 font-mono font-bold text-red-600">120</td>
+                                <td class="px-4 py-3 text-gray-600" data-i18n="ec_r1_note">Universal · English supported in some cities</td>
                             </tr>
-                            <tr class="bg-white border-b border-gray-100">
-                                <td class="px-4 py-3 font-semibold text-gray-700" data-i18n="lazy_r2_user">🤖 Android user</td>
-                                <td class="px-4 py-3 text-gray-600" data-i18n="lazy_r2_val">Petal Maps Goes Around the World</td>
+                            <tr class="bg-blue-50 border-b border-blue-100">
+                                <td class="px-4 py-3 font-semibold text-blue-600" data-i18n="ec_r2_type">🚔 Alarm</td>
+                                <td class="px-4 py-3 font-mono font-bold text-blue-600">110</td>
+                                <td class="px-4 py-3 text-gray-600" data-i18n="ec_r2_note">Nationwide</td>
                             </tr>
-                            <tr class="bg-skyblue/10 border-b border-skyblue/20">
-                                <td class="px-4 py-3 font-semibold text-gray-700" data-i18n="lazy_r3_user">🧭 Deep traveler</td>
-                                <td class="px-4 py-3 text-gray-600" data-i18n="lazy_r3_val">Gaode Map + Translation Software Combo</td>
+                            <tr class="bg-orange-50 border-b border-orange-100">
+                                <td class="px-4 py-3 font-semibold text-orange-500" data-i18n="ec_r3_type">🚒 Fire alarm</td>
+                                <td class="px-4 py-3 font-mono font-bold text-orange-500">119</td>
+                                <td class="px-4 py-3 text-gray-600" data-i18n="ec_r3_note">Nationwide</td>
+                            </tr>
+                            <tr class="bg-purple-50 border-b border-purple-100">
+                                <td class="px-4 py-3 font-semibold text-purple-600" data-i18n="ec_r4_type">🏛️ Consular protection</td>
+                                <td class="px-4 py-3 font-mono font-bold text-purple-600">+86-10-12308</td>
+                                <td class="px-4 py-3 text-gray-600" data-i18n="ec_r4_note">24-hour English service</td>
                             </tr>
                             <tr class="bg-mint/10">
-                                <td class="px-4 py-3 font-semibold text-gray-700" data-i18n="lazy_r4_user">🏯 Beijing Short Trip</td>
-                                <td class="px-4 py-3 text-gray-600" data-i18n="lazy_r4_val">Baidu Maps English Version</td>
+                                <td class="px-4 py-3 font-semibold text-green-700" data-i18n="ec_r5_type">🛃 Customs consultation</td>
+                                <td class="px-4 py-3 font-mono font-bold text-green-700">+86-12360</td>
+                                <td class="px-4 py-3 text-gray-600" data-i18n="ec_r5_note">Press 2 for English services</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="absolute bottom-2 right-3 text-sunny/20 text-3xl select-none">🗺️</div>
+                <div class="absolute bottom-2 right-3 text-lemon/20 text-3xl select-none">📞</div>
             </div>
 
         </div>
     </section>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="w-full py-6 px-4 md:px-8 bg-skyblue/30 footer-text">
+    <footer class="w-full py-6 px-4 md:px-8 bg-lemon/30 footer-text">
         <div class="max-w-5xl mx-auto text-center">
             <p class="mb-2" data-i18n="footer_editors">Editors: Liu Sisi, Wu Xiangwei, Xu Xinyi</p>
             <p class="mb-2" data-i18n="footer_devs">Developers: Li Xuan, Li Xinyi</p>
@@ -554,7 +503,7 @@
 
     <!-- Back to Top -->
     <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"
-        style="position:fixed;bottom:32px;right:32px;width:48px;height:48px;border-radius:50%;background-color:#68a8fc;color:white;font-size:22px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.15);opacity:0;transition:opacity 0.3s,transform 0.2s;z-index:9999;"
+        style="position:fixed;bottom:32px;right:32px;width:48px;height:48px;border-radius:50%;background-color:#FFE066;color:#78350f;font-size:22px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.15);opacity:0;transition:opacity 0.3s,transform 0.2s;z-index:9999;"
         onmouseover="this.style.transform='scale(1.1)'"
         onmouseout="this.style.transform='scale(1)'">↑</button>
 
@@ -571,6 +520,7 @@
             en: {
                 // nav
                 nav_home: 'Home', nav_guide: 'Guide',
+                // subnav
                 subnav_prep: 'Preparation & Entry',
                 subnav_trans_short: 'Transport & Maps',
                 subnav_trans_long: 'Transportation & Navigation',
@@ -581,127 +531,112 @@
                 subnav_emerg_long: 'Emergency Handling',
                 subnav_travel_short: 'Culture',
                 subnav_travel_long: 'Travel & Culture',
-                bc_home: 'Home', bc_guide: 'Guide', bc_page: 'Transportation & Navigation',
+                // breadcrumb
+                bc_home: 'Home', bc_guide: 'Guide', bc_page: 'Emergency Handling',
                 // hero
-                hero_title: 'Transportation & Navigation',
-                hero_sub: 'Getting around China made simple 🚄🚇🛵',
-                // section headers
-                transport_title: '🚆 1. Transportation',
-                transport_badge: 'Getting Around',
-                // metro
-                metro_title: '🚇 Metro',
-                ticketing_options: '✅ Ticketing Options',
-                metro_machine_title: '① Self-service Machines',
-                metro_machine_desc: 'Select English interface → Choose destination on the route map → Make payment → Collect ticket.',
-                metro_ticket_office: 'Ticket Office: Show passport → Make payment.',
-                metro_eticket_title: '② E-Ticket (QR Code)',
-                metro_eticket_desc: 'Open Alipay → Click "Transport" → Select "City" → Activate the local "Metro QR Code" → Scan to enter/exit.',
-                metro_pass_title: '③ Metro Passes',
-                metro_pass_desc: 'Ticket Office: Show passport → Make payment. Top-up: cash, Alipay, or WeChat Pay.',
-                metro_note_title: '⚠️ Note',
-                metro_note1: '– Tap in/out twice (once at entry, once at exit).',
-                metro_note2: '– Passport holders are advised to use staffed gates to avoid scanner issues.',
-                // hsr
-                hsr_title: '🚄 High-Speed Rail (HSR)',
-                hsr_ticket_label: '✅ Ticketing Options',
-                hsr_online_title: '① Online Booking (Recommended)',
-                hsr_tripcom_label: 'Trip.com (International Version):',
-                hsr_tripcom_desc: 'English interface → Enter route (e.g., Beijing→Shanghai) → Select train → Fill in passport details → Pay with Visa/Mastercard.',
-                hsr_eticket_note: 'E-tickets: Scan QR code at the gate (no paper ticket needed!).',
-                hsr_12306_label: 'www.12306.cn:',
-                hsr_12306_desc: 'Register → Passport verification → Show passport at the gate.',
-                hsr_offline_title: '② Offline Booking',
-                hsr_offline_desc: 'Visit HSR station counters → Show passport → Pay by cash/card.',
-                hsr_board_label: '✅ Boarding Process',
-                hsr_step1: '<span class="font-semibold">Enter the Station</span> – Use self-service gates to scan your passport.',
-                hsr_step2: '<span class="font-semibold">Security Check</span> – Queue for security screening after entering.',
-                hsr_step3: '<span class="font-semibold">Find Your Gate</span> – Check your ticket (via app) for the assigned gate. Wait nearby until boarding begins.',
-                hsr_step4: '<span class="font-semibold">Board the Train</span> – Scan passport at gate when "Now Boarding" displays.',
-                hsr_step5: '<span class="font-semibold">Locate Your Seat</span> – Match ticket to number above windows (e.g., 06A = Row 6, Seat A).',
-                // didi
-                didi_title: '🚖 Ride-Hailing (Didi Rider)',
-                didi_app_rec: '📱 Recommended App: <span class="text-sunny">Didi Rider</span>',
-                didi_steps_label: '✅ Steps',
-                didi_step1: 'Download "Didi Rider" → Register with your international number.',
-                didi_step2: 'Bind Visa/Mastercard → Set payment code.',
-                didi_step3: 'Input destination (English/Chinese) → Select model (Economy/Comfort) → Confirm pickup point.',
-                didi_step3_tip: 'Assist the driver by dragging the map marker and sending text notes, e.g. "Near Starbucks".',
-                didi_step4: 'Share your real-time trip with friends via the app.',
-                didi_note_title: '⚠️ Note',
-                didi_note1: '– Verify license plate before boarding.',
-                didi_note2: '– In-app audio recording is enabled by default.',
-                // bike
-                bike_title: '🚲 Bike-Sharing',
-                bike_platforms_label: '✅ Recommended Platforms',
-                bike_th_brand: 'Brand', bike_th_app: 'App', bike_th_color: 'Color', bike_th_payment: 'Payment',
-                bike_meituan_name: 'Meituan Bike', bike_meituan_app: 'Meituan App', bike_meituan_color: 'Yellow', bike_meituan_pay: 'Alipay / WeChat Pay',
-                bike_hello_name: 'HelloBike', bike_hello_app: 'HelloBike App', bike_hello_color: 'Blue/Pink', bike_hello_pay: 'Foreign card binding (some cities)',
-                bike_steps_label: '✅ Steps',
-                bike_step1_title: 'Unlock',
-                bike_step1_desc: 'Scan the QR code via the app → Pay a refundable deposit or buy a weekly/monthly pass.',
-                bike_step2_title: 'Parking Rules',
-                bike_step2_desc: 'Return to designated zones (marked "P" in app) → Manually lock.',
-                bike_fine: 'Fine: Charged for improper parking.',
-                // transport tips
-                transport_tips_title: '💡 Tips',
-                transport_tip1: '– Metro/HSR stations have English signs; some cities offer English announcements.',
-                transport_tip2: '– Show translated Chinese address to drivers or locals: "请问地铁站怎么走？"',
-                transport_tip3: '– In-station help: look for "Service Center". Didi English line: <span class="font-mono text-blue-600">+86-400-000-0999</span>.',
-                transport_tip4: '– Best combo: HSR for long distances + bike-sharing for short hops.',
-                // nav section
-                nav_title: '🗺️ 2. Navigation Tools',
-                nav_badge: 'go~ go~ go~',
-                // apple maps
-                apple_name: 'Maps', apple_sub: 'Navigate and explore the world',
-                apple_pros_label: '✅ Pros',
-                apple_pro1: '– iPhone pre-installed and ready to use',
-                apple_pro2: '– Full English interface, navigate by chatting with Siri',
-                apple_pro3: '– Quickly updated road conditions and accurate location of attractions',
-                apple_note_label: '🟡 Note',
-                apple_note1: '– Small alleyways and new shopping malls may not be searchable',
-                apple_note2: '– Bus routes not as good as local App Details',
-                apple_tip_label: '⭐ Tips',
-                apple_tip: '"Siri, take me to the Forbidden City!"',
-                // petal maps
-                petal_name: 'Petal Maps', petal_sub: 'By Huawei · Global Navigation',
-                petal_pros_label: '✅ Pros',
-                petal_pro1: '– Huawei phones come pre-installed, other Androids can install it too',
-                petal_pro2: '– Free switching between Chinese and English, real-time road conditions',
-                petal_pro3: '– Offline map function — don\'t panic even without internet connection',
-                petal_note_label: '🟡 Note',
-                petal_note1: '– Non-Huawei phones need to manually download the installation package',
-                petal_note2: '– Information may be incomplete for rural areas',
-                petal_tip_label: '⭐ Tips',
-                petal_tip1: '– Huawei users directly poke [App Market] to download',
-                petal_tip2: '– APKPure is recommended for third-party Android installations.',
-                // amap
-                amap_name: 'AMap Global', amap_sub: 'Navigation · Traffic · Bus & Train',
-                amap_pros_label: '✅ Pros',
-                amap_pro1: '– English version is now online',
-                amap_pro2: '– You can navigate the market trails',
-                amap_note_label: '🟡 Note',
-                amap_note1: '– English switching portal is hard to find (Path: My → Settings → Language)',
-                amap_note2: '– Some features are only available in Chinese',
-                amap_tip_label: '⭐ Tips',
-                amap_tip: 'Smoother when used with translation software ～',
-                // baidu maps
-                baidu_name: 'Baidu Maps', baidu_sub: '百度地图 · 打车公交出行',
-                baidu_pros_label: '✅ Pros',
-                baidu_pro1: '– Imperial Exclusive English Service (Beijing only)',
-                baidu_pro2: '– The audio guide to the attractions is super sweet',
-                baidu_note_label: '🟡 Note',
-                baidu_note: '– Outside of Beijing, the interface changes to Chinese in a second.',
-                baidu_tip_label: '⭐ Tips',
-                baidu_tip: '– Suggest using translation plugins together',
-                register_title: '🤔 Want to register?',
-                register_gaode: 'Gaode/Baidu Maps → <span class="text-red-400 font-medium">China Cell Phone Number Required</span>',
-                register_petal: 'Petal Maps → <span class="text-green-500 font-medium">visitor mode available, no registration required</span>',
-                // lazy bag table
-                lazy_title: '✨ Ultimate Lazy Bag',
-                lazy_r1_user: '📱 iPhone users', lazy_r1_val: 'Apple Maps + Gaode English version — double insurance',
-                lazy_r2_user: '🤖 Android user', lazy_r2_val: 'Petal Maps Goes Around the World',
-                lazy_r3_user: '🧭 Deep traveler', lazy_r3_val: 'Gaode Map + Translation Software Combo',
-                lazy_r4_user: '🏯 Beijing Short Trip', lazy_r4_val: 'Baidu Maps English Version',
+                hero_title: 'Emergency Handling',
+                hero_sub: "Stay safe, stay calm — we've got you covered 🆘🏥🛂",
+                // part 1
+                p1_title: '🏥 1. Medical Care Guide',
+                p1_badge: 'Stay Safe~',
+                p1_banner: 'In emergencies, <span class="font-bold text-red-500">dial 120</span> immediately. Repeat <span class="font-semibold">"Hello"</span> to activate English-language assistance (available in Beijing / Shanghai pilot areas). Carry your <span class="font-semibold">passport and medical insurance documents</span> to the nearest hospital\'s Emergency Department.',
+                hosp_title: '🚑 (1) Hospital Visit Process',
+                // registration
+                reg_title: 'Registration',
+                reg_note: 'Passport required',
+                reg_online_label: 'Online',
+                reg_online_body: 'Available via hospital websites or WeChat official accounts.',
+                reg_onsite_label: 'On-Site',
+                reg_onsite_body: 'Service counter or self-service kiosk → Select department → Receive registration slip.',
+                // consultation
+                consult_title: 'Consultation',
+                consult_wait: 'Wait in the designated area → Pay attention to the calling system / display screen → Enter the consultation room.',
+                consult_describe: 'Describe symptoms clearly (use translation apps if needed).',
+                consult_after: 'After diagnosis, pay for check-up / medications → Get the medicine / treatments.',
+                // checkup
+                checkup_title: 'Check-up & Treatment',
+                checkup_note1: 'Some tests (blood, ultrasound) require <span class="font-semibold">fasting or a full bladder</span>. Confirm in advance.',
+                checkup_hosp_label: 'Hospitalization:',
+                checkup_hosp_body: 'Requires family consent (designate an emergency contact beforehand).',
+                // costs
+                cost_title: '💳 (2) Costs & Insurance',
+                cost_pay_label: 'Payment Methods',
+                cost_pay1: '– Cash, Alipay, WeChat Pay (some hospitals accept foreign cards).',
+                cost_pay2: '– If an invoice is needed: application at the payment window.',
+                cost_ins_label: 'Travel Insurance',
+                cost_ins1: '– Ensure your policy covers medical expenses in China.',
+                cost_ins2: '– Present proof at registration; some hospitals offer direct billing.',
+                // tcm
+                tcm_title: '🧘 (3) Traditional Chinese Medicine (TCM)',
+                tcm_rx_label: 'Prescriptions Only',
+                tcm_rx_body: 'Do not self-administer herbal medicine (may contain unlisted ingredients).',
+                tcm_licensed_label: 'Choose Licensed Clinics',
+                tcm_licensed_body: 'For acupuncture/cupping, avoid unregulated street vendors (sterilization risks).',
+                tcm_culture_label: '🌏 Cultural Note',
+                tcm_culture_body: 'Doctors may ask about age/marital status (for medical records). Major treatment or surgery requires family consent (designate an emergency contact in advance).',
+                // part 2
+                p2_title: '🚨 2. Common Emergencies',
+                p2_badge: 'Be Prepared~',
+                lost_title: '🛂 (1) Lost Documents',
+                lost_s1_num: 'Step 1',
+                lost_s1_head: 'File a Police Report',
+                lost_s1_b1: '– Go to the nearest <span class="font-semibold">Police Station</span> (search via maps like Amap).',
+                lost_s1_b2: '– Provide passport copies (if available) or alternative ID (e.g. driver\'s license).',
+                lost_s1_b3: '– Complete a <span class="font-semibold">Loss Statement</span> and obtain an official stamp.',
+                lost_s2_num: 'Step 2',
+                lost_s2_head: 'Obtain a Passport<br>Loss Certificate',
+                lost_s2_b1: '– Submit the stamped Loss Statement to the <span class="font-semibold">Exit-Entry Administration</span> (under Public Security Bureau).',
+                lost_s2_b2: '– Required documents: Passport/visa copies, 2-inch photo.',
+                lost_s2_b3: '– Receive the <span class="font-semibold">Passport Loss Certificate</span> (valid for 30 days).',
+                lost_s3_num: 'Step 3',
+                lost_s3_head: 'Renewal of Passport',
+                lost_s3_b1: '– Contact your <span class="font-semibold">Embassy/Consulate</span> (e.g., U.S. Embassy: <span class="font-mono text-blue-600">+86-10-8531-3000</span>).',
+                lost_s3_b2: '– Make an appointment, submit the Passport Loss Certificate, and receive the new passport (<span class="font-semibold">3–7 business days</span>).',
+                lost_s3_b3: '<span class="font-semibold text-red-500">Emergency Exit:</span> Apply for a Temporary Exit-Entry Permit at the Exit-Entry Administration (processed in <span class="font-semibold">1–2 days</span>).',
+                lost_tips_title: 'Tips',
+                lost_tip1: '– Store digital copies of passports/visas in email or cloud storage.',
+                lost_tip2: '– Hotels can provide passport photocopies.',
+                // payment issues
+                pay_title: '💳 (2) Payment Issues',
+                pay_card_title: '① Card Payment Failures',
+                pay_card1: '– Confirm your card\'s international transactions are enabled (contact your bank).',
+                pay_card2: '– Try a UnionPay card (some merchants only accept UnionPay).',
+                pay_card3: '– ATM Withdrawal: Use foreign-friendly ATMs (e.g., Bank of China, CCB) → Insert Visa/Mastercard → Select English → Enter PIN → Withdraw cash.',
+                pay_mobile_title: '② Mobile Payment Errors',
+                pay_mobile_sub: 'Alipay / WeChat Pay:',
+                pay_mobile_body: '– Check internet connection → Re-link card → Attempt small payments (&lt;¥200, no fee).',
+                pay_cs_label: 'Customer Service:',
+                pay_cs_alipay: 'Alipay: <span class="font-mono text-blue-600">+86-571-2688-6000</span> (English)',
+                pay_cs_wechat: 'WeChat Pay: <span class="font-mono text-blue-600">+86-571-95017</span> (English)',
+                pay_backup_label: 'Backup:',
+                pay_backup_body: 'Use cash (exchange at airports/hotels) or visit foreign card-friendly stores (e.g., malls, chain restaurants).',
+                // allergy
+                allergy_title: '🌿 (3) Allergy Prevention & Response',
+                allergy_prev_title: 'Prevention',
+                allergy_prev1: 'Carry a Chinese Allergy Card stating <span class="font-semibold">「我对＿过敏」</span> (I am allergic to ＿). e.g. 我对花生 (peanuts) 过敏',
+                allergy_prev2: 'Keep antihistamines / emergency medication.',
+                allergy_emg_title: 'Emergency Response',
+                allergy_e1_label: 'Accidental Ingestion:',
+                allergy_e1_body: 'Stop eating → Take medication.',
+                allergy_e2_label: 'Severe Reactions (e.g., difficulty breathing):',
+                allergy_e2_body: 'Dial <span class="font-bold text-red-500">120</span> → Repeat "Hello" → State "Food allergy emergency."',
+                allergy_e3_label: 'At the Hospital:',
+                allergy_e3_body: 'Show your allergy card → Request an English medical record.',
+                allergy_e4_label: 'Self-Care:',
+                allergy_e4_body: 'Use Meituan or Amap to locate 24-hour pharmacies → Navigate or order online.',
+                // emergency contacts table
+                ec_title: '📞 Emergency Contacts',
+                ec_h1: 'Type of Service', ec_h2: 'Contact Number', ec_h3: 'Notes',
+                ec_r1_type: '🚑 First aid',
+                ec_r1_note: 'Universal · English supported in some cities',
+                ec_r2_type: '🚔 Alarm',
+                ec_r2_note: 'Nationwide',
+                ec_r3_type: '🚒 Fire alarm',
+                ec_r3_note: 'Nationwide',
+                ec_r4_type: '🏛️ Consular protection',
+                ec_r4_note: '24-hour English service',
+                ec_r5_type: '🛃 Customs consultation',
+                ec_r5_note: 'Press 2 for English services',
                 // footer
                 footer_editors: 'Editors: Liu Sisi, Wu Xiangwei, Xu Xinyi',
                 footer_devs: 'Developers: Li Xuan, Li Xinyi',
@@ -710,140 +645,126 @@
             zh: {
                 // nav
                 nav_home: '首页', nav_guide: '指南',
+                // subnav
                 subnav_prep: '入境准备',
                 subnav_trans_short: '交通导航',
                 subnav_trans_long: '交通与导航',
                 subnav_pay_short: '支付与退税',
                 subnav_pay_long: '支付与退税',
-                subnav_accom: '住宿',
+                subnav_accom: '住宿与生活',
                 subnav_emerg_short: '紧急情况',
                 subnav_emerg_long: '紧急情况处理',
                 subnav_travel_short: '文化',
                 subnav_travel_long: '旅游与文化',
-                bc_home: '首页', bc_guide: '指南', bc_page: '交通与导航',
+                // breadcrumb
+                bc_home: '首页', bc_guide: '指南', bc_page: '紧急情况处理',
                 // hero
-                hero_title: '交通与导航',
-                hero_sub: '在中国出行，简单明了 🚄🚇🛵',
-                // section headers
-                transport_title: '🚆 一、出行方式',
-                transport_badge: '出行方式',
-                // metro
-                metro_title: '🚇 地铁',
-                ticketing_options: '✅ 购票方式',
-                metro_machine_title: '① 自动售票机',
-                metro_machine_desc: '选择英文界面 → 点击线路图选择目的地 → 投币/扫码支付（支持支付宝/微信）→ 取票进站。',
-                metro_ticket_office: '人工窗口：出示护照 → 现金购票。',
-                metro_eticket_title: '② 电子乘车码',
-                metro_eticket_desc: '打开支付宝 → 点击「出行」→ 领取所在城市的"地铁乘车码" → 扫码进出站。',
-                metro_pass_title: '③ 交通卡',
-                metro_pass_desc: '办理地点：地铁站售票窗口（需护照）。充值方式：现金、支付宝、微信（部分机器支持外卡）。',
-                metro_note_title: '⚠️ 注意',
-                metro_note1: '– 进出站需两次扫码/刷卡（进站一次，出站一次）。',
-                metro_note2: '– 外籍护照用户建议走人工通道，避免闸机识别问题。',
-                // hsr
-                hsr_title: '🚄 高铁',
-                hsr_ticket_label: '✅ 购票方式',
-                hsr_online_title: '① 线上购票（推荐）',
-                hsr_tripcom_label: 'Trip.com（国际版）：',
-                hsr_tripcom_desc: '全英文界面 → 输入出发地/目的地（如 Beijing→Shanghai）→ 选择车次 → 填写护照信息 → 绑定 Visa/Mastercard 支付。',
-                hsr_eticket_note: '电子票直接扫码进站，无需取票！',
-                hsr_12306_label: '12306 英文官网：',
-                hsr_12306_desc: '注册账号 → 护照认证 → 购票后凭护照进站。',
-                hsr_offline_title: '② 线下购票',
-                hsr_offline_desc: '前往高铁站人工窗口 → 出示护照 → 现金/刷卡购票。',
-                hsr_board_label: '✅ 进站与乘车',
-                hsr_step1: '<span class="font-semibold">进站</span> – 使用自助闸机扫描护照。',
-                hsr_step2: '<span class="font-semibold">安检</span> – 护照与行李一同过检。',
-                hsr_step3: '<span class="font-semibold">寻找检票口</span> – 查看车票（App内）找到对应检票口，附近等候。',
-                hsr_step4: '<span class="font-semibold">检票乘车</span> – 当"开始检票"时，在闸机扫描护照。',
-                hsr_step5: '<span class="font-semibold">寻找座位</span> – 根据车票上的号码对应窗户上方数字（如06A = 6排A座）。',
-                // didi
-                didi_title: '🚖 网约车（滴滴出行）',
-                didi_app_rec: '📱 推荐 App：<span class="text-sunny">Didi Rider</span>',
-                didi_steps_label: '✅ 操作步骤',
-                didi_step1: '下载"Didi Rider"App → 使用国际手机号注册。',
-                didi_step2: '绑定 Visa/Mastercard → 设置支付密码。',
-                didi_step3: '输入目的地（英文或中文）→ 选择车型（经济/舒适）→ 确认上车点。',
-                didi_step3_tip: '定位校准技巧：通过拖动地图标记、发送文字备注（如"靠近星巴克"）辅助司机定位。',
-                didi_step4: '司机接单后，App 内实时共享行程给亲友。',
-                didi_note_title: '⚠️ 注意',
-                didi_note1: '– 确认车牌号再上车。',
-                didi_note2: '– 车内录音功能默认开启，安全有保障。',
-                // bike
-                bike_title: '🚲 共享单车',
-                bike_platforms_label: '✅ 推荐平台',
-                bike_th_brand: '品牌', bike_th_app: 'App', bike_th_color: '车辆颜色', bike_th_payment: '支付方式',
-                bike_meituan_name: '美团单车', bike_meituan_app: '美团 App', bike_meituan_color: '黄色', bike_meituan_pay: '支付宝/微信钱包充值',
-                bike_hello_name: '哈啰单车', bike_hello_app: 'HelloBike App', bike_hello_color: '蓝色/粉色', bike_hello_pay: '绑定外卡（部分城市）',
-                bike_steps_label: '✅ 使用步骤',
-                bike_step1_title: '扫码开锁',
-                bike_step1_desc: '打开 App → 点击"扫码开锁" → 对准车锁二维码。首次使用需缴纳押金（可退）或购买周卡/月卡。',
-                bike_step2_title: '还车规则',
-                bike_step2_desc: '找到指定停车区（App 内地图标注 P 点）→ 手动关锁。',
-                bike_fine: '违规停放将收取调度费。',
-                // transport tips
-                transport_tips_title: '💡 小贴士',
-                transport_tip1: '– 地铁站、高铁站均有英文标识，部分城市提供语音播报。',
-                transport_tip2: '– 用翻译 App 展示中文地址给司机或路人："请问地铁站怎么走？"',
-                transport_tip3: '– 站内求助：找"Service Center（服务中心）"。滴滴英文客服：<span class="font-mono text-blue-600">+86-400-000-0999</span>。',
-                transport_tip4: '– 省钱组合：长途选高铁 + 短途接驳用共享单车，性价比最高。',
-                // nav section
-                nav_title: '🗺️ 二、导航工具',
-                nav_badge: '出发吧~',
-                // apple maps
-                apple_name: '地图（苹果）', apple_sub: '导航并探索世界',
-                apple_pros_label: '✅ 优点',
-                apple_pro1: '– 预装 iPhone，开机即用',
-                apple_pro2: '– 全英文界面，和 Siri 聊天就能导航',
-                apple_pro3: '– 路况更新快，景点定位准',
-                apple_note_label: '🟡 缺点',
-                apple_note1: '– 小胡同、新商场可能搜不到',
-                apple_note2: '– 公交路线不如本土 App 详细',
-                apple_tip_label: '⭐ 使用贴士',
-                apple_tip: '直接喊"Siri，带我去故宫！"',
-                // petal maps
-                petal_name: 'Petal Maps（华为花瓣地图）', petal_sub: '华为出品 · 全球导航',
-                petal_pros_label: '✅ 优点',
-                petal_pro1: '– 华为手机预装，其他安卓也能装',
-                petal_pro2: '– 中英文自由切换，路况实时刷新',
-                petal_pro3: '– 离线地图功能，没网也不慌',
-                petal_note_label: '🟡 缺点',
-                petal_note1: '– 非华为手机需手动下载安装包',
-                petal_note2: '– 乡村地区信息可能不全',
-                petal_tip_label: '⭐ 使用贴士',
-                petal_tip1: '– 华为用户直接戳【应用市场】下载',
-                petal_tip2: '– 第三方安卓机建议用 APKPure 安装',
-                // amap
-                amap_name: '高德地图（AMap 英文版）', amap_sub: '导航 · 实时路况 · 公交地铁',
-                amap_pros_label: '✅ 优点',
-                amap_pro1: '– 英文版已上线',
-                amap_pro2: '– 菜市场小道都能导航',
-                amap_note_label: '🟡 缺点',
-                amap_note1: '– 英文切换入口难找（路径：我的 → 设置 → 语言）',
-                amap_note2: '– 部分功能仅中文版可用',
-                amap_tip_label: '⭐ 使用贴士',
-                amap_tip: '搭配翻译软件使用更丝滑～',
-                // baidu maps
-                baidu_name: '百度地图', baidu_sub: '百度地图 · 打车公交出行',
-                baidu_pros_label: '✅ 优点',
-                baidu_pro1: '– 帝都专属英文服务（仅限北京地区）',
-                baidu_pro2: '– 景点语音讲解超贴心',
-                baidu_note_label: '🟡 缺点',
-                baidu_note: '– 出了北京秒变中文界面',
-                baidu_tip_label: '⭐ 使用贴士',
-                baidu_tip: '– 建议搭配翻译插件使用',
-                register_title: '🤔 要注册吗？',
-                register_gaode: '高德/百度地图 → <span class="text-red-400 font-medium">需中国手机号</span>',
-                register_petal: 'Petal Maps → <span class="text-green-500 font-medium">可用游客模式，无需注册</span>',
-                // lazy bag table
-                lazy_title: '✨ 终极懒人包',
-                lazy_r1_user: '📱 iPhone 用户', lazy_r1_val: '苹果地图 + 高德英文版双保险',
-                lazy_r2_user: '🤖 安卓用户', lazy_r2_val: 'Petal Maps 走天下',
-                lazy_r3_user: '🧭 深度游玩家', lazy_r3_val: '高德地图 + 翻译软件组合拳',
-                lazy_r4_user: '🏯 北京短途游', lazy_r4_val: '百度地图英文版试一波',
+                hero_title: '紧急情况处理',
+                hero_sub: '保持安全，保持冷静 — 我们为您指引 🆘🏥🛂',
+                // part 1
+                p1_title: '🏥 一、就医指南',
+                p1_badge: '保障安全~',
+                p1_banner: '若遇紧急情况，请立即拨打 <span class="font-bold text-red-500">120</span>，重复<span class="font-semibold">"Hello"</span>触发英语救援通道（北京/上海试点），并携带<span class="font-semibold">护照和医疗保险证明</span>前往就近医院急诊科。',
+                hosp_title: '🚑 （一）就诊流程',
+                // registration
+                reg_title: '挂号',
+                reg_note: '以下方式均需护照',
+                reg_online_label: '线上预约',
+                reg_online_body: '部分医院支持官网或微信公众号预约。',
+                reg_onsite_label: '现场挂号',
+                reg_onsite_body: '前往医院服务窗口或自助机 → 选择科室 → 领取挂号单。',
+                // consultation
+                consult_title: '候诊与就诊',
+                consult_wait: '候诊区等待 → 关注叫号系统或显示屏 → 进入诊室。',
+                consult_describe: '向医生详细描述病情（可借助翻译软件）。',
+                consult_after: '医生开具检查单或处方 → 缴费（支持移动支付）→ 取药/治疗。',
+                // checkup
+                checkup_title: '检查与治疗',
+                checkup_note1: '部分检查（如血检、B超）需<span class="font-semibold">空腹或憋尿</span>，提前了解准备事项。',
+                checkup_hosp_label: '住院：',
+                checkup_hosp_body: '医院会要求家属签字（提前指定紧急联系人）。',
+                // costs
+                cost_title: '💳 （二）费用与保险',
+                cost_pay_label: '支付方式',
+                cost_pay1: '– 支持现金、支付宝、微信支付（部分医院支持外卡）。',
+                cost_pay2: '– 如需发票（报销用），可在缴费窗口申请。',
+                cost_ins_label: '医疗保险',
+                cost_ins1: '– 建议购买覆盖中国的旅行保险，确保医疗费用报销。',
+                cost_ins2: '– 就诊时出示保险证明，部分医院支持直付。',
+                // tcm
+                tcm_title: '🧘 （三）中医体验',
+                tcm_rx_label: '须凭处方',
+                tcm_rx_body: '中药需医师开具处方，勿自行服用（可能含未标注成分）。',
+                tcm_licensed_label: '选择正规医院',
+                tcm_licensed_body: '针灸、拔罐等治疗需选择正规医院，避免街边小店（消毒风险）。',
+                tcm_culture_label: '🌏 文化差异',
+                tcm_culture_body: '医生可能询问年龄/婚姻状况（用于病历记录）。重症治疗或手术需家属签字（提前指定紧急联系人）。',
+                // part 2
+                p2_title: '🚨 二、常见应急事件',
+                p2_badge: '有备无患~',
+                lost_title: '🛂 （一）证件丢失',
+                lost_s1_num: '第一步',
+                lost_s1_head: '立即报案',
+                lost_s1_b1: '– 前往最近的<span class="font-semibold">派出所</span>（用地图 App 搜索"Police Station"）。',
+                lost_s1_b2: '– 提供护照复印件（如有）或其他身份证明（如驾照）。',
+                lost_s1_b3: '– 填写<span class="font-semibold">《遗失证明》</span>并盖章。',
+                lost_s2_num: '第二步',
+                lost_s2_head: '获取护照<br>报失证明',
+                lost_s2_b1: '– 携带派出所出具的《遗失证明》前往<span class="font-semibold">公安局出入境管理部门</span>。',
+                lost_s2_b2: '– 提交材料：护照复印件、签证页复印件、2寸照片。',
+                lost_s2_b3: '– 领取<span class="font-semibold">《外国人护照报失证明》</span>（有效期30天）。',
+                lost_s3_num: '第三步',
+                lost_s3_head: '补办护照',
+                lost_s3_b1: '– 联系<span class="font-semibold">所属国驻华使馆</span>（如美国驻华使馆：<span class="font-mono text-blue-600">+86-10-8531-3000</span>）。',
+                lost_s3_b2: '– 预约补办时间，提交《护照报失证明》及所需材料，领取新护照（通常需<span class="font-semibold">3–7个工作日</span>）。',
+                lost_s3_b3: '<span class="font-semibold text-red-500">紧急出境：</span>如急需离境，可前往公安局出入境管理部门申请《外国人出入境通行证》（<span class="font-semibold">1–2个工作日</span>内完成）。',
+                lost_tips_title: '小贴士',
+                lost_tip1: '– 提前备份护照和签证的电子版，存到邮箱或云端。',
+                lost_tip2: '– 入住酒店时，前台可提供护照复印件服务。',
+                // payment issues
+                pay_title: '💳 （二）支付故障',
+                pay_card_title: '① 银行卡支付失败',
+                pay_card1: '– 确认已开通国际支付功能（联系发卡银行）。',
+                pay_card2: '– 尝试更换其他银行卡（部分商户仅支持银联）。',
+                pay_card3: '– ATM取现：找到支持外卡的ATM机（如中国银行、建设银行）→ 插入Visa/Mastercard → 选择"English" → 输入密码 → 取现。',
+                pay_mobile_title: '② 移动支付故障',
+                pay_mobile_sub: '支付宝 / 微信支付：',
+                pay_mobile_body: '– 检查网络连接 → 重新绑定银行卡 → 尝试小额支付（&lt;¥200 免手续费）。',
+                pay_cs_label: '客服热线：',
+                pay_cs_alipay: '支付宝：<span class="font-mono text-blue-600">+86-571-2688-6000</span>（英文服务）',
+                pay_cs_wechat: '微信支付：<span class="font-mono text-blue-600">+86-571-95017</span>（英文服务）',
+                pay_backup_label: '备用方案：',
+                pay_backup_body: '使用现金（机场、酒店可兑换人民币）或寻找支持外卡刷卡的商户（如大型商场、连锁餐厅）。',
+                // allergy
+                allergy_title: '🌿 （三）过敏预防与处理',
+                allergy_prev_title: '事前准备',
+                allergy_prev1: '制作中文过敏卡，标注<span class="font-semibold">「我对＿过敏」</span>等关键信息。如：你好，我对花生过敏。',
+                allergy_prev2: '随身携带抗敏药物。',
+                allergy_emg_title: '紧急处理',
+                allergy_e1_label: '误食过敏食物：',
+                allergy_e1_body: '立即停止进食 → 服用抗敏药。',
+                allergy_e2_label: '症状加重（呼吸困难/肿胀）：',
+                allergy_e2_body: '拨打 <span class="font-bold text-red-500">120</span>，重复"Hello"触发英语救援通道（北京/上海试点）→ 说明"食物过敏需急救"。',
+                allergy_e3_label: '就医时：',
+                allergy_e3_body: '出示过敏卡 → 要求英文病历记录。',
+                allergy_e4_label: '自行购药：',
+                allergy_e4_body: '使用美团/高德地图搜索"24小时药店"→ 按导航前往或线上下单购药。',
+                // emergency contacts table
+                ec_title: '📞 紧急联络方式',
+                ec_h1: '服务类型', ec_h2: '联系电话', ec_h3: '备注',
+                ec_r1_type: '🚑 急救',
+                ec_r1_note: '全国通用，部分城市支持英文',
+                ec_r2_type: '🚔 报警',
+                ec_r2_note: '全国通用',
+                ec_r3_type: '🚒 火警',
+                ec_r3_note: '全国通用',
+                ec_r4_type: '🏛️ 领事保护',
+                ec_r4_note: '24小时英文服务',
+                ec_r5_type: '🛃 海关咨询',
+                ec_r5_note: '英文服务按 2',
                 // footer
-                footer_editors: '编辑：刘思思、吴向威、徐新艺',
-                footer_devs: '开发：李璇、李新艺',
+                footer_editors: '编辑：刘思思，吴向微，许欣溢',
+                footer_devs: '开发：李璇、李欣苡',
                 footer_copy: '© 2025 中国导航手册 | 版权所有',
             }
         };
