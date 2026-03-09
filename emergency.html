@@ -65,15 +65,16 @@
             <nav class="flex flex-wrap gap-4 nav-text">
                 <a href="index.html" class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm" data-i18n="nav_home">Home</a>
                 <a href="index.html#contents-section" class="px-4 py-2 bg-lemon hover:bg-lemon/80 rounded-full transition-all transform hover:scale-105 shadow-sm" data-i18n="nav_guide">Guide</a>
-                <div class="relative group">
-                    <button class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm flex items-center gap-2" onclick="toggleLang()">
-                        <span id="langLabel">Language</span><span class="text-xs">▼</span>
-                    </button>
-                    <div class="absolute top-full right-0 mt-2 w-32 bg-white rounded-xl shadow-lg border-2 border-lemon/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                        <button class="w-full px-4 py-2 text-left hover:bg-lemon/20 rounded-t-xl transition-colors" onclick="setLang('en')">English</button>
-                        <button class="w-full px-4 py-2 text-left hover:bg-lemon/20 rounded-b-xl transition-colors" onclick="setLang('zh')">中文</button>
-                    </div>
-                </div>
+               <!-- 改后 -->
+               <div class="relative" id="langDropdown">
+                   <button class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm flex items-center gap-2" onclick="toggleMenu(event)">
+                       <span id="langLabel">Language</span><span class="text-xs">▼</span>
+                   </button>
+                   <div id="langMenu" class="hidden absolute top-full right-0 mt-2 w-32 bg-white rounded-xl shadow-lg border-2 border-sunny/30 z-10">
+                       <button class="w-full px-4 py-2 text-left hover:bg-peach/20 rounded-t-xl transition-colors" onclick="setLang('en')">English</button>
+                       <button class="w-full px-4 py-2 text-left hover:bg-peach/20 rounded-b-xl transition-colors" onclick="setLang('zh')">中文</button>
+                   </div>
+               </div>
             </nav>
         </div>
     </header>
@@ -781,8 +782,22 @@
             document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
         }
 
-        function setLang(lang) { currentLang = lang; applyLang(lang); }
-        function toggleLang() { setLang(currentLang === 'en' ? 'zh' : 'en'); }
+        // 改后
+        function setLang(lang) {
+            currentLang = lang;
+            applyLang(lang);
+            document.getElementById('langMenu').classList.add('hidden'); // 选完自动收起
+        }
+        
+        function toggleMenu(event) {
+            event.stopPropagation(); // 防止冒泡触发下面的document监听
+            document.getElementById('langMenu').classList.toggle('hidden');
+        }
+        
+        // 点击页面其他地方时收起菜单
+        document.addEventListener('click', function() {
+            document.getElementById('langMenu').classList.add('hidden');
+        });
     </script>
 
 </body>

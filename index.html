@@ -166,28 +166,21 @@
             </div>
 
             <!-- ✅ 仅加 nav-text，不改结构 -->
-            <nav class="flex flex-wrap gap-4 nav-text">
-                <a href="#"
-                    class="px-4 py-2 bg-skyblue hover:bg-skyblue/80 rounded-full transition-all transform hover:scale-105 shadow-sm">Home</a>
-                <a href="#contents-section"
-                    class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm">Guide</a>
-                
-                <!-- Language下拉菜单 -->
-                <div class="relative group">
-                    <button
-                        class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm flex items-center gap-2">
-                        <span>Language</span>
-                        <span class="text-xs">▼</span>
-                    </button>
-                    <div
-                        class="absolute top-full right-0 mt-2 w-32 bg-white rounded-xl shadow-lg border-2 border-sunny-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
-                        <button id="lang-en"
-                            class="w-full px-4 py-2 text-left hover:bg-sunny/10 rounded-t-xl transition-colors">English</button>
-                        <button id="lang-zh"
-                            class="w-full px-4 py-2 text-left hover:bg-sunny/10 rounded-b-xl transition-colors">中文</button>
-                    </div>
-                </div>
-            </nav>
+           <nav class="flex flex-wrap gap-4 nav-text">
+               <a href="#" class="px-4 py-2 bg-skyblue hover:bg-skyblue/80 rounded-full transition-all transform hover:scale-105 shadow-sm">Home</a>
+               <a href="#contents-section" class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm">Guide</a>
+               
+               <div id="lang-dropdown-wrapper" class="relative">
+                   <button class="px-4 py-2 bg-white hover:bg-gray-100 rounded-full transition-all transform hover:scale-105 shadow-sm flex items-center gap-2">
+                       <span>Language</span>
+                       <span class="text-xs">▼</span>
+                   </button>
+                   <div id="lang-menu" class="hidden absolute top-full right-0 mt-2 w-32 bg-white rounded-xl shadow-lg border-2 border-sunny-200 z-10">
+                       <button id="lang-en" class="w-full px-4 py-2 text-left hover:bg-sunny/10 rounded-t-xl transition-colors">English</button>
+                       <button id="lang-zh" class="w-full px-4 py-2 text-left hover:bg-sunny/10 rounded-b-xl transition-colors">中文</button>
+                   </div>
+               </div>
+           </nav>
         </div>
     </header>
 
@@ -537,7 +530,7 @@
         if (navLinks[0]) navLinks[0].textContent = t.home;
         if (navLinks[1]) navLinks[1].textContent = t.guide;
 
-        const langBtn = document.querySelector(".group button span:first-child");
+        const langBtn = document.querySelector("#lang-dropdown-wrapper button span:first-child");
         if (langBtn) langBtn.textContent = t.language;
 
         /* ===== 封面 ===== */
@@ -641,8 +634,24 @@
 */
 
 
-        document.getElementById("lang-en").onclick = () => switchLanguage("en");
-        document.getElementById("lang-zh").onclick = () => switchLanguage("zh");
+       const langMenu = document.getElementById("lang-menu");
+       const langWrapper = document.getElementById("lang-dropdown-wrapper");
+       
+       langWrapper.querySelector("button").onclick = (e) => {
+           e.stopPropagation();
+           langMenu.classList.toggle("hidden");
+       };
+       
+       document.getElementById("lang-en").onclick = () => {
+           switchLanguage("en");
+           langMenu.classList.add("hidden");
+       };
+       document.getElementById("lang-zh").onclick = () => {
+           switchLanguage("zh");
+           langMenu.classList.add("hidden");
+       };
+       
+       document.addEventListener("click", () => langMenu.classList.add("hidden"));
     </script>
 
 </body>
